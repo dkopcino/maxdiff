@@ -1,0 +1,81 @@
+## DODATI U CUSTOM.JS U TEMI
+function maxDiff(qID, randomize) {
+  
+  // Identify some elements
+  var thisQuestion = $('#question'+qID);
+  var thisTable = $('table.subquestion-list:eq(0)', thisQuestion);
+  
+  // Assign a new question class
+  $(thisQuestion).addClass('max-diff-array');
+  
+  // Move the columns
+  $('thead tr:eq(0)', thisTable).prepend($('thead tr:eq(0) th:eq(0)', thisTable));
+  $('tr.answers-list', thisTable).each(function(i){
+    $('td.answer-item:eq(0)', this).prependTo(this);
+  });
+  
+  // Prevent clicking twice in the same row
+  $('input:radio', thisQuestion).on('click', function () {
+    
+    $('input:radio', thisQuestion).prop('disabled', false);
+    $('input:radio:checked', thisQuestion).each(function(i) {
+      var thisRow = $(this).closest('tr.answers-list');
+      $('input:radio', thisRow).not(this).prop('disabled', true);
+    });
+  });	
+  
+  // Fix up the row classes
+  var rowClass = 1;
+  $('tr.answers-list', thisTable).each(function(i) {
+    $(this).addClass('array'+(2-(i%2)));
+  });
+  
+}
+
+## DODATI U CUSTOM.CSS U TEMI
+.max-diff-array th.answertext { 
+  text-align: center;
+  border-right: 3px solid #FFFFFF;
+  border-left: 3px solid #FFFFFF;
+}
+
+/* Override the responsive "no-more-tables" stuff */
+@media only screen and (max-width: 801px) {
+  
+  .max-diff-array .no-more-tables table {
+    display: table;
+    border-collapse: inherit;
+  }	
+  
+  .max-diff-array .no-more-tables thead, 
+  .max-diff-array .no-more-tables tbody {
+    display: table-row-group;
+  }
+  
+  .max-diff-array .no-more-tables tr {
+    left: auto;
+    position: relative;
+    top: auto;
+    display: table-row;
+    border: 0 none;
+  }	
+  
+  .max-diff-array .no-more-tables th, 
+  .max-diff-array .no-more-tables td {
+    display: table-cell;
+    text-align: center !important;
+    color: #2c3e50;
+      font-size: 15px;
+  }
+  
+  .max-diff-array th.answertext { 
+    border-right: 3px solid #FFFFFF;
+    border-left: 3px solid #FFFFFF;
+  }
+  
+  .max-diff-array .answer-item label span {
+    display: none !important;
+  }	
+}
+
+
