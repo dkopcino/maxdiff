@@ -299,6 +299,13 @@ for (resp.id in 1:max(cbc.df$resp.id)) {
 
 rownames(cbc.mm) = c()
 
+if (designctx$anchors == 0) {
+  # remove the Intercept column - it is essentially contained in the alt column (Intercept is when all predictors are 0 - that leaves only the alt as the predictor)
+  # when we use anchors, then the threshold option is the 0 option, and we don't need to remove the Intercept created with modelling
+  cbc.mm = cbc.mm[, -4] # 1st item column is the 4th column (after resp.id, ques and alt)
+  items.columns = items.columns[-1]
+}
+
 # 
 # 
 # 
@@ -334,7 +341,8 @@ if (length(designctx$covariates) == 0) {
   fmlstring = paste("choice ~ 0 + ", paste(colnames(mm), collapse = "+")) # all vars have generic coefs
   fml1 = as.formula(fmlstring)
 } else {
-  ncov.columns = setdiff(colnames(mm), cov.columns)
+#  ncov.columns = setdiff(colnames(mm), cov.columns)
+  ncov.columns = items.columns
   fmlstring1 = paste("0 +", paste(ncov.columns, collapse = "+")) # all but covariates have generic coefs
   fmlstring2 = paste("0 +", paste(cov.columns, collapse = "+")) # covariates will have alternative specific coefs
   fmlstring = paste("choice ~", fmlstring1, "|", fmlstring2)
@@ -363,20 +371,20 @@ cbc.mlogit = mlogit.data(data = cbc.mm, choice = "choice", shape = "long",
                          chid.var = "resp.ques",
                          id.var = "resp.id")
 
-## BUILD AND SAVE MODEL
-# Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
-# (znači u formuli idu iza | i s 0 +)
-m1 = mlogit(fml1, data = cbc.mlogit)
-# summary(m1)
-m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
-names(m1.rpar) = names(m1$coef)
-m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
-# summary(m1.hier)
-# m2.hier = update(m1.hier, correlation = TRUE)
-# summary(m2.hier)
-# SAVE/LOAD
-m2.hier$cov.df = cov.df
-saveRDS(m2.hier, mnlmodelfile)
+# ## BUILD AND SAVE MODEL
+# # Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
+# # (znači u formuli idu iza | i s 0 +)
+# m1 = mlogit(fml1, data = cbc.mlogit)
+# # summary(m1)
+# m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
+# names(m1.rpar) = names(m1$coef)
+# m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
+# # summary(m1.hier)
+# # m2.hier = update(m1.hier, correlation = TRUE)
+# # summary(m2.hier)
+# # SAVE/LOAD
+# m2.hier$cov.df = cov.df
+# saveRDS(m2.hier, mnlmodelfile)
 
 ## LOAD MODEL
 if (!is.null(cbc.mm$resp.ques)) cbc.mm$resp.ques = NULL
@@ -410,21 +418,21 @@ if (length(designctx$covariates) > 0) {
   demos = as.matrix(cmr.mm[(0:(max_resp_id-1))*(total_rows/max_resp_id)+1, cov.columns])
 }
 
-## Build and save the model
-if (!is.null(demos)) {
-  hb.post = choicemodelr(data = cmr.mm.bez.cov,
-                         xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
-                         demos = demos,
-                         mcmc = list(R = 20000, use = 10000),
-                         options = list(save = TRUE))
-} else {
-  hb.post = choicemodelr(data = cmr.mm.bez.cov,
-                         xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
-                         mcmc = list(R = 20000, use = 10000),
-                         options = list(save = TRUE))
-}
-saveRDS(hb.post, hbmodelfile)
-##
+# ## Build and save the model
+# if (!is.null(demos)) {
+#   hb.post = choicemodelr(data = cmr.mm.bez.cov,
+#                          xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
+#                          demos = demos,
+#                          mcmc = list(R = 20000, use = 10000),
+#                          options = list(save = TRUE))
+# } else {
+#   hb.post = choicemodelr(data = cmr.mm.bez.cov,
+#                          xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
+#                          mcmc = list(R = 20000, use = 10000),
+#                          options = list(save = TRUE))
+# }
+# saveRDS(hb.post, hbmodelfile)
+# ##
 
 hb.post = readRDS(hbmodelfile)
 
@@ -477,9 +485,13 @@ C = max(cbc.mm$alt)
 K = ncol(cbc.mm.clear)
 Y = matrix(cmr_choice[cmr_choice != 0], nrow = R, ncol = S, byrow = TRUE)
 X = array(0, dim = c(R, S, C, K))
+XC = array(C, dim = c(R, S)) # actual number of alternatives for each respondent/scenario
 for (r in 1:R) { # respondents
   for (s in 1:S){ # choice scenarios - questions
-    X[r, s, , ] = data.matrix(cbc.mm.clear[(cbc.mm$resp.id == r) & (cbc.mm$ques == s), ])
+    dm = data.matrix(cbc.mm.clear[(cbc.mm$resp.id == r) & (cbc.mm$ques == s), ])
+    XC[r, s] = nrow(dm)
+    if (nrow(dm) < C) dm = rbind(dm, matrix(0, nrow = (C - nrow(dm)), ncol = ncol(dm))) # add zero rows just to fill the X matrix
+    X[r, s, , ] = dm
   }
 }
 if (!is.null(demos)) {
@@ -490,9 +502,9 @@ if (!is.null(demos)) {
 }
 G = nrow(Z)
 
-standata = list(C = C, K = K, R = R, S = S, G = G, Y = Y, X = X, Z = Z)
+standata = list(C = C, K = K, R = R, S = S, G = G, Y = Y, X = X, XC = XC, Z = Z)
 #str(standata)
-rm(R, S, C, K, Y, X, Z, G, r, s, c)
+rm(R, S, C, K, Y, X, XC, Z, G, r, s, c)
 
 # Convergence checking gets tedious with a lot of parameters, so automate
 stanmc_check_fit = function(fit) {
@@ -580,28 +592,28 @@ stan.mc.est
 # sve ostalo je definirano gore kod stan.mc
 standata$CL = designctx$rsegments
 
-# # BUILD MODEL
-# cores = parallel::detectCores() - 1
-# #cores = parallel::detectCores()
-# # https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html
-# stan.mc.lca = stan(file = "hmnl_lca.stan",
-#                    data = standata,
-#                    verbose = FALSE,
-#                    chains = cores, # * 2,
-# #                   iter = floor(2000 / 1),
-#                    iter = 1000,
-#                    #algorithm = "HMC",
-#                    control = list(adapt_delta = 0.90, stepsize = 0.5), # def adapt_delta 0.8, stespize = 2.0
-#                    cores = cores)
-# # plot(stan.mc.lca, plotfun = "trace", pars = c("Theta"))
-# # plot(stan.mc.lca, plotfun = "trace", pars = c("tau"))
-# # plot(stan.mc.lca, plotfun = "trace", pars = c("Omega[1,2]"))
-# # plot(stan.mc.lca, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
-# # summary(stan.mc.lca)$summary[, c("Rhat", "n_eff")]
-# # stanmc_check_fit(stan.mc.lca) # should say ok = TRUE
-# 
-# saveRDS(stan.mc.lca, stanmclcamodelfile)
-# ##
+# BUILD MODEL
+cores = parallel::detectCores() - 1
+#cores = parallel::detectCores()
+# https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html
+stan.mc.lca = stan(file = "hmnl_lca.stan",
+                   data = standata,
+                   verbose = FALSE,
+                   chains = cores, # * 2,
+#                   iter = floor(2000 / 1),
+                   iter = 1000,
+                   #algorithm = "HMC",
+                   control = list(adapt_delta = 0.90, stepsize = 0.5), # def adapt_delta 0.8, stespize = 2.0
+                   cores = cores)
+# plot(stan.mc.lca, plotfun = "trace", pars = c("Theta"))
+# plot(stan.mc.lca, plotfun = "trace", pars = c("tau"))
+# plot(stan.mc.lca, plotfun = "trace", pars = c("Omega[1,2]"))
+# plot(stan.mc.lca, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
+# summary(stan.mc.lca)$summary[, c("Rhat", "n_eff")]
+# stanmc_check_fit(stan.mc.lca) # should say ok = TRUE
+
+saveRDS(stan.mc.lca, stanmclcamodelfile)
+##
 
 stan.mc.lca = readRDS(stanmclcamodelfile)
 

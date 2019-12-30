@@ -7,6 +7,7 @@ data {
   int<lower = 0> G; // # of respondent covariates 
   int<lower = 1, upper = C> Y[R, S]; // observed choices
   matrix[C, K] X[R, S]; // matrix of attributes for each obs
+  int<lower=1,upper=C> XC[R, S]; // actual number of alternatives for each respondent/scenario
   matrix[G, R] Z; // vector of covariates for each respondent
   
   // LCA
@@ -65,7 +66,7 @@ model {
 
   for (r in 1:R) {
     for (s in 1:S) {
-      Y[r, s] ~ categorical_logit(X[r, s] * Beta[, rclass[r]]);
+      Y[r, s] ~ categorical_logit((X[r, s][1:XC[r,s], ]) * Beta[, rclass[r]]);
     }
   }
 }
