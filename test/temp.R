@@ -903,12 +903,13 @@
 # 
 # 
 
-cbc.mlogit = mlogit.data(data = cbc.mm, choice = "choice", shape = "long", varying = vars_i, 
-                         alt.var = "alt", 
-                         #alt.levels = levels(factor(cbc.mm$alt)), 
-                         #alt.levels = unique(cbc.mm$alt), 
-                         chid.var = "ques",
-                         id.var = "resp.id")
+# cbc.mlogit = mlogit.data(data = cbc.mm, choice = "choice", shape = "long", varying = vars_i, 
+#                          alt.var = "alt", 
+#                          #alt.levels = levels(factor(cbc.mm$alt)), 
+#                          #alt.levels = unique(cbc.mm$alt), 
+#                          chid.var = "ques",
+#                          id.var = "resp.id")
 
+lcm = gmnl(fml2, data = cbc.mlogit, model = "lc", Q = lca_segments, panel = TRUE, method = 'bhhh') # cbc.mlogit je definiran kod mixed mnl gore
 
 

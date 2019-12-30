@@ -799,9 +799,12 @@ calc.utilities.mnl = function(model, data, resp_i = NULL) {
       # data = cbind(data, resp_cov[rep(1, nrow(data)), ])
       # colnames(data)[(n_d+1):ncol(data)] = colnames(resp_cov)
       resp_cov = getdfcolumns(resp_cov[rep(1, nrow(data)), ], cnames = colnames(resp_cov))
+      ffd_mm = domodelmatrix_itemscovs(data[, 1], resp_cov)
+    } else {
+      ffd_mm = domodelmatrix_itemsonly(data[, 1])
     }
   
-    ffd_mm = domodelmatrix(data[, 1], nalts, resp_cov, FALSE)[, -1] # without the Intercept
+    if (designctx$anchors == 0) ffd_mm = ffd_mm[, -1] # without the Intercept
     ffd_mm$alt = alt
     ffd_mm$choice = rep(1, nrow(ffd_mm))
     ffd.mlogit = mlogit.data(data = ffd_mm, choice = "choice", shape = "long", varying = 1:(ncol(ffd_mm)-2), alt.var = "alt", alt.levels = levels(ffd_mm$alt))
@@ -909,7 +912,8 @@ predict.hier.mnl.choice = function(model, data, resp_i) {
 # resp_i is a respondent's identifier in the model (can be NULL) 
 # returns matrix of utilities, nresp x nrow(data) x ndraws
 calc.utilities.hb = function(model, data, resp_i = NULL) {
-  data.df = data.frame(domodelmatrix(data[, 1], designctx$nalternatives, NULL, FALSE)[, -1]) # without the Intercept
+  data.df = data.frame(domodelmatrix_itemsonly(data[, 1]))
+  if (designctx$anchors == 0) data.df = data.df[, -1] # without the Intercept
   data.model = as.matrix(data.df)
   betadraw = model$betadraw
   nresps = 1:(dim(betadraw)[1])
@@ -972,7 +976,8 @@ predict.hb.mnl.choice = function(model, data, resp_i) {
 # resp_i is a respondent's identifier in the model (can be NULL)
 # returns matrix of utilities, nresp x nrow(data) x ndraws
 calc.utilities.stan.mc = function(model, data, resp_i = NULL) {
-  data.df = data.frame(domodelmatrix(data[, 1], designctx$nalternatives, NULL, FALSE)[, -1]) # without the Intercept
+  data.df = data.frame(domodelmatrix_itemsonly(data[, 1]))
+  if (designctx$anchors == 0) data.df = data.df[, -1] # without the Intercept
   data.model = as.matrix(data.df)
   betas = extract(model, pars = c("Beta"))$Beta
   nresps = 1:(dim(betas)[3])
@@ -1053,7 +1058,7 @@ ffd_df = data.frame(opcije = designctx$items)
 
 shares.mnl = predict.hier.mnl(m2.hier, data = ffd_df)
 shares.hb = predict.hb.mnl(hb.post, data = ffd_df)
-shares.stan.mc = predict.stan.mc(stan.mc.model, data = ffd_df)
+shares.stan.mc = predict.stan.mc(stan.mc, data = ffd_df)
 shares.stan.mc.lca = predict.stan.mc(stan.mc.lca, data = ffd_df)
 
 shares = shares.hb
@@ -1122,13 +1127,13 @@ for (i in 1:holdout_respondents_n) { # respondent
       c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
         true_worst_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
 
-    # predicted = predict.stan.mc.choice(stan.mc.model, ffd_df, holdout_respondents[i])
-    # predicted_best_choice = which(predicted$best_choice == 1)
-    # predicted_worst_choice = which(predicted$worst_choice == 1)
-    # holdout_true_predicted_stan_mc[(i-1)*holdout_respondents_q+j, ] = 
-    #   c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
-    #     true_best_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
-    # 
+    predicted = predict.stan.mc.choice(stan.mc, ffd_df, holdout_respondents[i])
+    predicted_best_choice = which(predicted$best_choice == 1)
+    predicted_worst_choice = which(predicted$worst_choice == 1)
+    holdout_true_predicted_stan_mc[(i-1)*holdout_respondents_q+j, ] =
+      c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
+        true_best_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
+
     predicted = predict.stan.mc.choice(stan.mc.lca, ffd_df, holdout_respondents[i])
     predicted_best_choice = which(predicted$best_choice == 1)
     predicted_worst_choice = which(predicted$worst_choice == 1)
@@ -1142,15 +1147,15 @@ sum(holdout_true_predicted_mnl[, "correct best"])/nrow(holdout_true_predicted_mn
 sum(holdout_true_predicted_mnl[, "correct worst"])/nrow(holdout_true_predicted_mnl)
 sum(holdout_true_predicted_hb[, "correct best"])/nrow(holdout_true_predicted_hb)
 sum(holdout_true_predicted_hb[, "correct worst"])/nrow(holdout_true_predicted_hb)
-# sum(holdout_true_predicted_stan_mc[, "correct best"])/nrow(holdout_true_predicted_stan_mc)
-# sum(holdout_true_predicted_stan_mc[, "correct worst"])/nrow(holdout_true_predicted_stan_mc)
+sum(holdout_true_predicted_stan_mc[, "correct best"])/nrow(holdout_true_predicted_stan_mc)
+sum(holdout_true_predicted_stan_mc[, "correct worst"])/nrow(holdout_true_predicted_stan_mc)
 sum(holdout_true_predicted_stan_mc_lca[, "correct best"])/nrow(holdout_true_predicted_stan_mc_lca)
 sum(holdout_true_predicted_stan_mc_lca[, "correct worst"])/nrow(holdout_true_predicted_stan_mc_lca)
 
-holdout_true_predicted = holdout_true_predicted_mnl
+#holdout_true_predicted = holdout_true_predicted_mnl
 holdout_true_predicted = holdout_true_predicted_hb
-# holdout_true_predicted = holdout_true_predicted_stan_mc
-# holdout_true_predicted = holdout_true_predicted_stan_mc_lca
+#holdout_true_predicted = holdout_true_predicted_stan_mc
+#holdout_true_predicted = holdout_true_predicted_stan_mc_lca
 
 holdout_true_predicted[sample(1:nrow(holdout_true_predicted), 20), ]
 total_correct = sum(holdout_true_predicted[, "correct best"]) + sum(holdout_true_predicted[, "correct worst"])
@@ -1165,37 +1170,38 @@ Ukupna točnost predviđanja daje nam sigurnost da naš model dobro funkcionira.
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 #############################################################################################################
-### >>> GMNL LCA: https://rpubs.com/msarrias1986/335556
-if (length(designctx$covariates) == 0) {
-  # fmlstring = paste("choice ~ 0 + ", paste(colnames(mm), collapse = "+")) # all vars have generic coefs
-  fmlstring = paste("choice ~ ", paste(colnames(mm), collapse = "+")) # all vars have generic coefs
-  fmlstring = paste(fmlstring, "| 0 | 0 | 0 | 1")
-  fml2 = as.formula(fmlstring)
-} else {
-  ncov.columns = setdiff(colnames(mm), cov.columns)
-  # fmlstring1 = paste("0 +", paste(ncov.columns, collapse = "+")) # all but covariates have generic coefs
-  fmlstring1 = paste(ncov.columns, collapse = "+") # all but covariates have generic coefs
-  # fmlstring2 = paste("0 +", paste(cov.columns, collapse = "+"))
-  fmlstring2 = paste(cov.columns, collapse = "+")
-  fmlstring = paste("choice ~", fmlstring1, "| 0 | 0 | 0 |", fmlstring2)
-  fml2 = as.formula(fmlstring)
-}
-
-# koliko segmenata?? staviti u Q = 
-lca_segments = designctx$rsegments
-
+# ### >>> GMNL LCA: https://rpubs.com/msarrias1986/335556
+# if (length(designctx$covariates) == 0) {
+#   # fmlstring = paste("choice ~ 0 + ", paste(colnames(mm), collapse = "+")) # all vars have generic coefs
+#   fmlstring = paste("choice ~ ", paste(colnames(mm), collapse = "+")) # all vars have generic coefs
+#   fmlstring = paste(fmlstring, "| 0 | 0 | 0 | 1")
+#   fml2 = as.formula(fmlstring)
+# } else {
+# #  ncov.columns = setdiff(colnames(mm), cov.columns)
+#   ncov.columns = items.columns
+#   # fmlstring1 = paste("0 +", paste(ncov.columns, collapse = "+")) # all but covariates have generic coefs
+#   fmlstring1 = paste(ncov.columns, collapse = "+") # all but covariates have generic coefs
+#   # fmlstring2 = paste("0 +", paste(cov.columns, collapse = "+"))
+#   fmlstring2 = paste(cov.columns, collapse = "+")
+#   fmlstring = paste("choice ~", fmlstring1, "| 0 | 0 | 0 |", fmlstring2)
+#   fml2 = as.formula(fmlstring)
+# }
+# 
+# # koliko segmenata?? staviti u Q = 
+# lca_segments = designctx$rsegments
+# 
 # ## BUILD AND SAVE MODEL
 # library(gmnl)
 # lcm = gmnl(fml2, data = cbc.mlogit, model = "lc", Q = lca_segments, panel = TRUE, method = 'bhhh') # cbc.mlogit je definiran kod mixed mnl gore
 # saveRDS(lcm, lcmodelfile)
-
-## LOAD MODEL
-lcm = readRDS(lcmodelfile)
-#sm.lc = summary(lcm)$CoefTable
-sm.lc = lcm$coefficients
-sm.lc
-
-### GMNL LCA <<<
+# 
+# ## LOAD MODEL
+# lcm = readRDS(lcmodelfile)
+# #sm.lc = summary(lcm)$CoefTable
+# sm.lc = lcm$coefficients
+# sm.lc
+# 
+# ### GMNL LCA <<<
 
 
 ### >>> STAN MC LCA
@@ -1224,22 +1230,22 @@ stan.mc.lca.betas.mean
 
 nivo_znacajnosti_za_razliku = .5
 
-### GMNL LCA >>>
-
-cfs = coefficients(lcm)
-cfs_s = list()
-r = lapply(1:lca_segments, function(s) {
-  wh = which(grepl(paste("class.", s, ".", sep = ""), names(cfs)))
-  cfs_s[[s]] <<- cfs[wh]
-  names(cfs_s[[s]]) <<- substring(names(cfs_s[[s]]), 9) # 9 je prvi character nakon class.1.
-})
-cfs_s_diffs = names(cfs_s[[1]][which(abs(cfs_s[[1]]-cfs_s[[2]]) > nivo_znacajnosti_za_razliku)])
-
-# source('lc_helpers.R')
-# plot_ci_lc(lcm)
-# shares(lcm)
-
-### GMNL LCA <<<
+# ### GMNL LCA >>>
+# 
+# cfs = coefficients(lcm)
+# cfs_s = list()
+# r = lapply(1:lca_segments, function(s) {
+#   wh = which(grepl(paste("class.", s, ".", sep = ""), names(cfs)))
+#   cfs_s[[s]] <<- cfs[wh]
+#   names(cfs_s[[s]]) <<- substring(names(cfs_s[[s]]), 9) # 9 je prvi character nakon class.1.
+# })
+# cfs_s_diffs = names(cfs_s[[1]][which(abs(cfs_s[[1]]-cfs_s[[2]]) > nivo_znacajnosti_za_razliku)])
+# 
+# # source('lc_helpers.R')
+# # plot_ci_lc(lcm)
+# # shares(lcm)
+# 
+# ### GMNL LCA <<<
 
 ```
 
@@ -1261,25 +1267,25 @@ S obzirom na to da je cilj segmentacije prepoznavanje koji korisnik (s najvećom
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
-### GMNL LCA >>>
-
-# bi_juhapileca.juha <- effect.gmnl(lcm, par = "juhapileća.juha", effect = "ce")$mean
-# summary(bi_juhapileca.juha)
+# ### GMNL LCA >>>
 # 
-# plot(lcm, par = "juhapileća.juha", effect = "ce", type = "density", col = "blue")
+# # bi_juhapileca.juha <- effect.gmnl(lcm, par = "juhapileća.juha", effect = "ce")$mean
+# # summary(bi_juhapileca.juha)
+# # 
+# # plot(lcm, par = "juhapileća.juha", effect = "ce", type = "density", col = "blue")
+# # 
+# # Conditional probabilitites
+# pi_hat = lcm$Qir
+# colnames(pi_hat) = paste("q =", 1:lca_segments)
+# # segment (s najvećom vjerojatnošću) za svakog ispitanika
+# segs = apply(pi_hat, 1, which.max)
+# r = lapply(1:lca_segments, function(s) {
+#   print(paste("Segment", s))
+#   print(which(segs == s))
+# })
 # 
-# Conditional probabilitites
-pi_hat = lcm$Qir
-colnames(pi_hat) = paste("q =", 1:lca_segments)
-# segment (s najvećom vjerojatnošću) za svakog ispitanika
-segs = apply(pi_hat, 1, which.max)
-r = lapply(1:lca_segments, function(s) {
-  print(paste("Segment", s))
-  print(which(segs == s))
-})
-
-### GMNL LCA <<<
-#############################################################################################################
+# ### GMNL LCA <<<
+# #############################################################################################################
 
 ```
 
