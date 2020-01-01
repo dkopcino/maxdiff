@@ -11,13 +11,13 @@ output: pdf_document
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r, echo=FALSE, out.width = "500px", fig.align='center'}
+```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics("upitnik_1.jpg")
 ```
 
 ## Uvod
 
-U ovom dokumentu ćemo prezentirati testno istraživanje za pizzeriju "Mama" MaxDiff metodom. Istraživanje je bazirano na (pretpostavljenoj) želji lokalne pizzerije da ispita koju novu pizzu bi kupci najviše htjeli vidjeti u ponudi.
+U ovom dokumentu ćemo prezentirati testno istraživanje MaxDiff metodom. Istraživanje je bazirano na (pretpostavljenoj) želji lokalne pizzerije da ispita koju novu pizzu bi kupci najviše htjeli vidjeti u ponudi.
 
 Nove pizze između kojih ispitanici biraju su:
 
@@ -58,7 +58,7 @@ print(designctx$covariates)
 
 ```
 
-U MaxDiff metodi ispitanici u svakom pitanju biraju najbolji i najlošiji proizvod. Pogledajmo nekoliko kombinacija koje smo ispitivali, odn. postavili kao pitanja.
+U MaxDiff metodi ispitanici u svakom pitanju biraju najbolji i najlošiji proizvod između nekoliko alternativa. Pogledajmo neke kombinacije koje smo ispitivali, odn. postavili kao pitanja.
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -69,26 +69,27 @@ data.frame(designctx$survey[1:(5*designctx$nalternatives), ] %>% group_by(task) 
 ```
 
 
-Iz skupa svih `r choose(length(designctx$items), designctx$nalternatives)` kombinacija proizvoda s `r designctx$nalternatives` elemenata (broj elemenata smo postavili kao parametar dizajna), odabrali smo `r nrow(designctx$survey)` reprezentativnih. S odabranim kombinacijama moguće je izračunati (prosječnu ili individualnu) vrijednost svakog proizvoda za ispitanike.
+Iz skupa svih `r choose(length(designctx$items), designctx$nalternatives)` kombinacija proizvoda s `r designctx$nalternatives` alternativa (broj alternativa smo postavili kao parametar dizajna), odabrali smo `r nrow(designctx$survey)` reprezentativnih. S odabranim kombinacijama moguće je izračunati (prosječnu ili individualnu) vrijednost svakog proizvoda za ispitanike.
 
 Sve kombinacije podijelili smo na `r designctx$nquestionnaires` upitnika, od kojih svaki ima `r designctx$nquestions` pitanja, od kojih svako ima `r designctx$nalternatives` opcija/alternativa.
 
-```{r, echo=FALSE, out.width = "500px", fig.align='center'}
+```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics("upitnik_2.jpg")
 ```
 
 
-Da bismo bolje mogli procijeniti vrijednosti različitih opcija, dodali smo i pitanje u kojem ispitanik iskazuje općenitu pozitivnu ili negativnu tendenciju prema nekoliko odabranih opcija. Opcije u tom pitanju su odabrane s obzirom na prijašnje odabire, tako da sadrže raspon pizza, od najčešće biranih kao najbolje do najčešće biranih kao najlošije. U ovom pitanju se ne uspoređuju opcije jedna s drugom nego svaka u odnosu na tzv. "graničnu" opciju, koja u različitim kontekstima može značiti različite stvari, ali općenito znači točku između želim/ne želim, kupio bih/ne bih kupio, zanima me/ne zanima me i sl. Ovo pitanje nam omogućuje da bolje uskladimo odgovore svih ispitanika u odnosu na "graničnu" opciju pa time i međusobno, čime dobivamo relevantnije procjene vrijednosti.
+Da bismo bolje mogli procijeniti vrijednosti različitih opcija, dodali smo i pitanje u kojem ispitanik iskazuje općenitu pozitivnu ili negativnu tendenciju prema nekoliko odabranih opcija. Opcije u tom pitanju su odabrane s obzirom na prijašnje odabire, tako da sadrže raspon pizza, od najčešće biranih kao najbolje do najčešće biranih kao najlošije. U ovom pitanju se ne uspoređuju opcije jedna s drugom nego svaka u odnosu na tzv. graničnu opciju, koja u različitim kontekstima može značiti različite stvari, ali općenito znači točku između želim/ne želim, kupio bih/ne bih kupio, zanima me/ne zanima me i sl. Ovo pitanje nam omogućuje da bolje uskladimo odgovore svih ispitanika u odnosu na graničnu opciju pa time i međusobno, čime dobivamo relevantnije procjene vrijednosti.
 
-```{r, echo=FALSE, out.width = "500px", fig.align='center'}
+
+```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics("anchoring_survey.jpg")
 ```
 
 
-Rezultate upitnika smo generirali računalom, s određenim parametrima slučajnosti, za `r max(cbc.df$resp.id)` "ispitanika".
+Rezultate upitnika smo generirali računalom, s određenim parametrima slučajnosti, za `r max(cbc.df$resp.id)` ispitanika.
 
 
-## Analiza
+## Jednostavna analiza - prebrojavanje
 
 Postoji više načina na koje možemo analizirati podatke MaxDiff metodom. Najjednostavniji pristup je prebrajanje koliko je puta neki proizvod odabran kao najbolji, odn. najlošiji. Pogledajmo proizvode po broju odabira najbolji/najlošiji:
 
@@ -103,8 +104,10 @@ bw.df = cbc.df %>% group_by(alt) %>% summarise(chosen_as_best = sum(best_choice)
 #               background = styleEqual(max(bw.df$chosen_as_best), "lightblue")) %>%
 #   formatStyle(columns = "chosen_as_worst", 
 #               background = styleEqual(max(bw.df$chosen_as_worst), "pink")) 
+```
 
 
+```{r echo= FALSE, warning = FALSE, message = FALSE, results = 'asis'}
 library(knitr)
 library(kableExtra)
 
@@ -112,7 +115,7 @@ library(kableExtra)
 #                  chosen_as_worst = cell_spec(chosen_as_worst, "latex", color = ifelse(chosen_as_worst == max(bw.df$chosen_as_worst), "white", "black"), background = ifelse(chosen_as_worst == max(bw.df$chosen_as_worst), "red", "white"))) %>%
 # kable("latex", booktabs = T, linesep = "", align = "c")
 
-kable(bw.df, "latex", booktabs = T, linesep = "", align = "c") %>% 
+kable(bw.df, "latex", booktabs = T, linesep = "", align = "c") %>%
   row_spec(which.max(bw.df$chosen_as_best), bold = T, color = "white", background = "blue") %>%
   row_spec(which.max(bw.df$chosen_as_worst), bold = T, color = "white", background = "red")
 
@@ -121,7 +124,10 @@ kable(bw.df, "latex", booktabs = T, linesep = "", align = "c") %>%
 
 Možemo vidjeti da je `r as.character(bw.df[which.max(bw.df$chosen_as_best), ]$alt)` najviše puta odabrano kao najbolja opcija, a `r as.character(bw.df[which.max(bw.df$chosen_as_worst), ]$alt)` najviše puta kao najlošija opcija.
 
-Naprednija analiza uključuje modeliranje podataka (odabira ispitanika) i zatim izračunavanje koeficijenata ("vrijednosti") za svaki proizvod multinomnim logit modelom. Kad izvršimo analizu, dobijemo sljedeći sažetak:
+
+## Analiza multinomnim logit modelom
+
+Naprednija analiza uključuje modeliranje podataka (odgovora ispitanika) i zatim izračunavanje koeficijenata ("vrijednosti") za svaki proizvod multinomnim logit modelom. Kad izvršimo analizu, dobijemo sljedeći sažetak:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -702,12 +708,13 @@ sm = sm.hb
 
 U prikazanom sažetku je dosta informacija koje nije tako lako direktno interpretirati. Ali da malo pojasnimo, evo nekoliko pojašnjenja koja slijede direktno iz sažetka:
 
-* 'calzone' ima negativni (prosječni/mean) koeficijent `r as.character(round(sm['calzone', 'Mean'], 3))`, što znači da ga ispitanici slabije vrednuju nego osnovnu 'graničnu' opciju 'kupio bih' (usporedba koeficijenta za neku vrijednost je uvijek u odnosu na prvu/osnovnu deklariranu vrijednost, što je u ovom slučaju 'granična' opcija 'kupio bih') - jednostavnije rečeno 'calzone' ispitanici ne bi kupili,
+* 'calzone' ima negativni (prosječni/mean) koeficijent `r as.character(round(sm['calzone', 'Mean'], 3))`, što znači da ga ispitanici slabije vrednuju nego osnovnu graničnu opciju koja označava točku kupio bih/ne bih kupio (usporedba koeficijenta za neku vrijednost je uvijek u odnosu na prvu/osnovnu deklariranu vrijednost, što je u ovom slučaju granična opcija) - jednostavnije rečeno 'calzone' ispitanici ne bi kupili, a zbog relativno velikog negativnog koeficijenta, ta je odluka prilično snažna,
 
-* 'lovačka' i 'losos' obje imaju pozitivne (prosječne/mean) koeficijente (`r as.character(round(sm['lovačka', 'Mean'], 3))`, `r as.character(round(sm['losos', 'Mean'], 3))`) što znači da ih ispitanici obje vrednuju više od osnovne 'granične' opcije 'kupio bih', ali 'losos' vrednuju više nego 'lovačka' - jednostavnije rečeno ispitanici bi kupili obje, ali radije 'losos'.
+* 'lovačka' i 'losos' obje imaju pozitivne (prosječne/mean) koeficijente (`r as.character(round(sm['lovačka', 'Mean'], 3))`, `r as.character(round(sm['losos', 'Mean'], 3))`) što znači da ih ispitanici obje vrednuju više od osnovne granične opcije, ali 'lovačka' vrednuju više nego 'losos' - jednostavnije rečeno ispitanici bi kupili obje, ali 'lovačka' puno radije nego 'losos',
 
+* prvi i treći kvantili označavaju raspon u kojem se, malo pojednostavljeno, nalazi svaki koeficijent sa 75% vjerojatnosti.
 
-Ako sve koeficijente normaliziramo i skaliramo tako da im ukupna suma bude 100, lakše je interpretirati njihove vrijednosti i međusobne omjere:
+Ako sve koeficijente normaliziramo i skaliramo tako da granična opcija (kupio bih ili ne) bude na broju 100, lakše je interpretirati njihove vrijednosti i međusobne omjere:
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
@@ -715,8 +722,9 @@ library(ggplot2)
 # zero-center the coefficents
 zc.sm = (sm[, "Mean"] - mean(sm[, "Mean"]))
 prob.zc.sm = exp(zc.sm)/(exp(zc.sm)+designctx$nalternatives-1)
-perc.zc.sm = (prob.zc.sm/sum(prob.zc.sm))*100
-ggplot(data = data.frame(product = paste(names(perc.zc.sm), " (", round(perc.zc.sm, digits = 2), ")", sep = ""), value = perc.zc.sm), aes(x = product, y = value)) + geom_col(fill = "blue") + coord_flip()
+perc.zc.sm = (prob.zc.sm*100)/(1/designctx$nalternatives)
+#perc.zc.sm = ((prob.zc.sm/sum(prob.zc.sm))*100)
+ggplot(data = data.frame(product = paste(names(perc.zc.sm), " (", round(perc.zc.sm, digits = 2), ")", sep = ""), value = perc.zc.sm), aes(x = product, y = value)) + geom_col(fill = "blue") + geom_hline(aes(yintercept = 100), linetype = "dashed", color = "red") +  labs(y = "ne bih kupio.......kupio bih", color = "red") + theme(axis.title.x = element_text(hjust = .23), axis.title.y = element_blank()) + coord_flip()
 
 mostvpi = which.max(perc.zc.sm)
 mostvpv = perc.zc.sm[mostvpi]
@@ -729,6 +737,16 @@ moreless = if (rationmostcomp > 1) "veća" else "manja"
 ```
 
 Sad možemo vidjeti da je npr. najvredniji proizvod `r mostvpn` i da mu je vrijednost `r rationmostcomp` puta `r moreless` od vrijednosti `r compvpn`.
+
+Ovi rezultati pokazuju i glavne prednosti MaxDiff analize u odnosu na jednostavno "redanje" proizvoda od najboljeg prema najlošijem koje se ponekad (prečesto :)) koristi za poslovne analize. MaxDiff nam pokazuje:
+
+* *odnose među proizvodima* - koliko je koji vredniji ili manje vrijedan za ispitanike,
+* pozicije proizvoda *u odnosu na (ključnu!) točku koja označava pozitivan ili negativan stav* - kupio bih ili ne, zanima me ili ne...
+
+Time dobivamo kompletnu sliku svih proizvoda iz perspektive ispitanika i možemo donositi kvalitetne poslovne odluke.
+
+
+## Analiza koreliranosti proizvoda
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -767,7 +785,7 @@ correlation_t$names = row.names(correlation_t)
 ```
 
 
-Drugi element koji možemo analizirati je korelacija između pojedinih vrijednosti proizvoda. 
+Drugi element koji možemo analizirati je korelacija između vrijednosti pojedinih proizvoda. 
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -781,14 +799,14 @@ ggplot(data = correlation_t, aes(x = substr(correlation_t$names, 1, 18), y = cor
 
 Primjerice, u gore prikazanom grafu možemo vidjeti da je *`r corvar`* pozitivno korelirana s *`r names(correlation[correlation > 0])`*, a negativno korelirana s *`r names(correlation[correlation < 0])`*. To znači da ako ispitanici daju veću vrijednost pizzi *`r corvar`*, onda daju veću vrijednost i *`r names(correlation[correlation > 0])`*, dok za *`r names(correlation[correlation < 0])`* daju manju vrijednost.
 
-Rezultate analize i procjene koeficijenata vrijednosti opcija najlakše je razumjeti preko "predviđanje udjela" (share prediction) što ćemo sada prikazati.
+Rezultate analize i procjene koeficijenata vrijednosti opcija najlakše je razumjeti preko "predviđanja udjela" (share prediction) što ćemo sada prikazati.
 
 
-### Predviđanje udjela (share prediction)
+## Predviđanje udjela (share prediction)
 
-Jednom kad znamo vrijednosti koeficijenata svih proizvoda, možemo usporediti njihove različite kombinacije i predvidjeti udjele u prodaji. Predviđeni udjeli u prodaji su vjerojatnosti da će se određeni proizvod prodati u usporedbi s ostalim proizvodima.
+Jednom kada znamo vrijednosti koeficijenata svih proizvoda, možemo usporediti njihove različite kombinacije i predvidjeti udjele u prodaji. Predviđeni udjeli u prodaji su vjerojatnosti da će se određeni proizvod prodati u usporedbi s ostalim proizvodima koji su u kombinaciji koju testiramo.
 
-Kao primjer uzet ćemo nekoliko slučajno odabranih proizvoda i izračunati njihove predviđene udjele u prodaji:
+Kao primjer uzet ćemo kombinaciju nekoliko slučajno odabranih proizvoda i izračunati njihove predviđene udjele u prodaji:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -1096,11 +1114,11 @@ t(shares)
 
 U prethodnoj tablici možemo vidjeti kako bi ispitanici birali između `r nrow(ffd_df)` različitih opcija pizza. Svaka kombinacija dobiva predviđeni udio (postotak) u ukupnoj prodaji, prema procijenjenim vrijednostima pripadajućih koeficijenata.
 
-**Najčešće birana opcija** (između navedenih, ne općenito) je opcija *(`r paste(as.matrix(mostshare[, -ncol(mostshare)]), collapse = ", ")`)* **s previđenim udjelom u prodaji `r max(shares[["share %"]])`%**.
+**Najčešće birana opcija** (između navedenih, ne općenito) je *`r paste(as.matrix(mostshare[, -ncol(mostshare)]), collapse = ", ")`* **s previđenim udjelom u prodaji `r max(shares[["share %"]])`%**.
 
 
 
-### Provjera modela na postojećim podacima
+## Provjera modela na postojećim podacima
 
 
 Korištenjem predviđanja udjela/vjerojatnosti prodaje za razne kombinacije proizvoda, možemo testirati i kako bi naš model predvidio izbor za (neke) kombinacije koje su dane u istraživanju:
@@ -1177,7 +1195,8 @@ holdout_true_predicted = holdout_true_predicted_hb
 #holdout_true_predicted = holdout_true_predicted_stan_mc
 #holdout_true_predicted = holdout_true_predicted_stan_mc_lca
 
-holdout_true_predicted[sample(1:nrow(holdout_true_predicted), 20), c("correct best", "correct worst")]
+holdout_true_predicted[sample(1:nrow(holdout_true_predicted), 20), !(colnames(holdout_true_predicted) %in% c("correct best", "correct worst"))]
+#holdout_true_predicted[sample(1:nrow(holdout_true_predicted), 20), ]
 total_correct = sum(holdout_true_predicted[, "correct best"]) + sum(holdout_true_predicted[, "correct worst"])
 paste("Ukupno točno predviđanja:", round(100*total_correct/(2*nrow(holdout_true_predicted)), digits = 2), "%", sep = "")
 
@@ -1231,7 +1250,7 @@ lca_segments = designctx$rsegments
 ```
 
 
-S obzirom na razne faktore ("demografske" ili sl.), ispitanike možemo podijeliti u segmente te zatim modelirati vrednovanje proizvoda za svaki segment. Broj segmenata treba zadati unaprijed. Pretpostavimo da postoje `r lca_segments` različita segmenta ispitanika. Modeliranjem (LCA - latent class analysis) dobivamo sljedeći sažetak:
+S obzirom na razne faktore (demografske ili sl.), ispitanike možemo podijeliti u segmente te zatim modelirati vrednovanje proizvoda za svaki segment. Broj segmenata treba zadati unaprijed. Pretpostavimo da postoje `r lca_segments` različita segmenta ispitanika (s tim parametrom ćemo napraviti analizu). Modeliranjem (multinomni logit model s LCA - latent class analysis) dobivamo sljedeći sažetak:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -1283,7 +1302,7 @@ r = lapply(1:(lca_segments-1), function(s) {
 
 Vidimo da se segmenti razlikuju (za više od `r nivo_znacajnosti_za_razliku`) u vrednovanju npr. *`r cfs_s_diffs`*.
 
-S obzirom na to da je cilj segmentacije prepoznavanje koji korisnik (s najvećom vjerojatnošću) pripada kojem segmentu, pogledajmo i taj rezultat (navedeni su redni brojevi ispitanika koji pripadaju određenom segmentu):
+S obzirom na to da je cilj segmentacije i prepoznavanje koji korisnik (s najvećom vjerojatnošću) pripada kojem segmentu, pogledajmo i taj rezultat (navedeni su redni brojevi ispitanika koji pripadaju određenom segmentu):
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -1331,12 +1350,19 @@ r = lapply(1:lca_segments, function(s) {
 ```
 
 
-S dobivenom segmentacijom možemo primjerice kreirati više proizvoda od kojih će svaki biti najzanimljiviji određenom segmentu (s obzirom na vrednovanje).
+S dobivenom segmentacijom možemo primjerice kreirati više različitih proizvoda od kojih će svaki biti najzanimljiviji određenom segmentu (s obzirom na vrednovanje).
+
+
+## TURF analiza
+
+aaa
+
+
 
 
 ## Zaključak
 
-**MaxDiff analiza je moćan alat upoznavanje kupaca i njihovih vrijednosti i za kreiranje najboljih proizvoda za njih. To će uvijek voditi prema poboljšanju poslovanja, većim prihodima i većem zadovoljstvu kupaca.**
+**MaxDiff analiza je moćan alat za upoznavanje kupaca i njihovih vrijednosti i za kreiranje najboljih proizvoda za njih. Takav pristup uvijek vodi prema poboljšanju poslovanja, većim prihodima i većem zadovoljstvu kupaca.**
 
 Za više informacija kontaktirajte [**danijel.kopcinovic@itmarket.hr**](mailto:danijel.kopcinovic@itmarket.hr).
 
