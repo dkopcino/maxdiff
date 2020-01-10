@@ -397,20 +397,20 @@ cbc.mlogit = mlogit.data(data = cbc.mm, choice = "choice", shape = "long",
                          chid.var = "resp.ques",
                          id.var = "resp.id")
 
-# ## BUILD AND SAVE MODEL
-# # Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
-# # (znači u formuli idu iza | i s 0 +)
-# m1 = mlogit(fml1, data = cbc.mlogit)
-# # summary(m1)
-# m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
-# names(m1.rpar) = names(m1$coef)
-# m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
-# # summary(m1.hier)
-# # m2.hier = update(m1.hier, correlation = TRUE)
-# # summary(m2.hier)
-# # SAVE/LOAD
-# m2.hier$cov.df = cov.df
-# saveRDS(m2.hier, mnlmodelfile)
+## BUILD AND SAVE MODEL
+# Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
+# (znači u formuli idu iza | i s 0 +)
+m1 = mlogit(fml1, data = cbc.mlogit)
+# summary(m1)
+m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
+names(m1.rpar) = names(m1$coef)
+m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
+# summary(m1.hier)
+# m2.hier = update(m1.hier, correlation = TRUE)
+# summary(m2.hier)
+# SAVE/LOAD
+m2.hier$cov.df = cov.df
+saveRDS(m2.hier, mnlmodelfile)
 
 ## LOAD MODEL
 if (!is.null(cbc.mm$resp.ques)) cbc.mm$resp.ques = NULL
@@ -847,7 +847,7 @@ calc.utilities.mnl = function(model, data, resp_i = NULL) {
     ffd.mlogit = mlogit.data(data = ffd_mm, choice = "choice", shape = "long", varying = 1:(ncol(ffd_mm)-2), alt.var = "alt", alt.levels = levels(ffd_mm$alt))
     data.model = model.matrix(model$formula, data = ffd.mlogit)
     utilities = data.model %*% draw_i
-    utilities
+    t(utilities) # to get a row vector
   }
   
   # returns matrix of utilities, 1000 x nrow(data)
@@ -1355,7 +1355,41 @@ S dobivenom segmentacijom možemo primjerice kreirati više različitih proizvod
 
 ## TURF analiza
 
-aaa
+Ponudom u kojoj se nalazi više proizvoda povećat ćemo vjerojatnost da će barem neki proizvod biti kupljen od strane kupaca. Da bismo izračunali koji proizvodi bi trebali biti u ponudi da bismo postigli najveću prodaju, koristimo TURF (total unduplicated reach and frequency) analizu.
+
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+comb_size = 3 # size of the TURF combination that we will test
+```
+
+Pretpostavimo da u ponudu želimo staviti `r comb_size` proizvoda. Za svaku kombinaciju koja sadrži `r comb_size` proizvoda i za svakog ispitanika iz našeg istraživanja izračunat ćemo da li bi kupio barem jedan proizvod iz kombinacije (reach - da li je kupac 'dosegnut' barem nekim proizvodom) i koliko (ako ijedan) bi proizvoda iz kombinacije kupio (frequency - koliko je puta kupac 'dosegnut' danom ponudom proizvoda). Odluka da li bi kupac kupio neki proizvod ili ne se donosi na osnovi vjerojatnosti prodaje proizvoda u usporedbi s ostalim proizvodima iz ponude i osnovnom (graničnom) opcijom koja označava granicu kupio bih/ne bih kupio.
+
+Pogledajmo kako izgleda nekoliko redaka iz reach&frequency tablice za naše proizvode:
+
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+
+items_combs = combn(designctx$items, comb_size)
+
+# combs_r_f = array(0, dim = c(ncol(items_combs), 2)) # 1st column is reach, 2nd is frequency
+# for (i in 1:ncol(items_combs)) {
+#   for (r in unique(cbc.df$resp.id)) {
+# #    ir_utils = calc.utilities.mnl(model = m2.hier, data = data.frame(opcije = items_combs[, i]), resp_i = r)
+#     ir_utils = calc.utilities.hb(model = hb.post, data = data.frame(opcije = items_combs[, i]), resp_i = r)
+#     probs_reach = exp(ir_utils)/(sum(exp(ir_utils))+1) # ovo je ok ako imamo anchor, provjeriti još da li je ok ako ga nemamo
+#     reached = sapply(probs_reach, function(prob_reach) {
+#       sample(c(TRUE, FALSE), 1, replace = FALSE, prob = c(prob_reach, 1-prob_reach))
+#     })
+#     combs_r_f[i, 1] = combs_r_f[i, 1] + as.numeric(any(reached))
+#     combs_r_f[i, 2] = combs_r_f[i, 2] + as.numeric(sum(reached))
+#   }
+# #  if ((i %% 10) == 0) print(i)
+# }
+# saveRDS(combs_r_f, turffile)
+
+combs_r_f = readRDS(turffile)
+
+
+```
+
 
 
 

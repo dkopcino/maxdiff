@@ -910,6 +910,11 @@
 #                          chid.var = "ques",
 #                          id.var = "resp.id")
 
-lcm = gmnl(fml2, data = cbc.mlogit, model = "lc", Q = lca_segments, panel = TRUE, method = 'bhhh') # cbc.mlogit je definiran kod mixed mnl gore
+# lcm = gmnl(fml2, data = cbc.mlogit, model = "lc", Q = lca_segments, panel = TRUE, method = 'bhhh') # cbc.mlogit je definiran kod mixed mnl gore
+
+calc.utilities.mnl(model = m2.hier, data = data.frame(opcije = items_combs[, i]), resp_i = r)
+
+
+
 
 

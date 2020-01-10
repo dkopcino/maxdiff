@@ -32,6 +32,8 @@ valuesfile = paste(cbcid, "_vrijednosti.RDS", sep = "")
 
 simulatecoefsfile = paste(cbcid, "_simcoefs.RDS", sep = "")
 
+turffile = paste(cbcid, "_turf.RDS", sep = "")
+
 # price/cijena iz tekst formata u numerički
 price2num = function(price) {
   i = regexpr("kn", price)
