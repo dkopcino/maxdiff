@@ -397,20 +397,20 @@ cbc.mlogit = mlogit.data(data = cbc.mm, choice = "choice", shape = "long",
                          chid.var = "resp.ques",
                          id.var = "resp.id")
 
-## BUILD AND SAVE MODEL
-# Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
-# (znači u formuli idu iza | i s 0 +)
-m1 = mlogit(fml1, data = cbc.mlogit)
-# summary(m1)
-m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
-names(m1.rpar) = names(m1$coef)
-m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
-# summary(m1.hier)
-# m2.hier = update(m1.hier, correlation = TRUE)
-# summary(m2.hier)
-# SAVE/LOAD
-m2.hier$cov.df = cov.df
-saveRDS(m2.hier, mnlmodelfile)
+# ## BUILD AND SAVE MODEL
+# # Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
+# # (znači u formuli idu iza | i s 0 +)
+# m1 = mlogit(fml1, data = cbc.mlogit)
+# # summary(m1)
+# m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
+# names(m1.rpar) = names(m1$coef)
+# m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
+# # summary(m1.hier)
+# # m2.hier = update(m1.hier, correlation = TRUE)
+# # summary(m2.hier)
+# # SAVE/LOAD
+# m2.hier$cov.df = cov.df
+# saveRDS(m2.hier, mnlmodelfile)
 
 ## LOAD MODEL
 if (!is.null(cbc.mm$resp.ques)) cbc.mm$resp.ques = NULL
@@ -1363,7 +1363,7 @@ comb_size = 3 # size of the TURF combination that we will test
 
 Pretpostavimo da u ponudu želimo staviti `r comb_size` proizvoda. Za svaku kombinaciju koja sadrži `r comb_size` proizvoda i za svakog ispitanika iz našeg istraživanja izračunat ćemo da li bi kupio barem jedan proizvod iz kombinacije (reach - da li je kupac 'dosegnut' barem nekim proizvodom) i koliko (ako ijedan) bi proizvoda iz kombinacije kupio (frequency - koliko je puta kupac 'dosegnut' danom ponudom proizvoda). Odluka da li bi kupac kupio neki proizvod ili ne se donosi na osnovi vjerojatnosti prodaje proizvoda u usporedbi s ostalim proizvodima iz ponude i osnovnom (graničnom) opcijom koja označava granicu kupio bih/ne bih kupio.
 
-Pogledajmo kako izgleda nekoliko redaka iz reach&frequency tablice za naše proizvode:
+Pogledajmo kako izgleda nekoliko redaka iz reach & frequency tablice za naše proizvode (poredanih silazno po reach):
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
@@ -1387,11 +1387,18 @@ items_combs = combn(designctx$items, comb_size)
 
 combs_r_f = readRDS(turffile)
 
+rownames(combs_r_f) = sapply(1:ncol(items_combs), function(i) paste(as.character(items_combs[, i]), collapse = ", "))
+colnames(combs_r_f) = c("reach", "frequency")
+
+combs_r_f = combs_r_f[order(combs_r_f[, 1], decreasing = TRUE), ]
+
+head(combs_r_f)
 
 ```
 
+Možemo vidjeti da bi kombinaciju `r rownames(combs_r_f)[1]` kupilo najviše ispitanika, `r combs_r_f[1, 1]`, što je `r round(combs_r_f[1, 1]/length(unique(cbc.df$resp.id)), 2)*100`%, s time što bi ukupno bilo `r combs_r_f[1, 2]` (potencijalnih) kupovina.
 
-
+Na ovaj način možemo kreirati ponudu proizvoda kojom ćemo maksimizirati prodaju.
 
 
 ## Zaključak
