@@ -1,7 +1,7 @@
 ---
 title:    |
-    | MaxDiff TEST analiza
-    | (primjer)
+    | MaxDiff TEST analysis
+    | (an example)
 author: "Danijel Kopčinović, IT Market"
 #date: '15 10 2019 '
 output: pdf_document
@@ -15,11 +15,11 @@ knitr::opts_chunk$set(echo = FALSE)
 knitr::include_graphics("upitnik_1.jpg")
 ```
 
-## Uvod
+## Introduction
 
-U ovom dokumentu ćemo prezentirati testno istraživanje MaxDiff metodom. Istraživanje je bazirano na (pretpostavljenoj) želji lokalne pizzerije da ispita koju novu pizzu bi kupci najviše htjeli vidjeti u ponudi.
+In this document we will present a test research with the MaxDiff method. The research is based on the (assumed) wish of a local pizzeria to find out which new pizza would its buyers prefer to see in its offering.
 
-Nove pizze između kojih ispitanici biraju su:
+New pizzas that the respondents choose from are:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -49,7 +49,7 @@ print(designctx$items)
 ```
 
 
-Osim glavnih proizvoda koji su nam u fokusu, zanima nas i mogući utjecaj "demografskih" faktora na rezultate:
+Except the main products (pizzas) that are in our fouces, we will also take into account a possible influence of the "demographic" factors to the answers/results:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -58,8 +58,7 @@ print(designctx$covariates)
 
 ```
 
-U MaxDiff metodi ispitanici u svakom pitanju biraju najbolji i najlošiji proizvod između nekoliko alternativa. Pogledajmo neke kombinacije koje smo ispitivali, odn. postavili kao pitanja.
-
+In a MaxDiff survey respondents choose the best and the worst product among a few alternatives. Let's have a look at some products combinations that we posed as questions.
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
@@ -68,31 +67,28 @@ data.frame(designctx$survey[1:(5*designctx$nalternatives), ] %>% group_by(task) 
 
 ```
 
+Out of the set of all `r choose(length(designctx$items), designctx$nalternatives)` products combinations with `r designctx$nalternatives` alternatives (number of alternatives is set as a design parameter), we have chosen  `r nrow(designctx$survey)` representative ones. With the chosen combinations it is possible to calculate (average or individual) value of each product for the respondents.
 
-Iz skupa svih `r choose(length(designctx$items), designctx$nalternatives)` kombinacija proizvoda s `r designctx$nalternatives` alternativa (broj alternativa smo postavili kao parametar dizajna), odabrali smo `r nrow(designctx$survey)` reprezentativnih. S odabranim kombinacijama moguće je izračunati (prosječnu ili individualnu) vrijednost svakog proizvoda za ispitanike.
-
-Sve kombinacije podijelili smo na `r designctx$nquestionnaires` upitnika, od kojih svaki ima `r designctx$nquestions` pitanja, od kojih svako ima `r designctx$nalternatives` opcija/alternativa.
+All combinations were divided to `r designctx$nquestionnaires` questionnaires, each with `r designctx$nquestions` questions, each with `r designctx$nalternatives` options/alternatives.
 
 ```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics("upitnik_2.jpg")
 ```
 
-
-Da bismo bolje mogli procijeniti vrijednosti različitih opcija, dodali smo i pitanje u kojem ispitanik iskazuje općenitu pozitivnu ili negativnu tendenciju prema nekoliko odabranih opcija. Opcije u tom pitanju su odabrane s obzirom na prijašnje odabire, tako da sadrže raspon pizza, od najčešće biranih kao najbolje do najčešće biranih kao najlošije. U ovom pitanju se ne uspoređuju opcije jedna s drugom nego svaka u odnosu na tzv. graničnu opciju, koja u različitim kontekstima može značiti različite stvari, ali općenito znači točku između želim/ne želim, kupio bih/ne bih kupio, zanima me/ne zanima me i sl. Ovo pitanje nam omogućuje da bolje uskladimo odgovore svih ispitanika u odnosu na graničnu opciju pa time i međusobno, čime dobivamo relevantnije procjene vrijednosti.
+For better estimation of the values of different proudcts, we added a question in which a respondent expresses general positive or negative tendency to a few given products. The products given in this question are chosen related to the previous respondent's choices, so that a span, from the most often chosen as best to the most often chosen as worst pizzas, are given.
+In this question products are not compared with each other but all against a so called threshold option, which can mean different things in different contexts, but generally means the point between want/don't want, would buy/wouldn't buy, am interested/am not interested etc. This questions helps us to better level the answers of all the respondents against the threshold option and thus against each other, giving us better and more relevant product values estimates.
 
 
 ```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics("anchoring_survey.jpg")
 ```
 
+Survey results were computer generated, with certain random parameters, for `r max(cbc.df$resp.id)` respondents.
 
-Rezultate upitnika smo generirali računalom, s određenim parametrima slučajnosti, za `r max(cbc.df$resp.id)` ispitanika.
 
+## Simple analysis - counting
 
-## Jednostavna analiza - prebrojavanje
-
-Postoji više načina na koje možemo analizirati podatke MaxDiff metodom. Najjednostavniji pristup je prebrajanje koliko je puta neki proizvod odabran kao najbolji, odn. najlošiji. Pogledajmo proizvode po broju odabira najbolji/najlošiji:
-
+There are multiple ways to analyze the data with a MaxDiff method. The simplest approach is to count how many times some product was chosen as the best and the worst. Here is our list with the number of times chosen as best/worst:
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE, fig.height = 4.3, fig.width = 10, fig.align = "center"}
 library(dplyr)
@@ -122,12 +118,12 @@ kable(bw.df, "latex", booktabs = T, linesep = "", align = "c") %>%
 
 ```
 
-Možemo vidjeti da je `r as.character(bw.df[which.max(bw.df$chosen_as_best), ]$alt)` najviše puta odabrano kao najbolja opcija, a `r as.character(bw.df[which.max(bw.df$chosen_as_worst), ]$alt)` najviše puta kao najlošija opcija.
+We can see that `r as.character(bw.df[which.max(bw.df$chosen_as_best), ]$alt)` was chosen most times as the best option, and `r as.character(bw.df[which.max(bw.df$chosen_as_worst), ]$alt)` most times as the worst option.
 
 
-## Analiza multinomnim logit modelom
+## Multinomial logit model analysis
 
-Naprednija analiza uključuje modeliranje podataka (odgovora ispitanika) i zatim izračunavanje koeficijenata ("vrijednosti") za svaki proizvod multinomnim logit modelom. Kad izvršimo analizu, dobijemo sljedeći sažetak:
+More advanced analysis includes data (respondents choices) modelling and then calculating the coefficients (values) for each product according to the multinomial logit model. After applying this analysis to our data, we get the following summary:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -706,15 +702,15 @@ sm = sm.hb
 
 ```
 
-U prikazanom sažetku je dosta informacija koje nije tako lako direktno interpretirati. Ali da malo pojasnimo, evo nekoliko pojašnjenja koja slijede direktno iz sažetka:
+The given summary contains a lot of information which is not so easy to interpret directly. But to clarify a bit, here are a few explanations derived directly from the summary:
 
-* 'calzone' ima negativni (prosječni/mean) koeficijent `r as.character(round(sm['calzone', 'Mean'], 3))`, što znači da ga ispitanici slabije vrednuju nego osnovnu graničnu opciju koja označava točku kupio bih/ne bih kupio (usporedba koeficijenta za neku vrijednost je uvijek u odnosu na prvu/osnovnu deklariranu vrijednost, što je u ovom slučaju granična opcija) - jednostavnije rečeno 'calzone' ispitanici ne bi kupili, a zbog relativno velikog negativnog koeficijenta, ta je odluka prilično snažna,
+* 'calzone' has a negative (mean) coefficient `r as.character(round(sm['calzone', 'Mean'], 3))`, which means that the respondents value it less than the basic threshold option representing the would/would not buy point (coefficients are always calculated with respect to the first/basic declared option, which is in this case the threshold option) - to put it simply, respondents would not buy 'calzone', and due to a relatively big negative coefficient, this decision is pretty strong,
 
-* 'lovačka' i 'losos' obje imaju pozitivne (prosječne/mean) koeficijente (`r as.character(round(sm['lovačka', 'Mean'], 3))`, `r as.character(round(sm['losos', 'Mean'], 3))`) što znači da ih ispitanici obje vrednuju više od osnovne granične opcije, ali 'lovačka' vrednuju više nego 'losos' - jednostavnije rečeno ispitanici bi kupili obje, ali 'lovačka' puno radije nego 'losos',
+* 'lovačka' and 'losos' both have positive (mean) coefficients (`r as.character(round(sm['lovačka', 'Mean'], 3))`, `r as.character(round(sm['losos', 'Mean'], 3))`) which means that the respondent value both of them more than the basic threshold option, but 'lovačka' is valued more than 'losos' - to put it simply, respondents would buy both of them, but 'lovačka' rather (much more) than 'losos',
 
-* prvi i treći kvantili označavaju raspon u kojem se, malo pojednostavljeno, nalazi svaki koeficijent sa 75% vjerojatnosti.
+* the first and third quantiles define the span containing (this is somewhat simplified) each coefficient with the 75% probability.
 
-Ako sve koeficijente normaliziramo i skaliramo tako da granična opcija (kupio bih ili ne) bude na broju 100, lakše je interpretirati njihove vrijednosti i međusobne omjere:
+If we normalize and scale all the coefficients so that the threshold option (would/would not buy) maps to the number 100, it is easier to interpret their values and corresponding ratios:
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
@@ -736,14 +732,14 @@ moreless = if (rationmostcomp > 1) "veća" else "manja"
 
 ```
 
-Sad možemo vidjeti da je npr. najvredniji proizvod `r mostvpn` i da mu je vrijednost `r rationmostcomp` puta `r moreless` od vrijednosti `r compvpn`.
+Now we can see that the most valued product is `r mostvpn` and that its value is `r rationmostcomp` times `r moreless` than the value of `r compvpn`.
 
-Ovi rezultati pokazuju i glavne prednosti MaxDiff analize u odnosu na jednostavno "redanje" proizvoda od najboljeg prema najlošijem koje se ponekad (prečesto :)) koristi za poslovne analize. MaxDiff nam pokazuje:
+These results show the main advantages of the MaxDiff analysis compared to simple product "ordering" from the best to the worst which is sometimes (too often :)) used for business analyses. MaxDiff shows us:
 
-* *odnose među proizvodima* - koliko je koji vredniji ili manje vrijedan za ispitanike,
-* pozicije proizvoda *u odnosu na (ključnu!) točku koja označava pozitivan ili negativan stav* - kupio bih ili ne, zanima me ili ne...
+* *relations between products* - how much is each more or less valuable to the respondents,
+* product positions *related to (key!) point marking the positive/negative attitude* - would or would not buy, am or am not interested...
 
-Time dobivamo kompletnu sliku svih proizvoda iz perspektive ispitanika i možemo donositi kvalitetne poslovne odluke.
+This way we get a complete picture of all the products from the respondents' perspective and we can make quality business decisions.
 
 
 ## Analiza koreliranosti proizvoda
