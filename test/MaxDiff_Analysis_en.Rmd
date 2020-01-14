@@ -17,7 +17,7 @@ knitr::include_graphics("upitnik_1.jpg")
 
 ## Introduction
 
-In this document we will present a test research with the MaxDiff method. The research is based on the (assumed) wish of a local pizzeria to find out which new pizza would its buyers prefer to see in its offering.
+In this document we will present a test market research with the MaxDiff method. The research is based on the (assumed) wish of a local pizzeria to find out which new pizzas would its buyers prefer to see in its offering.
 
 New pizzas that the respondents choose from are:
 
@@ -49,7 +49,7 @@ print(designctx$items)
 ```
 
 
-Except the main products (pizzas) that are in our fouces, we will also take into account a possible influence of the "demographic" factors to the answers/results:
+Except the main products (pizzas) that are in our focus, we will also take into account a possible influence of the "demographic" factors to the answers/results:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -67,7 +67,7 @@ data.frame(designctx$survey[1:(5*designctx$nalternatives), ] %>% group_by(task) 
 
 ```
 
-Out of the set of all `r choose(length(designctx$items), designctx$nalternatives)` products combinations with `r designctx$nalternatives` alternatives (number of alternatives is set as a design parameter), we have chosen  `r nrow(designctx$survey)` representative ones. With the chosen combinations it is possible to calculate (average or individual) value of each product for the respondents.
+Out of the set of all `r choose(length(designctx$items), designctx$nalternatives)` products combinations with `r designctx$nalternatives` alternatives (number of alternatives in a question is set as a design parameter), we have chosen  `r nrow(designctx$survey)` representative ones. With the chosen combinations it is possible to calculate (average or individual) value of each product for the respondents.
 
 All combinations were divided to `r designctx$nquestionnaires` questionnaires, each with `r designctx$nquestions` questions, each with `r designctx$nalternatives` options/alternatives.
 
@@ -75,8 +75,8 @@ All combinations were divided to `r designctx$nquestionnaires` questionnaires, e
 knitr::include_graphics("upitnik_2.jpg")
 ```
 
-For better estimation of the values of different proudcts, we added a question in which a respondent expresses general positive or negative tendency to a few given products. The products given in this question are chosen related to the previous respondent's choices, so that a span, from the most often chosen as best to the most often chosen as worst pizzas, are given.
-In this question products are not compared with each other but all against a so called threshold option, which can mean different things in different contexts, but generally means the point between want/don't want, would buy/wouldn't buy, am interested/am not interested etc. This questions helps us to better level the answers of all the respondents against the threshold option and thus against each other, giving us better and more relevant product values estimates.
+For a better estimation of the values of different products, we added a question in which a respondent expresses general positive or negative tendency to a few given products. The products given in this question are chosen related to the previous respondent's choices, so that a span, from the pizzas most often chosen as best to the pizzas most often chosen as worst, is given.
+In this question products are not compared with each other but all against the so called threshold option, which can mean different things in different contexts, but generally means the point between want/don't want, would buy/wouldn't buy, am interested/am not interested etc. This question helps us to better level the answers of all the respondents against the threshold option and thus against each other, giving us better and more relevant product values estimates.
 
 
 ```{r, echo=FALSE, fig.align='center'}
@@ -88,7 +88,7 @@ Survey results were computer generated, with certain random parameters, for `r m
 
 ## Simple analysis - counting
 
-There are multiple ways to analyze the data with a MaxDiff method. The simplest approach is to count how many times some product was chosen as the best and the worst. Here is our list with the number of times chosen as best/worst:
+There are multiple ways to analyze the data with a MaxDiff method. The simplest approach is to count how many times some product was chosen as the best and as the worst. Here is the list of the products from our survey with the number of times chosen as best/worst:
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE, fig.height = 4.3, fig.width = 10, fig.align = "center"}
 library(dplyr)
@@ -123,7 +123,7 @@ We can see that `r as.character(bw.df[which.max(bw.df$chosen_as_best), ]$alt)` w
 
 ## Multinomial logit model analysis
 
-More advanced analysis includes data (respondents choices) modelling and then calculating the coefficients (values) for each product according to the multinomial logit model. After applying this analysis to our data, we get the following summary:
+More advanced analysis includes data (respondents' choices) modelling and then calculating the coefficients (values) for each product according to the multinomial logit model. After applying this analysis to our data, we get the following summary:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -728,21 +728,21 @@ mostvpn = names(mostvpv)
 compvpv = perc.zc.sm[mostvpi+1]
 compvpn = names(compvpv)
 rationmostcomp = round(as.numeric(mostvpv/compvpv), digits = 2)
-moreless = if (rationmostcomp > 1) "veća" else "manja"
+moreless = if (rationmostcomp > 1) "more" else "less"
 
 ```
 
 Now we can see that the most valued product is `r mostvpn` and that its value is `r rationmostcomp` times `r moreless` than the value of `r compvpn`.
 
-These results show the main advantages of the MaxDiff analysis compared to simple product "ordering" from the best to the worst which is sometimes (too often :)) used for business analyses. MaxDiff shows us:
+These results show the main advantages of the MaxDiff analysis compared to a simple product "ordering" from the best to the worst which is sometimes (too often :)) used for business analyses. MaxDiff shows us:
 
-* *relations between products* - how much is each more or less valuable to the respondents,
+* *relations between products* - how much is each product more or less valuable to the respondents,
 * product positions *related to (key!) point marking the positive/negative attitude* - would or would not buy, am or am not interested...
 
 This way we get a complete picture of all the products from the respondents' perspective and we can make quality business decisions.
 
 
-## Analiza koreliranosti proizvoda
+## Products correlation analysis
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -780,8 +780,7 @@ correlation_t$names = row.names(correlation_t)
 
 ```
 
-
-Drugi element koji možemo analizirati je korelacija između vrijednosti pojedinih proizvoda. 
+Another element that we can analyze is the correlation between the products/products values.
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -793,16 +792,16 @@ ggplot(data = correlation_t, aes(x = substr(correlation_t$names, 1, 18), y = cor
 ```
 
 
-Primjerice, u gore prikazanom grafu možemo vidjeti da je *`r corvar`* pozitivno korelirana s *`r names(correlation[correlation > 0])`*, a negativno korelirana s *`r names(correlation[correlation < 0])`*. To znači da ako ispitanici daju veću vrijednost pizzi *`r corvar`*, onda daju veću vrijednost i *`r names(correlation[correlation > 0])`*, dok za *`r names(correlation[correlation < 0])`* daju manju vrijednost.
+For example, in the graph shown above, we can see that *`r corvar`* is positively correlated with *`r names(correlation[correlation > 0])`*, and negatively correlated with *`r names(correlation[correlation < 0])`*. This means that if respondents put more value to the *`r corvar`* pizza, then they put more value also to *`r names(correlation[correlation > 0])`*, while they put less value to *`r names(correlation[correlation < 0])`*.
 
-Rezultate analize i procjene koeficijenata vrijednosti opcija najlakše je razumjeti preko "predviđanja udjela" (share prediction) što ćemo sada prikazati.
+Results of the analysis and coefficients estimation is the easiest to understand with the share prediction calculation, which we will now show.
 
 
-## Predviđanje udjela (share prediction)
+## Share prediction
 
-Jednom kada znamo vrijednosti koeficijenata svih proizvoda, možemo usporediti njihove različite kombinacije i predvidjeti udjele u prodaji. Predviđeni udjeli u prodaji su vjerojatnosti da će se određeni proizvod prodati u usporedbi s ostalim proizvodima koji su u kombinaciji koju testiramo.
+Once we have all the product coefficients estimates, we can compare different product combinations and predict the sales shares. Predicted sales shares are probabilities that a certain product will be chosen/sold compared to other products in the tested combination.
 
-Kao primjer uzet ćemo kombinaciju nekoliko slučajno odabranih proizvoda i izračunati njihove predviđene udjele u prodaji:
+As an example we will pick a combination of a few randomly selected products and calculate their predicted sales shares:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -1108,16 +1107,15 @@ t(shares)
 ```
 
 
-U prethodnoj tablici možemo vidjeti kako bi ispitanici birali između `r nrow(ffd_df)` različitih opcija pizza. Svaka kombinacija dobiva predviđeni udio (postotak) u ukupnoj prodaji, prema procijenjenim vrijednostima pripadajućih koeficijenata.
+In the table above we can see how would respondents choose between `r nrow(ffd_df)` different pizzas. Each pizza gets the predicted share (percentage) in the total sales, according to the corresponding coefficients estimates.
 
-**Najčešće birana opcija** (između navedenih, ne općenito) je *`r paste(as.matrix(mostshare[, -ncol(mostshare)]), collapse = ", ")`* **s previđenim udjelom u prodaji `r max(shares[["share %"]])`%**.
-
-
-
-## Provjera modela na postojećim podacima
+**Most often chosen option** (among the given pizzas, not in general) is *`r paste(as.matrix(mostshare[, -ncol(mostshare)]), collapse = ", ")`* **with the predicted sales share `r max(shares[["share %"]])`%**.
 
 
-Korištenjem predviđanja udjela/vjerojatnosti prodaje za razne kombinacije proizvoda, možemo testirati i kako bi naš model predvidio izbor za (neke) kombinacije koje su dane u istraživanju:
+
+## Checking the model on the existing data
+
+With the share predictions for different products combinations, we can also test how would our model predict the choices for (some) of the combinations given in the survey:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -1194,14 +1192,14 @@ holdout_true_predicted = holdout_true_predicted_hb
 holdout_true_predicted[sample(1:nrow(holdout_true_predicted), 20), !(colnames(holdout_true_predicted) %in% c("correct best", "correct worst"))]
 #holdout_true_predicted[sample(1:nrow(holdout_true_predicted), 20), ]
 total_correct = sum(holdout_true_predicted[, "correct best"]) + sum(holdout_true_predicted[, "correct worst"])
-paste("Ukupno točno predviđanja:", round(100*total_correct/(2*nrow(holdout_true_predicted)), digits = 2), "%", sep = "")
+paste("Overall correct predictions:", round(100*total_correct/(2*nrow(holdout_true_predicted)), digits = 2), "%", sep = "")
 
 ```
 
-Ukupna točnost predviđanja daje nam sigurnost da naš model dobro funkcionira.
+The overall prediction correctness gives us confidence that our model works well.
 
 
-## Segmentacija ispitanika
+## Respondents segmentation
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 #############################################################################################################
@@ -1245,8 +1243,7 @@ lca_segments = designctx$rsegments
 
 ```
 
-
-S obzirom na razne faktore (demografske ili sl.), ispitanike možemo podijeliti u segmente te zatim modelirati vrednovanje proizvoda za svaki segment. Broj segmenata treba zadati unaprijed. Pretpostavimo da postoje `r lca_segments` različita segmenta ispitanika (s tim parametrom ćemo napraviti analizu). Modeliranjem (multinomni logit model s LCA - latent class analysis) dobivamo sljedeći sažetak:
+Taking into account different factors (demographic or other), we can divide the respondents into segments and then model how each segment (instead of average or individual) values the products. The number of segments we believe exists in the respondents set must be given in advance as a parameter. Assuming that there are `r lca_segments` different respondents segments we build the multinomial logit model with LCA (Latent Class Analysis) and get the following summary:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -1296,9 +1293,9 @@ r = lapply(1:(lca_segments-1), function(s) {
 
 ```
 
-Vidimo da se segmenti razlikuju (za više od `r nivo_znacajnosti_za_razliku`) u vrednovanju npr. *`r cfs_s_diffs`*.
+We can see that the segments differ (for more than `r nivo_znacajnosti_za_razliku`) in valuation of e.g. *`r cfs_s_diffs`*.
 
-S obzirom na to da je cilj segmentacije i prepoznavanje koji korisnik (s najvećom vjerojatnošću) pripada kojem segmentu, pogledajmo i taj rezultat (navedeni su redni brojevi ispitanika koji pripadaju određenom segmentu):
+Since one of the goals of the segmentation is assigning each respondent to some segment (with the highest probability), let's see this result too (the numbers given are the numbers of the respondents belonging to a certain segment):
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -1346,20 +1343,23 @@ r = lapply(1:lca_segments, function(s) {
 ```
 
 
-S dobivenom segmentacijom možemo primjerice kreirati više različitih proizvoda od kojih će svaki biti najzanimljiviji određenom segmentu (s obzirom na vrednovanje).
+Since one of the segments is empty (no respondents in it), we conclude that the number of segments that we can identify with the given data and model is `r lca_segments-1`.
+
+With the given segmentation we can e.g. create different products that will be the most interesting (best valued) by each segment, thus increasing buyers satisfaction and income/profit.
 
 
-## TURF analiza
+## TURF analysis
 
-Ponudom u kojoj se nalazi više proizvoda povećat ćemo vjerojatnost da će barem neki proizvod biti kupljen od strane kupaca. Da bismo izračunali koji proizvodi bi trebali biti u ponudi da bismo postigli najveću prodaju, koristimo TURF (total unduplicated reach and frequency) analizu.
+With an offer that contains more products we will increase the probability that at least some product will be sold. To calculate which products should be offered to achieve the highest number of sales, we can use TURF (total unduplicated reach and frequency) analysis.
+
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 comb_size = 3 # size of the TURF combination that we will test
 ```
 
-Pretpostavimo da u ponudu želimo staviti `r comb_size` proizvoda. Za svaku kombinaciju koja sadrži `r comb_size` proizvoda i za svakog ispitanika iz našeg istraživanja izračunat ćemo da li bi kupio barem jedan proizvod iz kombinacije (reach - da li je kupac 'dosegnut' barem nekim proizvodom) i koliko (ako ijedan) bi proizvoda iz kombinacije kupio (frequency - koliko je puta kupac 'dosegnut' danom ponudom proizvoda). Odluka da li bi kupac kupio neki proizvod ili ne se donosi na osnovi vjerojatnosti prodaje proizvoda u usporedbi s ostalim proizvodima iz ponude i osnovnom (graničnom) opcijom koja označava granicu kupio bih/ne bih kupio.
+Let's assume that we want to put `r comb_size` products in an offer. For each combination/offer containing `r comb_size` products and for each respondent from our survey, we will calculate whether he would buy at least one product from the offer (reach - is he 'reached' with at least one product) and how many (if any) products from the offer would he buy (frequency - how many times is he 'reached' with the offer). The respondent's buying decision for a product is based on the probability of sales for that product compared with the other products in the offer and the basic threshold option marking the buying/not buying boundary.
 
-Pogledajmo kako izgleda nekoliko redaka iz reach & frequency tablice za naše proizvode (poredanih silazno po reach):
+Let's have a look at a few rows from the reach & frequency table for our products and offers (ordered decreasing by reach):
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
@@ -1392,14 +1392,14 @@ head(combs_r_f)
 
 ```
 
-Možemo vidjeti da bi kombinaciju `r rownames(combs_r_f)[1]` kupilo najviše ispitanika, `r combs_r_f[1, 1]`, što je `r round(combs_r_f[1, 1]/length(unique(cbc.df$resp.id)), 2)*100`%, s time što bi ukupno bilo `r combs_r_f[1, 2]` (potencijalnih) kupovina.
+We can see that the offer `r rownames(combs_r_f)[1]` would reach (at least one product would be bought by) the most respondents, `r combs_r_f[1, 1]` of them, which is `r round(combs_r_f[1, 1]/length(unique(cbc.df$resp.id)), 2)*100`% of the total number of respondents, with a total of `r combs_r_f[1, 2]` (potential) sales.
 
-Na ovaj način možemo kreirati ponudu proizvoda kojom ćemo maksimizirati prodaju.
+This way we can build an offer of products that will maximize the sales.
 
 
-## Zaključak
+## Conclusion
 
-**MaxDiff analiza je moćan alat za upoznavanje kupaca i njihovih vrijednosti i za kreiranje najboljih proizvoda za njih. Takav pristup uvijek vodi prema poboljšanju poslovanja, većim prihodima i većem zadovoljstvu kupaca.**
+**MaxDiff analysis is a powerful tool for gaining knowledge of your customers and their values and creating the best products for them. This approach always leads to the business improvement, higher incomes and higher customer satisfaction.**
 
-Za više informacija kontaktirajte [**danijel.kopcinovic@itmarket.hr**](mailto:danijel.kopcinovic@itmarket.hr).
+For more information contact [**danijel.kopcinovic@itmarket.hr**](mailto:danijel.kopcinovic@itmarket.hr).
 

@@ -17,7 +17,7 @@ knitr::include_graphics("upitnik_1.jpg")
 
 ## Uvod
 
-U ovom dokumentu ćemo prezentirati testno istraživanje MaxDiff metodom. Istraživanje je bazirano na (pretpostavljenoj) želji lokalne pizzerije da ispita koju novu pizzu bi kupci najviše htjeli vidjeti u ponudi.
+U ovom dokumentu ćemo prezentirati testno istraživanje tržišta MaxDiff metodom. Istraživanje je bazirano na (pretpostavljenoj) želji lokalne pizzerije da ispita koju novu pizzu bi kupci najviše htjeli vidjeti u ponudi.
 
 Nove pizze između kojih ispitanici biraju su:
 
@@ -69,7 +69,7 @@ data.frame(designctx$survey[1:(5*designctx$nalternatives), ] %>% group_by(task) 
 ```
 
 
-Iz skupa svih `r choose(length(designctx$items), designctx$nalternatives)` kombinacija proizvoda s `r designctx$nalternatives` alternativa (broj alternativa smo postavili kao parametar dizajna), odabrali smo `r nrow(designctx$survey)` reprezentativnih. S odabranim kombinacijama moguće je izračunati (prosječnu ili individualnu) vrijednost svakog proizvoda za ispitanike.
+Iz skupa svih `r choose(length(designctx$items), designctx$nalternatives)` kombinacija proizvoda s `r designctx$nalternatives` alternativa (broj alternativa u pitanju smo postavili kao parametar dizajna), odabrali smo `r nrow(designctx$survey)` reprezentativnih. S odabranim kombinacijama moguće je izračunati (prosječnu ili individualnu) vrijednost svakog proizvoda za ispitanike.
 
 Sve kombinacije podijelili smo na `r designctx$nquestionnaires` upitnika, od kojih svaki ima `r designctx$nquestions` pitanja, od kojih svako ima `r designctx$nalternatives` opcija/alternativa.
 
@@ -78,7 +78,7 @@ knitr::include_graphics("upitnik_2.jpg")
 ```
 
 
-Da bismo bolje mogli procijeniti vrijednosti različitih opcija, dodali smo i pitanje u kojem ispitanik iskazuje općenitu pozitivnu ili negativnu tendenciju prema nekoliko odabranih opcija. Opcije u tom pitanju su odabrane s obzirom na prijašnje odabire, tako da sadrže raspon pizza, od najčešće biranih kao najbolje do najčešće biranih kao najlošije. U ovom pitanju se ne uspoređuju opcije jedna s drugom nego svaka u odnosu na tzv. graničnu opciju, koja u različitim kontekstima može značiti različite stvari, ali općenito znači točku između želim/ne želim, kupio bih/ne bih kupio, zanima me/ne zanima me i sl. Ovo pitanje nam omogućuje da bolje uskladimo odgovore svih ispitanika u odnosu na graničnu opciju pa time i međusobno, čime dobivamo relevantnije procjene vrijednosti.
+Da bismo bolje mogli procijeniti vrijednosti različitih opcija, dodali smo i pitanje u kojem ispitanik iskazuje općenitu pozitivnu ili negativnu tendenciju prema nekoliko odabranih proizvoda. Proizvodi u tom pitanju su odabrani s obzirom na prijašnje odabire, tako da sadrže raspon pizza - od pizza najčešće biranih kao najbolje do pizza najčešće biranih kao najlošije. U ovom pitanju se ne uspoređuju proizvodi jedan s drugim nego svaki u odnosu na tzv. graničnu opciju, koja u različitim kontekstima može značiti različite stvari, ali općenito znači točku između želim/ne želim, kupio bih/ne bih kupio, zanima me/ne zanima me i sl. Ovo pitanje nam omogućuje da bolje uskladimo odgovore svih ispitanika u odnosu na graničnu opciju pa time i međusobno, čime dobivamo relevantnije procjene vrijednosti.
 
 
 ```{r, echo=FALSE, fig.align='center'}
@@ -91,7 +91,7 @@ Rezultate upitnika smo generirali računalom, s određenim parametrima slučajno
 
 ## Jednostavna analiza - prebrojavanje
 
-Postoji više načina na koje možemo analizirati podatke MaxDiff metodom. Najjednostavniji pristup je prebrajanje koliko je puta neki proizvod odabran kao najbolji, odn. najlošiji. Pogledajmo proizvode po broju odabira najbolji/najlošiji:
+Postoji više načina na koje možemo analizirati podatke MaxDiff metodom. Najjednostavniji pristup je prebrajanje koliko je puta neki proizvod odabran kao najbolji, odn. najlošiji. Pogledajmo proizvode iz našeg istraživanja po broju odabira najbolji/najlošiji:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE, fig.height = 4.3, fig.width = 10, fig.align = "center"}
@@ -712,7 +712,7 @@ U prikazanom sažetku je dosta informacija koje nije tako lako direktno interpre
 
 * 'lovačka' i 'losos' obje imaju pozitivne (prosječne/mean) koeficijente (`r as.character(round(sm['lovačka', 'Mean'], 3))`, `r as.character(round(sm['losos', 'Mean'], 3))`) što znači da ih ispitanici obje vrednuju više od osnovne granične opcije, ali 'lovačka' vrednuju više nego 'losos' - jednostavnije rečeno ispitanici bi kupili obje, ali 'lovačka' puno radije nego 'losos',
 
-* prvi i treći kvantili označavaju raspon u kojem se, malo pojednostavljeno, nalazi svaki koeficijent sa 75% vjerojatnosti.
+* prvi i treći kvantili označavaju raspon u kojem se (malo pojednostavljeno) nalazi svaki koeficijent sa 75% vjerojatnosti.
 
 Ako sve koeficijente normaliziramo i skaliramo tako da granična opcija (kupio bih ili ne) bude na broju 100, lakše je interpretirati njihove vrijednosti i međusobne omjere:
 
@@ -1112,7 +1112,7 @@ t(shares)
 ```
 
 
-U prethodnoj tablici možemo vidjeti kako bi ispitanici birali između `r nrow(ffd_df)` različitih opcija pizza. Svaka kombinacija dobiva predviđeni udio (postotak) u ukupnoj prodaji, prema procijenjenim vrijednostima pripadajućih koeficijenata.
+U prethodnoj tablici možemo vidjeti kako bi ispitanici birali između `r nrow(ffd_df)` različitih opcija pizza. Svaka pizza dobiva predviđeni udio (postotak) u ukupnoj prodaji, prema procijenjenim vrijednostima pripadajućih koeficijenata.
 
 **Najčešće birana opcija** (između navedenih, ne općenito) je *`r paste(as.matrix(mostshare[, -ncol(mostshare)]), collapse = ", ")`* **s previđenim udjelom u prodaji `r max(shares[["share %"]])`%**.
 
@@ -1250,7 +1250,7 @@ lca_segments = designctx$rsegments
 ```
 
 
-S obzirom na razne faktore (demografske ili sl.), ispitanike možemo podijeliti u segmente te zatim modelirati vrednovanje proizvoda za svaki segment. Broj segmenata treba zadati unaprijed. Pretpostavimo da postoje `r lca_segments` različita segmenta ispitanika (s tim parametrom ćemo napraviti analizu). Modeliranjem (multinomni logit model s LCA - latent class analysis) dobivamo sljedeći sažetak:
+S obzirom na razne faktore (demografske ili sl.), ispitanike možemo podijeliti u segmente te zatim modelirati vrednovanje proizvoda za svaki segment (umjesto prosjeka ili individualno). Broj segmenata koji mislimo da postoji u skupu ispitanika treba zadati unaprijed kao parametar. Pretpostavimo da postoje `r lca_segments` različita segmenta ispitanika (s tim parametrom ćemo napraviti analizu). Modeliranjem (multinomni logit model s LCA - latent class analysis) dobivamo sljedeći sažetak:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -1349,8 +1349,9 @@ r = lapply(1:lca_segments, function(s) {
 
 ```
 
+Kako je jedan segment prazan (niti jedan ispitanik mu ne pripada), zaključujemo da je broj segmenata koje s danim podacima i modelom možemo identificirati jednak `r lca_segments-1`.
 
-S dobivenom segmentacijom možemo primjerice kreirati više različitih proizvoda od kojih će svaki biti najzanimljiviji određenom segmentu (s obzirom na vrednovanje).
+S dobivenom segmentacijom možemo primjerice kreirati više različitih proizvoda od kojih će svaki biti najzanimljiviji određenom segmentu (s obzirom na vrednovanje). Tako ćemo povećati prodaju i zadovoljstvo kupaca.
 
 
 ## TURF analiza
@@ -1361,9 +1362,9 @@ Ponudom u kojoj se nalazi više proizvoda povećat ćemo vjerojatnost da će bar
 comb_size = 3 # size of the TURF combination that we will test
 ```
 
-Pretpostavimo da u ponudu želimo staviti `r comb_size` proizvoda. Za svaku kombinaciju koja sadrži `r comb_size` proizvoda i za svakog ispitanika iz našeg istraživanja izračunat ćemo da li bi kupio barem jedan proizvod iz kombinacije (reach - da li je kupac 'dosegnut' barem nekim proizvodom) i koliko (ako ijedan) bi proizvoda iz kombinacije kupio (frequency - koliko je puta kupac 'dosegnut' danom ponudom proizvoda). Odluka da li bi kupac kupio neki proizvod ili ne se donosi na osnovi vjerojatnosti prodaje proizvoda u usporedbi s ostalim proizvodima iz ponude i osnovnom (graničnom) opcijom koja označava granicu kupio bih/ne bih kupio.
+Pretpostavimo da u ponudu želimo staviti `r comb_size` proizvoda. Za svaku kombinaciju/ponudu koja sadrži `r comb_size` proizvoda i za svakog ispitanika iz našeg istraživanja izračunat ćemo da li bi kupio barem jedan proizvod iz ponude (reach - da li je kupac 'dosegnut' barem nekim proizvodom) i koliko (ako ijedan) bi proizvoda iz ponude kupio (frequency - koliko je puta kupac 'dosegnut' danom ponudom proizvoda). Odluka da li bi kupac kupio neki proizvod ili ne se donosi na osnovi vjerojatnosti prodaje proizvoda u usporedbi s ostalim proizvodima iz ponude i osnovnom (graničnom) opcijom koja označava granicu kupio bih/ne bih kupio.
 
-Pogledajmo kako izgleda nekoliko redaka iz reach & frequency tablice za naše proizvode (poredanih silazno po reach):
+Pogledajmo kako izgleda nekoliko redaka iz reach & frequency tablice za naše proizvode i ponude (poredanih silazno po reach):
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
@@ -1396,7 +1397,7 @@ head(combs_r_f)
 
 ```
 
-Možemo vidjeti da bi kombinaciju `r rownames(combs_r_f)[1]` kupilo najviše ispitanika, `r combs_r_f[1, 1]`, što je `r round(combs_r_f[1, 1]/length(unique(cbc.df$resp.id)), 2)*100`%, s time što bi ukupno bilo `r combs_r_f[1, 2]` (potencijalnih) kupovina.
+Možemo vidjeti da bi ponuda `r rownames(combs_r_f)[1]` dosegnula najviše ispitanika (kupili bi barem jedan proizvod iz ponude), njih `r combs_r_f[1, 1]`, što je `r round(combs_r_f[1, 1]/length(unique(cbc.df$resp.id)), 2)*100`% od ukupnog broja ispitanika, s time što bi ukupno bilo `r combs_r_f[1, 2]` (potencijalnih) kupovina.
 
 Na ovaj način možemo kreirati ponudu proizvoda kojom ćemo maksimizirati prodaju.
 
