@@ -912,7 +912,15 @@
 
 # lcm = gmnl(fml2, data = cbc.mlogit, model = "lc", Q = lca_segments, panel = TRUE, method = 'bhhh') # cbc.mlogit je definiran kod mixed mnl gore
 
-calc.utilities.mnl(model = m2.hier, data = data.frame(opcije = items_combs[, i]), resp_i = r)
+#calc.utilities.mnl(model = m2.hier, data = data.frame(opcije = items_combs[, i]), resp_i = r)
+
+
+# data(turf_ex_data)
+# ex1 <- turf(turf_ex_data, 10, 3:6)
+
+
+ir_util = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = i), resp_i = r)
+
 
 
 

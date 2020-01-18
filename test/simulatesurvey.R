@@ -11,11 +11,11 @@ coef.names = cnames[-1]
 
 # means of the encoded parameters
 # indicates relationship to the base level (- means less attractive/lower usability, + more attractive/higher usability)
-mu = round(runif(length(coef.names), -5, 5), 2)
+mu = round(runif(length(coef.names), -3, 3), 2)
 names(mu) = coef.names
 
 # variances
-Sigma = diag(round(runif(length(coef.names), 0.01, 1), 2))
+Sigma = diag(round(runif(length(coef.names), 0.1, 1), 2))
 rownames(Sigma) = colnames(Sigma) = coef.names
 # we can add some correlations if we want but we have to take care that Sigma stays positive definite
 #Sigma[coef.names[1], coef.names[length(coef.names)-1]] = Sigma[coef.names[length(coef.names)-1], coef.names[1]] = runif(1, -1, 1)
@@ -27,6 +27,9 @@ library(MASS)
 # is.positive.definite(Sigma)
 coefs = mvrnorm(length(resp.id), mu = mu, Sigma = Sigma)
 colnames(coefs) = coef.names
+
+# make a few respondents bad buyers, this will decrease their utilities by setting "wouldn't buy" in anchor questions
+non_buyers = sample(1:length(resp.id), .20*length(resp.id), replace = FALSE)
 
 nquestionnaires = designctx$nquestionnaires
 nquestions = designctx$nquestions
@@ -65,7 +68,12 @@ for (i in seq_along(resp.id)) {
       designctx$anchors, as.character(srv[best_choice, ]$alt), as.character(srv[worst_choice, ]$alt)))
     for (anch in getanchorcolnames(designctx$anchors)) {
       # 1 for positive answer (would buy, like it), 2 for negative answer (would not buy, don't like it)
-      surveydf[[anch]] = rep(ifelse(runif(1) > .5, 2, 1), nrow(surveydf))
+      if (i %in% non_buyers) {
+#        surveydf[[anch]] = rep(ifelse(runif(1) > .1, 2, 1), nrow(surveydf))
+        surveydf[[anch]] = rep(2, nrow(surveydf))
+      } else {
+        surveydf[[anch]] = rep(ifelse(runif(1) > .5, 2, 1), nrow(surveydf))
+      }
     }
   }
   

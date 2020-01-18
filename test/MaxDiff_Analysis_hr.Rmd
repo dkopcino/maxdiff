@@ -710,7 +710,7 @@ U prikazanom sažetku je dosta informacija koje nije tako lako direktno interpre
 
 * 'calzone' ima negativni (prosječni/mean) koeficijent `r as.character(round(sm['calzone', 'Mean'], 3))`, što znači da ga ispitanici slabije vrednuju nego osnovnu graničnu opciju koja označava točku kupio bih/ne bih kupio (usporedba koeficijenta za neku vrijednost je uvijek u odnosu na prvu/osnovnu deklariranu vrijednost, što je u ovom slučaju granična opcija) - jednostavnije rečeno 'calzone' ispitanici ne bi kupili, a zbog relativno velikog negativnog koeficijenta, ta je odluka prilično snažna,
 
-* 'lovačka' i 'losos' obje imaju pozitivne (prosječne/mean) koeficijente (`r as.character(round(sm['lovačka', 'Mean'], 3))`, `r as.character(round(sm['losos', 'Mean'], 3))`) što znači da ih ispitanici obje vrednuju više od osnovne granične opcije, ali 'lovačka' vrednuju više nego 'losos' - jednostavnije rečeno ispitanici bi kupili obje, ali 'lovačka' puno radije nego 'losos',
+* 'pikantna' i 'ribarska' obje imaju pozitivne (prosječne/mean) koeficijente (`r as.character(round(sm['pikantna', 'Mean'], 3))`, `r as.character(round(sm['ribarska', 'Mean'], 3))`) što znači da ih ispitanici obje vrednuju više od osnovne granične opcije, ali 'pikantna' vrednuju više nego 'ribarska' - jednostavnije rečeno ispitanici bi kupili obje, ali 'pikantna' radije nego 'ribarska',
 
 * prvi i treći kvantili označavaju raspon u kojem se (malo pojednostavljeno) nalazi svaki koeficijent sa 75% vjerojatnosti.
 
@@ -764,7 +764,7 @@ cc = stan.mc.sigma
 
 # pick a random variable to check correlations
 #corvar = sample(colnames(cbc.mm.clear), 1)
-corvar = "bolonjez"
+corvar = "ribarska"
 # correlation = cc[which((abs(cc[ , corvar]) > 0.4) & (abs(cc[ , corvar]) < 1)), corvar]
 pos_correlated = which((cc[, corvar] < 1) & (cc[ , corvar] > 0))
 neg_correlated = which(cc[ , corvar] < 0)
@@ -963,6 +963,18 @@ calc.utilities.hb = function(model, data, resp_i = NULL) {
     }
   }
   utilities
+}
+
+# data must be a data.frame with the items alternatives in the 1st column
+# resp_i is a respondent's identifier in the model
+# returns vector of utilities, nrow(data)
+calc.utilities.hb.zc = function(model, data, resp_i) {
+  data.df = data.frame(domodelmatrix_itemsonly(data[, 1]))
+  if (designctx$anchors == 0) data.df = data.df[, -1] # without the Intercept
+  data.model = as.matrix(data.df)
+  betadraw = model$betadraw[resp_i, , ] # get coeffs x draws
+  betas = apply(betadraw, 1, mean) # get mean of coeffs wrt draws
+  as.numeric(data.model %*% (betas - mean(betas)))
 }
 
 ### HIERARCHICAL BAYES
@@ -1368,36 +1380,89 @@ Pogledajmo kako izgleda nekoliko redaka iz reach & frequency tablice za naše pr
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
+colitems = make.names(designctx$items)
+respids = unique(cbc.df$resp.id)
 items_combs = combn(designctx$items, comb_size)
 
-# combs_r_f = array(0, dim = c(ncol(items_combs), 2)) # 1st column is reach, 2nd is frequency
+# combs_df = data.frame(respid = rep(respids, ncol(items_combs)))
+# combinations = sapply(1:ncol(items_combs), function(itc) paste(items_combs[, itc], collapse = ", "))
+# combs_df$combination = rep(combinations, each = length(respids))
+# for (ci in colitems) combs_df[[ci]] = 0
+# combs_df$reach = combs_df$freq = 0
 # for (i in 1:ncol(items_combs)) {
-#   for (r in unique(cbc.df$resp.id)) {
-# #    ir_utils = calc.utilities.mnl(model = m2.hier, data = data.frame(opcije = items_combs[, i]), resp_i = r)
-#     ir_utils = calc.utilities.hb(model = hb.post, data = data.frame(opcije = items_combs[, i]), resp_i = r)
+#   comb_cols = colnames(combs_df) %in% make.names(items_combs[, i])
+# #    combs_df[(1:length(respids))+(i-1)*length(respids), comb_cols] = 1
+#   for (r in 1:length(respids)) {
+#     ir_utils = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = items_combs[, i]), resp_i = respids[r])
 #     probs_reach = exp(ir_utils)/(sum(exp(ir_utils))+1) # ovo je ok ako imamo anchor, provjeriti još da li je ok ako ga nemamo
 #     reached = sapply(probs_reach, function(prob_reach) {
 #       sample(c(TRUE, FALSE), 1, replace = FALSE, prob = c(prob_reach, 1-prob_reach))
 #     })
-#     combs_r_f[i, 1] = combs_r_f[i, 1] + as.numeric(any(reached))
-#     combs_r_f[i, 2] = combs_r_f[i, 2] + as.numeric(sum(reached))
+#     resp_comb_row = r+(i-1)*length(respids)
+#     combs_df[resp_comb_row, comb_cols] = ifelse(reached, as.numeric(1), as.numeric(-1))
+#     combs_df[resp_comb_row, "reach"] = as.numeric(any(reached))
+#     combs_df[resp_comb_row, "freq"] = as.numeric(sum(reached))
 #   }
-# #  if ((i %% 10) == 0) print(i)
+#  if ((i %% 10) == 0) print(i)
 # }
-# saveRDS(combs_r_f, turffile)
+# saveRDS(combs_df, turffile)
 
-combs_r_f = readRDS(turffile)
+combs_df = readRDS(turffile)
 
-rownames(combs_r_f) = sapply(1:ncol(items_combs), function(i) paste(as.character(items_combs[, i]), collapse = ", "))
-colnames(combs_r_f) = c("reach", "frequency")
+combs_out = combs_df %>% dplyr::group_by(combination) %>% dplyr::summarise(reach = sum(reach), freq = sum(freq))
+combs_out = combs_out[order(combs_out$reach, decreasing = TRUE), ]
 
-combs_r_f = combs_r_f[order(combs_r_f[, 1], decreasing = TRUE), ]
-
-head(combs_r_f)
+head(combs_out)
 
 ```
 
-Možemo vidjeti da bi ponuda `r rownames(combs_r_f)[1]` dosegnula najviše ispitanika (kupili bi barem jedan proizvod iz ponude), njih `r combs_r_f[1, 1]`, što je `r round(combs_r_f[1, 1]/length(unique(cbc.df$resp.id)), 2)*100`% od ukupnog broja ispitanika, s time što bi ukupno bilo `r combs_r_f[1, 2]` (potencijalnih) kupovina.
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+
+# turf_data = data.frame(respid = unique(cbc.df$resp.id), wgt = rep(1, length(unique(cbc.df$resp.id))))
+# colitems = make.names(designctx$items)
+# for (i in colitems) {
+#   turf_data[[i]] = 0
+# }
+# 
+# zero_buyers = c()
+# for (r in turf_data$respid) {
+#   for (i in designctx$items) {
+#     ir_util = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = i), resp_i = r)
+#     prob_reach = exp(ir_util)/(exp(ir_util)+(designctx$nalternatives-1)) # ovo je ok ako imamo anchor, provjeriti još da li je ok ako ga nemamo
+#     reached = sample(c(TRUE, FALSE), 1, replace = FALSE, prob = c(prob_reach, 1-prob_reach))
+#     turf_data[turf_data$respid == r, make.names(i)] = as.numeric(reached)
+#   }
+#   if (all(turf_data[r, colitems] == 0)) zero_buyers = c(zero_buyers, r)
+# }
+# 
+# library(turfR)
+# # maknuti one koji ništa ne kupuju
+# turf_data = turf_data[!(turf_data$respid %in% zero_buyers), ]
+# comb_sizes = 2:6
+# keep = 3
+# turf_out = turf(turf_data, ncol(turf_data)-2, comb_sizes, 
+#                 depth = 1, keep = keep, mc = FALSE, nsims = 10000, psims = NULL, sort = "d")
+# 
+# turf_m = NULL
+# for (ci in 1:length(comb_sizes)) {
+#   turf_i = turf_out$turf[[ci]]
+#   combination = c()
+#   for (ri in 1:keep) {
+#     combination = c(combination, paste(designctx$items[which(turf_i[ri, -c(1:3)] == 1)], collapse = ", "))
+#   }
+#   turf_df = data.frame(comb_size = comb_sizes[ci], combination = combination, reach = turf_i$rchX, freq = turf_i$frqX)
+#   if (is.null(turf_m)) {
+#     turf_m = turf_df
+#   } else {
+#     turf_m = rbind(turf_m, turf_df)
+#   }
+# }
+# 
+# turf_m
+
+```
+
+Možemo vidjeti da bi ponuda `r as.character(combs_out[1, "combination"])` dosegnula najviše ispitanika (kupili bi barem jedan proizvod iz ponude), njih `r as.numeric(combs_out[1, "reach"])`, što je `r round(as.numeric(combs_out[1, "reach"])/length(respids), 2)*100`% od ukupnog broja ispitanika, s time što bi ukupno bilo `r as.numeric(combs_out[1, "freq"])` (potencijalnih) kupovina.
 
 Na ovaj način možemo kreirati ponudu proizvoda kojom ćemo maksimizirati prodaju.
 

@@ -63,7 +63,7 @@ In a MaxDiff survey respondents choose the best and the worst product among a fe
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
 library(dplyr)
-data.frame(designctx$survey[1:(5*designctx$nalternatives), ] %>% group_by(task) %>% mutate(items = paste0(alt, collapse = ","), best_choice = "?", worst_choice = "?") %>% select("items", "best_choice", "worst_choice") %>% distinct())
+data.frame(designctx$survey[1:(5*designctx$nalternatives), ] %>% dplyr::group_by(task) %>% dplyr::mutate(items = paste0(alt, collapse = ","), best_choice = "?", worst_choice = "?") %>% dplyr::select("items", "best_choice", "worst_choice") %>% distinct())
 
 ```
 
@@ -92,14 +92,15 @@ There are multiple ways to analyze the data with a MaxDiff method. The simplest 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE, fig.height = 4.3, fig.width = 10, fig.align = "center"}
 library(dplyr)
-# library(DT)
+library(DT)
 
 bw.df = cbc.df %>% group_by(alt) %>% summarise(chosen_as_best = sum(best_choice), chosen_as_worst = sum(worst_choice))
 # datatable(bw.df, rownames = FALSE, options = list(paging = FALSE, dom = 't')) %>%
-#   formatStyle(columns = "chosen_as_best", 
+#   formatStyle(columns = "chosen_as_best",
 #               background = styleEqual(max(bw.df$chosen_as_best), "lightblue")) %>%
-#   formatStyle(columns = "chosen_as_worst", 
-#               background = styleEqual(max(bw.df$chosen_as_worst), "pink")) 
+#   formatStyle(columns = "chosen_as_worst",
+#               background = styleEqual(max(bw.df$chosen_as_worst), "pink"))
+
 ```
 
 
@@ -571,7 +572,7 @@ stanmc_check_fit = function(fit) {
 # # stanmc_check_fit(stan.mc) # should say ok = TRUE
 # 
 # saveRDS(stan.mc, stanmcmodelfile)
-# ##
+##
 
 stan.mc = readRDS(stanmcmodelfile)
 
@@ -613,7 +614,7 @@ rownames(stan.mc.est) = setdiff(colnames(cmr.mm.bez.cov), c("resp.id", "ques", "
 # sve ostalo je definirano gore kod stan.mc
 standata$CL = designctx$rsegments
 
-# # BUILD MODEL
+# BUILD MODEL
 # cores = parallel::detectCores() - 1
 # #cores = parallel::detectCores()
 # # https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html
@@ -634,7 +635,7 @@ standata$CL = designctx$rsegments
 # # stanmc_check_fit(stan.mc.lca) # should say ok = TRUE
 # 
 # saveRDS(stan.mc.lca, stanmclcamodelfile)
-# ##
+##
 
 stan.mc.lca = readRDS(stanmclcamodelfile)
 
@@ -706,7 +707,7 @@ The given summary contains a lot of information which is not so easy to interpre
 
 * 'calzone' has a negative (mean) coefficient `r as.character(round(sm['calzone', 'Mean'], 3))`, which means that the respondents value it less than the basic threshold option representing the would/would not buy point (coefficients are always calculated with respect to the first/basic declared option, which is in this case the threshold option) - to put it simply, respondents would not buy 'calzone', and due to a relatively big negative coefficient, this decision is pretty strong,
 
-* 'lovačka' and 'losos' both have positive (mean) coefficients (`r as.character(round(sm['lovačka', 'Mean'], 3))`, `r as.character(round(sm['losos', 'Mean'], 3))`) which means that the respondent value both of them more than the basic threshold option, but 'lovačka' is valued more than 'losos' - to put it simply, respondents would buy both of them, but 'lovačka' rather (much more) than 'losos',
+* 'pikantna' and 'ribarska' both have positive (mean) coefficients (`r as.character(round(sm['pikantna', 'Mean'], 3))`, `r as.character(round(sm['ribarska', 'Mean'], 3))`) which means that the respondent value both of them more than the basic threshold option, but 'pikantna' is valued more than 'ribarska' - to put it simply, respondents would buy both of them, but 'pikantna' rather than 'ribarska',
 
 * the first and third quantiles define the span containing (this is somewhat simplified) each coefficient with the 75% probability.
 
@@ -760,7 +761,7 @@ cc = stan.mc.sigma
 
 # pick a random variable to check correlations
 #corvar = sample(colnames(cbc.mm.clear), 1)
-corvar = "bolonjez"
+corvar = "ribarska"
 # correlation = cc[which((abs(cc[ , corvar]) > 0.4) & (abs(cc[ , corvar]) < 1)), corvar]
 pos_correlated = which((cc[, corvar] < 1) & (cc[ , corvar] > 0))
 neg_correlated = which(cc[ , corvar] < 0)
@@ -941,7 +942,7 @@ predict.hier.mnl.choice = function(model, data, resp_i) {
 }
 
 # data must be a data.frame with the items alternatives in the 1st column
-# resp_i is a respondent's identifier in the model (can be NULL) 
+# resp_i is a respondent's identifier in the model (can be NULL)
 # returns matrix of utilities, nresp x nrow(data) x ndraws
 calc.utilities.hb = function(model, data, resp_i = NULL) {
   data.df = data.frame(domodelmatrix_itemsonly(data[, 1]))
@@ -958,6 +959,18 @@ calc.utilities.hb = function(model, data, resp_i = NULL) {
     }
   }
   utilities
+}
+
+# data must be a data.frame with the items alternatives in the 1st column
+# resp_i is a respondent's identifier in the model
+# returns vector of utilities, nrow(data)
+calc.utilities.hb.zc = function(model, data, resp_i) {
+  data.df = data.frame(domodelmatrix_itemsonly(data[, 1]))
+  if (designctx$anchors == 0) data.df = data.df[, -1] # without the Intercept
+  data.model = as.matrix(data.df)
+  betadraw = model$betadraw[resp_i, , ] # get coeffs x draws
+  betas = apply(betadraw, 1, mean) # get mean of coeffs wrt draws
+  as.numeric(data.model %*% (betas - mean(betas)))
 }
 
 ### HIERARCHICAL BAYES
@@ -1352,7 +1365,6 @@ With the given segmentation we can e.g. create different products that will be t
 
 With an offer that contains more products we will increase the probability that at least some product will be sold. To calculate which products should be offered to achieve the highest number of sales, we can use TURF (total unduplicated reach and frequency) analysis.
 
-
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 comb_size = 3 # size of the TURF combination that we will test
 ```
@@ -1363,36 +1375,89 @@ Let's have a look at a few rows from the reach & frequency table for our product
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
+colitems = make.names(designctx$items)
+respids = unique(cbc.df$resp.id)
 items_combs = combn(designctx$items, comb_size)
 
-# combs_r_f = array(0, dim = c(ncol(items_combs), 2)) # 1st column is reach, 2nd is frequency
+# combs_df = data.frame(respid = rep(respids, ncol(items_combs)))
+# combinations = sapply(1:ncol(items_combs), function(itc) paste(items_combs[, itc], collapse = ", "))
+# combs_df$combination = rep(combinations, each = length(respids))
+# for (ci in colitems) combs_df[[ci]] = 0
+# combs_df$reach = combs_df$freq = 0
 # for (i in 1:ncol(items_combs)) {
-#   for (r in unique(cbc.df$resp.id)) {
-# #    ir_utils = calc.utilities.mnl(model = m2.hier, data = data.frame(opcije = items_combs[, i]), resp_i = r)
-#     ir_utils = calc.utilities.hb(model = hb.post, data = data.frame(opcije = items_combs[, i]), resp_i = r)
+#   comb_cols = colnames(combs_df) %in% make.names(items_combs[, i])
+# #    combs_df[(1:length(respids))+(i-1)*length(respids), comb_cols] = 1
+#   for (r in 1:length(respids)) {
+#     ir_utils = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = items_combs[, i]), resp_i = respids[r])
 #     probs_reach = exp(ir_utils)/(sum(exp(ir_utils))+1) # ovo je ok ako imamo anchor, provjeriti još da li je ok ako ga nemamo
 #     reached = sapply(probs_reach, function(prob_reach) {
 #       sample(c(TRUE, FALSE), 1, replace = FALSE, prob = c(prob_reach, 1-prob_reach))
 #     })
-#     combs_r_f[i, 1] = combs_r_f[i, 1] + as.numeric(any(reached))
-#     combs_r_f[i, 2] = combs_r_f[i, 2] + as.numeric(sum(reached))
+#     resp_comb_row = r+(i-1)*length(respids)
+#     combs_df[resp_comb_row, comb_cols] = ifelse(reached, as.numeric(1), as.numeric(-1))
+#     combs_df[resp_comb_row, "reach"] = as.numeric(any(reached))
+#     combs_df[resp_comb_row, "freq"] = as.numeric(sum(reached))
 #   }
-# #  if ((i %% 10) == 0) print(i)
+#  if ((i %% 10) == 0) print(i)
 # }
-# saveRDS(combs_r_f, turffile)
+# saveRDS(combs_df, turffile)
 
-combs_r_f = readRDS(turffile)
+combs_df = readRDS(turffile)
 
-rownames(combs_r_f) = sapply(1:ncol(items_combs), function(i) paste(as.character(items_combs[, i]), collapse = ", "))
-colnames(combs_r_f) = c("reach", "frequency")
+combs_out = combs_df %>% dplyr::group_by(combination) %>% dplyr::summarise(reach = sum(reach), freq = sum(freq))
+combs_out = combs_out[order(combs_out$reach, decreasing = TRUE), ]
 
-combs_r_f = combs_r_f[order(combs_r_f[, 1], decreasing = TRUE), ]
-
-head(combs_r_f)
+head(combs_out)
 
 ```
 
-We can see that the offer `r rownames(combs_r_f)[1]` would reach (at least one product would be bought by) the most respondents, `r combs_r_f[1, 1]` of them, which is `r round(combs_r_f[1, 1]/length(unique(cbc.df$resp.id)), 2)*100`% of the total number of respondents, with a total of `r combs_r_f[1, 2]` (potential) sales.
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+
+# turf_data = data.frame(respid = unique(cbc.df$resp.id), wgt = rep(1, length(unique(cbc.df$resp.id))))
+# colitems = make.names(designctx$items)
+# for (i in colitems) {
+#   turf_data[[i]] = 0
+# }
+# 
+# zero_buyers = c()
+# for (r in turf_data$respid) {
+#   for (i in designctx$items) {
+#     ir_util = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = i), resp_i = r)
+#     prob_reach = exp(ir_util)/(exp(ir_util)+(designctx$nalternatives-1)) # ovo je ok ako imamo anchor, provjeriti još da li je ok ako ga nemamo
+#     reached = sample(c(TRUE, FALSE), 1, replace = FALSE, prob = c(prob_reach, 1-prob_reach))
+#     turf_data[turf_data$respid == r, make.names(i)] = as.numeric(reached)
+#   }
+#   if (all(turf_data[r, colitems] == 0)) zero_buyers = c(zero_buyers, r)
+# }
+# 
+# library(turfR)
+# # maknuti one koji ništa ne kupuju
+# turf_data = turf_data[!(turf_data$respid %in% zero_buyers), ]
+# comb_sizes = 2:6
+# keep = 3
+# turf_out = turf(turf_data, ncol(turf_data)-2, comb_sizes, 
+#                 depth = 1, keep = keep, mc = FALSE, nsims = 10000, psims = NULL, sort = "d")
+# 
+# turf_m = NULL
+# for (ci in 1:length(comb_sizes)) {
+#   turf_i = turf_out$turf[[ci]]
+#   combination = c()
+#   for (ri in 1:keep) {
+#     combination = c(combination, paste(designctx$items[which(turf_i[ri, -c(1:3)] == 1)], collapse = ", "))
+#   }
+#   turf_df = data.frame(comb_size = comb_sizes[ci], combination = combination, reach = turf_i$rchX, freq = turf_i$frqX)
+#   if (is.null(turf_m)) {
+#     turf_m = turf_df
+#   } else {
+#     turf_m = rbind(turf_m, turf_df)
+#   }
+# }
+# 
+# turf_m
+
+```
+
+We can see that the offer `r as.character(combs_out[1, "combination"])` would reach (at least one product would be bought by) the most respondents, `r as.numeric(combs_out[1, "reach"])` of them, which is `r round(as.numeric(combs_out[1, "reach"])/length(respids), 2)*100`% of the total number of respondents, with a total of `r as.numeric(combs_out[1, "freq"])` (potential) sales.
 
 This way we can build an offer of products that will maximize the sales.
 
