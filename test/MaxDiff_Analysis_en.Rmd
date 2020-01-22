@@ -1413,6 +1413,44 @@ head(combs_out)
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
+# https://en.wikipedia.org/wiki/McNemar%27s_test
+comb1_i = 1
+comb2_i = 2
+comb_diff = FALSE
+while ((comb_diff == FALSE) & (comb2_i <= nrow(combs_out))) {
+  comb1 = combs_out[comb1_i, ]$combination
+  comb2 = combs_out[comb2_i, ]$combination
+  comb1_positive = combs_df[(combs_df$combination == comb1) & (combs_df$reach == 1), ]$respid
+  comb1_negative = combs_df[(combs_df$combination == comb1) & (combs_df$reach == 0), ]$respid
+  comb2_positive = combs_df[(combs_df$combination == comb2) & (combs_df$reach == 1), ]$respid
+  comb2_negative = combs_df[(combs_df$combination == comb2) & (combs_df$reach == 0), ]$respid
+  mcnemar_a = length(dplyr::intersect(comb1_positive, comb2_positive)) # both positive
+  mcnemar_b = length(dplyr::intersect(comb1_positive, comb2_negative)) # 1 positive, 2 negative
+  mcnemar_c = length(dplyr::intersect(comb1_negative, comb2_positive)) # 1 negative, 2 positive
+  mcnemar_d = length(dplyr::intersect(comb1_negative, comb2_negative)) # both negative
+  mcnemar_x = matrix(c(mcnemar_a, mcnemar_b, mcnemar_c, mcnemar_d), 
+                     nrow = 2,
+                     byrow = TRUE,
+                     dimnames = list("1st Comb" = c("Reached", "Not Reached"), "2nd Comb" = c("Reached", "Not Reached")))
+  mcnemar_out = mcnemar.test(mcnemar_x)
+  # 0 hipoteza je da nema stvarne razlike između kombinacija, alternativna je da razlika postoji
+  # znači ako je p-value veća od npr. 0.05, zadržavamo 0 hipotezu, ako je manja, odbacujemo 0 hipotezu u korist alternativne
+  comb_diff = (mcnemar_out$p.value < 0.05)
+  comb2_i = comb2_i + 1
+}
+
+# if (comb2_i > nrow(combs_out)) {
+#   print("All combinations are statistically equal.")
+# } else {
+#   print(paste("First ", comb2_i-1, " combinations are statistically equal.", sep = ""))
+#   combs_out[1:(comb2_i-1), ]
+# }
+
+```
+
+
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+
 # turf_data = data.frame(respid = unique(cbc.df$resp.id), wgt = rep(1, length(unique(cbc.df$resp.id))))
 # colitems = make.names(designctx$items)
 # for (i in colitems) {

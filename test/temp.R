@@ -919,8 +919,9 @@
 # ex1 <- turf(turf_ex_data, 10, 3:6)
 
 
-ir_util = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = i), resp_i = r)
+#ir_util = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = i), resp_i = r)
 
+combs_df = get_rf_df(cspi, start_comb)
 
 
 

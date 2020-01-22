@@ -1380,30 +1380,63 @@ Pogledajmo kako izgleda nekoliko redaka iz reach & frequency tablice za naše pr
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
-colitems = make.names(designctx$items)
-respids = unique(cbc.df$resp.id)
-items_combs = combn(designctx$items, comb_size)
+respids = unique(cbc.df$resp.id) # koristi se i kasnije, zato je ovdje globalno deklarirano
 
-# combs_df = data.frame(respid = rep(respids, ncol(items_combs)))
-# combinations = sapply(1:ncol(items_combs), function(itc) paste(items_combs[, itc], collapse = ", "))
-# combs_df$combination = rep(combinations, each = length(respids))
-# for (ci in colitems) combs_df[[ci]] = 0
-# combs_df$reach = combs_df$freq = 0
-# for (i in 1:ncol(items_combs)) {
-#   comb_cols = colnames(combs_df) %in% make.names(items_combs[, i])
-# #    combs_df[(1:length(respids))+(i-1)*length(respids), comb_cols] = 1
-#   for (r in 1:length(respids)) {
-#     ir_utils = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = items_combs[, i]), resp_i = respids[r])
-#     probs_reach = exp(ir_utils)/(sum(exp(ir_utils))+1) # ovo je ok ako imamo anchor, provjeriti još da li je ok ako ga nemamo
-#     reached = sapply(probs_reach, function(prob_reach) {
-#       sample(c(TRUE, FALSE), 1, replace = FALSE, prob = c(prob_reach, 1-prob_reach))
-#     })
-#     resp_comb_row = r+(i-1)*length(respids)
-#     combs_df[resp_comb_row, comb_cols] = ifelse(reached, as.numeric(1), as.numeric(-1))
-#     combs_df[resp_comb_row, "reach"] = as.numeric(any(reached))
-#     combs_df[resp_comb_row, "freq"] = as.numeric(sum(reached))
+# # uses global respids, designctx$items
+# # comb_size_l, how many "new" items to add
+# # start_comb, elements that must be included in the combinations
+# # returns a data frame with all the combinations made from start_comb and the rest of the items
+# get_rf_df = function(comb_size_l, start_comb = c(), verbose = TRUE) {
+#   
+#   if (verbose) {
+#     print(paste("comb_size =", comb_size_l))
+#     print(paste("start =", paste(start_comb, collapse = ", ")))
 #   }
-#  if ((i %% 10) == 0) print(i)
+#   
+#   items_l = dplyr::setdiff(designctx$items, start_comb)
+#   items_combs_l = combn(items_l, comb_size_l)
+#   items_combs = array("", dim = c(length(start_comb) + comb_size_l, ncol(items_combs_l)))
+#   for (itc in 1:ncol(items_combs_l)) {
+#     items_combs[, itc] = c(start_comb, items_combs_l[, itc])
+#   }
+# 
+#   combs_df = data.frame(respid = rep(respids, ncol(items_combs)))
+#   combinations = sapply(1:ncol(items_combs), function(itc) paste(items_combs[, itc], collapse = ", "))
+# 
+#   combs_df$combination = rep(combinations, each = length(respids))
+#   for (ci in make.names(designctx$items)) combs_df[[ci]] = 0
+#   combs_df$reach = combs_df$freq = 0
+#   
+#   for (i in 1:ncol(items_combs)) {
+#     comb_cols = colnames(combs_df) %in% make.names(items_combs[, i])
+#   #    combs_df[(1:length(respids))+(i-1)*length(respids), comb_cols] = 1
+#     for (r in 1:length(respids)) {
+#       ir_utils = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = items_combs[, i]), resp_i = respids[r])
+#       probs_reach = exp(ir_utils)/(sum(exp(ir_utils))+1) # ovo je ok ako imamo anchor, provjeriti još da li je ok ako ga nemamo
+#       reached = sapply(probs_reach, function(prob_reach) {
+#         sample(c(TRUE, FALSE), 1, replace = FALSE, prob = c(prob_reach, 1-prob_reach))
+#       })
+#       resp_comb_row = r+(i-1)*length(respids)
+#       combs_df[resp_comb_row, comb_cols] = ifelse(reached, as.numeric(1), as.numeric(-1))
+#       combs_df[resp_comb_row, "reach"] = as.numeric(any(reached))
+#       combs_df[resp_comb_row, "freq"] = as.numeric(sum(reached))
+#     }
+#     if ((verbose) & ((i %% 10) == 0)) print(paste(round(i/ncol(items_combs), 2)*100, "%", sep = ""))
+#   }
+#   if (verbose) print(paste(round(i/ncol(items_combs), 2)*100, "%", sep = ""))
+#   
+#   combs_df
+# }
+# 
+# library(dplyr)
+# start_comb = c()
+# comb_size_partition = c(comb_size) # 1 step
+# #comb_size_partition = c(2, 3) # 2 steps: first get 2, then 3 optimal items
+# for (cspi in comb_size_partition) {
+#   combs_df = get_rf_df(cspi, start_comb)
+#   combs_out = combs_df %>% dplyr::group_by(combination) %>% dplyr::summarise(reach = sum(reach), freq = sum(freq))
+#   combs_out = combs_out[order(combs_out$reach, decreasing = TRUE), ]
+#   start_comb = unlist(strsplit(combs_out[1, ]$combination, ", "))
 # }
 # saveRDS(combs_df, turffile)
 
@@ -1415,6 +1448,44 @@ combs_out = combs_out[order(combs_out$reach, decreasing = TRUE), ]
 head(combs_out)
 
 ```
+
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+
+# https://en.wikipedia.org/wiki/McNemar%27s_test
+comb1_i = 1
+comb2_i = 2
+comb_diff = FALSE
+while ((comb_diff == FALSE) & (comb2_i <= nrow(combs_out))) {
+  comb1 = combs_out[comb1_i, ]$combination
+  comb2 = combs_out[comb2_i, ]$combination
+  comb1_positive = combs_df[(combs_df$combination == comb1) & (combs_df$reach == 1), ]$respid
+  comb1_negative = combs_df[(combs_df$combination == comb1) & (combs_df$reach == 0), ]$respid
+  comb2_positive = combs_df[(combs_df$combination == comb2) & (combs_df$reach == 1), ]$respid
+  comb2_negative = combs_df[(combs_df$combination == comb2) & (combs_df$reach == 0), ]$respid
+  mcnemar_a = length(dplyr::intersect(comb1_positive, comb2_positive)) # both positive
+  mcnemar_b = length(dplyr::intersect(comb1_positive, comb2_negative)) # 1 positive, 2 negative
+  mcnemar_c = length(dplyr::intersect(comb1_negative, comb2_positive)) # 1 negative, 2 positive
+  mcnemar_d = length(dplyr::intersect(comb1_negative, comb2_negative)) # both negative
+  mcnemar_x = matrix(c(mcnemar_a, mcnemar_b, mcnemar_c, mcnemar_d), 
+                     nrow = 2,
+                     byrow = TRUE,
+                     dimnames = list("1st Comb" = c("Reached", "Not Reached"), "2nd Comb" = c("Reached", "Not Reached")))
+  mcnemar_out = mcnemar.test(mcnemar_x)
+  # 0 hipoteza je da nema stvarne razlike između kombinacija, alternativna je da razlika postoji
+  # znači ako je p-value veća od npr. 0.05, zadržavamo 0 hipotezu, ako je manja, odbacujemo 0 hipotezu u korist alternativne
+  comb_diff = (mcnemar_out$p.value < 0.05)
+  comb2_i = comb2_i + 1
+}
+
+# if (comb2_i > nrow(combs_out)) {
+#   print("All combinations are statistically equal.")
+# } else {
+#   print(paste("First ", comb2_i-1, " combinations are statistically equal.", sep = ""))
+#   combs_out[1:(comb2_i-1), ]
+# }
+
+```
+
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
