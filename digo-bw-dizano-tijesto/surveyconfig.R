@@ -1,4 +1,4 @@
-iid = "test"
+iid = "digo-bw-dizano-tijesto"
 setwd(paste("C:/OnlineSync/Mega/R/work/maxdiff/", iid, sep = ""))
 # define globally used CBC id.
 cbcid = paste("cbc_", iid, sep = "") # used for cbc/design identification
