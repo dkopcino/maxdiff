@@ -9,6 +9,8 @@ source("surveyconfig.R")
 
 # respondent personal information (not covariates or variables) to be added to the survey
 # personals = list()
+# personals = list(zemlja = list(naziv = "zemlja", tip = "dropdown", vrijednosti = c("Hrvatska", "Bosna i Hercegovina", "Ostalo")),
+#                  dob = list(naziv = "dob", tip = "dropdown", vrijednosti = c("manje od 20 godina", "20-50 godina", "više od 50 godina")))
 personals = list(email = list(naziv = "e-pošta", tip = "email"))
 
 

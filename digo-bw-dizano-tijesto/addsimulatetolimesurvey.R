@@ -92,9 +92,9 @@ r = lapply(respondents, function(r) {
       p = designctx$personals[i]
       n = names(p)
       if (p[[n]][["tip"]] == "email") {
-        answs[i] = answers.df_best[1, p[[n]][["naziv"]]]
+        answs[i] = answers.df[1, n]
       } else if (p[[n]][["tip"]] == "dropdown") {
-        answs[i] = paste("A", as.numeric(answers.df_best[1, p[[n]][["naziv"]]]), sep = "")
+        answs[i] = paste("A", as.numeric(answers.df[1, n]), sep = "")
       }
     }
     lsids = data.frame(t(lsids))
