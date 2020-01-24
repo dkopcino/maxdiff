@@ -42,6 +42,13 @@ r = lapply(colnames(designctx$fullfact_covdesign), function(cn) {
     contrasts(cbc.df[[cn]]) <<- contr.sum
   }
 })
+r = lapply(names(designctx$personals), function(pn) {
+  if (!is.null(cbc.df[[pn]])) {
+    if (designctx$personals[[pn]][["tip"]] == "dropdown") {
+      cbc.df[[pn]] <<- factor(cbc.df[[pn]], levels = designctx$personals[[pn]][["vrijednosti"]])
+    }
+  }
+})
 #if (!is.null(cbc.df$questionnaire.id)) cbc.df$questionnaire.id = NULL # maknemo questionnaire.id jer nam ne treba
 
 print(designctx$items)
@@ -286,10 +293,17 @@ for (resp.id in 1:max(cbc.df$resp.id)) {
   # izvuci subframe
   cbc.df.sf = cbc.df[cbc.df$resp.id == resp.id, ]
   nalts = designctx$nalternatives
-  covs = getdfcolumns(cbc.df.sf, cnames = names(designctx$covariates))
-  sf.mm = domodelmatrix_itemscovs_bwencode(cbc.df.sf$alt, covs, nalts)
-  items.columns = attr(sf.mm, "items.columns")
-  cov.columns = attr(sf.mm, "cov.columns")
+  if (length(designctx$covariates) > 0) {
+    covs = getdfcolumns(df = cbc.df.sf, cnames = names(designctx$covariates))
+    sf.mm = domodelmatrix_itemscovs_bwencode(cbc.df.sf$alt, covs, nalts)
+    items.columns = attr(sf.mm, "items.columns")
+    cov.columns = attr(sf.mm, "cov.columns")
+  } else {
+    covs = data.frame() # da li je ovo uopće potrebno?
+    sf.mm = domodelmatrix_itemsonly_bwencode(cbc.df.sf$alt, nalts)
+    items.columns = attr(sf.mm, "items.columns")
+    cov.columns = c()
+  }
   cbc.mm.sf = data.frame(cbind(resp.id = bw_encode_data_1(cbc.df.sf$resp.id, nalts), 
                                ques = rep(1:(2*max(cbc.df.sf$ques)), each = nalts), 
                                #alt = cbc.df$alt, 
@@ -302,7 +316,11 @@ for (resp.id in 1:max(cbc.df$resp.id)) {
     best_choices = cbc.df.sf[cbc.df$best_choice == 1, ]$alt
     worst_choices = cbc.df.sf[cbc.df$worst_choice == 1, ]$alt
     anchors = getanchors(designctx$anchors, best_choices, worst_choices)
-    anch.mm = domodelmatrix_itemscovs(anchors, getdfcolumns(covs[rep(1, length(anchors)), ], cnames = colnames(covs)))
+    if (length(designctx$covariates) > 0) {
+      anch.mm = domodelmatrix_itemscovs(anchors, getdfcolumns(covs[rep(1, length(anchors)), ], cnames = colnames(covs)))
+    } else {
+      anch.mm = domodelmatrix_itemsonly(anchors)
+    }
     anch.mm = anch.mm[rep(1:nrow(anch.mm), each = 2), ]
     anch.mm[2*(1:(nrow(anch.mm)/2)), items.columns] = 0
     anch.choices = rep(t(anchorcols[1, ]), each = 2)
@@ -361,7 +379,7 @@ library(mlogit)
 cov.df = data.frame() # ovo spremamo da bismo kasnije mogli raditi predikciju s istim ovim ispitanicima
 # here we build fml1, which will be used to create a model and model matrix for mlogit
 if (length(designctx$covariates) == 0) {
-  fmlstring = paste("choice ~ 0 + ", paste(colnames(mm), collapse = "+")) # all vars have generic coefs
+  fmlstring = paste("choice ~ 0 + ", paste(items.columns, collapse = "+")) # all vars have generic coefs
   fml1 = as.formula(fmlstring)
 } else {
 #  ncov.columns = setdiff(colnames(mm), cov.columns)
@@ -572,7 +590,7 @@ stanmc_check_fit = function(fit) {
 # # stanmc_check_fit(stan.mc) # should say ok = TRUE
 # 
 # saveRDS(stan.mc, stanmcmodelfile)
-##
+# ##
 
 stan.mc = readRDS(stanmcmodelfile)
 
@@ -614,7 +632,7 @@ rownames(stan.mc.est) = setdiff(colnames(cmr.mm.bez.cov), c("resp.id", "ques", "
 # sve ostalo je definirano gore kod stan.mc
 standata$CL = designctx$rsegments
 
-# BUILD MODEL
+# # BUILD MODEL
 # cores = parallel::detectCores() - 1
 # #cores = parallel::detectCores()
 # # https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html
@@ -635,7 +653,7 @@ standata$CL = designctx$rsegments
 # # stanmc_check_fit(stan.mc.lca) # should say ok = TRUE
 # 
 # saveRDS(stan.mc.lca, stanmclcamodelfile)
-##
+# ##
 
 stan.mc.lca = readRDS(stanmclcamodelfile)
 
@@ -760,8 +778,8 @@ cc = stan.mc.sigma
 # n2 = dn1[i %% d]
 
 # pick a random variable to check correlations
-#corvar = sample(colnames(cbc.mm.clear), 1)
-corvar = "ribarska"
+corvar = sample(colnames(cbc.mm.clear), 1)
+#corvar = "ribarska"
 # correlation = cc[which((abs(cc[ , corvar]) > 0.4) & (abs(cc[ , corvar]) < 1)), corvar]
 pos_correlated = which((cc[, corvar] < 1) & (cc[ , corvar] > 0))
 neg_correlated = which(cc[ , corvar] < 0)
@@ -832,9 +850,9 @@ calc.utilities.mnl = function(model, data, resp_i = NULL) {
       # data = cbind(data, resp_cov[rep(1, nrow(data)), ])
       # colnames(data)[(n_d+1):ncol(data)] = colnames(resp_cov)
       resp_cov = getdfcolumns(resp_cov[rep(1, nrow(data)), ], cnames = colnames(resp_cov))
-      ffd_mm = domodelmatrix_itemscovs(data[, 1], resp_cov)
+      ffd_mm = domodelmatrix_itemscovs(data[, 1], resp_cov) # data frame is automatically generated because of resp_cov
     } else {
-      ffd_mm = domodelmatrix_itemsonly(data[, 1])
+      ffd_mm = data.frame(domodelmatrix_itemsonly(data[, 1])) # need explicit cast to data frame
     }
   
     if (designctx$anchors == 0) ffd_mm = ffd_mm[, -1] # without the Intercept
@@ -942,7 +960,7 @@ predict.hier.mnl.choice = function(model, data, resp_i) {
 }
 
 # data must be a data.frame with the items alternatives in the 1st column
-# resp_i is a respondent's identifier in the model (can be NULL)
+# resp_i is a respondent's identifier in the model (can be NULL) 
 # returns matrix of utilities, nresp x nrow(data) x ndraws
 calc.utilities.hb = function(model, data, resp_i = NULL) {
   data.df = data.frame(domodelmatrix_itemsonly(data[, 1]))
@@ -1108,8 +1126,8 @@ shares.stan.mc = predict.stan.mc(stan.mc, data = ffd_df)
 shares.stan.mc.lca = predict.stan.mc(stan.mc.lca, data = ffd_df)
 
 shares = shares.hb
-shares = shares.stan.mc
-shares = shares.stan.mc.lca
+# shares = shares.stan.mc
+# shares = shares.stan.mc.lca
 
 #shares
 mostsharesindex = which.max(shares[["share %"]])
@@ -1375,32 +1393,72 @@ Let's have a look at a few rows from the reach & frequency table for our product
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
-colitems = make.names(designctx$items)
-respids = unique(cbc.df$resp.id)
-items_combs = combn(designctx$items, comb_size)
+respids = unique(cbc.df$resp.id) # koristi se i kasnije, zato je ovdje globalno deklarirano
 
-# combs_df = data.frame(respid = rep(respids, ncol(items_combs)))
-# combinations = sapply(1:ncol(items_combs), function(itc) paste(items_combs[, itc], collapse = ", "))
-# combs_df$combination = rep(combinations, each = length(respids))
-# for (ci in colitems) combs_df[[ci]] = 0
-# combs_df$reach = combs_df$freq = 0
-# for (i in 1:ncol(items_combs)) {
-#   comb_cols = colnames(combs_df) %in% make.names(items_combs[, i])
-# #    combs_df[(1:length(respids))+(i-1)*length(respids), comb_cols] = 1
-#   for (r in 1:length(respids)) {
-#     ir_utils = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = items_combs[, i]), resp_i = respids[r])
-#     probs_reach = exp(ir_utils)/(sum(exp(ir_utils))+1) # ovo je ok ako imamo anchor, provjeriti još da li je ok ako ga nemamo
-#     reached = sapply(probs_reach, function(prob_reach) {
-#       sample(c(TRUE, FALSE), 1, replace = FALSE, prob = c(prob_reach, 1-prob_reach))
-#     })
-#     resp_comb_row = r+(i-1)*length(respids)
-#     combs_df[resp_comb_row, comb_cols] = ifelse(reached, as.numeric(1), as.numeric(-1))
-#     combs_df[resp_comb_row, "reach"] = as.numeric(any(reached))
-#     combs_df[resp_comb_row, "freq"] = as.numeric(sum(reached))
+# ##
+# 
+# ## Calculate TURF
+# 
+# # uses global respids, designctx$items
+# # comb_size_l, how many "new" items to add
+# # start_comb, elements that must be included in the combinations
+# # returns a data frame with all the combinations made from start_comb and the rest of the items
+# get_rf_df = function(comb_size_l, start_comb = c(), verbose = TRUE) {
+# 
+#   if (verbose) {
+#     print(paste("comb_size =", comb_size_l))
+#     print(paste("start =", paste(start_comb, collapse = ", ")))
 #   }
-#  if ((i %% 10) == 0) print(i)
+# 
+#   items_l = dplyr::setdiff(designctx$items, start_comb)
+#   items_combs_l = combn(items_l, comb_size_l)
+#   items_combs = array("", dim = c(length(start_comb) + comb_size_l, ncol(items_combs_l)))
+#   for (itc in 1:ncol(items_combs_l)) {
+#     items_combs[, itc] = c(start_comb, items_combs_l[, itc])
+#   }
+# 
+#   combs_df = data.frame(respid = rep(respids, ncol(items_combs)))
+#   combinations = sapply(1:ncol(items_combs), function(itc) paste(items_combs[, itc], collapse = ", "))
+# 
+#   combs_df$combination = rep(combinations, each = length(respids))
+#   for (ci in make.names(designctx$items)) combs_df[[ci]] = 0
+#   combs_df$reach = combs_df$freq = 0
+# 
+#   for (i in 1:ncol(items_combs)) {
+#     comb_cols = colnames(combs_df) %in% make.names(items_combs[, i])
+#   #    combs_df[(1:length(respids))+(i-1)*length(respids), comb_cols] = 1
+#     for (r in 1:length(respids)) {
+#       ir_utils = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = items_combs[, i]), resp_i = respids[r])
+#       probs_reach = exp(ir_utils)/(sum(exp(ir_utils))+1) # ovo je ok ako imamo anchor, provjeriti još da li je ok ako ga nemamo
+#       reached = sapply(probs_reach, function(prob_reach) {
+#         sample(c(TRUE, FALSE), 1, replace = FALSE, prob = c(prob_reach, 1-prob_reach))
+#       })
+#       resp_comb_row = r+(i-1)*length(respids)
+#       combs_df[resp_comb_row, comb_cols] = ifelse(reached, as.numeric(1), as.numeric(-1))
+#       combs_df[resp_comb_row, "reach"] = as.numeric(any(reached))
+#       combs_df[resp_comb_row, "freq"] = as.numeric(sum(reached))
+#     }
+#     if ((verbose) & ((i %% 10) == 0)) print(paste(round(i/ncol(items_combs), 2)*100, "%", sep = ""))
+#   }
+#   if (verbose) print(paste(round(i/ncol(items_combs), 2)*100, "%", sep = ""))
+# 
+#   combs_df
+# }
+# 
+# library(dplyr)
+# start_comb = c()
+# comb_size_partition = c(comb_size) # 1 step
+# #comb_size_partition = c(2, 3) # 2 steps: first get 2, then 3 optimal items
+# for (cspi in comb_size_partition) {
+#   combs_df = get_rf_df(cspi, start_comb)
+#   combs_out = combs_df %>% dplyr::group_by(combination) %>% dplyr::summarise(reach = sum(reach), freq = sum(freq))
+#   combs_out = combs_out[order(combs_out$reach, decreasing = TRUE), ]
+#   start_comb = unlist(strsplit(combs_out[1, ]$combination, ", "))
 # }
 # saveRDS(combs_df, turffile)
+# 
+# ##
+
 
 combs_df = readRDS(turffile)
 

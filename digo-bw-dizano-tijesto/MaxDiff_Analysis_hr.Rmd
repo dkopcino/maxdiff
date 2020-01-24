@@ -743,7 +743,7 @@ zc.sm = (sm[, "Mean"] - mean(sm[, "Mean"]))
 prob.zc.sm = exp(zc.sm)/(exp(zc.sm)+designctx$nalternatives-1)
 perc.zc.sm = (prob.zc.sm*100)/(1/designctx$nalternatives)
 #perc.zc.sm = ((prob.zc.sm/sum(prob.zc.sm))*100)
-ggplot(data = data.frame(product = paste(names(perc.zc.sm), " (", round(perc.zc.sm, digits = 2), ")", sep = ""), value = perc.zc.sm), aes(x = product, y = value)) + geom_col(fill = "blue") + geom_hline(aes(yintercept = 100), linetype = "dashed", color = "red") +  labs(y = "ne bih kupio.......kupio bih", color = "red") + theme(axis.title.x = element_text(hjust = .23), axis.title.y = element_blank()) + coord_flip()
+ggplot(data = data.frame(product = paste(names(perc.zc.sm), " (", round(perc.zc.sm, digits = 2), ")", sep = ""), value = perc.zc.sm), aes(x = product, y = value)) + geom_col(fill = "blue") + geom_hline(aes(yintercept = 100), linetype = "dashed", color = "red") +  labs(y = "ne zanima me.......zanima me", color = "red") + theme(axis.title.x = element_text(hjust = .23), axis.title.y = element_blank()) + coord_flip()
 
 mostvpi = which.max(perc.zc.sm)
 mostvpv = perc.zc.sm[mostvpi]
@@ -782,8 +782,8 @@ cc = stan.mc.sigma
 # n2 = dn1[i %% d]
 
 # pick a random variable to check correlations
-#corvar = sample(colnames(cbc.mm.clear), 1)
-corvar = "ribarska"
+corvar = sample(colnames(cbc.mm.clear), 1)
+#corvar = "ribarska"
 # correlation = cc[which((abs(cc[ , corvar]) > 0.4) & (abs(cc[ , corvar]) < 1)), corvar]
 pos_correlated = which((cc[, corvar] < 1) & (cc[ , corvar] > 0))
 neg_correlated = which(cc[ , corvar] < 0)
@@ -811,7 +811,7 @@ Drugi element koji možemo analizirati je korelacija između vrijednosti pojedin
 
 library(ggplot2)
 ggplot(data = correlation_t, aes(x = substr(correlation_t$names, 1, 18), y = correlation)) + geom_col(color = "red", fill = "pink", width = .03) +
-  geom_hline(aes(yintercept = 0), color = "red") + xlab("") + ggtitle(paste("Correlations between", corvar, "and other values"))
+  geom_hline(aes(yintercept = 0), color = "red") + xlab("") + ggtitle(paste("Correlations between", paste(substr(corvar, 1, 30), "..", sep = ""), "and other values"))
 
 ```
 
@@ -855,9 +855,9 @@ calc.utilities.mnl = function(model, data, resp_i = NULL) {
       # data = cbind(data, resp_cov[rep(1, nrow(data)), ])
       # colnames(data)[(n_d+1):ncol(data)] = colnames(resp_cov)
       resp_cov = getdfcolumns(resp_cov[rep(1, nrow(data)), ], cnames = colnames(resp_cov))
-      ffd_mm = domodelmatrix_itemscovs(data[, 1], resp_cov)
+      ffd_mm = domodelmatrix_itemscovs(data[, 1], resp_cov) # data frame is automatically generated because of resp_cov
     } else {
-      ffd_mm = domodelmatrix_itemsonly(data[, 1])
+      ffd_mm = data.frame(domodelmatrix_itemsonly(data[, 1])) # need explicit cast to data frame
     }
   
     if (designctx$anchors == 0) ffd_mm = ffd_mm[, -1] # without the Intercept
@@ -1131,8 +1131,8 @@ shares.stan.mc = predict.stan.mc(stan.mc, data = ffd_df)
 shares.stan.mc.lca = predict.stan.mc(stan.mc.lca, data = ffd_df)
 
 shares = shares.hb
-shares = shares.stan.mc
-shares = shares.stan.mc.lca
+# shares = shares.stan.mc
+# shares = shares.stan.mc.lca
 
 #shares
 mostsharesindex = which.max(shares[["share %"]])
@@ -1401,17 +1401,21 @@ Pogledajmo kako izgleda nekoliko redaka iz reach & frequency tablice za naše pr
 
 respids = unique(cbc.df$resp.id) # koristi se i kasnije, zato je ovdje globalno deklarirano
 
+# ##
+# 
+# ## Calculate TURF
+# 
 # # uses global respids, designctx$items
 # # comb_size_l, how many "new" items to add
 # # start_comb, elements that must be included in the combinations
 # # returns a data frame with all the combinations made from start_comb and the rest of the items
 # get_rf_df = function(comb_size_l, start_comb = c(), verbose = TRUE) {
-#   
+# 
 #   if (verbose) {
 #     print(paste("comb_size =", comb_size_l))
 #     print(paste("start =", paste(start_comb, collapse = ", ")))
 #   }
-#   
+# 
 #   items_l = dplyr::setdiff(designctx$items, start_comb)
 #   items_combs_l = combn(items_l, comb_size_l)
 #   items_combs = array("", dim = c(length(start_comb) + comb_size_l, ncol(items_combs_l)))
@@ -1425,7 +1429,7 @@ respids = unique(cbc.df$resp.id) # koristi se i kasnije, zato je ovdje globalno 
 #   combs_df$combination = rep(combinations, each = length(respids))
 #   for (ci in make.names(designctx$items)) combs_df[[ci]] = 0
 #   combs_df$reach = combs_df$freq = 0
-#   
+# 
 #   for (i in 1:ncol(items_combs)) {
 #     comb_cols = colnames(combs_df) %in% make.names(items_combs[, i])
 #   #    combs_df[(1:length(respids))+(i-1)*length(respids), comb_cols] = 1
@@ -1443,7 +1447,7 @@ respids = unique(cbc.df$resp.id) # koristi se i kasnije, zato je ovdje globalno 
 #     if ((verbose) & ((i %% 10) == 0)) print(paste(round(i/ncol(items_combs), 2)*100, "%", sep = ""))
 #   }
 #   if (verbose) print(paste(round(i/ncol(items_combs), 2)*100, "%", sep = ""))
-#   
+# 
 #   combs_df
 # }
 # 
@@ -1458,6 +1462,9 @@ respids = unique(cbc.df$resp.id) # koristi se i kasnije, zato je ovdje globalno 
 #   start_comb = unlist(strsplit(combs_out[1, ]$combination, ", "))
 # }
 # saveRDS(combs_df, turffile)
+# 
+# ##
+
 
 combs_df = readRDS(turffile)
 

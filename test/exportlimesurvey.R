@@ -91,6 +91,15 @@ rr = lapply(1:nrow(limesurvey.df), function(r) {
   if (length(designctx$personals) > 0) {
     personals.df = data.frame(x[rep(1, nrow(sdf)), (ncol(x)-length(designctx$personals)+1):ncol(x)])
     colnames(personals.df) = names(designctx$personals)
+    for (coli in (1:ncol(personals.df))) {
+      pname = colnames(personals.df)[coli]
+      if (designctx$personals[[pname]][["tip"]] == "dropdown") {
+        pindex = as.numeric(gsub("A", "", personals.df[1, pname])) # svi su isti pa uzmemo npr. prvog
+        personals.df[, pname] = designctx$personals[[pname]][["vrijednosti"]][pindex]
+      } else {
+        # druga varijanta je e-mail, koji ne mijenjamo, ostalo ne handleamo pa ne mijenjamo
+      }
+    }
     sdf = cbind(sdf, personals.df)
   }
   

@@ -152,7 +152,9 @@
     <surveyls_survey_id><![CDATA[193485]]></surveyls_survey_id>
     <surveyls_language><![CDATA[hr]]></surveyls_language>
     <surveyls_title><![CDATA[Volimo dizano tijesto!]]></surveyls_title>
-    <surveyls_description><![CDATA[<p>U upitniku "Volimo dizano tijesto!" postavit ćemo Vam 10 pitanja s raznim temama vezano za dizano tijesto, a Vi ćete u svakom pitanju odabrati ono što Vas najviše i ono što Vas najmanje zanima. Za ispunjavanje cijelog upitnika po našoj je procjeni dovoljno 10 minuta.</p>]]></surveyls_description>
+    <surveyls_description><![CDATA[<p>U upitniku "Volimo dizano tijesto!" želimo saznati koje teme vezano za dizano tijesto (kiflice, kruh, kolači...) Vas najviše 
+	zanimaju tako da Vam ubuduće pružimo više informacija, recepata i savjeta vezano upravo uz te teme. Postavit ćemo Vam 10 pitanja, a Vi ćete u svakom pitanju 
+	odabrati ono što Vas najviše i ono što Vas najmanje zanima. Za ispunjavanje cijelog upitnika po našoj je procjeni dovoljno 10 minuta.</p>]]></surveyls_description>
     <surveyls_welcometext><![CDATA[]]></surveyls_welcometext>
     <surveyls_endtext><![CDATA[Hvala Vam na sudjelovanju u upitniku!]]></surveyls_endtext>
     <surveyls_policy_notice><![CDATA[<p>U ovom upitniku koristimo sljedeće osobne podatke:</p>
@@ -163,7 +165,8 @@
 	<li>IP adresa</li>
 </ul>
 
-<p>Navedene osobne podatke koristit ćemo u svrhu izrade statistike. Navedene podatke nećemo koristiti niti u koju drugu svrhu i nećemo ih dijeliti niti s kojom trećom stranom.</p>
+<p>Zemlju stanovanja i dob koristit ćemo u svrhu izrade statistike. IP adresu ćemo koristiti za onemogućavanje višestrukog ispunjavanja upitnika od strane iste osobe. 
+Navedene podatke nećemo koristiti niti u koju drugu svrhu i nećemo ih dijeliti niti s kojom trećom stranom.</p>
 
 ]]></surveyls_policy_notice>
     <surveyls_policy_error><![CDATA[<p>Molimo da prihvatite pravila o zaštiti osobnih podataka</p>]]></surveyls_policy_error>
@@ -190,44 +193,44 @@ Lijep pozdrav, <br />
 Kliknite ovdje kako bi ste sudjelovali u upitniku:<br />
 {SURVEYURL}<br />
 <br />
-Ako ne želite sudjelovati u ovom upitniku i ne želite više primati pozivnice, kliknite sljedeću vezu: <br />
+Ako ne želite sudjelovati u ovom upitniku i ne želite više primati pozivnice, kliknite sljedeću poveznicu: <br />
 {OPTOUTURL}<br />
 <br />
-Ako ste na crnoj listi, ali želite sudjelovati u ovom upitniku i želite primati pozivnice, kliknite sljedeću vezu: <br />
+Ako ste na crnoj listi, ali želite sudjelovati u ovom upitniku i želite primati pozivnice, kliknite sljedeću poveznicu: <br />
 {OPTINURL}]]></surveyls_email_invite>
     <surveyls_email_remind_subj><![CDATA[Podsjetnik za sudjelovanje u upitniku]]></surveyls_email_remind_subj>
     <surveyls_email_remind><![CDATA[Poštovani/a,<br />
 <br />
-nedavno sam Vas pozvao da sudjelujete u istraživanju putem upitnika, no nažalost do danas upitnik niste ispunili.<br />
+nedavno smo Vas pozvali da sudjelujete u istraživanju putem upitnika, no nažalost upitnik do danas niste ispunili.<br />
 <br />
-Ovom prilikom želim Vas podsjetiti da je upitnik još uvijek dostupan u slučaju da kanite sudjelovati u istraživanju.<br />
+Ovom prilikom želimo Vas podsjetiti da je upitnik još uvijek dostupan u slučaju da kanite sudjelovati u istraživanju.<br />
 <br />
 Naziv upitnika:"{SURVEYNAME}"<br />
 "{SURVEYDESCRIPTION}"<br />
-Za sudjelovanje molim kliknete na navedeni URL (ili ga kopirajte u web preglednik):<br />
+Za sudjelovanje molimo kliknite na navedenu poveznicu (ili je kopirajte u web preglednik):<br />
 {SURVEYURL}<br />
 <br />
 Lijep pozdrav,<br />
 {ADMINNAME} <br />
 ({ADMINEMAIL})<br />
 <br />
-Ako ne želite sudjelovati u ovom upitniku i ne želite više primati pozivnice, kliknite sljedeću vezu: <br />
+Ako ne želite sudjelovati u ovom upitniku i ne želite više primati pozivnice, kliknite sljedeću poveznicu: <br />
 {OPTOUTURL}]]></surveyls_email_remind>
     <surveyls_email_register_subj><![CDATA[Potvrda o registraciji za sudjelovanje u upitniku]]></surveyls_email_register_subj>
     <surveyls_email_register><![CDATA[Poštovani(a) {FIRSTNAME},<br />
 <br />
-Vi, ili netko drugi koristeći vašu e-mail adresu, prijavio se za sudjelovanje u online upitniku {SURVEYNAME}.<br />
+Vi, ili netko drugi koristeći Vašu e-mail adresu, prijavio se za sudjelovanje u online upitniku {SURVEYNAME}.<br />
 <br />
-Za popunjavanje upitnika kliknite na navedeni URL (ili ga kopirajte u web preglednik):<br />
+Za popunjavanje upitnika kliknite na navedenu poveznicu (ili je kopirajte u web preglednik):<br />
 {SURVEYURL}<br />
 <br />
 U slučaju da se niste prijavili za sudjelovanje ili imate druga pitanja o ovom upitniku, molimo da kontaktirate vlasnika upitnika ({ADMINNAME}) na e-mail {ADMINEMAIL}.]]></surveyls_email_register>
-    <surveyls_email_confirm_subj><![CDATA[Potvrda vašeg sudjelovanja u našem upitniku]]></surveyls_email_confirm_subj>
+    <surveyls_email_confirm_subj><![CDATA[Potvrda Vašeg sudjelovanja u našem upitniku]]></surveyls_email_confirm_subj>
     <surveyls_email_confirm><![CDATA[Poštovani/a {FIRSTNAME},<br />
 <br />
-ovaj e-mail je potvrda da ste uspješno ispunili upitnik {SURVEYNAME} i da su Vaši odgovori pohranjeni. Hvala Vam na sudjelovanju.<br />
+ovaj e-mail je potvrda da ste uspješno ispunili upitnik {SURVEYNAME} i da su Vaši odgovori pohranjeni. Hvala Vam na sudjelovanju!<br />
 <br />
-Za eventualna pitanja možete me kontaktirati putem e-mail adrese {ADMINEMAIL}.<br />
+Za eventualna pitanja možete nas kontaktirati putem e-mail adrese {ADMINEMAIL}.<br />
 <br />
 Lijep pozdrav,<br />
 {ADMINNAME}]]></surveyls_email_confirm>
@@ -235,7 +238,7 @@ Lijep pozdrav,<br />
     <email_admin_notification_subj><![CDATA[Podnošenje odgovora za upitnik {SURVEYNAME}]]></email_admin_notification_subj>
     <email_admin_notification><![CDATA[Pozdrav, <br />
  <br />
-Za vaš upitnik '{SURVEYNAME}' poslan je novi pojedinačni odgovor.<br />
+Za Vaš upitnik '{SURVEYNAME}' poslan je novi pojedinačni odgovor.<br />
  <br />
 Kliknite na sljedeću poveznicu da biste vidjeli pojedinačni odgovor: <br />
 {VIEWRESPONSEURL}<br />
@@ -245,10 +248,10 @@ Kliknite na sljedeću poveznicu da biste uredili pojedinačni odgovor: <br />
  <br />
 Kliknite na sljedeću poveznicu da biste vidjeli statistiku: <br />
 {STATISTICSURL}]]></email_admin_notification>
-    <email_admin_responses_subj><![CDATA[Podnošenje odgovora za upitnik {SURVEYNAME} sa rezultatima]]></email_admin_responses_subj>
+    <email_admin_responses_subj><![CDATA[Podnošenje odgovora za upitnik {SURVEYNAME} s rezultatima]]></email_admin_responses_subj>
     <email_admin_responses><![CDATA[Pozdrav, <br />
  <br />
- Novi odgovor je poslan za vašu upitnik \ '{SURVEYNAME} \ <br />
+ Novi odgovor je poslan za Vaš upitnik \ '{SURVEYNAME} \ <br />
  <br />
  Kliknite na sljedeću poveznicu kako biste vidjeli pojedinačni odgovor: <br />
  {VIEWRESPONSEURL} <br />
@@ -260,7 +263,7 @@ Kliknite na sljedeću poveznicu da biste vidjeli statistiku: <br />
  {STATISTICSURL} <br />
  <br />
  <br />
- Sudionik je dao slijedeće odgovore: <br />
+ Sudionik je dao sljedeće odgovore: <br />
  {ANSWERTABLE}]]></email_admin_responses>
     <surveyls_numberformat><![CDATA[0]]></surveyls_numberformat>
    </row>
