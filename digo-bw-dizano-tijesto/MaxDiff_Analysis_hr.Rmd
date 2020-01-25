@@ -71,7 +71,7 @@ U MaxDiff metodi ispitanici u svakom pitanju biraju najbolji i najlošiji proizv
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
 library(dplyr)
-data.frame(designctx$survey[1:(5*designctx$nalternatives), ] %>% group_by(task) %>% mutate(items = paste0(paste(substr(alt, 1, 15), "..", sep = ""), collapse = " | "), best_choice = "?", worst_choice = "?") %>% select("items", "best_choice", "worst_choice") %>% distinct())
+data.frame(designctx$survey[1:(5*designctx$nalternatives), ] %>% dplyr::group_by(task) %>% dplyr::mutate(items = paste0(alt, collapse = ","), best_choice = "?", worst_choice = "?") %>% dplyr::select("items", "best_choice", "worst_choice") %>% distinct())
 
 ```
 
@@ -769,9 +769,15 @@ Time dobivamo kompletnu sliku svih proizvoda iz perspektive ispitanika i možemo
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
-# cc = cov2cor(cov.mlogit(m2.hier))
-cc = stan.mc.sigma
-# cc = stan.mc.lca.betasigma
+#cc = cov2cor(cov.mlogit(m2.hier))
+
+cc = cov2cor(crossprod(Reduce('+', lapply(1:length(hb.post$compdraw), function(i) {
+  hb.post$compdraw[[i]]$rooti
+}))/length(hb.post$compdraw)))
+rownames(cc) = colnames(cc) = colnames(cbc.mm.clear)
+
+#cc = stan.mc.sigma
+#cc = stan.mc.lca.betasigma
 # cc
 
 # locate maximal element

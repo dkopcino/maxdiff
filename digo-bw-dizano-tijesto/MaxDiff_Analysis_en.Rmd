@@ -765,9 +765,15 @@ This way we get a complete picture of all the products from the respondents' per
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
-# cc = cov2cor(cov.mlogit(m2.hier))
-cc = stan.mc.sigma
-# cc = stan.mc.lca.betasigma
+#cc = cov2cor(cov.mlogit(m2.hier))
+
+cc = cov2cor(crossprod(Reduce('+', lapply(1:length(hb.post$compdraw), function(i) {
+  hb.post$compdraw[[i]]$rooti
+}))/length(hb.post$compdraw)))
+rownames(cc) = colnames(cc) = colnames(cbc.mm.clear)
+
+#cc = stan.mc.sigma
+#cc = stan.mc.lca.betasigma
 # cc
 
 # locate maximal element
