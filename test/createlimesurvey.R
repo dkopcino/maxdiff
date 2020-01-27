@@ -423,7 +423,7 @@ for (i in 1:length(questionnaires)) {
   # if anchors, add the question
   if (designctx$anchors > 0) {
     
-    sGroupTitle = enc2utf8('<p>Da li biste sljedeće proizvode općenito kupili ili ne?</p>')
+    sGroupTitle = enc2utf8('Da li biste sljedeće proizvode općenito kupili ili ne?')
     sGroupDescription = enc2utf8('')
     iGid21 = call_limer(method = 'add_group', 
                         params = list("iSurveyID" = iNewID,
@@ -498,7 +498,15 @@ for (i in 1:length(questionnaires)) {
     cdatanode = newXMLCDataNode("F", parent = typeNode)
     
     sAnchorQuestionTitle1 = paste("qi", i, "qu", thisquestionid, sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
-    sAnchorQuestion1 = enc2utf8("<p>Molimo odaberite što biste kupili a što ne biste:</p>")
+#    sAnchorQuestion1 = enc2utf8("<p>Molimo odaberite što biste kupili a što ne biste:</p>")
+    sAnchorQuestion1 = paste(enc2utf8("<p>Molimo odaberite što biste kupili a što ne biste:</p>"),
+                           "<br/>",
+                           "<script type=\"text/javascript\" charset=\"utf-8\">
+                           $(document).ready(function(){
+                           // Call the arrangeAnchors() function
+                           arrangeAnchors({QID});
+                           });
+                           </script>")
     sAnchorQuestionHelp1 = enc2utf8("Kliknite na kružić (radio dugme) za odabir")
     
     titleNode = newXMLNode("title", parent = rowNode)

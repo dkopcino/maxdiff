@@ -1,4 +1,11 @@
 ## DODATI U CUSTOM.JS U TEMI
+/******************
+    User custom JS
+    ---------------
+
+   Put JS-functions for your template here.
+   If possible use a closure, or add them to the general Template Object "Template"
+*/
 function maxDiff(qID, randomize) {
   
   // Identify some elements
@@ -32,7 +39,38 @@ function maxDiff(qID, randomize) {
   
 }
 
+// Essentially a copy of the maxDiff function above.
+function arrangeAnchors(qID) {
+  
+  // Identify some elements
+  var thisQuestion = $('#question'+qID);
+  var thisTable = $('table.subquestion-list:eq(0)', thisQuestion);
+  
+  // Move the columns
+  $('thead tr:eq(0)', thisTable).prepend($('thead tr:eq(0) th:eq(0)', thisTable));
+  $('tr.answers-list', thisTable).each(function(i){
+    $('td.answer-item:eq(0)', this).prependTo(this);
+  });
+  
+  // Fix up the row classes
+  var rowClass = 1;
+  $('tr.answers-list', thisTable).each(function(i) {
+    $(this).addClass('array'+(2-(i%2)));
+  });
+  
+}
+
+
 ## DODATI U CUSTOM.CSS U TEMI
+
+/******************
+    User custom CSS
+    ---------------
+
+    In this file you can add your own custom CSS
+    It will be loaded last, so you can override any other property.
+    Also, it will never be updated. So if you inheritate a core template and just add here some CSS, you'll still benefit of all the updates
+*/
 .max-diff-array th.answertext { 
   text-align: center;
   border-right: 3px solid #FFFFFF;
@@ -78,4 +116,39 @@ function maxDiff(qID, randomize) {
   }	
 }
 
+@media only screen and (max-width: 801px) {
+
+    table.ls-answers th, table.ls-answers td {
+    	display: table-cell;
+    	text-align: center !important;
+    }
+    
+    table.ls-answers thead {
+    	display: table-header-group;
+    }
+
+    table.ls-answers tr {
+    	display: table-row;
+    }
+
+    table.ls-answers tbody tr td {
+    	vertical-align: middle;
+    	margin: 0px !important;
+    }
+    
+    table.ls-answers tbody tr td.answer-item {
+    	padding-left: 40px !important;
+    }
+    
+    table.ls-answers tbody tr td label {
+    	color: white;
+    	font-size: 1px;
+    	width: 50% !important;
+    }
+    
+    table.ls-answers thead .ls-heading .answer-text {
+    	vertical-align: middle;
+    }
+    
+}
 

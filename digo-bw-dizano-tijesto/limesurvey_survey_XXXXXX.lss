@@ -112,8 +112,8 @@
     <navigationdelay><![CDATA[0]]></navigationdelay>
     <nokeyboard><![CDATA[N]]></nokeyboard>
     <alloweditaftercompletion><![CDATA[N]]></alloweditaftercompletion>
-    <googleanalyticsstyle><![CDATA[0]]></googleanalyticsstyle>
-    <googleanalyticsapikey><![CDATA[9999useGlobal9999]]></googleanalyticsapikey>
+    <googleanalyticsstyle><![CDATA[1]]></googleanalyticsstyle>
+    <googleanalyticsapikey><![CDATA[UA-157047412-1]]></googleanalyticsapikey>
    </row>
   </rows>
  </surveys>
