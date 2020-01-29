@@ -60,20 +60,6 @@ function arrangeAnchors(qID) {
 
 ## DODATI U CUSTOM.CSS U TEMI
 
-/******************
-    User custom CSS
-    ---------------
-
-    In this file you can add your own custom CSS
-    It will be loaded last, so you can override any other property.
-    Also, it will never be updated. So if you inheritate a core template and just add here some CSS, you'll still benefit of all the updates
-*/
-.max-diff-array th.answertext { 
-  text-align: center;
-  border-right: 3px solid #FFFFFF;
-  border-left: 3px solid #FFFFFF;
-}
-
 @media only screen and (max-width: 1024px) {
 
 table.ls-answers thead tr .answertext {
@@ -109,6 +95,10 @@ table.ls-answers tbody tr .answer-item {
 }
 
 table.ls-answers tbody tr .answer-item input[type="radio"] {
+}
+
+.navbar .navbar-header .logo-container {
+    display: block !important;
 }
 
 }

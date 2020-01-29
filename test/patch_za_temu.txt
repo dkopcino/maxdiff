@@ -1,11 +1,4 @@
 ## DODATI U CUSTOM.JS U TEMI
-/******************
-    User custom JS
-    ---------------
-
-   Put JS-functions for your template here.
-   If possible use a closure, or add them to the general Template Object "Template"
-*/
 function maxDiff(qID, randomize) {
   
   // Identify some elements
@@ -37,6 +30,10 @@ function maxDiff(qID, randomize) {
     $(this).addClass('array'+(2-(i%2)));
   });
   
+  $('tr.answers-list td.answer-item label.ls-label-xs-visibility', thisTable).each(function(i) {
+    $(this).text('');
+  });
+
 }
 
 // Essentially a copy of the maxDiff function above.
@@ -63,92 +60,46 @@ function arrangeAnchors(qID) {
 
 ## DODATI U CUSTOM.CSS U TEMI
 
-/******************
-    User custom CSS
-    ---------------
+@media only screen and (max-width: 1024px) {
 
-    In this file you can add your own custom CSS
-    It will be loaded last, so you can override any other property.
-    Also, it will never be updated. So if you inheritate a core template and just add here some CSS, you'll still benefit of all the updates
-*/
-.max-diff-array th.answertext { 
+table.ls-answers thead tr .answertext {
   text-align: center;
   border-right: 3px solid #FFFFFF;
   border-left: 3px solid #FFFFFF;
 }
 
-/* Override the responsive "no-more-tables" stuff */
-@media only screen and (max-width: 801px) {
-  
-  .max-diff-array .no-more-tables table {
-    display: table;
-    border-collapse: inherit;
-  }	
-  
-  .max-diff-array .no-more-tables thead, 
-  .max-diff-array .no-more-tables tbody {
-    display: table-row-group;
-  }
-  
-  .max-diff-array .no-more-tables tr {
-    left: auto;
-    position: relative;
-    top: auto;
-    display: table-row;
-    border: 0 none;
-  }	
-  
-  .max-diff-array .no-more-tables th, 
-  .max-diff-array .no-more-tables td {
-    display: table-cell;
-    text-align: center !important;
-    color: #2c3e50;
-      font-size: 15px;
-  }
-  
-  .max-diff-array th.answertext { 
-    border-right: 3px solid #FFFFFF;
-    border-left: 3px solid #FFFFFF;
-  }
-  
-  .max-diff-array .answer-item label span {
-    display: none !important;
-  }	
+table.ls-answers th, table.ls-answers td {
+	display: table-cell;
+	text-align: center !important;
 }
 
-@media only screen and (max-width: 801px) {
+table.ls-answers thead {
+	display: table-header-group;
+}
 
-    table.ls-answers th, table.ls-answers td {
-    	display: table-cell;
-    	text-align: center !important;
-    }
-    
-    table.ls-answers thead {
-    	display: table-header-group;
-    }
+table.ls-answers thead tr th {
+	vertical-align: middle !important;
+}
 
-    table.ls-answers tr {
-    	display: table-row;
-    }
+table.ls-answers tr {
+	display: table-row;
+}
 
-    table.ls-answers tbody tr td {
-    	vertical-align: middle;
-    	margin: 0px !important;
-    }
-    
-    table.ls-answers tbody tr td.answer-item {
-    	padding-left: 40px !important;
-    }
-    
-    table.ls-answers tbody tr td label {
-    	color: white;
-    	font-size: 1px;
-    	width: 50% !important;
-    }
-    
-    table.ls-answers thead .ls-heading .answer-text {
-    	vertical-align: middle;
-    }
-    
+table.ls-answers tbody tr td {
+    vertical-align: middle;
+}
+
+table.ls-answers tbody tr .answer-item {
+	width: 25% !important;
+	padding-left: 15% !important;
+}
+
+table.ls-answers tbody tr .answer-item input[type="radio"] {
+}
+
+.navbar .navbar-header .logo-container {
+    display: block !important;
+}
+
 }
 

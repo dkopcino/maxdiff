@@ -26,7 +26,7 @@ limesurveyanchorqids = limesurveyallqids$anchorquids
 get_session_key()
 
 respondents = as.numeric(levels(factor(cbc.df$resp.id)))
-r = lapply(respondents, function(r) {
+ret = lapply(respondents, function(r) {
   
   answlist = list()
 
@@ -92,9 +92,9 @@ r = lapply(respondents, function(r) {
       p = designctx$personals[i]
       n = names(p)
       if (p[[n]][["tip"]] == "email") {
-        answs[i] = answers.df[1, n]
+        answs[i] = answers.df_best[1, n]
       } else if (p[[n]][["tip"]] == "dropdown") {
-        answs[i] = paste("A", as.numeric(answers.df[1, n]), sep = "")
+        answs[i] = paste("A", as.numeric(answers.df_best[1, n]), sep = "")
       }
     }
     lsids = data.frame(t(lsids))
