@@ -67,7 +67,7 @@
   </fields>
   <rows>
    <row>
-    <sid><![CDATA[193485]]></sid>
+    <sid><![CDATA[]]></sid>
     <gsid><![CDATA[1]]></gsid>
     <admin><![CDATA[Administrator]]></admin>
     <adminemail><![CDATA[info@anketar.biz]]></adminemail>
@@ -149,7 +149,7 @@
   </fields>
   <rows>
    <row>
-    <surveyls_survey_id><![CDATA[193485]]></surveyls_survey_id>
+    <surveyls_survey_id><![CDATA[]]></surveyls_survey_id>
     <surveyls_language><![CDATA[hr]]></surveyls_language>
     <surveyls_title><![CDATA[MAXDIFF TEST]]></surveyls_title>
     <surveyls_description><![CDATA[<p>U upitniku "MAXDIFF TEST" postavit ćemo Vam X pitanja s raznim varijantama, a Vi ćete u svakom pitanju odabrati Vama najbolju i najlošiju varijantu. Za ispunjavanje cijelog upitnika po našoj je procjeni dovoljno 15-20 minuta.</p>
