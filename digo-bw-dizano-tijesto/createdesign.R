@@ -43,10 +43,10 @@ items = factor(c(
 ))
 
 
-# želimo da se svaki item prikaže barem 3 puta i da se prikazuje 3 itema po pitanju
-nalternatives = 4 # koliko se prikazuje u svakom pitanju?
-nquestionnaires = 1 # koliko varijanti upitnika?
-nquestions = ceiling((length(items) * 3)/nalternatives/nquestionnaires) + 1 # koliko pitanja po upitniku?
+# želimo da se svaki item prikaže barem 4 puta i da se prikazuje 3 itema po pitanju
+nalternatives = 3 # koliko se prikazuje u svakom pitanju?
+nquestionnaires = 3 # koliko varijanti upitnika?
+nquestions = ceiling((length(items) * 5)/nalternatives/nquestionnaires) + 1 # koliko pitanja po upitniku?
 
 dz = tradeoff.des(items = length(items), shown = nalternatives, vers = nquestionnaires, tasks = nquestions, 
                   fname = NULL, Rd = 500, Rc = 10000, print = TRUE)
