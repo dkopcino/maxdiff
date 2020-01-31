@@ -165,7 +165,7 @@ for (i in 1:length(questionnaires)) {
     cdatanode = newXMLCDataNode("H", parent = typeNode)
     
     sNewQuestionTitle1 = paste("qi", i, "qu", thisquestionid, sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
-    sNewqQuestion1 = paste(enc2utf8("<p>Molimo odaberite:</p>"),
+    sNewqQuestion1 = paste(enc2utf8("Molimo odaberite jedan NAJVIŠE ME ZANIMAJU i jedan NAJMANJE ME ZANIMAJU:"),
                            "<br/>",
                            "<script type=\"text/javascript\" charset=\"utf-8\">
                            $(document).ready(function(){
@@ -374,7 +374,7 @@ for (i in 1:length(questionnaires)) {
       cdatanode = newXMLCDataNode(paste("A", k, sep = ""), parent = codeNode) # ovo je ovisno o alternativi
       
       answerNode = newXMLNode("answer", parent = rowNode)
-      cdatanode = newXMLCDataNode(paste("<p style=\"text-align: center;\">", enc2utf8(as.character(alternatives[k, "alt"])), "</p>", sep = ""), parent = answerNode)
+      cdatanode = newXMLCDataNode(enc2utf8(as.character(alternatives[k, "alt"])), parent = answerNode)
       
       sortorderNode = newXMLNode("sortorder", parent = rowNode)
       cdatanode = newXMLCDataNode(k, parent = sortorderNode)
@@ -498,8 +498,8 @@ for (i in 1:length(questionnaires)) {
     cdatanode = newXMLCDataNode("F", parent = typeNode)
     
     sAnchorQuestionTitle1 = paste("qi", i, "qu", thisquestionid, sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
-#    sAnchorQuestion1 = enc2utf8("<p>Molimo odaberite što Vas zanima i što Vas ne zanima:</p>")
-    sAnchorQuestion1 = paste(enc2utf8("<p>Molimo odaberite što Vas zanima i što Vas ne zanima:</p>"),
+#    sAnchorQuestion1 = enc2utf8("Molimo odaberite što Vas zanima i što Vas ne zanima:")
+    sAnchorQuestion1 = paste(enc2utf8("Molimo odaberite za svaku opciju ili ZANIMAJU ME ili NE ZANIMAJU ME:"),
                            "<br/>",
                            "<script type=\"text/javascript\" charset=\"utf-8\">
                            $(document).ready(function(){
@@ -678,7 +678,7 @@ for (i in 1:length(questionnaires)) {
     cdatanode = newXMLCDataNode("A1", parent = codeNode)
 
     answerNode = newXMLNode("answer", parent = rowNode)
-    cdatanode = newXMLCDataNode(paste("<p style=\"text-align: center;\">ZANIMAJU ME</p>", sep = ""), parent = answerNode)
+    cdatanode = newXMLCDataNode("ZANIMAJU ME", parent = answerNode)
 
     sortorderNode = newXMLNode("sortorder", parent = rowNode)
     cdatanode = newXMLCDataNode(1, parent = sortorderNode)
@@ -699,7 +699,7 @@ for (i in 1:length(questionnaires)) {
     cdatanode = newXMLCDataNode("A2", parent = codeNode)
     
     answerNode = newXMLNode("answer", parent = rowNode)
-    cdatanode = newXMLCDataNode(paste("<p style=\"text-align: center;\">NE ZANIMAJU ME</p>", sep = ""), parent = answerNode)
+    cdatanode = newXMLCDataNode("NE ZANIMAJU ME", parent = answerNode)
     
     sortorderNode = newXMLNode("sortorder", parent = rowNode)
     cdatanode = newXMLCDataNode(2, parent = sortorderNode)

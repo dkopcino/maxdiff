@@ -55,10 +55,18 @@ function arrangeAnchors(qID) {
     $(this).addClass('array'+(2-(i%2)));
   });
   
+  $('tr.answers-list td.answer-item label.ls-label-xs-visibility', thisTable).each(function(i) {
+    $(this).text('');
+  });
+
 }
 
 
 ## DODATI U CUSTOM.CSS U TEMI
+
+table.ls-answers tr .answertext {
+  text-align: center;
+}
 
 @media only screen and (max-width: 1024px) {
 
@@ -104,13 +112,13 @@ table.ls-answers tbody tr .answer-item input[type="radio"] {
 }
 
 
-## DODATI U HEAD.TWIG (PRIJE TOGA KOPIRATI HEAD.TWIG LOKALNO!) AKO SE ŽELI SHAREATI DIREKTNO LINK NA SURVEY
+## DODATI U HEAD.TWIG (PRIJE TOGA KOPIRATI HEAD.TWIG LOKALNO!)
 ## to su meta propertyi za shareanje, staviti u head, prije title
 ## u navedeni direktorij iskopirati sliku (og:image), slika mora biti 1200x628 i spremljena kao 80 ili 90% quality jpeg
 <meta property="og:title" content="{{ aSurveyInfo.name }}"/>
 <meta property="og:type" content="website"/>
 <meta property="og:description" content="{{ aSurveyInfo.description }}"/>
-<meta property="og:image" content="http://anketar.biz/{{ aSurveyInfo.oTemplate.sTemplateurl }}files/og_share_image.jpg"/>
+<meta property="og:image" content="http://anketar.biz/{{ aSurveyInfo.oTemplate.sTemplateurl }}files/og_image.jpg"/>
 
 
 
