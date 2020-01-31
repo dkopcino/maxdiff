@@ -18,14 +18,20 @@
 //function exprmgr_getanchors(...$args) // u file na serveru mora ići ovakva deklaracija, ova niže je za testiranje na localhost
 function exprmgr_getanchors($args)
 {
+	$dbg = FALSE;
+	$dbgfile = "/home/anketarb/tmp/my_log_file";
+	
+	if ($dbg) file_put_contents($dbgfile, print_r($args, TRUE), FILE_APPEND);
+	
 	$anchors = array();
 	$bests = array();
 	$worsts = array();
 	$cnt = 0;
 	$ni = 0;
 	$n = 0;
-	foreach ($args as $arg) {
+	foreach ($args[0] as $arg) {
 		$cnt++;
+		//if ($dbg) file_put_contents($dbgfile, "CNT: " . $cnt, FILE_APPEND);
 		if ($cnt == 1) {
 			$ni = $arg;
 		} else if ($cnt == 2) {
@@ -34,22 +40,32 @@ function exprmgr_getanchors($args)
 			if (($cnt % 2) == 1) {
 				// best
 				if (array_key_exists($arg, $bests)) {
+					if ($dbg) file_put_contents($dbgfile, "BEST+1: " . $arg . "\n\n", FILE_APPEND);
 					$bests[$arg]++;
 				} else {
+					if ($dbg) file_put_contents($dbgfile, "NEW BEST: " . $arg . "\n\n", FILE_APPEND);
 					$bests[$arg] = 1;
 				}
 			} else {
 				// worst
 				if (array_key_exists($arg, $worsts)) {
+					if ($dbg) file_put_contents($dbgfile, "WORST+1: " . $arg . "\n\n", FILE_APPEND);
 					$worsts[$arg]++;
 				} else {
+					if ($dbg) file_put_contents($dbgfile, "NEW WORST: " . $arg . "\n\n", FILE_APPEND);
 					$worsts[$arg] = 1;
 				}
 			}
 		}
     }
+	
 	arsort($bests);
 	arsort($worsts);
+	
+	if ($dbg) file_put_contents($dbgfile, "SORTED BESTS: " . print_r($bests, TRUE), FILE_APPEND);
+	if ($dbg) file_put_contents($dbgfile, "SORTED WORSTS: " . print_r($worsts, TRUE), FILE_APPEND);
+	//return array();
+	
 	$last_added = "worst";
 	$i_bests = 0; $i_worsts = 0;
 	while (count($anchors) < $n) {
