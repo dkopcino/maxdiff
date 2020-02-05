@@ -83,7 +83,7 @@ for (i in 1:length(questionnaires)) {
     iNewID = createdsurveyids[i]
   }
   
-  sGroupTitle = enc2utf8('Molimo odaberite Vama najbolju i najlošiju opciju među navedenim opcijama')
+  sGroupTitle = enc2utf8('Koji Vas recepti i savjeti za dizano tijesto najviše, a koji najmanje zanimaju?')
   sGroupDescription = ''
   #add_group(string $sSessionKey, integer $iSurveyID, string $sGroupTitle, string $sGroupDescription = '') : array|integer
   iGid2 = call_limer(method = 'add_group', 
@@ -165,7 +165,7 @@ for (i in 1:length(questionnaires)) {
     cdatanode = newXMLCDataNode("H", parent = typeNode)
     
     sNewQuestionTitle1 = paste("qi", i, "qu", thisquestionid, sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
-    sNewqQuestion1 = paste(enc2utf8("Opcije:"),
+    sNewqQuestion1 = paste(enc2utf8("Molimo odaberite jedan NAJVIŠE ME ZANIMAJU i jedan NAJMANJE ME ZANIMAJU:"),
                            "<br/>",
                            "<script type=\"text/javascript\" charset=\"utf-8\">
                            $(document).ready(function(){
@@ -257,7 +257,7 @@ for (i in 1:length(questionnaires)) {
     cdatanode = newXMLCDataNode("T", parent = typeNode)
     
     sNewSubQuestionTitle1 = paste(sNewQuestionTitle1, "sq1", sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
-    sNewqSubQuestion1 = enc2utf8("NAJBOLJA")
+    sNewqSubQuestion1 = enc2utf8("NAJVIŠE ME ZANIMAJU")
     
     # save if anchor is used
     question_subquestion_ids = 
@@ -305,7 +305,7 @@ for (i in 1:length(questionnaires)) {
     cdatanode = newXMLCDataNode("T", parent = typeNode)
     
     sNewSubQuestionTitle2 = paste(sNewQuestionTitle1, "sq2", sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
-    sNewSubQuestion2 = enc2utf8("NAJLOŠIJA")
+    sNewSubQuestion2 = enc2utf8("NAJMANJE ME ZANIMAJU")
     
     # save if anchor is used
     question_subquestion_ids = 
@@ -423,7 +423,7 @@ for (i in 1:length(questionnaires)) {
   # if anchors, add the question
   if (designctx$anchors > 0) {
     
-    sGroupTitle = enc2utf8('Da li biste sljedeće proizvode općenito kupili ili ne?')
+    sGroupTitle = enc2utf8('Da li Vas recepti i savjeti o navedenim temama općenito zanimaju ili ne?')
     sGroupDescription = enc2utf8('')
     iGid21 = call_limer(method = 'add_group', 
                         params = list("iSurveyID" = iNewID,

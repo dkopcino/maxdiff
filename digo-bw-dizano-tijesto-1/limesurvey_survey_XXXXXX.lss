@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document>
+ <LimeSurveyDocType>Survey</LimeSurveyDocType>
+ <DBVersion>359</DBVersion>
+ <languages>
+  <language>hr</language>
+ </languages>
+ <surveys>
+  <fields>
+   <fieldname>sid</fieldname>
+   <fieldname>gsid</fieldname>
+   <fieldname>admin</fieldname>
+   <fieldname>expires</fieldname>
+   <fieldname>startdate</fieldname>
+   <fieldname>adminemail</fieldname>
+   <fieldname>anonymized</fieldname>
+   <fieldname>faxto</fieldname>
+   <fieldname>format</fieldname>
+   <fieldname>savetimings</fieldname>
+   <fieldname>template</fieldname>
+   <fieldname>language</fieldname>
+   <fieldname>additional_languages</fieldname>
+   <fieldname>datestamp</fieldname>
+   <fieldname>usecookie</fieldname>
+   <fieldname>allowregister</fieldname>
+   <fieldname>allowsave</fieldname>
+   <fieldname>autonumber_start</fieldname>
+   <fieldname>autoredirect</fieldname>
+   <fieldname>allowprev</fieldname>
+   <fieldname>printanswers</fieldname>
+   <fieldname>ipaddr</fieldname>
+   <fieldname>refurl</fieldname>
+   <fieldname>showsurveypolicynotice</fieldname>
+   <fieldname>publicstatistics</fieldname>
+   <fieldname>publicgraphs</fieldname>
+   <fieldname>listpublic</fieldname>
+   <fieldname>htmlemail</fieldname>
+   <fieldname>sendconfirmation</fieldname>
+   <fieldname>tokenanswerspersistence</fieldname>
+   <fieldname>assessments</fieldname>
+   <fieldname>usecaptcha</fieldname>
+   <fieldname>usetokens</fieldname>
+   <fieldname>bounce_email</fieldname>
+   <fieldname>attributedescriptions</fieldname>
+   <fieldname>emailresponseto</fieldname>
+   <fieldname>emailnotificationto</fieldname>
+   <fieldname>tokenlength</fieldname>
+   <fieldname>showxquestions</fieldname>
+   <fieldname>showgroupinfo</fieldname>
+   <fieldname>shownoanswer</fieldname>
+   <fieldname>showqnumcode</fieldname>
+   <fieldname>bouncetime</fieldname>
+   <fieldname>bounceprocessing</fieldname>
+   <fieldname>bounceaccounttype</fieldname>
+   <fieldname>bounceaccounthost</fieldname>
+   <fieldname>bounceaccountpass</fieldname>
+   <fieldname>bounceaccountencryption</fieldname>
+   <fieldname>bounceaccountuser</fieldname>
+   <fieldname>showwelcome</fieldname>
+   <fieldname>showprogress</fieldname>
+   <fieldname>questionindex</fieldname>
+   <fieldname>navigationdelay</fieldname>
+   <fieldname>nokeyboard</fieldname>
+   <fieldname>alloweditaftercompletion</fieldname>
+   <fieldname>googleanalyticsstyle</fieldname>
+   <fieldname>googleanalyticsapikey</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <sid><![CDATA[]]></sid>
+    <gsid><![CDATA[1]]></gsid>
+    <admin><![CDATA[Administrator]]></admin>
+    <adminemail><![CDATA[info@anketar.biz]]></adminemail>
+    <anonymized><![CDATA[N]]></anonymized>
+    <format><![CDATA[S]]></format>
+    <savetimings><![CDATA[Y]]></savetimings>
+    <template><![CDATA[digo_extends_maxdiff]]></template>
+    <language><![CDATA[hr]]></language>
+    <additional_languages/>
+    <datestamp><![CDATA[Y]]></datestamp>
+    <usecookie><![CDATA[Y]]></usecookie>
+    <allowregister><![CDATA[N]]></allowregister>
+    <allowsave><![CDATA[Y]]></allowsave>
+    <autonumber_start><![CDATA[0]]></autonumber_start>
+    <autoredirect><![CDATA[N]]></autoredirect>
+    <allowprev><![CDATA[N]]></allowprev>
+    <printanswers><![CDATA[N]]></printanswers>
+    <ipaddr><![CDATA[Y]]></ipaddr>
+    <refurl><![CDATA[N]]></refurl>
+    <showsurveypolicynotice><![CDATA[1]]></showsurveypolicynotice>
+    <publicstatistics><![CDATA[N]]></publicstatistics>
+    <publicgraphs><![CDATA[N]]></publicgraphs>
+    <listpublic><![CDATA[N]]></listpublic>
+    <htmlemail><![CDATA[Y]]></htmlemail>
+    <sendconfirmation><![CDATA[Y]]></sendconfirmation>
+    <tokenanswerspersistence><![CDATA[N]]></tokenanswerspersistence>
+    <assessments><![CDATA[N]]></assessments>
+    <usecaptcha><![CDATA[N]]></usecaptcha>
+    <usetokens><![CDATA[N]]></usetokens>
+    <bounce_email/>
+    <emailresponseto/>
+    <emailnotificationto/>
+    <tokenlength><![CDATA[15]]></tokenlength>
+    <showxquestions><![CDATA[N]]></showxquestions>
+    <showgroupinfo><![CDATA[N]]></showgroupinfo>
+    <shownoanswer><![CDATA[N]]></shownoanswer>
+    <showqnumcode><![CDATA[X]]></showqnumcode>
+    <bounceprocessing><![CDATA[N]]></bounceprocessing>
+    <showwelcome><![CDATA[Y]]></showwelcome>
+    <showprogress><![CDATA[Y]]></showprogress>
+    <questionindex><![CDATA[0]]></questionindex>
+    <navigationdelay><![CDATA[0]]></navigationdelay>
+    <nokeyboard><![CDATA[N]]></nokeyboard>
+    <alloweditaftercompletion><![CDATA[N]]></alloweditaftercompletion>
+    <googleanalyticsstyle><![CDATA[1]]></googleanalyticsstyle>
+    <googleanalyticsapikey><![CDATA[UA-157047412-1]]></googleanalyticsapikey>
+   </row>
+  </rows>
+ </surveys>
+ <surveys_languagesettings>
+  <fields>
+   <fieldname>surveyls_survey_id</fieldname>
+   <fieldname>surveyls_language</fieldname>
+   <fieldname>surveyls_title</fieldname>
+   <fieldname>surveyls_description</fieldname>
+   <fieldname>surveyls_welcometext</fieldname>
+   <fieldname>surveyls_endtext</fieldname>
+   <fieldname>surveyls_policy_notice</fieldname>
+   <fieldname>surveyls_policy_error</fieldname>
+   <fieldname>surveyls_policy_notice_label</fieldname>
+   <fieldname>surveyls_url</fieldname>
+   <fieldname>surveyls_urldescription</fieldname>
+   <fieldname>surveyls_email_invite_subj</fieldname>
+   <fieldname>surveyls_email_invite</fieldname>
+   <fieldname>surveyls_email_remind_subj</fieldname>
+   <fieldname>surveyls_email_remind</fieldname>
+   <fieldname>surveyls_email_register_subj</fieldname>
+   <fieldname>surveyls_email_register</fieldname>
+   <fieldname>surveyls_email_confirm_subj</fieldname>
+   <fieldname>surveyls_email_confirm</fieldname>
+   <fieldname>surveyls_dateformat</fieldname>
+   <fieldname>surveyls_attributecaptions</fieldname>
+   <fieldname>email_admin_notification_subj</fieldname>
+   <fieldname>email_admin_notification</fieldname>
+   <fieldname>email_admin_responses_subj</fieldname>
+   <fieldname>email_admin_responses</fieldname>
+   <fieldname>surveyls_numberformat</fieldname>
+   <fieldname>attachments</fieldname>
+  </fields>
+  <rows>
+   <row>
+    <surveyls_survey_id><![CDATA[]]></surveyls_survey_id>
+    <surveyls_language><![CDATA[hr]]></surveyls_language>
+    <surveyls_title><![CDATA[Volimo dizano tijesto!]]></surveyls_title>
+    <surveyls_description><![CDATA[U upitniku Volimo dizano tijesto! želimo saznati koje teme vezano za dizano tijesto (kiflice, kruh, kolači...) Vas najviše zanimaju 
+	tako da Vam ubuduće pružimo više informacija, recepata i savjeta vezano upravo uz te teme. Postavit ćemo Vam 14 pitanja. Za ispunjavanje cijelog upitnika po našoj 
+	je procjeni dovoljno 10 minuta.]]></surveyls_description>
+    <surveyls_welcometext><![CDATA[]]></surveyls_welcometext>
+    <surveyls_endtext><![CDATA[Hvala Vam na sudjelovanju u upitniku!]]></surveyls_endtext>
+    <surveyls_policy_notice><![CDATA[<p>U ovom upitniku koristimo sljedeće osobne podatke:</p>
+
+<ul>
+	<li>zemlja stanovanja</li>
+	<li>dob</li>
+	<li>IP adresa</li>
+</ul>
+
+<p>Zemlju stanovanja i dob koristit ćemo u svrhu izrade statistike. IP adresu ćemo koristiti za onemogućavanje višestrukog ispunjavanja upitnika od strane iste osobe. 
+Navedene podatke nećemo koristiti niti u koju drugu svrhu i nećemo ih dijeliti niti s kojom trećom stranom.</p>
+
+]]></surveyls_policy_notice>
+    <surveyls_policy_error><![CDATA[<p>Molimo da prihvatite pravila o zaštiti osobnih podataka</p>]]></surveyls_policy_error>
+    <surveyls_policy_notice_label><![CDATA[Prihvaćam pravila o zaštiti osobnih podataka]]></surveyls_policy_notice_label>
+    <surveyls_url/>
+    <surveyls_urldescription/>
+    <surveyls_email_invite_subj><![CDATA[Pozivnica za sudjelovanje u upitniku]]></surveyls_email_invite_subj>
+    <surveyls_email_invite><![CDATA[Poštovani/a {FIRSTNAME},<br />
+<br />
+Pozvani ste na sudjelovanje u istraživanju putem upitnika.<br />
+<br />
+Naziv upitnika je:<br />
+ "{SURVEYNAME}"<br />
+<br />
+"{SURVEYDESCRIPTION}"<br />
+<br />
+Kako bi sudjelovali, kliknite na link ispod. <br />
+<br />
+Lijep pozdrav, <br />
+<br />
+{ADMINNAME} ({ADMINEMAIL})<br />
+<br />
+----------------------------------------------<br />
+Kliknite ovdje kako bi ste sudjelovali u upitniku:<br />
+{SURVEYURL}<br />
+<br />
+Ako ne želite sudjelovati u ovom upitniku i ne želite više primati pozivnice, kliknite sljedeću poveznicu: <br />
+{OPTOUTURL}<br />
+<br />
+Ako ste na crnoj listi, ali želite sudjelovati u ovom upitniku i želite primati pozivnice, kliknite sljedeću poveznicu: <br />
+{OPTINURL}]]></surveyls_email_invite>
+    <surveyls_email_remind_subj><![CDATA[Podsjetnik za sudjelovanje u upitniku]]></surveyls_email_remind_subj>
+    <surveyls_email_remind><![CDATA[Poštovani/a,<br />
+<br />
+nedavno smo Vas pozvali da sudjelujete u istraživanju putem upitnika, no nažalost upitnik do danas niste ispunili.<br />
+<br />
+Ovom prilikom želimo Vas podsjetiti da je upitnik još uvijek dostupan u slučaju da kanite sudjelovati u istraživanju.<br />
+<br />
+Naziv upitnika:"{SURVEYNAME}"<br />
+"{SURVEYDESCRIPTION}"<br />
+Za sudjelovanje molimo kliknite na navedenu poveznicu (ili je kopirajte u web preglednik):<br />
+{SURVEYURL}<br />
+<br />
+Lijep pozdrav,<br />
+{ADMINNAME} <br />
+({ADMINEMAIL})<br />
+<br />
+Ako ne želite sudjelovati u ovom upitniku i ne želite više primati pozivnice, kliknite sljedeću poveznicu: <br />
+{OPTOUTURL}]]></surveyls_email_remind>
+    <surveyls_email_register_subj><![CDATA[Potvrda o registraciji za sudjelovanje u upitniku]]></surveyls_email_register_subj>
+    <surveyls_email_register><![CDATA[Poštovani(a) {FIRSTNAME},<br />
+<br />
+Vi, ili netko drugi koristeći Vašu e-mail adresu, prijavio se za sudjelovanje u online upitniku {SURVEYNAME}.<br />
+<br />
+Za popunjavanje upitnika kliknite na navedenu poveznicu (ili je kopirajte u web preglednik):<br />
+{SURVEYURL}<br />
+<br />
+U slučaju da se niste prijavili za sudjelovanje ili imate druga pitanja o ovom upitniku, molimo da kontaktirate vlasnika upitnika ({ADMINNAME}) na e-mail {ADMINEMAIL}.]]></surveyls_email_register>
+    <surveyls_email_confirm_subj><![CDATA[Potvrda Vašeg sudjelovanja u našem upitniku]]></surveyls_email_confirm_subj>
+    <surveyls_email_confirm><![CDATA[Poštovani/a {FIRSTNAME},<br />
+<br />
+ovaj e-mail je potvrda da ste uspješno ispunili upitnik {SURVEYNAME} i da su Vaši odgovori pohranjeni. Hvala Vam na sudjelovanju!<br />
+<br />
+Za eventualna pitanja možete nas kontaktirati putem e-mail adrese {ADMINEMAIL}.<br />
+<br />
+Lijep pozdrav,<br />
+{ADMINNAME}]]></surveyls_email_confirm>
+    <surveyls_dateformat><![CDATA[1]]></surveyls_dateformat>
+    <email_admin_notification_subj><![CDATA[Podnošenje odgovora za upitnik {SURVEYNAME}]]></email_admin_notification_subj>
+    <email_admin_notification><![CDATA[Pozdrav, <br />
+ <br />
+Za Vaš upitnik '{SURVEYNAME}' poslan je novi pojedinačni odgovor.<br />
+ <br />
+Kliknite na sljedeću poveznicu da biste vidjeli pojedinačni odgovor: <br />
+{VIEWRESPONSEURL}<br />
+ <br />
+Kliknite na sljedeću poveznicu da biste uredili pojedinačni odgovor: <br />
+{EDITRESPONSEURL}<br />
+ <br />
+Kliknite na sljedeću poveznicu da biste vidjeli statistiku: <br />
+{STATISTICSURL}]]></email_admin_notification>
+    <email_admin_responses_subj><![CDATA[Podnošenje odgovora za upitnik {SURVEYNAME} s rezultatima]]></email_admin_responses_subj>
+    <email_admin_responses><![CDATA[Pozdrav, <br />
+ <br />
+ Novi odgovor je poslan za Vaš upitnik \ '{SURVEYNAME} \ <br />
+ <br />
+ Kliknite na sljedeću poveznicu kako biste vidjeli pojedinačni odgovor: <br />
+ {VIEWRESPONSEURL} <br />
+ <br />
+ Kliknite na sljedeću poveznicu kako biste uredili pojedinačni odgovor: <br />
+ { EDITRESPONSEURL} <br />
+ <br />
+ Pogledajte statistiku klikom ovdje: <br />
+ {STATISTICSURL} <br />
+ <br />
+ <br />
+ Sudionik je dao sljedeće odgovore: <br />
+ {ANSWERTABLE}]]></email_admin_responses>
+    <surveyls_numberformat><![CDATA[0]]></surveyls_numberformat>
+   </row>
+  </rows>
+ </surveys_languagesettings>
+</document>

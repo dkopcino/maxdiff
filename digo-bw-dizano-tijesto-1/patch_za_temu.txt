@@ -1,0 +1,125 @@
+## DODATI U CUSTOM.JS U TEMI
+function maxDiff(qID, randomize) {
+  
+  // Identify some elements
+  var thisQuestion = $('#question'+qID);
+  var thisTable = $('table.subquestion-list:eq(0)', thisQuestion);
+  
+  // Assign a new question class
+  $(thisQuestion).addClass('max-diff-array');
+  
+  // Move the columns
+  $('thead tr:eq(0)', thisTable).prepend($('thead tr:eq(0) th:eq(0)', thisTable));
+  $('tr.answers-list', thisTable).each(function(i){
+    $('td.answer-item:eq(0)', this).prependTo(this);
+  });
+  
+  // Prevent clicking twice in the same row
+  $('input:radio', thisQuestion).on('click', function () {
+    
+    $('input:radio', thisQuestion).prop('disabled', false);
+    $('input:radio:checked', thisQuestion).each(function(i) {
+      var thisRow = $(this).closest('tr.answers-list');
+      $('input:radio', thisRow).not(this).prop('disabled', true);
+    });
+  });	
+  
+  // Fix up the row classes
+  var rowClass = 1;
+  $('tr.answers-list', thisTable).each(function(i) {
+    $(this).addClass('array'+(2-(i%2)));
+  });
+  
+  $('tr.answers-list td.answer-item label.ls-label-xs-visibility', thisTable).each(function(i) {
+    $(this).text('');
+  });
+
+}
+
+// Essentially a copy of the maxDiff function above.
+function arrangeAnchors(qID) {
+  
+  // Identify some elements
+  var thisQuestion = $('#question'+qID);
+  var thisTable = $('table.subquestion-list:eq(0)', thisQuestion);
+  
+  // Move the columns
+  $('thead tr:eq(0)', thisTable).prepend($('thead tr:eq(0) th:eq(0)', thisTable));
+  $('tr.answers-list', thisTable).each(function(i){
+    $('td.answer-item:eq(0)', this).prependTo(this);
+  });
+  
+  // Fix up the row classes
+  var rowClass = 1;
+  $('tr.answers-list', thisTable).each(function(i) {
+    $(this).addClass('array'+(2-(i%2)));
+  });
+  
+  $('tr.answers-list td.answer-item label.ls-label-xs-visibility', thisTable).each(function(i) {
+    $(this).text('');
+  });
+
+}
+
+
+## DODATI U CUSTOM.CSS U TEMI
+
+table.ls-answers tr .answertext {
+  text-align: center;
+}
+
+@media only screen and (max-width: 1024px) {
+
+table.ls-answers thead tr .answertext {
+  text-align: center;
+  border-right: 3px solid #FFFFFF;
+  border-left: 3px solid #FFFFFF;
+}
+
+table.ls-answers th, table.ls-answers td {
+	display: table-cell;
+	text-align: center !important;
+}
+
+table.ls-answers thead {
+	display: table-header-group;
+}
+
+table.ls-answers thead tr th {
+	vertical-align: middle !important;
+}
+
+table.ls-answers tr {
+	display: table-row;
+}
+
+table.ls-answers tbody tr td {
+    vertical-align: middle;
+}
+
+table.ls-answers tbody tr .answer-item {
+	width: 25% !important;
+	padding-left: 15% !important;
+}
+
+table.ls-answers tbody tr .answer-item input[type="radio"] {
+}
+
+.navbar .navbar-header .logo-container {
+    display: block !important;
+}
+
+}
+
+
+## DODATI U HEAD.TWIG (PRIJE TOGA KOPIRATI HEAD.TWIG LOKALNO!)
+## to su meta propertyi za shareanje, staviti u head, prije title
+## u navedeni direktorij iskopirati sliku (og:image), slika mora biti 1200x628 i spremljena kao 80 ili 90% quality jpeg
+<meta property="og:title" content="{{ aSurveyInfo.name }}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:description" content="{{ aSurveyInfo.description }}"/>
+<meta property="og:image" content="http://anketar.biz/{{ aSurveyInfo.oTemplate.sTemplateurl }}files/og_image.jpg"/>
+
+
+
+
