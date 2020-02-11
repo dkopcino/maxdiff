@@ -1245,6 +1245,8 @@ Ukupna točnost predviđanja daje nam sigurnost da naš model dobro funkcionira.
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 #############################################################################################################
+lca_segments = designctx$rsegments
+
 # ### >>> GMNL LCA: https://rpubs.com/msarrias1986/335556
 # if (length(designctx$covariates) == 0) {
 #   # fmlstring = paste("choice ~ 0 + ", paste(colnames(mm), collapse = "+")) # all vars have generic coefs
@@ -1252,8 +1254,7 @@ Ukupna točnost predviđanja daje nam sigurnost da naš model dobro funkcionira.
 #   fmlstring = paste(fmlstring, "| 0 | 0 | 0 | 1")
 #   fml2 = as.formula(fmlstring)
 # } else {
-# #  ncov.columns = setdiff(colnames(mm), cov.columns)
-#   ncov.columns = items.columns
+#   ncov.columns = setdiff(colnames(mm), cov.columns)
 #   # fmlstring1 = paste("0 +", paste(ncov.columns, collapse = "+")) # all but covariates have generic coefs
 #   fmlstring1 = paste(ncov.columns, collapse = "+") # all but covariates have generic coefs
 #   # fmlstring2 = paste("0 +", paste(cov.columns, collapse = "+"))
@@ -1272,21 +1273,14 @@ Ukupna točnost predviđanja daje nam sigurnost da naš model dobro funkcionira.
 # 
 # ## LOAD MODEL
 # lcm = readRDS(lcmodelfile)
-# #sm.lc = summary(lcm)$CoefTable
-# sm.lc = lcm$coefficients
-# sm.lc
+# sm.lc = summary(lcm)$CoefTable
 # 
 # ### GMNL LCA <<<
-
-
-### >>> STAN MC LCA
-lca_segments = designctx$rsegments
-### STAN MC LCA <<<
 
 ```
 
 
-S obzirom na razne faktore (demografske ili sl.), ispitanike možemo podijeliti u segmente te zatim modelirati vrednovanje proizvoda za svaki segment (umjesto prosjeka ili individualno). Broj segmenata koji mislimo da postoji u skupu ispitanika treba zadati unaprijed kao parametar. Pretpostavimo da postoje `r lca_segments` različita segmenta ispitanika (s tim parametrom ćemo napraviti analizu). Modeliranjem (multinomni logit model s LCA - latent class analysis) dobivamo sljedeći sažetak:
+S obzirom na razne faktore (demografske ili sl.), ispitanike možemo podijeliti u segmente te zatim modelirati vrednovanje proizvoda za svaki segment (umjesto prosjeka ili individualno). Broj segmenata koji mislimo da postoji u skupu ispitanika treba zadati unaprijed kao parametar. Pretpostavimo da postoje `r lca_segments` različita segmenta ispitanika (s tim parametrom ćemo napraviti analizu). Modeliranjem dobivamo sljedeći sažetak za koeficijente po segmentima:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -1295,18 +1289,29 @@ S obzirom na razne faktore (demografske ili sl.), ispitanike možemo podijeliti 
 ### GMNL LCA <<<
 
 ### >>> STAN MC LCA
-stan.mc.lca.betas.mean
+#stan.mc.lca.betas.mean
 ### STAN MC LCA <<<
+
+### >>> NEOVISNA SEGMENTACIJA
+estimated_resp_coefs = beta.post.mean # coefficients by respondent
+estimated_coefs_avg = sm.hb[, "Mean"] # average coefficients
+# estimated_resp_coefs = t(stan.mc.betas.mean) # coefficients by respondent
+# estimated_coefs_avg = stan.mc.est[, "Mean"] # average coefficients
+
+library(cluster)
+km1 = kmeans(estimated_resp_coefs, centers = designctx$rsegments)
+#km1
+estimated_coefs_by_seg = km1$centers
+colnames(estimated_coefs_by_seg) = names(estimated_coefs_avg)
+rownames(estimated_coefs_by_seg) = paste("seg", rownames(estimated_coefs_by_seg))
+estimated_coefs_by_seg
+### NEOVISNA SEGMENTACIJA <<<
+
 ```
-
-
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
-nivo_znacajnosti_za_razliku = .5
-
-# ### GMNL LCA >>>
-# 
+### GMNL LCA >>>
 # cfs = coefficients(lcm)
 # cfs_s = list()
 # r = lapply(1:lca_segments, function(s) {
@@ -1314,42 +1319,33 @@ nivo_znacajnosti_za_razliku = .5
 #   cfs_s[[s]] <<- cfs[wh]
 #   names(cfs_s[[s]]) <<- substring(names(cfs_s[[s]]), 9) # 9 je prvi character nakon class.1.
 # })
-# cfs_s_diffs = names(cfs_s[[1]][which(abs(cfs_s[[1]]-cfs_s[[2]]) > nivo_znacajnosti_za_razliku)])
-# 
-# # source('lc_helpers.R')
-# # plot_ci_lc(lcm)
-# # shares(lcm)
-# 
-# ### GMNL LCA <<<
-
+# source('lc_helpers.R')
+# plot_ci_lc(lcm)
+# shares(lcm)
+### GMNL LCA <<<
 ```
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 ### STAN MC LCA >>>
-
-cfs_s_diffs = c()
-r = lapply(1:(lca_segments-1), function(s) {
-  cfs_s_diffs <<- unique(c(cfs_s_diffs, names(which(abs(stan.mc.lca.betas.mean[, s] - stan.mc.lca.betas.mean[, (s+1)]) > nivo_znacajnosti_za_razliku))))  
-})
-
+# cfs_s_diffs = c()
+# r = lapply(1:(lca_segments-1), function(s) {
+#   cfs_s_diffs <<- unique(c(cfs_s_diffs, names(which(abs(stan.mc.lca.betas.mean[, s] - stan.mc.lca.betas.mean[, (s+1)]) > 0.5))))  
+# })
 ### STAN MC LCA <<<
-
 ```
 
-Vidimo da se segmenti razlikuju (za više od `r nivo_znacajnosti_za_razliku`) u vrednovanju npr. *`r cfs_s_diffs`*.
 
-S obzirom na to da je cilj segmentacije i prepoznavanje koji korisnik (s najvećom vjerojatnošću) pripada kojem segmentu, pogledajmo i taj rezultat (navedeni su redni brojevi ispitanika koji pripadaju određenom segmentu):
+S obzirom na to da je cilj segmentacije prepoznavanje koji korisnik (s najvećom vjerojatnošću) pripada kojem segmentu, pogledajmo i taj rezultat (navedeni su redni brojevi ispitanika koji pripadaju određenom segmentu):
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
-# ### GMNL LCA >>>
+### GMNL LCA >>>
+# bi_juhapileca.juha <- effect.gmnl(lcm, par = "juhapileća.juha", effect = "ce")$mean
+# summary(bi_juhapileca.juha)
 # 
-# # bi_juhapileca.juha <- effect.gmnl(lcm, par = "juhapileća.juha", effect = "ce")$mean
-# # summary(bi_juhapileca.juha)
-# # 
-# # plot(lcm, par = "juhapileća.juha", effect = "ce", type = "density", col = "blue")
-# # 
-# # Conditional probabilitites
+# plot(lcm, par = "juhapileća.juha", effect = "ce", type = "density", col = "blue")
+# 
+# Conditional probabilitites
 # pi_hat = lcm$Qir
 # colnames(pi_hat) = paste("q =", 1:lca_segments)
 # # segment (s najvećom vjerojatnošću) za svakog ispitanika
@@ -1358,36 +1354,115 @@ S obzirom na to da je cilj segmentacije i prepoznavanje koji korisnik (s najveć
 #   print(paste("Segment", s))
 #   print(which(segs == s))
 # })
-# 
-# ### GMNL LCA <<<
-# #############################################################################################################
-
+### GMNL LCA <<<
 ```
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 ### STAN MC LCA >>>
-
-resp_coefs = apply(stan.mc.lca.theta, 2:3, mean)
-resp_probs = apply(resp_coefs, 2, softmax)
-# moramo maknuti 0 ili NA
-r = lapply(1:ncol(resp_probs), function(c) {
-  if ((all(resp_probs[, c]) == 0) | (any(is.na(resp_probs[, c])))) resp_probs[, c] <<- (1/lca_segments)
-})
-resp_segs = apply(resp_probs, 2, which.max)
-
-r = lapply(1:lca_segments, function(s) {
-  print(paste("Segment", s))
-  print(which(resp_segs == s))
-})
-
+# resp_coefs = apply(stan.mc.lca.theta, 2:3, mean)
+# resp_probs = apply(resp_coefs, 2, softmax)
+# # moramo maknuti 0 ili NA
+# r = lapply(1:ncol(resp_probs), function(c) {
+#   if ((all(resp_probs[, c]) == 0) | (any(is.na(resp_probs[, c])))) resp_probs[, c] <<- (1/lca_segments)
+# })
+# resp_segs = apply(resp_probs, 2, which.max)
+# r = lapply(1:lca_segments, function(s) {
+#   print(paste("Segment", s))
+#   print(which(resp_segs == s))
+# })
 ### STAN MC LCA <<<
-#############################################################################################################
-
 ```
 
-Kako je jedan segment prazan (niti jedan ispitanik mu ne pripada), zaključujemo da je broj segmenata koje s danim podacima i modelom možemo identificirati jednak `r lca_segments-1`.
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+### NEOVISNA SEGMENTACIJA >>>
+r = lapply(1:lca_segments, function(s) {
+  print(paste("Segment", s))
+  print(which(km1$cluster == s))
+})
+### NEOVISNA SEGMENTACIJA <<<
+```
+
+
+Segmentacija ispitanika se može i grafički prikazati:
+
+
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+### NEOVISNA SEGMENTACIJA >>>
+clusplot(estimated_resp_coefs, km1$cluster, color = TRUE, shade = TRUE, labels = 5, lines = 0, main = "K-means cluster plot")
+### NEOVISNA SEGMENTACIJA <<<
+```
 
 S dobivenom segmentacijom možemo primjerice kreirati više različitih proizvoda od kojih će svaki biti najzanimljiviji određenom segmentu (s obzirom na vrednovanje). Tako ćemo povećati prodaju i zadovoljstvo kupaca.
+
+
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+### NEOVISNA SEGMENTACIJA >>>
+# provjera u odnosu na simulaciju, ako postoji
+if (!is.null(simcoefs) & !is.null(simcoefs$beta) & !is.null(simcoefs$seg.df)) {
+
+  true_coefs = simcoefs$beta
+  true_segments = simcoefs$seg.df
+  
+  true_coefs_avg = apply(true_coefs, 2, mean)
+  
+  # koliko dobro je pogodio average koeficijente?
+  true_vs_estimated_coefs_avg = matrix(
+    data = c(true_coefs_avg, estimated_coefs_avg), 
+    nrow = 2,
+    ncol = length(estimated_coefs_avg),
+    byrow = TRUE,
+    dimnames = list(vals = c("true", "est"), coefs = names(estimated_coefs_avg))
+  )
+  true_vs_estimated_coefs_avg
+  
+  # nađemo permutaciju koja maksimizira točnu segmentaciju ispitanika
+  getPerms = function(x) {
+    if (length(x) == 1) {
+      return(x)
+    } else {
+      res = matrix(nrow = 0, ncol = length(x))
+      for (i in seq_along(x)) {
+        res = rbind(res, cbind(x[i], Recall(x[-i])))
+      }
+      return(res)
+    }
+  }
+  all_seg_perms = getPerms(1:designctx$rsegments)
+  seg_perm_score = rep(0, nrow(all_seg_perms))
+  for (i in 1:nrow(all_seg_perms)) {
+    km1cluster_permuted = rep(0, length(km1$cluster))
+    for (c in 1:designctx$rsegments) {
+      km1cluster_permuted[km1$cluster == c] = all_seg_perms[i, c]
+    }
+    seg_perm_score[i] = sum(true_segments$seg == km1cluster_permuted)
+  }
+  seg_perm = all_seg_perms[which.max(seg_perm_score), ] # ako treba "preimenovati" segmente, onda to napravimo ovdje s permutacijom
+  
+  estimated_coefs_by_seg = km1$centers
+  colnames(estimated_coefs_by_seg) = colnames(true_coefs)
+  estimated_coefs_by_seg = estimated_coefs_by_seg[seg_perm, ] # preslagivanje redova - segmenata prema permutaciji
+  rownames(estimated_coefs_by_seg) = rownames(true_coefs)
+  
+  # koliko dobro je pogodio koeficijente po segmentima?
+  true_vs_estimated_coefs_seg = matrix(
+    data = unlist(lapply(1:nrow(estimated_coefs_by_seg), function(i) c(true_coefs[i, ], estimated_coefs_by_seg[i, ]))), 
+    nrow = 2 * nrow(estimated_coefs_by_seg),
+    ncol = ncol(estimated_coefs_by_seg),
+    byrow = TRUE,
+    dimnames = list(
+      vals = unlist(lapply(1:nrow(estimated_coefs_by_seg), function(i) paste("seg_", i, "_", c("true", "est"), sep = ""))), 
+      coefs = colnames(estimated_coefs_by_seg))
+  )
+  true_vs_estimated_coefs_seg
+  
+  # koliko dobro je pogodio pripadnost ispitanika segmentu?
+  table(true_segments$seg == km1$cluster)
+  paste("Correct segmentation: ", round(sum(true_segments$seg == km1$cluster)/length(true_segments$seg), 2)*100, "%", sep = "")
+
+}
+### NEOVISNA SEGMENTACIJA <<<
+```
+
 
 
 ## TURF analiza
