@@ -1279,13 +1279,18 @@ Taking into account different factors (demographic or other), we can divide the 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 ### >>> GMNL LCA
-# print(sm.lc[, c("Estimate", "Std. Error")])
+# estimated_coefs_by_seg = sm.lc[, c("Estimate", "Std. Error")]
 ### GMNL LCA <<<
+```
 
+```{r echo= FALSE, warning = FALSE, message = FALSE}
 ### >>> STAN MC LCA
-#stan.mc.lca.betas.mean
+estimated_coefs_avg = stan.mc.lca.est[, "Mean"] # average coefficients
+estimated_coefs_by_seg = t(stan.mc.lca.betas.mean) # coefficients by segments
 ### STAN MC LCA <<<
+```
 
+```{r echo= FALSE, warning = FALSE, message = FALSE}
 ### >>> NEOVISNA SEGMENTACIJA
 estimated_resp_coefs = beta.post.mean # coefficients by respondent
 estimated_coefs_avg = sm.hb[, "Mean"] # average coefficients
@@ -1298,35 +1303,13 @@ km1 = kmeans(estimated_resp_coefs, centers = designctx$rsegments)
 estimated_coefs_by_seg = km1$centers
 colnames(estimated_coefs_by_seg) = names(estimated_coefs_avg)
 rownames(estimated_coefs_by_seg) = paste("seg", rownames(estimated_coefs_by_seg))
-estimated_coefs_by_seg
 ### NEOVISNA SEGMENTACIJA <<<
-
 ```
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
-
-### GMNL LCA >>>
-# cfs = coefficients(lcm)
-# cfs_s = list()
-# r = lapply(1:lca_segments, function(s) {
-#   wh = which(grepl(paste("class.", s, ".", sep = ""), names(cfs)))
-#   cfs_s[[s]] <<- cfs[wh]
-#   names(cfs_s[[s]]) <<- substring(names(cfs_s[[s]]), 9) # 9 je prvi character nakon class.1.
-# })
-# source('lc_helpers.R')
-# plot_ci_lc(lcm)
-# shares(lcm)
-### GMNL LCA <<<
+estimated_coefs_by_seg
 ```
 
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-### STAN MC LCA >>>
-# cfs_s_diffs = c()
-# r = lapply(1:(lca_segments-1), function(s) {
-#   cfs_s_diffs <<- unique(c(cfs_s_diffs, names(which(abs(stan.mc.lca.betas.mean[, s] - stan.mc.lca.betas.mean[, (s+1)]) > 0.5))))  
-# })
-### STAN MC LCA <<<
-```
 
 Since one of the goals of the segmentation is assigning each respondent to some segment (with the highest probability), let's see this result too (the numbers given are the numbers of the respondents belonging to a certain segment):
 
@@ -1342,37 +1325,27 @@ Since one of the goals of the segmentation is assigning each respondent to some 
 # pi_hat = lcm$Qir
 # colnames(pi_hat) = paste("q =", 1:lca_segments)
 # # segment (s najvećom vjerojatnošću) za svakog ispitanika
-# segs = apply(pi_hat, 1, which.max)
-# r = lapply(1:lca_segments, function(s) {
-#   print(paste("Segment", s))
-#   print(which(segs == s))
-# })
+# resp_segs = apply(pi_hat, 1, which.max)
 ### GMNL LCA <<<
 ```
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 ### STAN MC LCA >>>
-# resp_coefs = apply(stan.mc.lca.theta, 2:3, mean)
-# resp_probs = apply(resp_coefs, 2, softmax)
-# # moramo maknuti 0 ili NA
-# r = lapply(1:ncol(resp_probs), function(c) {
-#   if ((all(resp_probs[, c]) == 0) | (any(is.na(resp_probs[, c])))) resp_probs[, c] <<- (1/lca_segments)
-# })
-# resp_segs = apply(resp_probs, 2, which.max)
-# r = lapply(1:lca_segments, function(s) {
-#   print(paste("Segment", s))
-#   print(which(resp_segs == s))
-# })
+resp_segs = apply(apply(stan.mc.lca.theta, 2:3, mean), 2, which.max)
 ### STAN MC LCA <<<
 ```
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 ### NEOVISNA SEGMENTACIJA >>>
-r = lapply(1:lca_segments, function(s) {
-  print(paste("Segment", s))
-  print(which(km1$cluster == s))
-})
+resp_segs = km1$cluster
 ### NEOVISNA SEGMENTACIJA <<<
+```
+
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+for (s in 1:lca_segments) {
+  print(paste("Segment", s))
+  print(which(resp_segs == s))
+}
 ```
 
 
@@ -1424,16 +1397,16 @@ if (!is.null(simcoefs) & !is.null(simcoefs$beta) & !is.null(simcoefs$seg.df)) {
   }
   all_seg_perms = getPerms(1:designctx$rsegments)
   seg_perm_score = rep(0, nrow(all_seg_perms))
+  resp_segs_permuted = matrix(0, nrow = nrow(all_seg_perms), ncol = length(resp_segs))
   for (i in 1:nrow(all_seg_perms)) {
-    km1cluster_permuted = rep(0, length(km1$cluster))
     for (c in 1:designctx$rsegments) {
-      km1cluster_permuted[km1$cluster == c] = all_seg_perms[i, c]
+      resp_segs_permuted[i, resp_segs == c] = all_seg_perms[i, c]
     }
-    seg_perm_score[i] = sum(true_segments$seg == km1cluster_permuted)
+    seg_perm_score[i] = sum(true_segments$seg == resp_segs_permuted[i, ])
   }
   seg_perm = all_seg_perms[which.max(seg_perm_score), ] # ako treba "preimenovati" segmente, onda to napravimo ovdje s permutacijom
   
-  estimated_coefs_by_seg = km1$centers
+  # estimated_coefs_by_seg je gore definirano, ovisno o metodi
   colnames(estimated_coefs_by_seg) = colnames(true_coefs)
   estimated_coefs_by_seg = estimated_coefs_by_seg[seg_perm, ] # preslagivanje redova - segmenata prema permutaciji
   rownames(estimated_coefs_by_seg) = rownames(true_coefs)
@@ -1451,8 +1424,9 @@ if (!is.null(simcoefs) & !is.null(simcoefs$beta) & !is.null(simcoefs$seg.df)) {
   true_vs_estimated_coefs_seg
   
   # koliko dobro je pogodio pripadnost ispitanika segmentu?
-  table(true_segments$seg == km1$cluster)
-  paste("Correct segmentation: ", round(sum(true_segments$seg == km1$cluster)/length(true_segments$seg), 2)*100, "%", sep = "")
+  resp_segs = resp_segs_permuted[which.max(seg_perm_score), ]
+  table(true_segments$seg == resp_segs)
+  paste("Correct segmentation: ", round(sum(true_segments$seg == resp_segs)/length(true_segments$seg), 2)*100, "%", sep = "")
 
 }
 ### NEOVISNA SEGMENTACIJA <<<

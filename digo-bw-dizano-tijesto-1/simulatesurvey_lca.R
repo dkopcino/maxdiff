@@ -20,7 +20,7 @@ if (length(designctx$covariates) > 0) {
   colnames(cbdf) = colnames(designctx$fullfact_covdesign) # ako je samo jedan cov, onda ovo treba eksplicitno postaviti
   # ovo dodajemo da izbjegnemo kombinaciju (0, 0) koja radi problem recimo za LCA: softmax(0, 0)
   # uvijek daje jednake vjerojatnosti za sve segmente pa ne možemo dobiti ništa osim toga
-  contrasts(cbdf[, designctx$design.predictors$cov.predictors]) = contr.sum
+  for (cpn in designctx$design.predictors$cov.predictors) contrasts(cbdf[[cpn]]) = contr.sum
   mm1 = model.matrix.lm(fml1, cbdf, na.action = "na.pass")
   coef.names1 = colnames(mm1)[-1]
 }
@@ -28,11 +28,10 @@ if (length(designctx$covariates) > 0) {
 # we handle the prices differently because they should follow the logical higher price > smaller utility order
 pricecoefs = which(grepl("cijena|price", coef.names))
 # we assume that the lowest price is first in line and the highest price last
-#mu[pricecoefs] = (-1)*sort(round(rexp(length(pricecoefs), 0.8), 2), decreasing = FALSE)
-mu[pricecoefs] = (-1)*sort(round(abs(rnorm(length(pricecoefs), 0, 3)), 2), decreasing = FALSE)
+mu[pricecoefs] = sort(round(runif(length(pricecoefs), -1.99, -0.1), 2), decreasing = TRUE)
 
 # variances
-Sigma = diag(round(abs(rnorm(length(coef.names), 0, 1)), 2))
+Sigma = diag(round(runif(length(coef.names), 1, 5), 2))
 rownames(Sigma) = colnames(Sigma) = coef.names
 # we can add some correlations if we want but we have to take care that Sigma stays positive definite
 #Sigma[coef.names[1], coef.names[length(coef.names)-1]] = Sigma[coef.names[length(coef.names)-1], coef.names[1]] = runif(1, -1, 1)
@@ -61,7 +60,7 @@ colnames(coefs) = coef.names
 # za pripadnost svakom segmentu
 covmu = round(rnorm(CL, 0, 1), 2)
 names(covmu) = paste("seg_", 1:CL, sep = "")
-covSigma = diag(round(abs(rnorm(CL, 0.01, 1)), 2))
+covSigma = diag(round(abs(rnorm(CL, 10, 20)), 2))
 rownames(covSigma) = colnames(covSigma) = names(covmu)
 gammacoefs = array(mvrnorm(G, mu = covmu, Sigma = covSigma), dim = c(CL, G))
 colnames(gammacoefs) = coef.names1
@@ -88,7 +87,7 @@ for (i in seq_along(resp.id)) {
     colnames(cbdf) = colnames(designctx$fullfact_covdesign) # ako je samo jedan cov, onda ovo treba eksplicitno postaviti
     # ovo dodajemo da izbjegnemo kombinaciju (0, 0) koja radi problem recimo za LCA: softmax(0, 0)
     # uvijek daje jednake vjerojatnosti za sve segmente pa ne možemo dobiti ništa osim toga
-    contrasts(cbdf[, designctx$design.predictors$cov.predictors]) = contr.sum
+    for (cpn in designctx$design.predictors$cov.predictors) contrasts(cbdf[[cpn]]) = contr.sum
     mm1 = model.matrix.lm(fml1, cbdf, na.action = "na.pass")
     Z = array(t(mm1[, -1]), dim = c(G, 1))
   } else {
@@ -102,8 +101,8 @@ for (i in seq_along(resp.id)) {
     respsi = i
   } else {
     theta = as.vector(softmax(gammacoefs %*% Z)) # vektor vjerojatnosti da ispitanik pripada u segmente
-    #respsi = which.max(theta) # u koji segment spada ispitanik
-    respsi = extraDistr::rcat(1, prob = theta)
+    respsi = which.max(theta) # u koji segment spada ispitanik
+    #respsi = extraDistr::rcat(1, prob = theta)
   }
   seg.df[i, "seg"] = respsi
 
@@ -121,12 +120,14 @@ for (i in seq_along(resp.id)) {
   
   # personal information does not participate in the calculation, so we just add it here to have full simulated answers
   if (length(designctx$personals) > 0) {
-    r = lapply(1:length(designctx$personals), function(i) {
-      p = designctx$personals[i]
+    r = lapply(1:length(designctx$personals), function(pi) {
+      p = designctx$personals[pi]
       n = names(p)
+      # samo ove handleamo
       if (p[[n]][["tip"]] == "email") {
-        # samo to handleamo
-        surveydf[[n]] <<- rep("abc@g.com", nrow(surveydf))
+        surveydf[[n]] <<- rep(paste(sprintf("%04d", i), "abc@g.com", sep = ""), nrow(surveydf))
+      } else if (p[[n]][["tip"]] == "dropdown") {
+        surveydf[[n]] <<- rep(sample(p[[n]][["vrijednosti"]], 1), nrow(surveydf))
       }
     })
   }
