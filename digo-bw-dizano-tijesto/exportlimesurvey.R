@@ -60,7 +60,7 @@ rr = lapply(1:nrow(limesurvey.df), function(r) {
   best_choices = choices[2*(1:designctx$nquestions)-1]
   # we assume that the worst choice is the second option/subquestion/answer, if not change this!
   worst_choices = choices[2*(1:designctx$nquestions)]
-  if (any(best_choices == worst_choices)) stop("best and worst choice cannot be the same")
+  # if (any(best_choices == worst_choices)) stop("best and worst choice cannot be the same")
   best_choices = rep(best_choices, each = designctx$nalternatives)
   worst_choices = rep(worst_choices, each = designctx$nalternatives)
   # match alternative numbers with choices to set the chosen alternatives

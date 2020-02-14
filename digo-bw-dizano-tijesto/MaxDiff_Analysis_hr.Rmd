@@ -289,6 +289,9 @@ domodelmatrix_itemscovs_bwencode = function(alt, covs, nalts) {
   ret_matrix
 }
 
+cbc.df = na.omit(cbc.df) # ako je bilo nedostajućih podataka, treba maknuti retke koji ne nose informacije, PROVJERITI!
+cbc.df$resp.id = as.numeric(factor(cbc.df$resp.id)) # renumeracija resp.id ako je bilo micanja nedostajućih podataka
+
 # petlja za svaki resp.id
 # enkodirati pitanja, covariates, best+worst choice
 # ako ima, enkodirati anchor pitanja kao choice, dodati na kraj data.framea za resp.id
@@ -317,8 +320,8 @@ for (resp.id in 1:max(cbc.df$resp.id)) {
   if (designctx$anchors > 0) {
     anchorcolnames = getanchorcolnames(designctx$anchors)
     anchorcols = cbc.df.sf[, colnames(cbc.df.sf) %in% anchorcolnames]
-    best_choices = cbc.df.sf[cbc.df$best_choice == 1, ]$alt
-    worst_choices = cbc.df.sf[cbc.df$worst_choice == 1, ]$alt
+    best_choices = cbc.df.sf[cbc.df.sf$best_choice == 1, ]$alt
+    worst_choices = cbc.df.sf[cbc.df.sf$worst_choice == 1, ]$alt
     anchors = getanchors(designctx$anchors, best_choices, worst_choices)
     if (length(designctx$covariates) > 0) {
       anch.mm = domodelmatrix_itemscovs(anchors, getdfcolumns(covs[rep(1, length(anchors)), ], cnames = colnames(covs)))
@@ -416,20 +419,20 @@ cbc.mlogit = mlogit.data(data = cbc.mm, choice = "choice", shape = "long",
                          chid.var = "resp.ques",
                          id.var = "resp.id")
 
-# ## BUILD AND SAVE MODEL
-# # Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
-# # (znači u formuli idu iza | i s 0 +)
-# m1 = mlogit(fml1, data = cbc.mlogit)
-# # summary(m1)
-# m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
-# names(m1.rpar) = names(m1$coef)
-# m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
-# # summary(m1.hier)
-# # m2.hier = update(m1.hier, correlation = TRUE)
-# # summary(m2.hier)
-# # SAVE/LOAD
-# m2.hier$cov.df = cov.df
-# saveRDS(m2.hier, mnlmodelfile)
+## BUILD AND SAVE MODEL
+# Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
+# (znači u formuli idu iza | i s 0 +)
+m1 = mlogit(fml1, data = cbc.mlogit)
+# summary(m1)
+m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
+names(m1.rpar) = names(m1$coef)
+m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
+# summary(m1.hier)
+# m2.hier = update(m1.hier, correlation = TRUE)
+# summary(m2.hier)
+# SAVE/LOAD
+m2.hier$cov.df = cov.df
+saveRDS(m2.hier, mnlmodelfile)
 
 ## LOAD MODEL
 if (!is.null(cbc.mm$resp.ques)) cbc.mm$resp.ques = NULL
@@ -462,21 +465,21 @@ if (length(designctx$covariates) > 0) {
   demos = as.matrix(cmr.mm[(0:(max_resp_id-1))*(total_rows/max_resp_id)+1, cov.columns])
 }
 
-# ## Build and save the model
-# if (!is.null(demos)) {
-#   hb.post = choicemodelr(data = cmr.mm.bez.cov,
-#                          xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
-#                          demos = demos,
-#                          mcmc = list(R = 20000, use = 10000),
-#                          options = list(save = TRUE))
-# } else {
-#   hb.post = choicemodelr(data = cmr.mm.bez.cov,
-#                          xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
-#                          mcmc = list(R = 20000, use = 10000),
-#                          options = list(save = TRUE))
-# }
-# saveRDS(hb.post, hbmodelfile)
-# ##
+## Build and save the model
+if (!is.null(demos)) {
+  hb.post = choicemodelr(data = cmr.mm.bez.cov,
+                         xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
+                         demos = demos,
+                         mcmc = list(R = 20000, use = 10000),
+                         options = list(save = TRUE))
+} else {
+  hb.post = choicemodelr(data = cmr.mm.bez.cov,
+                         xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
+                         mcmc = list(R = 20000, use = 10000),
+                         options = list(save = TRUE))
+}
+saveRDS(hb.post, hbmodelfile)
+##
 
 hb.post = readRDS(hbmodelfile)
 

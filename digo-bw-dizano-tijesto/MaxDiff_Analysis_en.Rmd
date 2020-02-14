@@ -285,6 +285,9 @@ domodelmatrix_itemscovs_bwencode = function(alt, covs, nalts) {
   ret_matrix
 }
 
+cbc.df = na.omit(cbc.df) # ako je bilo nedostajućih podataka, treba maknuti retke koji ne nose informacije, PROVJERITI!
+cbc.df$resp.id = as.numeric(factor(cbc.df$resp.id)) # renumeracija resp.id ako je bilo micanja nedostajućih podataka
+
 # petlja za svaki resp.id
 # enkodirati pitanja, covariates, best+worst choice
 # ako ima, enkodirati anchor pitanja kao choice, dodati na kraj data.framea za resp.id
@@ -313,8 +316,8 @@ for (resp.id in 1:max(cbc.df$resp.id)) {
   if (designctx$anchors > 0) {
     anchorcolnames = getanchorcolnames(designctx$anchors)
     anchorcols = cbc.df.sf[, colnames(cbc.df.sf) %in% anchorcolnames]
-    best_choices = cbc.df.sf[cbc.df$best_choice == 1, ]$alt
-    worst_choices = cbc.df.sf[cbc.df$worst_choice == 1, ]$alt
+    best_choices = cbc.df.sf[cbc.df.sf$best_choice == 1, ]$alt
+    worst_choices = cbc.df.sf[cbc.df.sf$worst_choice == 1, ]$alt
     anchors = getanchors(designctx$anchors, best_choices, worst_choices)
     if (length(designctx$covariates) > 0) {
       anch.mm = domodelmatrix_itemscovs(anchors, getdfcolumns(covs[rep(1, length(anchors)), ], cnames = colnames(covs)))

@@ -921,8 +921,7 @@
 
 #ir_util = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = i), resp_i = r)
 
-#combs_df = get_rf_df(cspi, start_comb)
-
+combs_df = get_rf_df(cspi, start_comb)
 
 shares.mnl = predict.hier.mnl(m2.hier, data = ffd_df)
 

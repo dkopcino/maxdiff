@@ -26,7 +26,12 @@ Nove pizze između kojih ispitanici biraju su:
 source("surveyconfig.R")
 
 designctx = readRDS(designctxfile)
+
+cbc.df_0 = read.csv(gsub("_answers", "_answers_0", answersfile), header = TRUE, sep = ",", quote = "\"", stringsAsFactors = FALSE)
 cbc.df = read.csv(answersfile, header = TRUE, sep = ",", quote = "\"", stringsAsFactors = FALSE)
+cbc.df_0$resp.id = cbc.df_0$resp.id + max(cbc.df$resp.id)
+cbc.df = rbind(cbc.df, cbc.df_0)
+
 simcoefs = NULL
 if (file.exists(simulatecoefsfile)) simcoefs = readRDS(simulatecoefsfile)
 r = lapply(colnames(designctx$survey), function(cn) {
@@ -119,8 +124,7 @@ bw.df = cbc.df %>% group_by(alt) %>% summarise(chosen_as_best = sum(best_choice)
 library(knitr)
 library(kableExtra)
 
-# bw.df %>% mutate(chosen_as_best = cell_spec(chosen_as_best, "latex", color = ifelse(chosen_as_best == max(bw.df$chosen_as_best), "white", "black"), background = ifelse(chosen_as_best == max(bw.df$chosen_as_best), "blue", "white")),
-#                  chosen_as_worst = cell_spec(chosen_as_worst, "latex", color = ifelse(chosen_as_worst == max(bw.df$chosen_as_worst), "white", "black"), background = ifelse(chosen_as_worst == max(bw.df$chosen_as_worst), "red", "white"))) %>%
+# bw.df %>% mutate(chosen_as_best = cell_spec(chosen_as_best, "latex", color = ifelse(chosen_as_best == max(bw.df$chosen_as_best), "white", "black"), background = ifelse(chosen_as_best == max(bw.df$chosen_as_best), "blue", "white")), chosen_as_worst = cell_spec(chosen_as_worst, "latex", color = ifelse(chosen_as_worst == max(bw.df$chosen_as_worst), "white", "black"), background = ifelse(chosen_as_worst == max(bw.df$chosen_as_worst), "red", "white"))) %>%
 # kable("latex", booktabs = T, linesep = "", align = "c")
 
 kable(bw.df, "latex", booktabs = T, linesep = "", align = "c") %>%
@@ -289,13 +293,24 @@ domodelmatrix_itemscovs_bwencode = function(alt, covs, nalts) {
   ret_matrix
 }
 
+```
+
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+
+#cbc.df = na.omit(cbc.df) # ako je bilo nedostajućih podataka, treba maknuti retke koji ne nose informacije, PROVJERITI!
+#cbc.df$resp.id = as.numeric(factor(cbc.df$resp.id)) # renumeracija resp.id ako je bilo micanja nedostajućih podataka
+
+cbc.df = cbc.df[!is.na(cbc.df$best_choice) & !is.na(cbc.df$worst_choice), ]
+
 # petlja za svaki resp.id
 # enkodirati pitanja, covariates, best+worst choice
 # ako ima, enkodirati anchor pitanja kao choice, dodati na kraj data.framea za resp.id
 cbc.mm = data.frame(NULL)
 for (resp.id in 1:max(cbc.df$resp.id)) {
+  #print(paste("resp.id = ", resp.id, sep = ""))
   # izvuci subframe
   cbc.df.sf = cbc.df[cbc.df$resp.id == resp.id, ]
+  if (nrow(cbc.df.sf) == 0) next
   nalts = designctx$nalternatives
   if (length(designctx$covariates) > 0) {
     covs = getdfcolumns(df = cbc.df.sf, cnames = names(designctx$covariates))
@@ -317,8 +332,8 @@ for (resp.id in 1:max(cbc.df$resp.id)) {
   if (designctx$anchors > 0) {
     anchorcolnames = getanchorcolnames(designctx$anchors)
     anchorcols = cbc.df.sf[, colnames(cbc.df.sf) %in% anchorcolnames]
-    best_choices = cbc.df.sf[cbc.df$best_choice == 1, ]$alt
-    worst_choices = cbc.df.sf[cbc.df$worst_choice == 1, ]$alt
+    best_choices = cbc.df.sf[cbc.df.sf$best_choice == 1, ]$alt
+    worst_choices = cbc.df.sf[cbc.df.sf$worst_choice == 1, ]$alt
     anchors = getanchors(designctx$anchors, best_choices, worst_choices)
     if (length(designctx$covariates) > 0) {
       anch.mm = domodelmatrix_itemscovs(anchors, getdfcolumns(covs[rep(1, length(anchors)), ], cnames = colnames(covs)))
@@ -343,6 +358,8 @@ for (resp.id in 1:max(cbc.df$resp.id)) {
 }
 
 rownames(cbc.mm) = c()
+
+cbc.mm = na.omit(cbc.mm)
 
 if (designctx$anchors == 0) {
   # remove the Intercept column - it is essentially contained in the alt column (Intercept is when all predictors are 0 - that leaves only the alt as the predictor)
@@ -416,20 +433,20 @@ cbc.mlogit = mlogit.data(data = cbc.mm, choice = "choice", shape = "long",
                          chid.var = "resp.ques",
                          id.var = "resp.id")
 
-# ## BUILD AND SAVE MODEL
-# # Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
-# # (znači u formuli idu iza | i s 0 +)
-# m1 = mlogit(fml1, data = cbc.mlogit)
-# # summary(m1)
-# m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
-# names(m1.rpar) = names(m1$coef)
-# m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
-# # summary(m1.hier)
-# # m2.hier = update(m1.hier, correlation = TRUE)
-# # summary(m2.hier)
-# # SAVE/LOAD
-# m2.hier$cov.df = cov.df
-# saveRDS(m2.hier, mnlmodelfile)
+## BUILD AND SAVE MODEL
+# Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
+# (znači u formuli idu iza | i s 0 +)
+m1 = mlogit(fml1, data = cbc.mlogit)
+# summary(m1)
+m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
+names(m1.rpar) = names(m1$coef)
+m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
+# summary(m1.hier)
+# m2.hier = update(m1.hier, correlation = TRUE)
+# summary(m2.hier)
+# SAVE/LOAD
+m2.hier$cov.df = cov.df
+saveRDS(m2.hier, mnlmodelfile)
 
 ## LOAD MODEL
 if (!is.null(cbc.mm$resp.ques)) cbc.mm$resp.ques = NULL
@@ -462,21 +479,21 @@ if (length(designctx$covariates) > 0) {
   demos = as.matrix(cmr.mm[(0:(max_resp_id-1))*(total_rows/max_resp_id)+1, cov.columns])
 }
 
-# ## Build and save the model
-# if (!is.null(demos)) {
-#   hb.post = choicemodelr(data = cmr.mm.bez.cov,
-#                          xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
-#                          demos = demos,
-#                          mcmc = list(R = 20000, use = 10000),
-#                          options = list(save = TRUE))
-# } else {
-#   hb.post = choicemodelr(data = cmr.mm.bez.cov,
-#                          xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
-#                          mcmc = list(R = 20000, use = 10000),
-#                          options = list(save = TRUE))
-# }
-# saveRDS(hb.post, hbmodelfile)
-# ##
+## Build and save the model
+if (!is.null(demos)) {
+  hb.post = choicemodelr(data = cmr.mm.bez.cov,
+                         xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
+                         demos = demos,
+                         mcmc = list(R = 20000, use = 10000),
+                         options = list(save = TRUE))
+} else {
+  hb.post = choicemodelr(data = cmr.mm.bez.cov,
+                         xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
+                         mcmc = list(R = 20000, use = 10000),
+                         options = list(save = TRUE))
+}
+saveRDS(hb.post, hbmodelfile)
+##
 
 hb.post = readRDS(hbmodelfile)
 
@@ -574,27 +591,27 @@ stanmc_check_fit = function(fit) {
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 #############################################################################################################
 ### >>> STAN MC HIERARCHICAL BAYES
-# ## BUILD THE MODEL
-# cores = parallel::detectCores() - 1
-# stan.mc = stan(file = "hmnl.stan",
-#                data = standata,
-#                verbose = FALSE,
-#                chains = cores,
-#                iter = 1000,
-#                #algorithm = "HMC",
-#                control = list(adapt_delta = 0.90, stepsize = 0.5),
-#                cores = cores)
-# 
-# # plot(stan.mc, plotfun = "trace", pars = c("Theta"))
-# # plot(stan.mc, plotfun = "trace", pars = c("tau"))
-# # plot(stan.mc, plotfun = "trace", pars = c("Omega[1,2]"))
-# # plot(stan.mc, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
-# # summary(stan.mc)$summary[, c("Rhat", "n_eff")]
-# 
-# # stanmc_check_fit(stan.mc) # should say ok = TRUE
-# 
-# saveRDS(stan.mc, stanmcmodelfile)
-# ##
+## BUILD THE MODEL
+cores = parallel::detectCores() - 1
+stan.mc = stan(file = "hmnl.stan",
+               data = standata,
+               verbose = FALSE,
+               chains = cores,
+               iter = 1000,
+               #algorithm = "HMC",
+               control = list(adapt_delta = 0.90, stepsize = 0.5),
+               cores = cores)
+
+# plot(stan.mc, plotfun = "trace", pars = c("Theta"))
+# plot(stan.mc, plotfun = "trace", pars = c("tau"))
+# plot(stan.mc, plotfun = "trace", pars = c("Omega[1,2]"))
+# plot(stan.mc, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
+# summary(stan.mc)$summary[, c("Rhat", "n_eff")]
+
+# stanmc_check_fit(stan.mc) # should say ok = TRUE
+
+saveRDS(stan.mc, stanmcmodelfile)
+##
 
 stan.mc = readRDS(stanmcmodelfile)
 
@@ -636,28 +653,28 @@ rownames(stan.mc.est) = setdiff(colnames(cmr.mm.bez.cov), c("resp.id", "ques", "
 # sve ostalo je definirano gore kod stan.mc
 standata$CL = designctx$rsegments
 
-# # BUILD MODEL
-# cores = parallel::detectCores() - 1
-# #cores = parallel::detectCores()
-# # https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html
-# stan.mc.lca = stan(file = "hmnl_lca.stan",
-#                    data = standata,
-#                    verbose = FALSE,
-#                    chains = cores, # * 2,
-# #                   iter = floor(2000 / 1),
-#                    iter = 1000,
-#                    #algorithm = "HMC",
-#                    control = list(adapt_delta = 0.90, stepsize = 0.5), # def adapt_delta 0.8, stespize = 2.0
-#                    cores = cores)
-# # plot(stan.mc.lca, plotfun = "trace", pars = c("Theta"))
-# # plot(stan.mc.lca, plotfun = "trace", pars = c("tau"))
-# # plot(stan.mc.lca, plotfun = "trace", pars = c("Omega[1,2]"))
-# # plot(stan.mc.lca, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
-# # summary(stan.mc.lca)$summary[, c("Rhat", "n_eff")]
-# # stanmc_check_fit(stan.mc.lca) # should say ok = TRUE
-# 
-# saveRDS(stan.mc.lca, stanmclcamodelfile)
-# ##
+# BUILD MODEL
+cores = parallel::detectCores() - 1
+#cores = parallel::detectCores()
+# https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html
+stan.mc.lca = stan(file = "hmnl_lca_2.stan",
+                   data = standata,
+                   verbose = FALSE,
+                   chains = cores, # * 2,
+#                   iter = floor(2000 / 1),
+                   iter = 1000,
+                   #algorithm = "HMC",
+                   control = list(adapt_delta = 0.90, stepsize = 0.5), # def adapt_delta 0.8, stespize = 2.0
+                   cores = cores)
+# plot(stan.mc.lca, plotfun = "trace", pars = c("Theta"))
+# plot(stan.mc.lca, plotfun = "trace", pars = c("tau"))
+# plot(stan.mc.lca, plotfun = "trace", pars = c("Omega[1,2]"))
+# plot(stan.mc.lca, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
+# summary(stan.mc.lca)$summary[, c("Rhat", "n_eff")]
+# stanmc_check_fit(stan.mc.lca) # should say ok = TRUE
+
+saveRDS(stan.mc.lca, stanmclcamodelfile)
+##
 
 stan.mc.lca = readRDS(stanmclcamodelfile)
 
@@ -763,68 +780,6 @@ Ovi rezultati pokazuju i glavne prednosti MaxDiff analize u odnosu na jednostavn
 * pozicije proizvoda *u odnosu na (ključnu!) točku koja označava pozitivan ili negativan stav* - kupio bih ili ne, zanima me ili ne...
 
 Time dobivamo kompletnu sliku svih proizvoda iz perspektive ispitanika i možemo donositi kvalitetne poslovne odluke.
-
-
-## Analiza koreliranosti proizvoda
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-#cc = cov2cor(cov.mlogit(m2.hier))
-
-cc = cov2cor(crossprod(Reduce('+', lapply(1:length(hb.post$compdraw), function(i) {
-  hb.post$compdraw[[i]]$rooti
-}))/length(hb.post$compdraw)))
-rownames(cc) = colnames(cc) = colnames(cbc.mm.clear)
-
-#cc = stan.mc.sigma
-#cc = stan.mc.lca.betasigma
-# cc
-
-# locate maximal element
-# i = (which(cc == max(cc[which(cc < 1)])))[1]
-# dn1 = dimnames(cc)[[1]]
-# d = length(dn1)
-# n1 = dn1[ceiling(i/d)]
-# n2 = dn1[i %% d]
-
-# pick a random variable to check correlations
-corvar = sample(colnames(cbc.mm.clear), 1)
-#corvar = "ribarska"
-# correlation = cc[which((abs(cc[ , corvar]) > 0.4) & (abs(cc[ , corvar]) < 1)), corvar]
-pos_correlated = which((cc[, corvar] < 1) & (cc[ , corvar] > 0))
-neg_correlated = which(cc[ , corvar] < 0)
-if (length(pos_correlated) < 3) {
-  correlation = cc[union(neg_correlated[1:min((5-length(pos_correlated)), length(neg_correlated))], pos_correlated), corvar]
-} else if (length(neg_correlated) < 3) {
-  correlation = cc[union(pos_correlated[1:min((5-length(neg_correlated)), length(pos_correlated))], neg_correlated), corvar]
-} else {
-  correlation = cc[union(neg_correlated[1:2], pos_correlated[1:3]), corvar]
-}
-# plot(correlation, main = paste("Correlations between", corvar, "and other variables"), xaxt = "n", 
-#      cex = 3, col = "red", ylim = c(1.1*min(correlation), 1.1*max(correlation)))
-# axis(side = 1, at = 1:4, labels = names(correlation))
-
-correlation_t = as.data.frame(correlation)
-correlation_t$names = row.names(correlation_t)
-
-```
-
-
-Drugi element koji možemo analizirati je korelacija između vrijednosti pojedinih proizvoda. 
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-
-library(ggplot2)
-ggplot(data = correlation_t, aes(x = substr(correlation_t$names, 1, 18), y = correlation)) + geom_col(color = "red", fill = "pink", width = .03) +
-  geom_hline(aes(yintercept = 0), color = "red") + xlab("") + ggtitle(paste("Correlations between", paste(substr(corvar, 1, 30), "..", sep = ""), "and other values"))
-
-```
-
-
-Primjerice, u gore prikazanom grafu možemo vidjeti da je *`r corvar`* pozitivno korelirana s *`r names(correlation[correlation > 0])`*, a negativno korelirana s *`r names(correlation[correlation < 0])`*. To znači da ako ispitanici daju veću vrijednost pizzi *`r corvar`*, onda daju veću vrijednost i *`r names(correlation[correlation > 0])`*, dok za *`r names(correlation[correlation < 0])`* daju manju vrijednost.
-
-Rezultate analize i procjene koeficijenata vrijednosti opcija najlakše je razumjeti preko "predviđanja udjela" (share prediction) što ćemo sada prikazati.
 
 
 ## Predviđanje udjela (share prediction)
@@ -1131,10 +1086,10 @@ ffd_df = data.frame(opcije = designctx$items[sample(5)])
 #   ffd_df = cbind(ffd_df, ffd_covdf)
 # }
 
-shares.mnl = predict.hier.mnl(m2.hier, data = ffd_df)
+#shares.mnl = predict.hier.mnl(m2.hier, data = ffd_df)
 shares.hb = predict.hb.mnl(hb.post, data = ffd_df)
-shares.stan.mc = predict.stan.mc(stan.mc, data = ffd_df)
-shares.stan.mc.lca = predict.stan.mc(stan.mc.lca, data = ffd_df)
+#shares.stan.mc = predict.stan.mc(stan.mc, data = ffd_df)
+#shares.stan.mc.lca = predict.stan.mc(stan.mc.lca, data = ffd_df)
 
 shares = shares.hb
 # shares = shares.stan.mc
@@ -1153,93 +1108,6 @@ U prethodnoj tablici možemo vidjeti kako bi ispitanici birali između `r nrow(f
 
 **Najčešće birana opcija** (između navedenih, ne općenito) je *`r paste(as.matrix(mostshare[, -ncol(mostshare)]), collapse = ", ")`* **s previđenim udjelom u prodaji `r max(shares[["share %"]])`%**.
 
-
-
-## Provjera modela na postojećim podacima
-
-
-Korištenjem predviđanja udjela/vjerojatnosti prodaje za razne kombinacije proizvoda, možemo testirati i kako bi naš model predvidio izbor za (neke) kombinacije koje su dane u istraživanju:
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-
-holdout_respondents_n = 30
-holdout_respondents_q = 3
-holdout_respondents = sample(1:max(cbc.df$resp.id), holdout_respondents_n, replace = FALSE)
-holdout_questions = sample(1:max(cbc.df$ques), holdout_respondents_q, replace = FALSE)
-keep_cols = c("alt")
-
-rgrid = expand.grid(holdout_questions, holdout_respondents)
-holdout_true_predicted = matrix(
-  NA, 
-  nrow = holdout_respondents_n * holdout_respondents_q, 
-  ncol = 6, 
-  dimnames = list(
-    "respondent/question" = paste(rgrid$Var2, "/", rgrid$Var1, sep = ""),
-    "choice" = c("true best", "predicted best", "correct best", "true worst", "predicted worst", "correct worst")
-  )
-)
-
-holdout_true_predicted_mnl = holdout_true_predicted_hb = holdout_true_predicted_stan_mc = holdout_true_predicted_stan_mc_lca = holdout_true_predicted
-for (i in 1:holdout_respondents_n) { # respondent
-  for (j in 1:holdout_respondents_q) { # question
-    ffd_df = cbc.df[(cbc.df$resp.id == holdout_respondents[i]) & (cbc.df$ques == holdout_questions[j]), ]
-    true_best_choice = which(ffd_df$best_choice == 1)
-    true_worst_choice = which(ffd_df$worst_choice == 1)
-    ffd_df = getdfcolumns(ffd_df, cnames = keep_cols)
-    
-    # predicted = predict.hier.mnl.choice(m2.hier, ffd_df, holdout_respondents[i])
-    # predicted_best_choice = which(predicted$best_choice == 1)
-    # predicted_worst_choice = which(predicted$worst_choice == 1)
-    # holdout_true_predicted_mnl[(i-1)*holdout_respondents_q+j, ] = 
-    #   c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
-    #     true_worst_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
-    # 
-    predicted = predict.hb.mnl.choice(hb.post, ffd_df, holdout_respondents[i])
-    predicted_best_choice = which(predicted$best_choice == 1)
-    predicted_worst_choice = which(predicted$worst_choice == 1)
-    holdout_true_predicted_hb[(i-1)*holdout_respondents_q+j, ] = 
-      c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
-        true_worst_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
-
-    # predicted = predict.stan.mc.choice(stan.mc, ffd_df, holdout_respondents[i])
-    # predicted_best_choice = which(predicted$best_choice == 1)
-    # predicted_worst_choice = which(predicted$worst_choice == 1)
-    # holdout_true_predicted_stan_mc[(i-1)*holdout_respondents_q+j, ] =
-    #   c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
-    #     true_best_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
-    # 
-    # predicted = predict.stan.mc.choice(stan.mc.lca, ffd_df, holdout_respondents[i])
-    # predicted_best_choice = which(predicted$best_choice == 1)
-    # predicted_worst_choice = which(predicted$worst_choice == 1)
-    # holdout_true_predicted_stan_mc_lca[(i-1)*holdout_respondents_q+j, ] =
-    #   c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
-    #     true_best_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
-  }
-}
-
-# sum(holdout_true_predicted_mnl[, "correct best"])/nrow(holdout_true_predicted_mnl)
-# sum(holdout_true_predicted_mnl[, "correct worst"])/nrow(holdout_true_predicted_mnl)
-# sum(holdout_true_predicted_hb[, "correct best"])/nrow(holdout_true_predicted_hb)
-# sum(holdout_true_predicted_hb[, "correct worst"])/nrow(holdout_true_predicted_hb)
-# sum(holdout_true_predicted_stan_mc[, "correct best"])/nrow(holdout_true_predicted_stan_mc)
-# sum(holdout_true_predicted_stan_mc[, "correct worst"])/nrow(holdout_true_predicted_stan_mc)
-# sum(holdout_true_predicted_stan_mc_lca[, "correct best"])/nrow(holdout_true_predicted_stan_mc_lca)
-# sum(holdout_true_predicted_stan_mc_lca[, "correct worst"])/nrow(holdout_true_predicted_stan_mc_lca)
-
-#holdout_true_predicted = holdout_true_predicted_mnl
-holdout_true_predicted = holdout_true_predicted_hb
-#holdout_true_predicted = holdout_true_predicted_stan_mc
-#holdout_true_predicted = holdout_true_predicted_stan_mc_lca
-
-holdout_true_predicted[sample(1:nrow(holdout_true_predicted), 20), !(colnames(holdout_true_predicted) %in% c("correct best", "correct worst"))]
-#holdout_true_predicted[sample(1:nrow(holdout_true_predicted), 20), ]
-total_correct = sum(holdout_true_predicted[, "correct best"]) + sum(holdout_true_predicted[, "correct worst"])
-paste("Ukupno točno predviđanja:", round(100*total_correct/(2*nrow(holdout_true_predicted)), digits = 2), "%", sep = "")
-
-```
-
-Ukupna točnost predviđanja daje nam sigurnost da naš model dobro funkcionira.
 
 
 ## Segmentacija ispitanika
@@ -1444,7 +1312,7 @@ if (!is.null(simcoefs) & !is.null(simcoefs$beta) & !is.null(simcoefs$seg.df)) {
 Ponudom u kojoj se nalazi više proizvoda povećat ćemo vjerojatnost da će barem neki proizvod biti kupljen od strane kupaca. Da bismo izračunali koji proizvodi bi trebali biti u ponudi da bismo postigli najveću prodaju, koristimo TURF (total unduplicated reach and frequency) analizu.
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
-comb_size = 3 # size of the TURF combination that we will test
+comb_size = 7 # size of the TURF combination that we will test
 ```
 
 Pretpostavimo da u ponudu želimo staviti `r comb_size` proizvoda. Za svaku kombinaciju/ponudu koja sadrži `r comb_size` proizvoda i za svakog ispitanika iz našeg istraživanja izračunat ćemo da li bi kupio barem jedan proizvod iz ponude (reach - da li je kupac 'dosegnut' barem nekim proizvodom) i koliko (ako ijedan) bi proizvoda iz ponude kupio (frequency - koliko je puta kupac 'dosegnut' danom ponudom proizvoda). Odluka da li bi kupac kupio neki proizvod ili ne se donosi na osnovi vjerojatnosti prodaje proizvoda u usporedbi s ostalim proizvodima iz ponude i osnovnom (graničnom) opcijom koja označava granicu kupio bih/ne bih kupio.
@@ -1453,7 +1321,8 @@ Pogledajmo kako izgleda nekoliko redaka iz reach & frequency tablice za naše pr
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
-respids = unique(cbc.df$resp.id) # koristi se i kasnije, zato je ovdje globalno deklarirano
+#respids = unique(cbc.df$resp.id) # koristi se i kasnije, zato je ovdje globalno deklarirano
+respids = 1:length(unique(cbc.df$resp.id)) # koristi se i kasnije, zato je ovdje globalno deklarirano
 
 ##
 

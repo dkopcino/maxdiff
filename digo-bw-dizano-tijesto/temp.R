@@ -923,8 +923,20 @@
 
 #combs_df = get_rf_df(cspi, start_comb)
 
+cbc.df = cbc.df2[cbc.df2$resp.id <= 2, ]
 
-shares.mnl = predict.hier.mnl(m2.hier, data = ffd_df)
+mlogit.data(data = cbc.mm, choice = "choice", shape = "long", 
+            #varying = vars_i, 
+            alt.var = "alt", 
+            #alt.levels = levels(factor(cbc.mm$alt)), 
+            #alt.levels = unique(cbc.mm$alt), 
+            chid.var = "resp.ques",
+            id.var = "resp.id")
+
+choicemodelr(data = cmr.mm.bez.cov,
+                       xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
+                       mcmc = list(R = 20000, use = 10000),
+                       options = list(save = TRUE))
 
 
 

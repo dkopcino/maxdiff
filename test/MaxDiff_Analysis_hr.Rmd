@@ -288,6 +288,15 @@ domodelmatrix_itemscovs_bwencode = function(alt, covs, nalts) {
   ret_matrix
 }
 
+```
+
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+
+#cbc.df = na.omit(cbc.df) # ako je bilo nedostajućih podataka, treba maknuti retke koji ne nose informacije, PROVJERITI!
+#cbc.df$resp.id = as.numeric(factor(cbc.df$resp.id)) # renumeracija resp.id ako je bilo micanja nedostajućih podataka
+
+cbc.df = cbc.df[!is.na(cbc.df$best_choice) & !is.na(cbc.df$worst_choice), ]
+
 # petlja za svaki resp.id
 # enkodirati pitanja, covariates, best+worst choice
 # ako ima, enkodirati anchor pitanja kao choice, dodati na kraj data.framea za resp.id
@@ -295,6 +304,7 @@ cbc.mm = data.frame(NULL)
 for (resp.id in 1:max(cbc.df$resp.id)) {
   # izvuci subframe
   cbc.df.sf = cbc.df[cbc.df$resp.id == resp.id, ]
+  if (nrow(cbc.df.sf) == 0) next
   nalts = designctx$nalternatives
   if (length(designctx$covariates) > 0) {
     covs = getdfcolumns(df = cbc.df.sf, cnames = names(designctx$covariates))
@@ -316,8 +326,8 @@ for (resp.id in 1:max(cbc.df$resp.id)) {
   if (designctx$anchors > 0) {
     anchorcolnames = getanchorcolnames(designctx$anchors)
     anchorcols = cbc.df.sf[, colnames(cbc.df.sf) %in% anchorcolnames]
-    best_choices = cbc.df.sf[cbc.df$best_choice == 1, ]$alt
-    worst_choices = cbc.df.sf[cbc.df$worst_choice == 1, ]$alt
+    best_choices = cbc.df.sf[cbc.df.sf$best_choice == 1, ]$alt
+    worst_choices = cbc.df.sf[cbc.df.sf$worst_choice == 1, ]$alt
     anchors = getanchors(designctx$anchors, best_choices, worst_choices)
     if (length(designctx$covariates) > 0) {
       anch.mm = domodelmatrix_itemscovs(anchors, getdfcolumns(covs[rep(1, length(anchors)), ], cnames = colnames(covs)))
@@ -342,6 +352,8 @@ for (resp.id in 1:max(cbc.df$resp.id)) {
 }
 
 rownames(cbc.mm) = c()
+
+cbc.mm = na.omit(cbc.mm)
 
 if (designctx$anchors == 0) {
   # remove the Intercept column - it is essentially contained in the alt column (Intercept is when all predictors are 0 - that leaves only the alt as the predictor)
@@ -639,7 +651,7 @@ standata$CL = designctx$rsegments
 # cores = parallel::detectCores() - 1
 # #cores = parallel::detectCores()
 # # https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html
-# stan.mc.lca = stan(file = "hmnl_lca.stan",
+# stan.mc.lca = stan(file = "hmnl_lca_2.stan",
 #                    data = standata,
 #                    verbose = FALSE,
 #                    chains = cores, # * 2,

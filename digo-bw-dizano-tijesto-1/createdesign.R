@@ -11,7 +11,7 @@ personals = list(zemlja = list(naziv = "zemlja", tip = "dropdown", vrijednosti =
 
 
 # number of responders segments, 0 means each respondent is a "segment"
-rsegments = 3
+rsegments = 2
 
 # do we anchor the results? if yes, how many questions shall we use for acnhoring?
 # if anchors == 0, we don't use anchoring
