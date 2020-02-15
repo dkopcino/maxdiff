@@ -921,8 +921,7 @@
 
 #ir_util = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = i), resp_i = r)
 
-combs_df = get_rf_df(cspi, start_comb)
-
+predict.hier.mnl.choice(m2.hier, ffd_df, holdout_respondents[i])
 
 
 

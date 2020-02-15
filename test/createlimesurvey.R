@@ -24,25 +24,19 @@ limesurveyqids$limesurveyqid_worst = ""
 limesurveyanchorqids = data.frame()
 if (length(designctx$anchors) > 0) {
   limesurveyanchorqids = data.frame(vers = 1:designctx$nquestionnaires)
-  ret = lapply(1:designctx$anchors, function(ai) {
-    limesurveyanchorqids[[paste("anchor_", ai, sep = "")]] <<- ""
-  })
+  limesurveyanchorqids[, paste("anchor_", 1:designctx$anchors, sep = "")] = ""
 }
 # questions with covariates, vers is 1:nquestionnaires
 limesurveycovqids = data.frame()
 if (length(designctx$covariates) > 0) {
   limesurveycovqids = data.frame(vers = 1:designctx$nquestionnaires)
-  ret = lapply(names(designctx$covariates), function(cc) {
-    limesurveycovqids[[cc]] <<- ""
-  })
+  limesurveycovqids[, names(designctx$covariates)] = ""
 }
 # personal questions, vers is 1:nquestionnaires
 limesurveypersqids = data.frame()
 if (length(designctx$personals) > 0) {
   limesurveypersqids = data.frame(vers = 1:designctx$nquestionnaires)
-  ret = lapply(names(designctx$personals), function(cc) {
-    limesurveypersqids[[cc]] <<- ""
-  })
+  limesurveypersqids[, names(designctx$personals)] = ""
 }
 
 # first get a session access key

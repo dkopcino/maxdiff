@@ -13,7 +13,7 @@ designctx = readRDS(designctxfile)
 
 surveyids = levels(factor(limesurveyqids$limesurveyid))
 limesurvey.df = data.frame()
-rr = lapply(surveyids, function(svid) {
+for (svid in surveyids) {
   questionnaireid = min(limesurveyqids[limesurveyqids$limesurveyid == svid, ]$vers) # they are all the same, take min, max, first, last or whatever
   sfile = paste("lsuw_survey_", svid, ".csv", sep = "")
   sdf = read.csv(sfile, header = TRUE, sep = ",", quote = "\"", stringsAsFactors = FALSE)
@@ -35,13 +35,13 @@ rr = lapply(surveyids, function(svid) {
   # change the column names to be able to rowbind all the answers into 1 frame, this also assumes that
   # all questionnaires have the same number of questions
   colnames(sdf) = paste("X", 1:ncol(sdf), sep = "")
-  limesurvey.df <<- rbind(limesurvey.df, cbind(questionnaireid = rep(questionnaireid, nrow(sdf)), sdf))
-})
+  limesurvey.df = rbind(limesurvey.df, cbind(questionnaireid = rep(questionnaireid, nrow(sdf)), sdf))
+}
 # here we assume that each row is a survey filled out by a different responder
 limesurvey.df = cbind(resp.id = as.numeric(rownames(limesurvey.df)), limesurvey.df)
 
 cbc.df = data.frame()
-rr = lapply(1:nrow(limesurvey.df), function(r) {
+for (r in 1:nrow(limesurvey.df)) {
   x = limesurvey.df[r, ]
   sdf = designctx$survey[designctx$survey$version == x$questionnaireid, c("task", "alt")] # remove version because we don't need it
   colnames(sdf) = gsub("task", "ques", colnames(sdf)) # rename task to ques
@@ -81,10 +81,10 @@ rr = lapply(1:nrow(limesurvey.df), function(r) {
     covchoices = choices[fstcovchoice:length(choices)]
     covsdf = data.frame(designctx$fullfact_covdesign[rep(1, nrow(sdf)), ])
     colnames(covsdf) = colnames(designctx$fullfact_covdesign)
-    rr = lapply(1:ncol(covsdf), function(coli) {
+    for (coli in 1:ncol(covsdf)) {
       cname = colnames(covsdf)[coli]
-      covsdf[, cname] <<- levels(covsdf[[cname]])[covchoices[coli]]
-    })
+      covsdf[, cname] = levels(covsdf[[cname]])[covchoices[coli]]
+    }
     sdf = cbind(sdf, covsdf)
   }
   
@@ -103,7 +103,7 @@ rr = lapply(1:nrow(limesurvey.df), function(r) {
     sdf = cbind(sdf, personals.df)
   }
   
-  cbc.df <<- rbind(cbc.df, cbind(sdf, best_choice = best_choice_col, worst_choice = worst_choice_col))
-})
+  cbc.df = rbind(cbc.df, cbind(sdf, best_choice = best_choice_col, worst_choice = worst_choice_col))
+}
 
 write.csv(cbc.df, row.names = FALSE, file = answersfile)

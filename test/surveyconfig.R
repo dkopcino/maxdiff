@@ -54,35 +54,10 @@ num2price = function(price) {
 # softmax
 softmax = function(x) exp(x)/sum(exp(x))
 
-# get columns from a data frame
-# if only one column, cast its factor to a single column data frame
-getdfcolumns = function(df, cselect = NULL, cnames = NULL) {
-  if (is.vector(df) || is.factor(df)) {
-    df = data.frame(df)
-    if (!is.null(cnames)) colnames(df) = cnames
-    return(df)
-  }
-  # df is a data frame
-  if (is.null(cnames)) {
-    if (is.null(cselect)) {
-      return(df)
-    } else {
-      cnames = colnames(df)[cselect]
-    }
-  }
-  cols = data.frame(df[, cnames])
-  colnames(cols) = cnames
-  cols
-}
-
 # covs is a vector or a data frame with covariates
 # returns a data frame with encoded covariates (model matrix)
 encode_covariates = function(covs) {
-  df.covs = data.frame(model.matrix(~ ., covs))
-  cnames = colnames(df.covs)
-  df.covs = data.frame(df.covs[, -1]) # bez intercepta
-  colnames(df.covs) = cnames[-1]
-  df.covs
+  data.frame(model.matrix(~ ., covs))[, -1, drop = FALSE] # drop intercept
 }
 
 # alt is a vector of alternatives

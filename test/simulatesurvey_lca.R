@@ -16,8 +16,7 @@ names(mu) = coef.names
 coef.names1 = c() # covariates names
 if (length(designctx$covariates) > 0) {
   fml1 = as.formula(paste("~", paste(designctx$design.predictors$cov.predictors, collapse = "+")))
-  cbdf = data.frame(designctx$fullfact_covdesign[1, ])
-  colnames(cbdf) = colnames(designctx$fullfact_covdesign) # ako je samo jedan cov, onda ovo treba eksplicitno postaviti
+  cbdf = data.frame(designctx$fullfact_covdesign[1, , drop = FALSE])
   # ovo dodajemo da izbjegnemo kombinaciju (0, 0) koja radi problem recimo za LCA: softmax(0, 0)
   # uvijek daje jednake vjerojatnosti za sve segmente pa ne možemo dobiti ništa osim toga
   for (cpn in designctx$design.predictors$cov.predictors) contrasts(cbdf[[cpn]]) = contr.sum
@@ -37,7 +36,8 @@ rownames(Sigma) = colnames(Sigma) = coef.names
 #Sigma[coef.names[1], coef.names[length(coef.names)-1]] = Sigma[coef.names[length(coef.names)-1], coef.names[1]] = runif(1, -1, 1)
 
 set.seed(99312)
-resp.id = 1:200 # respondent ids
+#resp.id = 1:200 # respondent ids
+resp.id = 1:50 # respondent ids
 
 library(MASS)
 # library(matrixcalc)
@@ -78,13 +78,10 @@ for (i in seq_along(resp.id)) {
   surveydf = survey[survey$vers == q, ]
   if (length(designctx$covariates) > 0) {
     covsi = sample(nrow(designctx$fullfact_covdesign), 1)
-    n_s = ncol(surveydf)
-    surveydf = cbind(surveydf, designctx$fullfact_covdesign[rep(covsi, nrow(surveydf)), ])
-    colnames(surveydf)[(n_s+1):ncol(surveydf)] = colnames(designctx$fullfact_covdesign) # ako je samo jedan cov, onda ovo treba eksplicitno postaviti
-    
+    surveydf = cbind(surveydf, designctx$fullfact_covdesign[rep(covsi, nrow(surveydf)), , drop = FALSE])
+
     #fml1 = as.formula(paste("~", paste(designctx$design.predictors$cov.predictors, collapse = "+"))) # isto kao gore
-    cbdf = data.frame(designctx$fullfact_covdesign[covsi, ])
-    colnames(cbdf) = colnames(designctx$fullfact_covdesign) # ako je samo jedan cov, onda ovo treba eksplicitno postaviti
+    cbdf = data.frame(designctx$fullfact_covdesign[covsi, , drop = FALSE])
     # ovo dodajemo da izbjegnemo kombinaciju (0, 0) koja radi problem recimo za LCA: softmax(0, 0)
     # uvijek daje jednake vjerojatnosti za sve segmente pa ne možemo dobiti ništa osim toga
     for (cpn in designctx$design.predictors$cov.predictors) contrasts(cbdf[[cpn]]) = contr.sum
@@ -108,9 +105,9 @@ for (i in seq_along(resp.id)) {
 
   # change the NA values which are assigned for the missing alternative specific attributes to zeros (to prevent
   # influence on utility)
-  r = lapply(colnames(profiles.i), function(cn) {
-    profiles.i[which(is.na(profiles.i[, cn])), cn] <<- 0
-  })
+  for (cn in colnames(profiles.i)) {
+    profiles.i[which(is.na(profiles.i[, cn])), cn] = 0
+  }
   utility = profiles.i %*% coefs[respsi, ]
   
   wide.util = matrix(data = utility, ncol = nalternatives, byrow = TRUE)
@@ -120,16 +117,16 @@ for (i in seq_along(resp.id)) {
   
   # personal information does not participate in the calculation, so we just add it here to have full simulated answers
   if (length(designctx$personals) > 0) {
-    r = lapply(1:length(designctx$personals), function(pi) {
+    for (pi in 1:length(designctx$personals)) {
       p = designctx$personals[pi]
       n = names(p)
       # samo ove handleamo
       if (p[[n]][["tip"]] == "email") {
-        surveydf[[n]] <<- rep(paste(sprintf("%04d", i), "abc@g.com", sep = ""), nrow(surveydf))
+        surveydf[[n]] = rep(paste(sprintf("%04d", i), "abc@g.com", sep = ""), nrow(surveydf))
       } else if (p[[n]][["tip"]] == "dropdown") {
-        surveydf[[n]] <<- rep(sample(p[[n]][["vrijednosti"]], 1), nrow(surveydf))
+        surveydf[[n]] = rep(sample(p[[n]][["vrijednosti"]], 1), nrow(surveydf))
       }
-    })
+    }
   }
   
   conjoint.i = data.frame(questionnaire.id = rep(q, nquestions),

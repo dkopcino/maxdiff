@@ -34,26 +34,26 @@ cbc.df = rbind(cbc.df, cbc.df_0)
 
 simcoefs = NULL
 if (file.exists(simulatecoefsfile)) simcoefs = readRDS(simulatecoefsfile)
-r = lapply(colnames(designctx$survey), function(cn) {
+for (cn in colnames(designctx$survey)) {
   if (!is.null(cbc.df[[cn]])) {
-    cbc.df[[cn]] <<- factor(cbc.df[[cn]], levels = levels(designctx$survey[[cn]]))
+    cbc.df[[cn]] = factor(cbc.df[[cn]], levels = levels(designctx$survey[[cn]]))
   }
-})
-r = lapply(colnames(designctx$fullfact_covdesign), function(cn) {
+}
+for (cn in colnames(designctx$fullfact_covdesign)) {
   if (!is.null(cbc.df[[cn]])) {
-    cbc.df[[cn]] <<- factor(cbc.df[[cn]], levels = levels(designctx$fullfact_covdesign[[cn]]))
+    cbc.df[[cn]] = factor(cbc.df[[cn]], levels = levels(designctx$fullfact_covdesign[[cn]]))
     # ovo dodajemo da izbjegnemo kombinaciju (0, 0) koja radi problem recimo za LCA: softmax(0, 0)
     # uvijek daje jednake vjerojatnosti za sve segmente pa ne možemo dobiti ništa osim toga
-    contrasts(cbc.df[[cn]]) <<- contr.sum
+    contrasts(cbc.df[[cn]]) = contr.sum
   }
-})
-r = lapply(names(designctx$personals), function(pn) {
+}
+for (pn in names(designctx$personals)) {
   if (!is.null(cbc.df[[pn]])) {
     if (designctx$personals[[pn]][["tip"]] == "dropdown") {
-      cbc.df[[pn]] <<- factor(cbc.df[[pn]], levels = designctx$personals[[pn]][["vrijednosti"]])
+      cbc.df[[pn]] = factor(cbc.df[[pn]], levels = designctx$personals[[pn]][["vrijednosti"]])
     }
   }
-})
+}
 #if (!is.null(cbc.df$questionnaire.id)) cbc.df$questionnaire.id = NULL # maknemo questionnaire.id jer nam ne treba
 
 print(designctx$items)
@@ -160,7 +160,7 @@ bw_encode_vectors = function(v1, v2, nalts) {
 bw_encode_dfs = function(v1, v2, nalts) {
   if ((nrow(v1) != nrow(v2)) || (ncol(v1) != ncol(v2))) stop("invalid data frames' dimensions")
   if ((nrow(v1) %% nalts) != 0) stop("invalid data frames' dimensions vs. number of alternatives")
-  v_coded = getdfcolumns(v1[rep(1:nrow(v1), 2), ], cnames = colnames(v1))
+  v_coded = v1[rep(1:nrow(v1), 2), , drop = FALSE]
   for (q in 1:(nrow(v1)/nalts)) {
     i_start = (q-1)*nalts+1
     i_end = q*nalts
@@ -203,7 +203,7 @@ bw_decode_vectors = function(v_coded, nalts) {
 bw_decode_dfs = function(v_coded, nalts) {
   if ((nrow(v_coded) %% (2*nalts)) != 0) stop("invalid data frame dimensions vs. number of alternatives")
   v = array(0, dim = c(length(v_coded)/2, 2))
-  v1 = v2 = getdfcolumns(v_coded[1:(nrow(v_coded)/2), ], cnames = colnames(v_coded))
+  v1 = v2 = v_coded[1:(nrow(v_coded)/2), , drop = FALSE]
   for (q in 1:(nrow(v_coded)/(2*nalts))) {
     i_start = (q-1)*(2*nalts)+1
     i_end = q*(2*nalts)
@@ -307,13 +307,12 @@ cbc.df = cbc.df[!is.na(cbc.df$best_choice) & !is.na(cbc.df$worst_choice), ]
 # ako ima, enkodirati anchor pitanja kao choice, dodati na kraj data.framea za resp.id
 cbc.mm = data.frame(NULL)
 for (resp.id in 1:max(cbc.df$resp.id)) {
-  #print(paste("resp.id = ", resp.id, sep = ""))
   # izvuci subframe
   cbc.df.sf = cbc.df[cbc.df$resp.id == resp.id, ]
   if (nrow(cbc.df.sf) == 0) next
   nalts = designctx$nalternatives
   if (length(designctx$covariates) > 0) {
-    covs = getdfcolumns(df = cbc.df.sf, cnames = names(designctx$covariates))
+    covs = cbc.df.sf[, names(designctx$covariates), drop = FALSE]
     sf.mm = domodelmatrix_itemscovs_bwencode(cbc.df.sf$alt, covs, nalts)
     items.columns = attr(sf.mm, "items.columns")
     cov.columns = attr(sf.mm, "cov.columns")
@@ -336,7 +335,7 @@ for (resp.id in 1:max(cbc.df$resp.id)) {
     worst_choices = cbc.df.sf[cbc.df.sf$worst_choice == 1, ]$alt
     anchors = getanchors(designctx$anchors, best_choices, worst_choices)
     if (length(designctx$covariates) > 0) {
-      anch.mm = domodelmatrix_itemscovs(anchors, getdfcolumns(covs[rep(1, length(anchors)), ], cnames = colnames(covs)))
+      anch.mm = domodelmatrix_itemscovs(anchors, covs[rep(1, length(anchors)), , drop = FALSE])
     } else {
       anch.mm = domodelmatrix_itemsonly(anchors)
     }
@@ -416,8 +415,7 @@ if (length(designctx$covariates) == 0) {
   
   repeats = designctx$nquestions * designctx$nalternatives
   respondents = max(cbc.df$resp.id)
-  cov.df = as.data.frame(cbc.df[(0:(respondents-1))*repeats+1, colnames(cbc.df) %in% names(designctx$covariates)])
-  colnames(cov.df) = names(designctx$covariates)
+  cov.df = cbc.df[(0:(respondents-1))*repeats+1, colnames(cbc.df) %in% names(designctx$covariates), drop = FALSE]
 }
 
 # fml1 = as.formula(paste("choice ~ ", paste(g.columns, collapse = "+"), "| 0 |", paste(ascolumns, collapse = "+")))
@@ -815,7 +813,7 @@ calc.utilities.mnl = function(model, data, resp_i = NULL) {
       # n_d = ncol(data)
       # data = cbind(data, resp_cov[rep(1, nrow(data)), ])
       # colnames(data)[(n_d+1):ncol(data)] = colnames(resp_cov)
-      resp_cov = getdfcolumns(resp_cov[rep(1, nrow(data)), ], cnames = colnames(resp_cov))
+      resp_cov = resp_cov[rep(1, nrow(data)), , drop = FALSE]
       ffd_mm = domodelmatrix_itemscovs(data[, 1], resp_cov) # data frame is automatically generated because of resp_cov
     } else {
       ffd_mm = data.frame(domodelmatrix_itemsonly(data[, 1])) # need explicit cast to data frame
@@ -827,7 +825,7 @@ calc.utilities.mnl = function(model, data, resp_i = NULL) {
     ffd.mlogit = mlogit.data(data = ffd_mm, choice = "choice", shape = "long", varying = 1:(ncol(ffd_mm)-2), alt.var = "alt", alt.levels = levels(ffd_mm$alt))
     data.model = model.matrix(model$formula, data = ffd.mlogit)
     utilities = data.model %*% draw_i
-    t(utilities) # to get a row vector
+    as.vector(utilities) # to get a row vector
   }
   
   # returns matrix of utilities, 1000 x nrow(data)
@@ -845,7 +843,7 @@ calc.utilities.mnl = function(model, data, resp_i = NULL) {
     nresp = nrow(resp_cov)
     utilities = matrix(NA, nrow = nresp, ncol = nrow(data))
     for (i in 1:nresp) {
-      utilities[i, ] = calc.utilities.mnl_resp(model, data, alt, getdfcolumns(resp_cov[i, ], cnames = colnames(resp_cov)))
+      utilities[i, ] = calc.utilities.mnl_resp(model, data, alt, resp_cov[i, , drop = FALSE])
     }
     utilities
   }
@@ -865,7 +863,7 @@ calc.utilities.mnl = function(model, data, resp_i = NULL) {
   n_df = nrow(data)
   if ((n_df %% n_alts) > 0) {
     n_add = ceiling(n_df/n_alts)*n_alts - n_df
-    data.add = getdfcolumns(data[rep(1, n_add), ], cnames = colnames(data))
+    data.add = data[rep(1, n_add), , drop = FALSE]
     data = rbind(data, data.add)
   }
   alt = factor(rep(altlevels, nrow(data)/n_alts), levels = altlevels)
@@ -878,7 +876,7 @@ calc.utilities.mnl = function(model, data, resp_i = NULL) {
     }
   } else {
     if (nrow(model$cov.df) > 0) {
-      utilities = calc.utilities.mnl_resp(model, data, alt, getdfcolumns(model$cov.df[resp_i, ], cnames = colnames(model$cov.df)))
+      utilities = calc.utilities.mnl_resp(model, data, alt, model$cov.df[resp_i, , drop = FALSE])
     } else {
       utilities = calc.utilities.mnl_resp(model, data, alt, data.frame())
     }
@@ -1110,6 +1108,93 @@ U prethodnoj tablici možemo vidjeti kako bi ispitanici birali između `r nrow(f
 
 
 
+## Provjera modela na postojećim podacima
+
+
+Korištenjem predviđanja udjela/vjerojatnosti prodaje za razne kombinacije proizvoda, možemo testirati i kako bi naš model predvidio izbor za (neke) kombinacije koje su dane u istraživanju:
+
+
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+
+holdout_respondents_n = 10
+holdout_respondents_q = 3
+holdout_respondents = sample(1:max(cbc.df$resp.id), holdout_respondents_n, replace = FALSE)
+holdout_questions = sample(1:max(cbc.df$ques), holdout_respondents_q, replace = FALSE)
+keep_cols = c("alt")
+
+rgrid = expand.grid(holdout_questions, holdout_respondents)
+holdout_true_predicted = matrix(
+  NA, 
+  nrow = holdout_respondents_n * holdout_respondents_q, 
+  ncol = 6, 
+  dimnames = list(
+    "respondent/question" = paste(rgrid$Var2, "/", rgrid$Var1, sep = ""),
+    "choice" = c("true best", "predicted best", "correct best", "true worst", "predicted worst", "correct worst")
+  )
+)
+
+holdout_true_predicted_mnl = holdout_true_predicted_hb = holdout_true_predicted_stan_mc = holdout_true_predicted_stan_mc_lca = holdout_true_predicted
+for (i in 1:holdout_respondents_n) { # respondent
+  for (j in 1:holdout_respondents_q) { # question
+    ffd_df = cbc.df[(cbc.df$resp.id == holdout_respondents[i]) & (cbc.df$ques == holdout_questions[j]), ]
+    true_best_choice = which(ffd_df$best_choice == 1)
+    true_worst_choice = which(ffd_df$worst_choice == 1)
+    ffd_df = ffd_df[, keep_cols, drop = FALSE]
+    
+    predicted = predict.hier.mnl.choice(m2.hier, ffd_df, holdout_respondents[i])
+    predicted_best_choice = which(predicted$best_choice == 1)
+    predicted_worst_choice = which(predicted$worst_choice == 1)
+    holdout_true_predicted_mnl[(i-1)*holdout_respondents_q+j, ] =
+      c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
+        true_worst_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
+
+    predicted = predict.hb.mnl.choice(hb.post, ffd_df, holdout_respondents[i])
+    predicted_best_choice = which(predicted$best_choice == 1)
+    predicted_worst_choice = which(predicted$worst_choice == 1)
+    holdout_true_predicted_hb[(i-1)*holdout_respondents_q+j, ] = 
+      c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
+        true_worst_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
+
+    predicted = predict.stan.mc.choice(stan.mc, ffd_df, holdout_respondents[i])
+    predicted_best_choice = which(predicted$best_choice == 1)
+    predicted_worst_choice = which(predicted$worst_choice == 1)
+    holdout_true_predicted_stan_mc[(i-1)*holdout_respondents_q+j, ] =
+      c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
+        true_best_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
+
+    predicted = predict.stan.mc.choice(stan.mc.lca, ffd_df, holdout_respondents[i])
+    predicted_best_choice = which(predicted$best_choice == 1)
+    predicted_worst_choice = which(predicted$worst_choice == 1)
+    holdout_true_predicted_stan_mc_lca[(i-1)*holdout_respondents_q+j, ] =
+      c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
+        true_best_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
+  }
+}
+
+sum(holdout_true_predicted_mnl[, "correct best"])/nrow(holdout_true_predicted_mnl)
+sum(holdout_true_predicted_mnl[, "correct worst"])/nrow(holdout_true_predicted_mnl)
+sum(holdout_true_predicted_hb[, "correct best"])/nrow(holdout_true_predicted_hb)
+sum(holdout_true_predicted_hb[, "correct worst"])/nrow(holdout_true_predicted_hb)
+sum(holdout_true_predicted_stan_mc[, "correct best"])/nrow(holdout_true_predicted_stan_mc)
+sum(holdout_true_predicted_stan_mc[, "correct worst"])/nrow(holdout_true_predicted_stan_mc)
+sum(holdout_true_predicted_stan_mc_lca[, "correct best"])/nrow(holdout_true_predicted_stan_mc_lca)
+sum(holdout_true_predicted_stan_mc_lca[, "correct worst"])/nrow(holdout_true_predicted_stan_mc_lca)
+
+#holdout_true_predicted = holdout_true_predicted_mnl
+holdout_true_predicted = holdout_true_predicted_hb
+#holdout_true_predicted = holdout_true_predicted_stan_mc
+#holdout_true_predicted = holdout_true_predicted_stan_mc_lca
+
+holdout_true_predicted[sample(1:nrow(holdout_true_predicted), 20), !(colnames(holdout_true_predicted) %in% c("correct best", "correct worst"))]
+#holdout_true_predicted[sample(1:nrow(holdout_true_predicted), 20), ]
+total_correct = sum(holdout_true_predicted[, "correct best"]) + sum(holdout_true_predicted[, "correct worst"])
+paste("Ukupno točno predviđanja:", round(100*total_correct/(2*nrow(holdout_true_predicted)), digits = 2), "%", sep = "")
+
+```
+
+Ukupna točnost predviđanja daje nam sigurnost da naš model dobro funkcionira.
+
+
 ## Segmentacija ispitanika
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -1239,7 +1324,7 @@ S dobivenom segmentacijom možemo primjerice kreirati više različitih proizvod
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 ### NEOVISNA SEGMENTACIJA >>>
 # provjera u odnosu na simulaciju, ako postoji
-if (!is.null(simcoefs) & !is.null(simcoefs$beta) & !is.null(simcoefs$seg.df)) {
+if (!is.null(simcoefs) && is.list(simcoefs) && !is.null(simcoefs$beta) && !is.null(simcoefs$seg.df)) {
 
   true_coefs = simcoefs$beta
   true_segments = simcoefs$seg.df

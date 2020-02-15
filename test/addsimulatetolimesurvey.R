@@ -26,7 +26,7 @@ limesurveyanchorqids = limesurveyallqids$anchorquids
 get_session_key()
 
 respondents = as.numeric(levels(factor(cbc.df$resp.id)))
-ret = lapply(respondents, function(r) {
+for (r in respondents) {
   
   answlist = list()
 
@@ -38,9 +38,9 @@ ret = lapply(respondents, function(r) {
 #  answers.df_best$limesurveyqid = lsids[lsids$task == answers.df_best$ques, ]$limesurveyqid_best
   answers.df_best$limesurveyqid = lsids$limesurveyqid_best
   answers.df_best$answer = paste("A", answers.df_best$alti, sep = "")
-  rr = lapply(1:nrow(answers.df_best), function(i) {
-    answlist[[answers.df_best[i, ]$limesurveyqid]] <<- answers.df_best[i, ]$answer
-  })
+  for (i in 1:nrow(answers.df_best)) {
+    answlist[[answers.df_best[i, ]$limesurveyqid]] = answers.df_best[i, ]$answer
+  }
   
   # worst answers/choices
   answers.df_worst = cbc.df[(cbc.df$resp.id == r) & (cbc.df$worst_choice == 1), ]
@@ -50,42 +50,39 @@ ret = lapply(respondents, function(r) {
 #  answers.df_worst$limesurveyqid = lsids[lsids$task == answers.df_worst$ques, ]$limesurveyqid_worst
   answers.df_worst$limesurveyqid = lsids$limesurveyqid_worst
   answers.df_worst$answer = paste("A", answers.df_worst$alti, sep = "")
-  rr = lapply(1:nrow(answers.df_worst), function(i) {
-    answlist[[answers.df_worst[i, ]$limesurveyqid]] <<- answers.df_worst[i, ]$answer
-  })
+  for (i in 1:nrow(answers.df_worst)) {
+    answlist[[answers.df_worst[i, ]$limesurveyqid]] = answers.df_worst[i, ]$answer
+  }
 
   # anchors answers
   if (designctx$anchors > 0){
-    lsids = data.frame(limesurveyanchorqids[limesurveyanchorqids$vers == questionnaireid, -1])
-    colnames(lsids) = colnames(limesurveyanchorqids)[-1]
+    lsids = limesurveyanchorqids[limesurveyanchorqids$vers == questionnaireid, -1, drop = FALSE]
     # svejedno da li uzmemo answers.df_best ili answers.df_worst
     answs = paste("A", as.numeric(answers.df_best[1, colnames(answers.df_best) %in% colnames(lsids)]), sep = "")
     lsids = data.frame(t(lsids))
     colnames(lsids) = "Q"
     lsids$A = answs
-    for (ii in 1:nrow(lsids)) {
-      answlist[[as.character(lsids[ii, "Q"])]] = as.character(lsids[ii, "A"])
+    for (i in 1:nrow(lsids)) {
+      answlist[[as.character(lsids[i, "Q"])]] = as.character(lsids[i, "A"])
     }
   }
   
   # covariates answers
   if (length(designctx$covariates) > 0){
-    lsids = data.frame(limesurveycovqids[limesurveycovqids$vers == questionnaireid, -1])
-    colnames(lsids) = colnames(limesurveycovqids)[-1]
+    lsids = limesurveycovqids[limesurveycovqids$vers == questionnaireid, -1, drop = FALSE]
     # svejedno da li uzmemo answers.df_best ili answers.df_worst
     answs = paste("A", as.numeric(answers.df_best[1, colnames(answers.df_best) %in% colnames(lsids)]), sep = "")
     lsids = data.frame(t(lsids))
     colnames(lsids) = "Q"
     lsids$A = answs
-    rr = lapply(1:nrow(lsids), function(i) {
-      answlist[[as.character(lsids[i, "Q"])]] <<- as.character(lsids[i, "A"])
-    })
+    for (i in 1:nrow(lsids)) {
+      answlist[[as.character(lsids[i, "Q"])]] = as.character(lsids[i, "A"])
+    }
   }
 
   # personal answers
   if (length(designctx$personals) > 0){
-    lsids = data.frame(limesurveypersqids[limesurveypersqids$vers == questionnaireid, -1])
-    colnames(lsids) = colnames(limesurveypersqids)[-1]
+    lsids = limesurveypersqids[limesurveypersqids$vers == questionnaireid, -1, drop = FALSE]
     # svejedno da li uzmemo answers.df_best ili answers.df_worst
     answs = rep("", ncol(lsids))
     for (i in 1:length(designctx$personals)) {
@@ -100,9 +97,9 @@ ret = lapply(respondents, function(r) {
     lsids = data.frame(t(lsids))
     colnames(lsids) = "Q"
     lsids$A = answs
-    rr = lapply(1:nrow(lsids), function(i) {
-      answlist[[as.character(lsids[i, "Q"])]] <<- as.character(lsids[i, "A"])
-    })
+    for (i in 1:nrow(lsids)) {
+      answlist[[as.character(lsids[i, "Q"])]] = as.character(lsids[i, "A"])
+    }
   }
   
   # answlist = list(
@@ -126,5 +123,5 @@ ret = lapply(respondents, function(r) {
   
   answ = call_limer(method = 'add_response', params = list("iSurveyID" = iSurveyID, "aResponseData" = answlist))
   
-})
+}
 

@@ -21,7 +21,7 @@ rownames(Sigma) = colnames(Sigma) = coef.names
 #Sigma[coef.names[1], coef.names[length(coef.names)-1]] = Sigma[coef.names[length(coef.names)-1], coef.names[1]] = runif(1, -1, 1)
 
 set.seed(99312)
-resp.id = 1:200 # respondent ids
+resp.id = 1:50 # respondent ids
 library(MASS)
 # library(matrixcalc)
 # is.positive.definite(Sigma)
@@ -42,9 +42,7 @@ for (i in seq_along(resp.id)) {
   surveydf = survey[survey$version == q, coef.names]
   if (length(designctx$covariates) > 0) {
     covsi = sample(nrow(designctx$fullfact_covdesign), 1)
-    n_s = ncol(surveydf)
-    surveydf = cbind(surveydf, designctx$fullfact_covdesign[rep(covsi, nrow(surveydf)), ])
-    colnames(surveydf)[(n_s+1):ncol(surveydf)] = colnames(designctx$fullfact_covdesign) # ako je samo jedan cov, onda ovo treba eksplicitno postaviti
+    surveydf = cbind(surveydf, designctx$fullfact_covdesign[rep(covsi, nrow(surveydf)), , drop = FALSE])
   }
   
   # choose the best option
@@ -79,16 +77,16 @@ for (i in seq_along(resp.id)) {
   
   # personal information does not participate in the calculation, so we just add it here to have full simulated answers
   if (length(designctx$personals) > 0) {
-    r = lapply(1:length(designctx$personals), function(pi) {
+    for (pi in 1:length(designctx$personals)) {
       p = designctx$personals[pi]
       n = names(p)
       # samo ove handleamo
       if (p[[n]][["tip"]] == "email") {
-        surveydf[[n]] <<- rep(paste(sprintf("%04d", i), "abc@g.com", sep = ""), nrow(surveydf))
+        surveydf[[n]] = rep(paste(sprintf("%04d", i), "abc@g.com", sep = ""), nrow(surveydf))
       } else if (p[[n]][["tip"]] == "dropdown") {
-        surveydf[[n]] <<- rep(sample(p[[n]][["vrijednosti"]], 1), nrow(surveydf))
+        surveydf[[n]] = rep(sample(p[[n]][["vrijednosti"]], 1), nrow(surveydf))
       }
-    })
+    }
   }
   
   maxdiff.i = data.frame(questionnaire.id = rep(q, nquestions),

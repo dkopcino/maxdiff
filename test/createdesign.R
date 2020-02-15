@@ -15,11 +15,11 @@ personals = list(email = list(naziv = "e-pošta", tip = "email"))
 
 
 # number of responders segments, 0 means each respondent is a "segment"
-rsegments = 3
+rsegments = 2
 
 # do we anchor the results? if yes, how many questions shall we use for acnhoring?
 # if anchors == 0, we don't use anchoring
-anchors = 5
+anchors = 3
 
 # choice (respondent) dependent covariates
 # covariates = list()
@@ -53,7 +53,7 @@ if (length(covariates) > 0) {
   if (length(covariates) == 1) nVars = 1 else nVars = 0 # ako je samo jedan, onda to eksplicitno navedemo, ako ih je više, onda će se to vidjeti iz vektora duljina
   fullfact_covdesign = gen.factorial(covariates_lengths, nVars = nVars, center = FALSE, 
                                      factors = "all", varNames = names(covariates))
-  ret = lapply(names(covariates), function(an) levels(fullfact_covdesign[[an]]) <<- unique(covariates[[an]][["vrijednosti"]]))
+  for (an in names(covariates)) levels(fullfact_covdesign[[an]]) = unique(covariates[[an]][["vrijednosti"]])
 }
 
 itemcol = unlist(lapply(1:max(dz$design[, "card"]), function(card) {
