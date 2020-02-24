@@ -26,7 +26,12 @@ New pizzas that the respondents choose from are:
 source("surveyconfig.R")
 
 designctx = readRDS(designctxfile)
+
+cbc.df_0 = read.csv(gsub("_answers", "_answers_0", answersfile), header = TRUE, sep = ",", quote = "\"", stringsAsFactors = FALSE)
 cbc.df = read.csv(answersfile, header = TRUE, sep = ",", quote = "\"", stringsAsFactors = FALSE)
+cbc.df_0$resp.id = cbc.df_0$resp.id + max(cbc.df$resp.id)
+cbc.df = rbind(cbc.df, cbc.df_0)
+
 simcoefs = NULL
 if (file.exists(simulatecoefsfile)) simcoefs = readRDS(simulatecoefsfile)
 for (cn in colnames(designctx$survey)) {

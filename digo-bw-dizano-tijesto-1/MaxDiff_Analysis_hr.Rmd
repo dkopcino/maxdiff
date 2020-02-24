@@ -1,9 +1,8 @@
 ---
 title:    |
-    | MaxDiff TEST analiza
-    | (primjer)
+    | di-go teme za fanove
 author: "Danijel Kopčinović, IT Market"
-#date: '15 10 2019 '
+#date: '18 02 2020 '
 output: pdf_document
 ---
 
@@ -17,9 +16,9 @@ knitr::include_graphics("upitnik_1.jpg")
 
 ## Uvod
 
-U ovom dokumentu ćemo prezentirati testno istraživanje tržišta MaxDiff metodom. Istraživanje je bazirano na (pretpostavljenoj) želji lokalne pizzerije da ispita koju novu pizzu bi kupci najviše htjeli vidjeti u ponudi.
+U ovom dokumentu ćemo prezentirati istraživanje tema koje najviše zanimaju di-go fanove. Koristili smo MaxDiff metodu u kojoj u svakom pitanju ispitanici biraju opciju koja ih najviše, odn. najmanje zanima. Na taj se način olakšava ispunjavanje upitnika i dobivaju relevantni rezultati.
 
-Nove pizze između kojih ispitanici biraju su:
+Teme između kojih su ispitanici birali su:
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
@@ -61,36 +60,16 @@ print(designctx$items)
 ```
 
 
-Osim glavnih proizvoda koji su nam u fokusu, zanima nas i mogući utjecaj "demografskih" faktora na rezultate:
+Iz skupa svih `r choose(length(designctx$items), designctx$nalternatives)` kombinacija tema s `r designctx$nalternatives` alternative (toliko je opcija u svakom pitanju), odabrali smo `r nrow(designctx$survey)` reprezentativne. S odabranim kombinacijama moguće je izračunati (prosječnu ili individualnu) vrijednost svake teme za ispitanike.
 
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-
-print(designctx$covariates)
-
-```
-
-U MaxDiff metodi ispitanici u svakom pitanju biraju najbolji i najlošiji proizvod između nekoliko alternativa. Pogledajmo neke kombinacije koje smo ispitivali, odn. postavili kao pitanja.
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-
-library(dplyr)
-data.frame(designctx$survey[1:(5*designctx$nalternatives), ] %>% dplyr::group_by(task) %>% dplyr::mutate(items = paste0(alt, collapse = ","), best_choice = "?", worst_choice = "?") %>% dplyr::select("items", "best_choice", "worst_choice") %>% distinct())
-
-```
-
-
-Iz skupa svih `r choose(length(designctx$items), designctx$nalternatives)` kombinacija proizvoda s `r designctx$nalternatives` alternativa (broj alternativa u pitanju smo postavili kao parametar dizajna), odabrali smo `r nrow(designctx$survey)` reprezentativnih. S odabranim kombinacijama moguće je izračunati (prosječnu ili individualnu) vrijednost svakog proizvoda za ispitanike.
-
-Sve kombinacije podijelili smo na `r designctx$nquestionnaires` upitnika, od kojih svaki ima `r designctx$nquestions` pitanja, od kojih svako ima `r designctx$nalternatives` opcija/alternativa.
+Sve kombinacije podijelili smo na `r designctx$nquestionnaires` upitnika, od kojih svaki ima `r designctx$nquestions` pitanja, od kojih svako ima `r designctx$nalternatives` opcije/alternative.
 
 ```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics("upitnik_2.jpg")
 ```
 
 
-Da bismo bolje mogli procijeniti vrijednosti različitih opcija, dodali smo i pitanje u kojem ispitanik iskazuje općenitu pozitivnu ili negativnu tendenciju prema nekoliko odabranih proizvoda. Proizvodi u tom pitanju su odabrani s obzirom na prijašnje odabire, tako da sadrže raspon pizza - od pizza najčešće biranih kao najbolje do pizza najčešće biranih kao najlošije. U ovom pitanju se ne uspoređuju proizvodi jedan s drugim nego svaki u odnosu na tzv. graničnu opciju, koja u različitim kontekstima može značiti različite stvari, ali općenito znači točku između želim/ne želim, kupio bih/ne bih kupio, zanima me/ne zanima me i sl. Ovo pitanje nam omogućuje da bolje uskladimo odgovore svih ispitanika u odnosu na graničnu opciju pa time i međusobno, čime dobivamo relevantnije procjene vrijednosti.
+Ispitanicima smo postavili i nekoliko pitanja u kojima su iskazali općenito pozitivni ili negativni stav prema nekoliko odabranih tema. Ova pitanja nam omogućuju da bolje uskladimo odgovore svih ispitanika u odnosu na graničnu opciju (zanima me/ne zanima me) pa time i međusobno, čime dobivamo relevantne procjene vrijednosti.
 
 
 ```{r, echo=FALSE, fig.align='center'}
@@ -98,49 +77,11 @@ knitr::include_graphics("anchoring_survey.jpg")
 ```
 
 
-Rezultate upitnika smo generirali računalom, s određenim parametrima slučajnosti, za `r max(cbc.df$resp.id)` ispitanika.
+## Analiza
 
+Podatke (odgovore ispitanika) smo analizirali Hierarchical Bayes multinomnim logit modelom. Hierarchical Bayes model nam daje individualne procjene vrijednosti (za svakog ispitanika).
 
-## Jednostavna analiza - prebrojavanje
-
-Postoji više načina na koje možemo analizirati podatke MaxDiff metodom. Najjednostavniji pristup je prebrajanje koliko je puta neki proizvod odabran kao najbolji, odn. najlošiji. Pogledajmo proizvode iz našeg istraživanja po broju odabira najbolji/najlošiji:
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE, fig.height = 4.3, fig.width = 10, fig.align = "center"}
-library(dplyr)
-library(DT)
-
-bw.df = cbc.df %>% group_by(alt) %>% summarise(chosen_as_best = sum(best_choice), chosen_as_worst = sum(worst_choice))
-# datatable(bw.df, rownames = FALSE, options = list(paging = FALSE, dom = 't')) %>%
-#   formatStyle(columns = "chosen_as_best",
-#               background = styleEqual(max(bw.df$chosen_as_best), "lightblue")) %>%
-#   formatStyle(columns = "chosen_as_worst",
-#               background = styleEqual(max(bw.df$chosen_as_worst), "pink"))
-
-```
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE, results = 'asis'}
-library(knitr)
-library(kableExtra)
-
-# bw.df %>% mutate(chosen_as_best = cell_spec(chosen_as_best, "latex", color = ifelse(chosen_as_best == max(bw.df$chosen_as_best), "white", "black"), background = ifelse(chosen_as_best == max(bw.df$chosen_as_best), "blue", "white")), chosen_as_worst = cell_spec(chosen_as_worst, "latex", color = ifelse(chosen_as_worst == max(bw.df$chosen_as_worst), "white", "black"), background = ifelse(chosen_as_worst == max(bw.df$chosen_as_worst), "red", "white"))) %>%
-# kable("latex", booktabs = T, linesep = "", align = "c")
-
-kable(bw.df, "latex", booktabs = T, linesep = "", align = "c") %>%
-  row_spec(which.max(bw.df$chosen_as_best), bold = T, color = "white", background = "blue") %>%
-  row_spec(which.max(bw.df$chosen_as_worst), bold = T, color = "white", background = "red")
-
-
-```
-
-Možemo vidjeti da je `r as.character(bw.df[which.max(bw.df$chosen_as_best), ]$alt)` najviše puta odabrano kao najbolja opcija, a `r as.character(bw.df[which.max(bw.df$chosen_as_worst), ]$alt)` najviše puta kao najlošija opcija.
-
-
-## Analiza multinomnim logit modelom
-
-Naprednija analiza uključuje modeliranje podataka (odgovora ispitanika) i zatim izračunavanje koeficijenata ("vrijednosti") za svaki proizvod multinomnim logit modelom. Kad izvršimo analizu, dobijemo sljedeći sažetak:
-
+Podatke smo prvo prilagodili za izračun a zatim izračunali koeficijente ("vrijednosti") za svaku temu koju ispitujemo. Dobili smo sljedeći sažetak:
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
@@ -301,6 +242,7 @@ domodelmatrix_itemscovs_bwencode = function(alt, covs, nalts) {
 #cbc.df$resp.id = as.numeric(factor(cbc.df$resp.id)) # renumeracija resp.id ako je bilo micanja nedostajućih podataka
 
 cbc.df = cbc.df[!is.na(cbc.df$best_choice) & !is.na(cbc.df$worst_choice), ]
+cbc.df$resp.id = as.numeric(factor(cbc.df$resp.id)) # renumeracija resp.id ako je bilo micanja nedostajućih podataka
 
 # petlja za svaki resp.id
 # enkodirati pitanja, covariates, best+worst choice
@@ -360,6 +302,17 @@ rownames(cbc.mm) = c()
 
 cbc.mm = na.omit(cbc.mm)
 
+# ako su neka pitanja obrisana zbog čišćenja NA, onda treba renumerirati pitanja da idu od 1 do max, za svakog ispitanika
+for (rid in cbc.mm$resp.id) {
+  ques1 = cbc.mm[cbc.mm$resp.id == rid, ]$ques
+  ques1u = unique(ques1)
+  ques2u = 1:length(unique(ques1u))
+  for (i in ques2u) {
+    ques1[ques1 == ques1u[i]] = ques2u[i]
+  }
+  cbc.mm[cbc.mm$resp.id == rid, ]$ques = ques1
+}
+
 if (designctx$anchors == 0) {
   # remove the Intercept column - it is essentially contained in the alt column (Intercept is when all predictors are 0 - that leaves only the alt as the predictor)
   # when we use anchors, then the threshold option is the 0 option, and we don't need to remove the Intercept created with modelling
@@ -393,73 +346,6 @@ cbc.mm.clear = cbc.mm[, items.columns]
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 #############################################################################################################
-### >>> MIXED MNL
-library(mlogit)
-
-cov.df = data.frame() # ovo spremamo da bismo kasnije mogli raditi predikciju s istim ovim ispitanicima
-# here we build fml1, which will be used to create a model and model matrix for mlogit
-if (length(designctx$covariates) == 0) {
-  fmlstring = paste("choice ~ 0 + ", paste(items.columns, collapse = "+")) # all vars have generic coefs
-  fml1 = as.formula(fmlstring)
-} else {
-#  ncov.columns = setdiff(colnames(mm), cov.columns)
-  ncov.columns = items.columns
-  fmlstring1 = paste("0 +", paste(ncov.columns, collapse = "+")) # all but covariates have generic coefs
-  fmlstring2 = paste("0 +", paste(cov.columns, collapse = "+")) # covariates will have alternative specific coefs
-  fmlstring = paste("choice ~", fmlstring1, "|", fmlstring2)
-  fml1 = mFormula(as.formula(fmlstring)) # ovdje je bitno da bude mFormula tako da se kod model.matrix pozove odgovarajuća funkcija!!! >> TO JE SAMO ZA mlogit, NE ZA choicemodelr!
-  
-  # fmlstring = paste("choice ~ 0 + ", paste(colnames(mm), collapse = "+")) # all vars have generic coefs
-  # fml1 = mFormula(as.formula(fmlstring))
-  # fml1 = as.formula(fmlstring)
-  
-  repeats = designctx$nquestions * designctx$nalternatives
-  respondents = max(cbc.df$resp.id)
-  cov.df = cbc.df[(0:(respondents-1))*repeats+1, colnames(cbc.df) %in% names(designctx$covariates), drop = FALSE]
-}
-
-# fml1 = as.formula(paste("choice ~ ", paste(g.columns, collapse = "+"), "| 0 |", paste(ascolumns, collapse = "+")))
-# head(model.matrix(fml1, cbc.mlogit), 10)
-
-vars_i = 4:(ncol(cbc.mm)-1) # skip over the first three: resp.id, ques, alt
-cbc.mm$resp.ques = paste(cbc.mm$resp.id, ".", cbc.mm$ques, sep = "")
-cbc.mlogit = mlogit.data(data = cbc.mm, choice = "choice", shape = "long", 
-                         #varying = vars_i, 
-                         alt.var = "alt", 
-                         #alt.levels = levels(factor(cbc.mm$alt)), 
-                         #alt.levels = unique(cbc.mm$alt), 
-                         chid.var = "resp.ques",
-                         id.var = "resp.id")
-
-## BUILD AND SAVE MODEL
-# Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
-# (znači u formuli idu iza | i s 0 +)
-m1 = mlogit(fml1, data = cbc.mlogit)
-# summary(m1)
-m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
-names(m1.rpar) = names(m1$coef)
-m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
-# summary(m1.hier)
-# m2.hier = update(m1.hier, correlation = TRUE)
-# summary(m2.hier)
-# SAVE/LOAD
-m2.hier$cov.df = cov.df
-saveRDS(m2.hier, mnlmodelfile)
-
-## LOAD MODEL
-if (!is.null(cbc.mm$resp.ques)) cbc.mm$resp.ques = NULL
-m2.hier = readRDS(mnlmodelfile)
-
-sm.mnl = summary(m2.hier)$summary.rpar
-#print(sm.mnl[, !(colnames(sm.mnl) %in% c("Min.", "Median", "Max."))])
-
-### MIXED MNL <<<
-#############################################################################################################
-```
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-#############################################################################################################
 ### >>> HIERARCHICAL BAYES
 library(ChoiceModelR)
 
@@ -477,21 +363,21 @@ if (length(designctx$covariates) > 0) {
   demos = as.matrix(cmr.mm[(0:(max_resp_id-1))*(total_rows/max_resp_id)+1, cov.columns])
 }
 
-## Build and save the model
-if (!is.null(demos)) {
-  hb.post = choicemodelr(data = cmr.mm.bez.cov,
-                         xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
-                         demos = demos,
-                         mcmc = list(R = 20000, use = 10000),
-                         options = list(save = TRUE))
-} else {
-  hb.post = choicemodelr(data = cmr.mm.bez.cov,
-                         xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
-                         mcmc = list(R = 20000, use = 10000),
-                         options = list(save = TRUE))
-}
-saveRDS(hb.post, hbmodelfile)
-##
+# ## Build and save the model
+# if (!is.null(demos)) {
+#   hb.post = choicemodelr(data = cmr.mm.bez.cov,
+#                          xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
+#                          demos = demos,
+#                          mcmc = list(R = 20000, use = 10000),
+#                          options = list(save = TRUE))
+# } else {
+#   hb.post = choicemodelr(data = cmr.mm.bez.cov,
+#                          xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
+#                          mcmc = list(R = 20000, use = 10000),
+#                          options = list(save = TRUE))
+# }
+# saveRDS(hb.post, hbmodelfile)
+# ##
 
 hb.post = readRDS(hbmodelfile)
 
@@ -517,238 +403,30 @@ sm_q75 = apply(t(beta.post.q75), 1, mean)
 sm.hb = cbind("1st Qu." = sm_q25, "Mean" = sm_means, "3rd Qu." = sm_q75)
 rownames(sm.hb) = setdiff(colnames(cmr.mm.bez.cov), c("resp.id", "ques", "alt", "cmr_choice"))
 
-sm.hb
+#sm.hb
 
 ### HIERARCHICAL BAYES <<<
 #############################################################################################################
 
 ```
 
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-#############################################################################################################
-### >>> STAN MC PREPARATION
-library(rstan)
-#library(MASS)
-#library(shinystan)
-
-# TODO: Da li koristiti find_prior_for_beta? Ako da, onda izvrtiti skriptu i staviti dobiveni prior u STAN file.
-
-# writes a compiled Stan program to the disk to avoid recompiling
-rstan_options(auto_write = TRUE)
-
-R = length(unique(cbc.mm$resp.id))
-S = length(unique(cbc.mm$ques))
-C = max(cbc.mm$alt)
-K = ncol(cbc.mm.clear)
-Y = matrix(cmr_choice[cmr_choice != 0], nrow = R, ncol = S, byrow = TRUE)
-X = array(0, dim = c(R, S, C, K))
-XC = array(C, dim = c(R, S)) # actual number of alternatives for each respondent/scenario
-for (r in 1:R) { # respondents
-  for (s in 1:S){ # choice scenarios - questions
-    dm = data.matrix(cbc.mm.clear[(cbc.mm$resp.id == r) & (cbc.mm$ques == s), ])
-    XC[r, s] = nrow(dm)
-    if (nrow(dm) < C) dm = rbind(dm, matrix(0, nrow = (C - nrow(dm)), ncol = ncol(dm))) # add zero rows just to fill the X matrix
-    X[r, s, , ] = dm
-  }
-}
-if (!is.null(demos)) {
-#  Z = t(demos)
-  Z = array(t(demos[1:R, ]), dim = c(ncol(demos), R))
-} else {
-  Z = array(1, dim = c(1, R)) # intercept only
-}
-G = nrow(Z)
-
-standata = list(C = C, K = K, R = R, S = S, G = G, Y = Y, X = X, XC = XC, Z = Z)
-#str(standata)
-rm(R, S, C, K, Y, X, XC, Z, G, r, s, c)
-
-# Convergence checking gets tedious with a lot of parameters, so automate
-stanmc_check_fit = function(fit) {
-#  summ = summary(fit)$summary
-  summ = na.omit(summary(fit)$summary) # if some is NA, all checks turn out bad - remove them
-  range_rhat = range(summ[, 'Rhat'])
-  rhat_ok = ((0.99 <= range_rhat[1]) && (range_rhat[2] <= 1.1))
-  range_neff = range(summ[, 'n_eff'])
-  neff_ok = (range_neff[1] >= 400)
-  sp = rstan::get_sampler_params(fit, inc_warmup = FALSE)
-  max_divergent = max(sapply(sp, function(p) { sum(p[, 'divergent__']) }))
-  no_divergent = (max_divergent == 0)
-
-  list(ok = rhat_ok && neff_ok && no_divergent,
-       range_rhat = range_rhat,
-       range_neff = range_neff,
-       max_divergent = max_divergent)
-}
-
-### STAN MC PREPARATION <<<
-```
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-#############################################################################################################
-### >>> STAN MC HIERARCHICAL BAYES
-## BUILD THE MODEL
-cores = parallel::detectCores() - 1
-stan.mc = stan(file = "hmnl.stan",
-               data = standata,
-               verbose = FALSE,
-               chains = cores,
-               iter = 1000,
-               #algorithm = "HMC",
-               control = list(adapt_delta = 0.90, stepsize = 0.5),
-               cores = cores)
-
-# plot(stan.mc, plotfun = "trace", pars = c("Theta"))
-# plot(stan.mc, plotfun = "trace", pars = c("tau"))
-# plot(stan.mc, plotfun = "trace", pars = c("Omega[1,2]"))
-# plot(stan.mc, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
-# summary(stan.mc)$summary[, c("Rhat", "n_eff")]
-
-# stanmc_check_fit(stan.mc) # should say ok = TRUE
-
-saveRDS(stan.mc, stanmcmodelfile)
-##
-
-stan.mc = readRDS(stanmcmodelfile)
-
-# sample ukupnih koeficijenata za atribute
-stan.mc.betas = extract(stan.mc, pars = c("Beta"))$Beta
-# sample srednjih vrijednosti koeficijenata beta modificiranih vrijednostima covariatesa
-stan.mc.theta = apply(extract(stan.mc, pars = c("Theta"))$Theta, 2:3, mean)
-colnames(stan.mc.theta) = cov.columns
-stan.mc.omega = apply(extract(stan.mc, pars = c("Omega"))$Omega, 2:3, mean)
-stan.mc.tau = apply(extract(stan.mc, pars = c("tau"))$tau, 2, mean)
-# sample kovarijacijske matrice od beta
-stan.mc.sigma = apply(extract(stan.mc, pars = c("Sigma"))$Sigma, 2:3, mean) # kovarijacijska matrica od beta
-rownames(stan.mc.sigma) = colnames(stan.mc.sigma) = colnames(cbc.mm.clear)
-
-# u apply MARGIN označava indekse koje fiksiramo, a onda sve ostale indekse zbrojimo/izračunamo prosjek
-# npr. ako je a 3x4x5 apply(a, 2:3, mean) će za svaki par iz svih parova 2.-og i 3.-eg indeksa sumirati sve elemente 
-# za 1. indeks i izračunati sredinu; ukupno će rezultat biti 4x5
-# za fiksiranog usera i atribut, izračunaj prosječnu vrijednost izvlačenja, odn. koeficijenta
-stan.mc.betas.mean = apply(stan.mc.betas, 2:3, mean) # izračun svih prosječnih koeficijenata za svakog ispitanika
-smc_means = apply(stan.mc.betas.mean, 1, mean)
-stan.mc.betas.q25 = apply(stan.mc.betas, 2:3, quantile, probs = c(0.25)) # isto kao gore, samo 25% kvantil
-stan.mc.betas.q75 = apply(stan.mc.betas, 2:3, quantile, probs = c(0.75)) # isto kao gore, samo 75% kvantil
-smc_q25 = apply(stan.mc.betas.q25, 1, mean)
-smc_q75 = apply(stan.mc.betas.q75, 1, mean)
-
-stan.mc.est = cbind("1st Qu." = smc_q25, "Mean" = smc_means, "3rd Qu." = smc_q75)
-rownames(stan.mc.est) = setdiff(colnames(cmr.mm.bez.cov), c("resp.id", "ques", "alt", "cmr_choice"))
-
-#stan.mc.est
-
-### STAN MC HIERARCHICAL BAYES <<<
-#############################################################################################################
-```
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-#############################################################################################################
-### >>> STAN MC LCA
-# sve ostalo je definirano gore kod stan.mc
-standata$CL = designctx$rsegments
-
-# BUILD MODEL
-cores = parallel::detectCores() - 1
-#cores = parallel::detectCores()
-# https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html
-stan.mc.lca = stan(file = "hmnl_lca_2.stan",
-                   data = standata,
-                   verbose = FALSE,
-                   chains = cores, # * 2,
-#                   iter = floor(2000 / 1),
-                   iter = 1000,
-                   #algorithm = "HMC",
-                   control = list(adapt_delta = 0.90, stepsize = 0.5), # def adapt_delta 0.8, stespize = 2.0
-                   cores = cores)
-# plot(stan.mc.lca, plotfun = "trace", pars = c("Theta"))
-# plot(stan.mc.lca, plotfun = "trace", pars = c("tau"))
-# plot(stan.mc.lca, plotfun = "trace", pars = c("Omega[1,2]"))
-# plot(stan.mc.lca, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
-# summary(stan.mc.lca)$summary[, c("Rhat", "n_eff")]
-# stanmc_check_fit(stan.mc.lca) # should say ok = TRUE
-
-saveRDS(stan.mc.lca, stanmclcamodelfile)
-##
-
-stan.mc.lca = readRDS(stanmclcamodelfile)
-
-
-# ## dijagnostika
-# print(stan.mc.lca)
-# # https://betanalpha.github.io/assets/case_studies/rstan_workflow.html
-# source('stan_utility.R')
-# lsf.str()
-# check_n_eff(stan.mc.lca)
-# check_rhat(stan.mc.lca)
-# check_treedepth(stan.mc.lca, 11) # fit <- stan(file='eight_schools_cp.stan', data=data, seed=194838, control=list(max_treedepth=15))
-# check_energy(stan.mc.lca)
-# check_div(stan.mc.lca) # fit <- stan(file='eight_schools_cp.stan', data=data, seed=194838, control=list(adapt_delta=0.90))
-# 
-# library(shinystan)
-# launch_shinystan(stan.mc.lca)
-# launch_shinystan(stan.mc)
-# ##
-
-# sample ukupnih koeficijenata za atribute
-stan.mc.lca.betas = extract(stan.mc.lca, pars = c("Beta"))$Beta
-# sample kovarijacijske matrice od beta
-stan.mc.lca.betasigma = apply(extract(stan.mc.lca, pars = c("BetaSigma"))$BetaSigma, 2:3, mean)
-rownames(stan.mc.lca.betasigma) = colnames(stan.mc.lca.betasigma) = colnames(cbc.mm.clear)
-
-# sample ukupnih koeficijenata između segmenata i user covariatesa
-stan.mc.lca.gamma = extract(stan.mc.lca, pars = c("Gamma"))$Gamma
-# sample kovarijacijske matrice od gamma
-stan.mc.lca.gammasigma = apply(extract(stan.mc.lca, pars = c("GammaSigma"))$GammaSigma, 2:3, mean) 
-
-# sample vjerojatnosti pripadanja respondenta segmentu
-stan.mc.lca.theta = extract(stan.mc.lca, pars = c("Theta"))$Theta
-
-# sređivanje summarya za daljnje korištenje
-stan.mc.lca.betas.mean = apply(stan.mc.lca.betas, 2:3, mean)
-rownames(stan.mc.lca.betas.mean) = setdiff(colnames(cmr.mm.bez.cov), c("resp.id", "ques", "alt", "cmr_choice"))
-colnames(stan.mc.lca.betas.mean) = paste("segment_", 1:ncol(stan.mc.lca.betas.mean), sep = "")
-smclca_means = apply(stan.mc.lca.betas.mean, 1, mean)
-stan.mc.lca.betas.q25 = apply(stan.mc.lca.betas, 2:3, quantile, probs = c(0.25))
-stan.mc.lca.betas.q75 = apply(stan.mc.lca.betas, 2:3, quantile, probs = c(0.75))
-smclca_q25 = apply(stan.mc.lca.betas.q25, 1, mean)
-smclca_q75 = apply(stan.mc.lca.betas.q75, 1, mean)
-
-stan.mc.lca.est = cbind("1st Qu." = smclca_q25, "Mean" = smclca_means, "3rd Qu." = smclca_q75)
-rownames(stan.mc.lca.est) = rownames(stan.mc.lca.betas.mean) # isto kao gore
-
-#stan.mc.lca.est
-
-### STAN MC LCA <<<
-#############################################################################################################
-```
-
-
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
 # koji ćemo koristiti?
 sm = sm.hb
-# sm = stan.mc.est
-# sm = stan.mc.lca.est
-
-
-# TODO: dodati neku usporedbu, AIC, WAIC, log-likelihood ili sl. da nekako vidimo koliko su dobri modeli?
-
+psm = sm
+rownames(psm) = paste(substr(rownames(psm), 1, 40), "...", sep = "")
+psm
 
 ```
 
-U prikazanom sažetku je dosta informacija koje nije tako lako direktno interpretirati. Ali da malo pojasnimo, evo nekoliko pojašnjenja koja slijede direktno iz sažetka:
+U prikazanom sažetku su brojevi koje nije tako lako direktno interpretirati. Ali da malo pojasnimo, evo nekih pojašnjenja koja slijede direktno iz sažetka:
 
-* 'calzone' ima negativni (prosječni/mean) koeficijent `r as.character(round(sm['calzone', 'Mean'], 3))`, što znači da ga ispitanici slabije vrednuju nego osnovnu graničnu opciju koja označava točku kupio bih/ne bih kupio (usporedba koeficijenta za neku vrijednost je uvijek u odnosu na prvu/osnovnu deklariranu vrijednost, što je u ovom slučaju granična opcija) - jednostavnije rečeno 'calzone' ispitanici ne bi kupili, a zbog relativno velikog negativnog koeficijenta, ta je odluka prilično snažna,
+* 'slatke.kiflice.i.peciva.s.punjenjem..pekmez..Nutella..' i 'slane.kiflice.i.peciva.s.punjenjem..šunka..sir..' obje imaju pozitivne (prosječne/mean) koeficijente (`r as.character(round(sm['slatke.kiflice.i.peciva.s.punjenjem..pekmez..Nutella..', 'Mean'], 3))`, `r as.character(round(sm['slane.kiflice.i.peciva.s.punjenjem..šunka..sir..', 'Mean'], 3))`) što znači da su ispitanici (u prosjeku) zainteresirani za obje teme, ali za 'slane.kiflice.i.peciva.s.punjenjem..šunka..sir..' više nego za 'slatke.kiflice.i.peciva.s.punjenjem..pekmez..Nutella..',
 
-* 'pikantna' i 'ribarska' obje imaju pozitivne (prosječne/mean) koeficijente (`r as.character(round(sm['pikantna', 'Mean'], 3))`, `r as.character(round(sm['ribarska', 'Mean'], 3))`) što znači da ih ispitanici obje vrednuju više od osnovne granične opcije, ali 'pikantna' vrednuju više nego 'ribarska' - jednostavnije rečeno ispitanici bi kupili obje, ali 'pikantna' radije nego 'ribarska',
+* prvi i treći kvantili označavaju raspon u kojem se (malo pojednostavljeno) nalazi koeficijent ("vrijednost") svake teme sa 75% vjerojatnosti.
 
-* prvi i treći kvantili označavaju raspon u kojem se (malo pojednostavljeno) nalazi svaki koeficijent sa 75% vjerojatnosti.
-
-Ako sve koeficijente normaliziramo i skaliramo tako da granična opcija (kupio bih ili ne) bude na broju 100, lakše je interpretirati njihove vrijednosti i međusobne omjere:
+Sve koeficijente smo normalizirali i skalirali tako da granična opcija (zanima me/ne zanima me) bude na broju 100. Tako je lakše interpretirati vrijednosti tema i njihove međusobne omjere:
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
@@ -758,7 +436,7 @@ zc.sm = (sm[, "Mean"] - mean(sm[, "Mean"]))
 prob.zc.sm = exp(zc.sm)/(exp(zc.sm)+designctx$nalternatives-1)
 perc.zc.sm = (prob.zc.sm*100)/(1/designctx$nalternatives)
 #perc.zc.sm = ((prob.zc.sm/sum(prob.zc.sm))*100)
-ggplot(data = data.frame(product = paste(names(perc.zc.sm), " (", round(perc.zc.sm, digits = 2), ")", sep = ""), value = perc.zc.sm), aes(x = product, y = value)) + geom_col(fill = "blue") + geom_hline(aes(yintercept = 100), linetype = "dashed", color = "red") +  labs(y = "ne zanima me.......zanima me", color = "red") + theme(axis.title.x = element_text(hjust = .23), axis.title.y = element_blank()) + coord_flip()
+ggplot(data = data.frame(product = paste(paste(substr(names(perc.zc.sm), 1, 40), "...", sep = ""), " (", round(perc.zc.sm, digits = 2), ")", sep = ""), value = perc.zc.sm), aes(x = product, y = value)) + geom_col(fill = "blue") + geom_hline(aes(yintercept = 100), linetype = "dashed", color = "red") +  labs(y = "ne zanima me.......zanima me", color = "red") + theme(axis.title.x = element_text(hjust = .23), axis.title.y = element_blank()) + coord_flip()
 
 mostvpi = which.max(perc.zc.sm)
 mostvpv = perc.zc.sm[mostvpi]
@@ -770,7 +448,7 @@ moreless = if (rationmostcomp > 1) "veća" else "manja"
 
 ```
 
-Sad možemo vidjeti da je npr. najvredniji proizvod `r mostvpn` i da mu je vrijednost `r rationmostcomp` puta `r moreless` od vrijednosti `r compvpn`.
+Sad možemo vidjeti da je npr. najzanimljivija tema **`r mostvpn`** i da joj je "zanimljivost" **`r rationmostcomp` puta `r moreless`** od vrijednosti `r compvpn`.
 
 Ovi rezultati pokazuju i glavne prednosti MaxDiff analize u odnosu na jednostavno "redanje" proizvoda od najboljeg prema najlošijem koje se ponekad (prečesto :)) koristi za poslovne analize. MaxDiff nam pokazuje:
 
@@ -782,146 +460,13 @@ Time dobivamo kompletnu sliku svih proizvoda iz perspektive ispitanika i možemo
 
 ## Predviđanje udjela (share prediction)
 
-Jednom kada znamo vrijednosti koeficijenata svih proizvoda, možemo usporediti njihove različite kombinacije i predvidjeti udjele u prodaji. Predviđeni udjeli u prodaji su vjerojatnosti da će se određeni proizvod prodati u usporedbi s ostalim proizvodima koji su u kombinaciji koju testiramo.
-
-Kao primjer uzet ćemo kombinaciju nekoliko slučajno odabranih proizvoda i izračunati njihove predviđene udjele u prodaji:
+Kad smo izračunali koeficijente za sve teme, možemo usporediti njihove različite kombinacije i predvidjeti koje bi teme publiku koliko zanimale kad bismo ih uspoređivali.
+Kao primjer uzet ćemo kombinaciju nekoliko slučajno odabranih tema i izračunati njihove predviđene udjele u "popularnosti":
 
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
 library(MASS)
-
-# model must contain cov.df (can be empty)
-# data must be a data.frame with the items alternatives in the 1st column
-# if resp_i is not NULL, calculate utilities for only 1 respondent
-# if cov.df is not empty, take the covariates from it for the respondent with index resp_i
-# if resp_i is NULL, calculate average for either nrow(cov.df) respondents if cov.df is not empty or for 1000 respondents (without any covariates)
-# returns matrix of utilities, nresp x nrow(data)
-calc.utilities.mnl = function(model, data, resp_i = NULL) {
-  
-  # alt is the alternatives column, must be prepared to meet mlogit conditions
-  # resp_cov is a row of respondent's covariates (must be a data.frame, can be empty)
-  # returns matrix-row of utilities, 1 x nrow(data)
-  calc.utilities.mnl_resp = function(model, data, alt, resp_cov) {
-    coef.Sigma = cov.mlogit(model)
-    coef.mu = model$coef[1:dim(coef.Sigma)[1]]
-    draw_i = mvrnorm(1, coef.mu, coef.Sigma)
-    nalts = designctx$nalternatives
-  
-    if (nrow(resp_cov) > 0) {
-      # add covariates to the data frame
-      # n_d = ncol(data)
-      # data = cbind(data, resp_cov[rep(1, nrow(data)), ])
-      # colnames(data)[(n_d+1):ncol(data)] = colnames(resp_cov)
-      resp_cov = resp_cov[rep(1, nrow(data)), , drop = FALSE]
-      ffd_mm = domodelmatrix_itemscovs(data[, 1], resp_cov) # data frame is automatically generated because of resp_cov
-    } else {
-      ffd_mm = data.frame(domodelmatrix_itemsonly(data[, 1])) # need explicit cast to data frame
-    }
-  
-    if (designctx$anchors == 0) ffd_mm = ffd_mm[, -1] # without the Intercept
-    ffd_mm$alt = alt
-    ffd_mm$choice = rep(1, nrow(ffd_mm))
-    ffd.mlogit = mlogit.data(data = ffd_mm, choice = "choice", shape = "long", varying = 1:(ncol(ffd_mm)-2), alt.var = "alt", alt.levels = levels(ffd_mm$alt))
-    data.model = model.matrix(model$formula, data = ffd.mlogit)
-    utilities = data.model %*% draw_i
-    as.vector(utilities) # to get a row vector
-  }
-  
-  # returns matrix of utilities, 1000 x nrow(data)
-  calc.utilities.mnl_resps_without_cov = function(model, data, alt) {
-    nresp = 1000
-    utilities = matrix(NA, nrow = nresp, ncol = nrow(data))
-    for (i in 1:nresp) {
-      utilities[i, ] = calc.utilities.mnl_resp(model, data, alt, data.frame())
-    }
-    utilities
-  }
-  
-  # returns matrix of utilities, nrow(resp_cov) x nrow(data)
-  calc.utilities.mnl_resps_with_cov = function(model, data, alt, resp_cov) {
-    nresp = nrow(resp_cov)
-    utilities = matrix(NA, nrow = nresp, ncol = nrow(data))
-    for (i in 1:nresp) {
-      utilities[i, ] = calc.utilities.mnl_resp(model, data, alt, resp_cov[i, , drop = FALSE])
-    }
-    utilities
-  }
-
-  # ovo moramo napraviti zbog uvjeta u mlogit.data (broj redaka mora biti višekratnik od broja alternativa)
-  # ako broj redaka nije višekratnik, onda ćemo (bez utjecaja na izračun utilitya) iskopirati na kraj data
-  # još n_add redaka (1. redak), a kasnije ćemo to maknuti
-  n_add = 0
-  altlevels = as.numeric(levels(attributes(model$model$choice)$index$alt))
-  # ovo moramo napraviti iz istog razloga kao gore, s time da alt moramo izvući iz modela
-  # ne možemo staviti bezveze jer ako npr. koristimo covariates, onda su njihovi koeficijenti vezani
-  # za alternativu (alternative specific) pa ovise o alternativi i alternativa mora biti definirana
-  # kako je ovo samo za predikciju, postavljamo alt za sve podatke na istu vrijednost (nadamo se da će
-  # relativni omjeri i dalje ostati isti)
-  n_alts = length(altlevels)
-  
-  n_df = nrow(data)
-  if ((n_df %% n_alts) > 0) {
-    n_add = ceiling(n_df/n_alts)*n_alts - n_df
-    data.add = data[rep(1, n_add), , drop = FALSE]
-    data = rbind(data, data.add)
-  }
-  alt = factor(rep(altlevels, nrow(data)/n_alts), levels = altlevels)
-  
-  if (is.null(resp_i)) {
-    if (nrow(model$cov.df) > 0) {
-      utilities = calc.utilities.mnl_resps_with_cov(model, data, alt, model$cov.df)
-    } else {
-      utilities = calc.utilities.mnl_resps_without_cov(model, data, alt)
-    }
-  } else {
-    if (nrow(model$cov.df) > 0) {
-      utilities = calc.utilities.mnl_resp(model, data, alt, model$cov.df[resp_i, , drop = FALSE])
-    } else {
-      utilities = calc.utilities.mnl_resp(model, data, alt, data.frame())
-    }
-  }
-  if (n_add > 0) utilities = utilities[, -((ncol(utilities)-n_add+1):ncol(utilities))]
-  utilities
-
-}
-
-# Simulating shares
-# model must contain cov.df (can be empty)
-# data must be a data.frame with the items alternatives in the 1st column
-# see also calc.utilities.mnl
-predict.hier.mnl = function(model, data) {
-  utilities = calc.utilities.mnl(model, data)
-  nresp = nrow(utilities)
-  shares = matrix(NA, nrow = nresp, ncol = ncol(utilities))
-  for (i in 1:nresp) {
-    utility = utilities[i, ]
-    share = exp(utility)/sum(exp(utility))
-    shares[i, ] = round(share * 100, digits = 2) # round to get percentage
-  }
-  r = cbind(data, "share %" = colMeans(shares))
-  rownames(r) = c()
-  r[["share %"]] = as.numeric(round(r[["share %"]], digits = 2))
-  r
-}
-
-# Predict choice for data for respondent 
-# model must contain cov.df (can be empty)
-# data must be a data.frame with the items alternatives in the 1st column
-# resp_i is the i/id of the respondent
-# see also calc.utilities.mnl
-predict.hier.mnl.choice = function(model, data, resp_i) {
-  utilities = calc.utilities.mnl(model, data, resp_i)
-  share = exp(utilities)/sum(exp(utilities))
-  shares = round(share * 100, digits = 2) # round to get percentage
-  best_choice = worst_choice = rep(0, nrow(data))
-  best_choice[which.max(shares)] = 1
-  worst_choice[which.min(shares)] = 1
-  r = cbind(data, "share %" = shares, best_choice = best_choice, worst_choice = worst_choice)
-  rownames(r) = c()
-  r[["share %"]] = as.numeric(round(r[["share %"]], digits = 2))
-  r
-}
 
 # data must be a data.frame with the items alternatives in the 1st column
 # resp_i is a respondent's identifier in the model (can be NULL) 
@@ -999,69 +544,6 @@ predict.hb.mnl.choice = function(model, data, resp_i) {
   r
 }
 
-# data must be a data.frame
-# resp_i is a respondent's identifier in the model (can be NULL)
-# returns matrix of utilities, nresp x nrow(data) x ndraws
-calc.utilities.stan.mc = function(model, data, resp_i = NULL) {
-  data.df = data.frame(domodelmatrix_itemsonly(data[, 1]))
-  if (designctx$anchors == 0) data.df = data.df[, -1] # without the Intercept
-  data.model = as.matrix(data.df)
-  betas = extract(model, pars = c("Beta"))$Beta
-  nresps = 1:(dim(betas)[3])
-  if (!is.null(resp_i)) nresps = array(resp_i, dim = c(1))
-  ndraws = dim(betas)[1]
-  utilities = array(dim = c(length(nresps), nrow(data.df), ndraws))
-  for (d in 1:ndraws) {
-    for (i in 1:length(nresps)) {
-      utilities[i, , d] = data.model %*% betas[d, , nresps[i]] # turn i and d in betas
-    }
-  }
-  utilities
-}
-
-### HIERARCHICAL BAYES
-# data must be a data.frame
-# resp_i is a respondent's identifier in the model (can be NULL)
-# see also calc.utilities.stan.mc
-predict.stan.mc = function(model, data, resp_i = NULL) {
-  utilities = calc.utilities.stan.mc(model, data)
-  betas = extract(model, pars = c("Beta"))$Beta
-  nresps = 1:(dim(betas)[3])
-  if (!is.null(resp_i)) nresps = array(resp_i, dim = c(1))
-  ndraws = dim(betas)[1]
-  shares = array(dim = c(length(nresps), nrow(data), ndraws))
-  for (d in 1:ndraws) {
-    for (i in 1:length(nresps)) {
-      shares[i, , d] = (exp(utilities[i, , d])/sum(exp(utilities[i, , d]))) * 100
-    }
-  }
-  shares.agg = apply(shares, 2:3, mean)
-  r = cbind(data, 
-            "share %" = apply(shares.agg, 1, mean)
-            # ,
-            # "5%" = apply(shares.agg, 1, quantile, probs = c(0.05)),
-            # "95%" = apply(shares.agg, 1, quantile, probs = c(0.95))
-            )
-  rownames(r) = c()
-  r[["share %"]] = as.numeric(round(r[["share %"]], digits = 2))
-  # r[["5%"]] = as.numeric(round(r[["5%"]], digits = 2))
-  # r[["95%"]] = as.numeric(round(r[["95%"]], digits = 2))
-  r
-}
-
-### HIERARCHICAL BAYES
-# data must be a data.frame
-# resp_i is a respondent's identifier in the model
-# see also predict.stan.mc and calc.utilities.stan.mc
-predict.stan.mc.choice = function(model, data, resp_i) {
-  shares = predict.stan.mc(model, data, resp_i)
-  best_choice = worst_choice = rep(0, nrow(data))
-  best_choice[which.max(shares[["share %"]])] = 1
-  worst_choice[which.min(shares[["share %"]])] = 1
-  r = cbind(data, "share %" = shares[["share %"]], best_choice = best_choice, worst_choice = worst_choice)
-  rownames(r) = c()
-  r
-}
 
 ```
 
@@ -1097,14 +579,18 @@ shares = shares.hb
 mostsharesindex = which.max(shares[["share %"]])
 mostshare = shares[mostsharesindex, ]
 
-t(shares)
+
+pshares = t(shares)
+pshares["opcije", ] = paste(substr(pshares["opcije", ], 1, 13), "...", sep = "")
+pshares
+
 
 ```
 
 
-U prethodnoj tablici možemo vidjeti kako bi ispitanici birali između `r nrow(ffd_df)` različitih opcija pizza. Svaka pizza dobiva predviđeni udio (postotak) u ukupnoj prodaji, prema procijenjenim vrijednostima pripadajućih koeficijenata.
+U prethodnoj tablici možemo vidjeti kako bi ispitanici birali između izabranih `r nrow(ffd_df)` tema. Svaka tema dobiva predviđeni udio (postotak) u ukupnoj "popularnosti", prema procijenjenim vrijednostima pripadajućih koeficijenata.
 
-**Najčešće birana opcija** (između navedenih, ne općenito) je *`r paste(as.matrix(mostshare[, -ncol(mostshare)]), collapse = ", ")`* **s previđenim udjelom u prodaji `r max(shares[["share %"]])`%**.
+Najčešće birana tema (između navedenih, ne općenito) je `r paste(as.matrix(mostshare[, -ncol(mostshare)]), collapse = ", ")` s previđenim udjelom u "popularnosti" `r max(shares[["share %"]])`%.
 
 
 
@@ -1116,7 +602,7 @@ Korištenjem predviđanja udjela/vjerojatnosti prodaje za razne kombinacije proi
 
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
-holdout_respondents_n = 10
+holdout_respondents_n = 50
 holdout_respondents_q = 3
 holdout_respondents = sample(1:max(cbc.df$resp.id), holdout_respondents_n, replace = FALSE)
 holdout_questions = sample(1:max(cbc.df$ques), holdout_respondents_q, replace = FALSE)
@@ -1136,18 +622,23 @@ holdout_true_predicted = matrix(
 holdout_true_predicted_mnl = holdout_true_predicted_hb = holdout_true_predicted_stan_mc = holdout_true_predicted_stan_mc_lca = holdout_true_predicted
 for (i in 1:holdout_respondents_n) { # respondent
   for (j in 1:holdout_respondents_q) { # question
+    
+    #print(paste("i = ", i, ", j = ", j))
+    
     ffd_df = cbc.df[(cbc.df$resp.id == holdout_respondents[i]) & (cbc.df$ques == holdout_questions[j]), ]
+    if (nrow(ffd_df) == 0) next
+    
     true_best_choice = which(ffd_df$best_choice == 1)
     true_worst_choice = which(ffd_df$worst_choice == 1)
     ffd_df = ffd_df[, keep_cols, drop = FALSE]
     
-    predicted = predict.hier.mnl.choice(m2.hier, ffd_df, holdout_respondents[i])
-    predicted_best_choice = which(predicted$best_choice == 1)
-    predicted_worst_choice = which(predicted$worst_choice == 1)
-    holdout_true_predicted_mnl[(i-1)*holdout_respondents_q+j, ] =
-      c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
-        true_worst_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
-
+    # predicted = predict.hier.mnl.choice(m2.hier, ffd_df, holdout_respondents[i])
+    # predicted_best_choice = which(predicted$best_choice == 1)
+    # predicted_worst_choice = which(predicted$worst_choice == 1)
+    # holdout_true_predicted_mnl[(i-1)*holdout_respondents_q+j, ] =
+    #   c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
+    #     true_worst_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
+    # 
     predicted = predict.hb.mnl.choice(hb.post, ffd_df, holdout_respondents[i])
     predicted_best_choice = which(predicted$best_choice == 1)
     predicted_worst_choice = which(predicted$worst_choice == 1)
@@ -1155,30 +646,31 @@ for (i in 1:holdout_respondents_n) { # respondent
       c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
         true_worst_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
 
-    predicted = predict.stan.mc.choice(stan.mc, ffd_df, holdout_respondents[i])
-    predicted_best_choice = which(predicted$best_choice == 1)
-    predicted_worst_choice = which(predicted$worst_choice == 1)
-    holdout_true_predicted_stan_mc[(i-1)*holdout_respondents_q+j, ] =
-      c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
-        true_best_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
-
-    predicted = predict.stan.mc.choice(stan.mc.lca, ffd_df, holdout_respondents[i])
-    predicted_best_choice = which(predicted$best_choice == 1)
-    predicted_worst_choice = which(predicted$worst_choice == 1)
-    holdout_true_predicted_stan_mc_lca[(i-1)*holdout_respondents_q+j, ] =
-      c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
-        true_best_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
+    # predicted = predict.stan.mc.choice(stan.mc, ffd_df, holdout_respondents[i])
+    # predicted_best_choice = which(predicted$best_choice == 1)
+    # predicted_worst_choice = which(predicted$worst_choice == 1)
+    # holdout_true_predicted_stan_mc[(i-1)*holdout_respondents_q+j, ] =
+    #   c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
+    #     true_best_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
+    # 
+    # predicted = predict.stan.mc.choice(stan.mc.lca, ffd_df, holdout_respondents[i])
+    # predicted_best_choice = which(predicted$best_choice == 1)
+    # predicted_worst_choice = which(predicted$worst_choice == 1)
+    # holdout_true_predicted_stan_mc_lca[(i-1)*holdout_respondents_q+j, ] =
+    #   c(true_best_choice, predicted_best_choice, true_best_choice == predicted_best_choice,
+    #     true_best_choice, predicted_worst_choice, true_worst_choice == predicted_worst_choice)
   }
 }
 
-sum(holdout_true_predicted_mnl[, "correct best"])/nrow(holdout_true_predicted_mnl)
-sum(holdout_true_predicted_mnl[, "correct worst"])/nrow(holdout_true_predicted_mnl)
-sum(holdout_true_predicted_hb[, "correct best"])/nrow(holdout_true_predicted_hb)
-sum(holdout_true_predicted_hb[, "correct worst"])/nrow(holdout_true_predicted_hb)
-sum(holdout_true_predicted_stan_mc[, "correct best"])/nrow(holdout_true_predicted_stan_mc)
-sum(holdout_true_predicted_stan_mc[, "correct worst"])/nrow(holdout_true_predicted_stan_mc)
-sum(holdout_true_predicted_stan_mc_lca[, "correct best"])/nrow(holdout_true_predicted_stan_mc_lca)
-sum(holdout_true_predicted_stan_mc_lca[, "correct worst"])/nrow(holdout_true_predicted_stan_mc_lca)
+# sum(holdout_true_predicted_mnl[, "correct best"])/nrow(holdout_true_predicted_mnl)
+# sum(holdout_true_predicted_mnl[, "correct worst"])/nrow(holdout_true_predicted_mnl)
+holdout_true_predicted_hb = na.omit(holdout_true_predicted_hb)
+#sum(holdout_true_predicted_hb[, "correct best"])/nrow(holdout_true_predicted_hb)
+#sum(holdout_true_predicted_hb[, "correct worst"])/nrow(holdout_true_predicted_hb)
+# sum(holdout_true_predicted_stan_mc[, "correct best"])/nrow(holdout_true_predicted_stan_mc)
+# sum(holdout_true_predicted_stan_mc[, "correct worst"])/nrow(holdout_true_predicted_stan_mc)
+# sum(holdout_true_predicted_stan_mc_lca[, "correct best"])/nrow(holdout_true_predicted_stan_mc_lca)
+# sum(holdout_true_predicted_stan_mc_lca[, "correct worst"])/nrow(holdout_true_predicted_stan_mc_lca)
 
 #holdout_true_predicted = holdout_true_predicted_mnl
 holdout_true_predicted = holdout_true_predicted_hb
@@ -1195,384 +687,25 @@ paste("Ukupno točno predviđanja:", round(100*total_correct/(2*nrow(holdout_tru
 Ukupna točnost predviđanja daje nam sigurnost da naš model dobro funkcionira.
 
 
-## Segmentacija ispitanika
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-#############################################################################################################
-lca_segments = designctx$rsegments
-
-# ### >>> GMNL LCA: https://rpubs.com/msarrias1986/335556
-# if (length(designctx$covariates) == 0) {
-#   # fmlstring = paste("choice ~ 0 + ", paste(colnames(mm), collapse = "+")) # all vars have generic coefs
-#   fmlstring = paste("choice ~ ", paste(colnames(mm), collapse = "+")) # all vars have generic coefs
-#   fmlstring = paste(fmlstring, "| 0 | 0 | 0 | 1")
-#   fml2 = as.formula(fmlstring)
-# } else {
-#   ncov.columns = setdiff(colnames(mm), cov.columns)
-#   # fmlstring1 = paste("0 +", paste(ncov.columns, collapse = "+")) # all but covariates have generic coefs
-#   fmlstring1 = paste(ncov.columns, collapse = "+") # all but covariates have generic coefs
-#   # fmlstring2 = paste("0 +", paste(cov.columns, collapse = "+"))
-#   fmlstring2 = paste(cov.columns, collapse = "+")
-#   fmlstring = paste("choice ~", fmlstring1, "| 0 | 0 | 0 |", fmlstring2)
-#   fml2 = as.formula(fmlstring)
-# }
-# 
-# # koliko segmenata?? staviti u Q = 
-# lca_segments = designctx$rsegments
-# 
-# ## BUILD AND SAVE MODEL
-# library(gmnl)
-# lcm = gmnl(fml2, data = cbc.mlogit, model = "lc", Q = lca_segments, panel = TRUE, method = 'bhhh') # cbc.mlogit je definiran kod mixed mnl gore
-# saveRDS(lcm, lcmodelfile)
-# 
-# ## LOAD MODEL
-# lcm = readRDS(lcmodelfile)
-# sm.lc = summary(lcm)$CoefTable
-# 
-# ### GMNL LCA <<<
-
-```
-
-
-S obzirom na razne faktore (demografske ili sl.), ispitanike možemo podijeliti u segmente te zatim modelirati vrednovanje proizvoda za svaki segment (umjesto prosjeka ili individualno). Broj segmenata koji mislimo da postoji u skupu ispitanika treba zadati unaprijed kao parametar. Pretpostavimo da postoje `r lca_segments` različita segmenta ispitanika (s tim parametrom ćemo napraviti analizu). Modeliranjem dobivamo sljedeći sažetak za koeficijente po segmentima:
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-### >>> GMNL LCA
-# estimated_coefs_by_seg = sm.lc[, c("Estimate", "Std. Error")]
-### GMNL LCA <<<
-```
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-### >>> STAN MC LCA
-estimated_coefs_avg = stan.mc.lca.est[, "Mean"] # average coefficients
-estimated_coefs_by_seg = t(stan.mc.lca.betas.mean) # coefficients by segments
-### STAN MC LCA <<<
-```
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-### >>> NEOVISNA SEGMENTACIJA
-estimated_resp_coefs = beta.post.mean # coefficients by respondent
-estimated_coefs_avg = sm.hb[, "Mean"] # average coefficients
-# estimated_resp_coefs = t(stan.mc.betas.mean) # coefficients by respondent
-# estimated_coefs_avg = stan.mc.est[, "Mean"] # average coefficients
-
-library(cluster)
-km1 = kmeans(estimated_resp_coefs, centers = designctx$rsegments)
-#km1
-estimated_coefs_by_seg = km1$centers
-colnames(estimated_coefs_by_seg) = names(estimated_coefs_avg)
-rownames(estimated_coefs_by_seg) = paste("seg", rownames(estimated_coefs_by_seg))
-### NEOVISNA SEGMENTACIJA <<<
-```
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-estimated_coefs_by_seg
-```
-
-
-S obzirom na to da je cilj segmentacije prepoznavanje koji korisnik (s najvećom vjerojatnošću) pripada kojem segmentu, pogledajmo i taj rezultat (navedeni su redni brojevi ispitanika koji pripadaju određenom segmentu):
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-### GMNL LCA >>>
-# bi_juhapileca.juha <- effect.gmnl(lcm, par = "juhapileća.juha", effect = "ce")$mean
-# summary(bi_juhapileca.juha)
-# 
-# plot(lcm, par = "juhapileća.juha", effect = "ce", type = "density", col = "blue")
-# 
-# Conditional probabilitites
-# pi_hat = lcm$Qir
-# colnames(pi_hat) = paste("q =", 1:lca_segments)
-# # segment (s najvećom vjerojatnošću) za svakog ispitanika
-# resp_segs = apply(pi_hat, 1, which.max)
-### GMNL LCA <<<
-```
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-### STAN MC LCA >>>
-resp_segs = apply(apply(stan.mc.lca.theta, 2:3, mean), 2, which.max)
-### STAN MC LCA <<<
-```
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-### NEOVISNA SEGMENTACIJA >>>
-resp_segs = km1$cluster
-### NEOVISNA SEGMENTACIJA <<<
-```
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-for (s in 1:lca_segments) {
-  print(paste("Segment", s))
-  print(which(resp_segs == s))
-}
-```
-
-
-Segmentacija ispitanika se može i grafički prikazati:
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-### NEOVISNA SEGMENTACIJA >>>
-clusplot(estimated_resp_coefs, km1$cluster, color = TRUE, shade = TRUE, labels = 5, lines = 0, main = "K-means cluster plot")
-### NEOVISNA SEGMENTACIJA <<<
-```
-
-S dobivenom segmentacijom možemo primjerice kreirati više različitih proizvoda od kojih će svaki biti najzanimljiviji određenom segmentu (s obzirom na vrednovanje). Tako ćemo povećati prodaju i zadovoljstvo kupaca.
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-### NEOVISNA SEGMENTACIJA >>>
-# provjera u odnosu na simulaciju, ako postoji
-if (!is.null(simcoefs) && is.list(simcoefs) && !is.null(simcoefs$beta) && !is.null(simcoefs$seg.df)) {
-
-  true_coefs = simcoefs$beta
-  true_segments = simcoefs$seg.df
-  
-  true_coefs_avg = apply(true_coefs, 2, mean)
-  
-  # koliko dobro je pogodio average koeficijente?
-  true_vs_estimated_coefs_avg = matrix(
-    data = c(true_coefs_avg, estimated_coefs_avg), 
-    nrow = 2,
-    ncol = length(estimated_coefs_avg),
-    byrow = TRUE,
-    dimnames = list(vals = c("true", "est"), coefs = names(estimated_coefs_avg))
-  )
-  true_vs_estimated_coefs_avg
-  
-  # nađemo permutaciju koja maksimizira točnu segmentaciju ispitanika
-  getPerms = function(x) {
-    if (length(x) == 1) {
-      return(x)
-    } else {
-      res = matrix(nrow = 0, ncol = length(x))
-      for (i in seq_along(x)) {
-        res = rbind(res, cbind(x[i], Recall(x[-i])))
-      }
-      return(res)
-    }
-  }
-  all_seg_perms = getPerms(1:designctx$rsegments)
-  seg_perm_score = rep(0, nrow(all_seg_perms))
-  resp_segs_permuted = matrix(0, nrow = nrow(all_seg_perms), ncol = length(resp_segs))
-  for (i in 1:nrow(all_seg_perms)) {
-    for (c in 1:designctx$rsegments) {
-      resp_segs_permuted[i, resp_segs == c] = all_seg_perms[i, c]
-    }
-    seg_perm_score[i] = sum(true_segments$seg == resp_segs_permuted[i, ])
-  }
-  seg_perm = all_seg_perms[which.max(seg_perm_score), ] # ako treba "preimenovati" segmente, onda to napravimo ovdje s permutacijom
-  
-  # estimated_coefs_by_seg je gore definirano, ovisno o metodi
-  colnames(estimated_coefs_by_seg) = colnames(true_coefs)
-  estimated_coefs_by_seg = estimated_coefs_by_seg[seg_perm, ] # preslagivanje redova - segmenata prema permutaciji
-  rownames(estimated_coefs_by_seg) = rownames(true_coefs)
-  
-  # koliko dobro je pogodio koeficijente po segmentima?
-  true_vs_estimated_coefs_seg = matrix(
-    data = unlist(lapply(1:nrow(estimated_coefs_by_seg), function(i) c(true_coefs[i, ], estimated_coefs_by_seg[i, ]))), 
-    nrow = 2 * nrow(estimated_coefs_by_seg),
-    ncol = ncol(estimated_coefs_by_seg),
-    byrow = TRUE,
-    dimnames = list(
-      vals = unlist(lapply(1:nrow(estimated_coefs_by_seg), function(i) paste("seg_", i, "_", c("true", "est"), sep = ""))), 
-      coefs = colnames(estimated_coefs_by_seg))
-  )
-  true_vs_estimated_coefs_seg
-  
-  # koliko dobro je pogodio pripadnost ispitanika segmentu?
-  resp_segs = resp_segs_permuted[which.max(seg_perm_score), ]
-  table(true_segments$seg == resp_segs)
-  paste("Correct segmentation: ", round(sum(true_segments$seg == resp_segs)/length(true_segments$seg), 2)*100, "%", sep = "")
-
-}
-### NEOVISNA SEGMENTACIJA <<<
-```
-
-
-
-## TURF analiza
-
-Ponudom u kojoj se nalazi više proizvoda povećat ćemo vjerojatnost da će barem neki proizvod biti kupljen od strane kupaca. Da bismo izračunali koji proizvodi bi trebali biti u ponudi da bismo postigli najveću prodaju, koristimo TURF (total unduplicated reach and frequency) analizu.
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-comb_size = 7 # size of the TURF combination that we will test
-```
-
-Pretpostavimo da u ponudu želimo staviti `r comb_size` proizvoda. Za svaku kombinaciju/ponudu koja sadrži `r comb_size` proizvoda i za svakog ispitanika iz našeg istraživanja izračunat ćemo da li bi kupio barem jedan proizvod iz ponude (reach - da li je kupac 'dosegnut' barem nekim proizvodom) i koliko (ako ijedan) bi proizvoda iz ponude kupio (frequency - koliko je puta kupac 'dosegnut' danom ponudom proizvoda). Odluka da li bi kupac kupio neki proizvod ili ne se donosi na osnovi vjerojatnosti prodaje proizvoda u usporedbi s ostalim proizvodima iz ponude i osnovnom (graničnom) opcijom koja označava granicu kupio bih/ne bih kupio.
-
-Pogledajmo kako izgleda nekoliko redaka iz reach & frequency tablice za naše proizvode i ponude (poredanih silazno po reach):
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-
-#respids = unique(cbc.df$resp.id) # koristi se i kasnije, zato je ovdje globalno deklarirano
-respids = 1:length(unique(cbc.df$resp.id)) # koristi se i kasnije, zato je ovdje globalno deklarirano
-
-##
-
-## Calculate TURF
-
-# uses global respids, designctx$items
-# comb_size_l, how many "new" items to add
-# start_comb, elements that must be included in the combinations
-# returns a data frame with all the combinations made from start_comb and the rest of the items
-get_rf_df = function(comb_size_l, start_comb = c(), verbose = TRUE) {
-
-  if (verbose) {
-    print(paste("comb_size =", comb_size_l))
-    print(paste("start =", paste(start_comb, collapse = ", ")))
-  }
-
-  items_l = dplyr::setdiff(designctx$items, start_comb)
-  items_combs_l = combn(items_l, comb_size_l)
-  items_combs = array("", dim = c(length(start_comb) + comb_size_l, ncol(items_combs_l)))
-  for (itc in 1:ncol(items_combs_l)) {
-    items_combs[, itc] = c(start_comb, items_combs_l[, itc])
-  }
-
-  combs_df = data.frame(respid = rep(respids, ncol(items_combs)))
-  combinations = sapply(1:ncol(items_combs), function(itc) paste(items_combs[, itc], collapse = ", "))
-
-  combs_df$combination = rep(combinations, each = length(respids))
-  for (ci in make.names(designctx$items)) combs_df[[ci]] = 0
-  combs_df$reach = combs_df$freq = 0
-
-  for (i in 1:ncol(items_combs)) {
-    comb_cols = colnames(combs_df) %in% make.names(items_combs[, i])
-  #    combs_df[(1:length(respids))+(i-1)*length(respids), comb_cols] = 1
-    for (r in 1:length(respids)) {
-      ir_utils = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = items_combs[, i]), resp_i = respids[r])
-      probs_reach = exp(ir_utils)/(sum(exp(ir_utils))+1) # ovo je ok ako imamo anchor, provjeriti još da li je ok ako ga nemamo
-      reached = sapply(probs_reach, function(prob_reach) {
-        sample(c(TRUE, FALSE), 1, replace = FALSE, prob = c(prob_reach, 1-prob_reach))
-      })
-      resp_comb_row = r+(i-1)*length(respids)
-      combs_df[resp_comb_row, comb_cols] = ifelse(reached, as.numeric(1), as.numeric(-1))
-      combs_df[resp_comb_row, "reach"] = as.numeric(any(reached))
-      combs_df[resp_comb_row, "freq"] = as.numeric(sum(reached))
-    }
-    if ((verbose) & ((i %% 10) == 0)) print(paste(round(i/ncol(items_combs), 2)*100, "%", sep = ""))
-  }
-  if (verbose) print(paste(round(i/ncol(items_combs), 2)*100, "%", sep = ""))
-
-  combs_df
-}
-
-library(dplyr)
-start_comb = c()
-comb_size_partition = c(comb_size) # 1 step
-#comb_size_partition = c(2, 3) # 2 steps: first get 2, then 3 optimal items
-for (cspi in comb_size_partition) {
-  combs_df = get_rf_df(cspi, start_comb)
-  combs_out = combs_df %>% dplyr::group_by(combination) %>% dplyr::summarise(reach = sum(reach), freq = sum(freq))
-  combs_out = combs_out[order(combs_out$reach, decreasing = TRUE), ]
-  start_comb = unlist(strsplit(combs_out[1, ]$combination, ", "))
-}
-saveRDS(combs_df, turffile)
-
-##
-
-
-combs_df = readRDS(turffile)
-
-combs_out = combs_df %>% dplyr::group_by(combination) %>% dplyr::summarise(reach = sum(reach), freq = sum(freq))
-combs_out = combs_out[order(combs_out$reach, decreasing = TRUE), ]
-
-head(combs_out)
-
-```
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-
-# https://en.wikipedia.org/wiki/McNemar%27s_test
-comb1_i = 1
-comb2_i = 2
-comb_diff = FALSE
-while ((comb_diff == FALSE) & (comb2_i <= nrow(combs_out))) {
-  comb1 = combs_out[comb1_i, ]$combination
-  comb2 = combs_out[comb2_i, ]$combination
-  comb1_positive = combs_df[(combs_df$combination == comb1) & (combs_df$reach == 1), ]$respid
-  comb1_negative = combs_df[(combs_df$combination == comb1) & (combs_df$reach == 0), ]$respid
-  comb2_positive = combs_df[(combs_df$combination == comb2) & (combs_df$reach == 1), ]$respid
-  comb2_negative = combs_df[(combs_df$combination == comb2) & (combs_df$reach == 0), ]$respid
-  mcnemar_a = length(dplyr::intersect(comb1_positive, comb2_positive)) # both positive
-  mcnemar_b = length(dplyr::intersect(comb1_positive, comb2_negative)) # 1 positive, 2 negative
-  mcnemar_c = length(dplyr::intersect(comb1_negative, comb2_positive)) # 1 negative, 2 positive
-  mcnemar_d = length(dplyr::intersect(comb1_negative, comb2_negative)) # both negative
-  mcnemar_x = matrix(c(mcnemar_a, mcnemar_b, mcnemar_c, mcnemar_d), 
-                     nrow = 2,
-                     byrow = TRUE,
-                     dimnames = list("1st Comb" = c("Reached", "Not Reached"), "2nd Comb" = c("Reached", "Not Reached")))
-  mcnemar_out = mcnemar.test(mcnemar_x)
-  # 0 hipoteza je da nema stvarne razlike između kombinacija, alternativna je da razlika postoji
-  # znači ako je p-value veća od npr. 0.05, zadržavamo 0 hipotezu, ako je manja, odbacujemo 0 hipotezu u korist alternativne
-  comb_diff = (mcnemar_out$p.value < 0.05)
-  comb2_i = comb2_i + 1
-}
-
-if (comb2_i > nrow(combs_out)) {
-  print("All combinations are statistically equal.")
-} else {
-  print(paste("First ", comb2_i-1, " combinations are statistically equal.", sep = ""))
-  combs_out[1:(comb2_i-1), ]
-}
-
-```
-
-
-```{r echo= FALSE, warning = FALSE, message = FALSE}
-
-# turf_data = data.frame(respid = unique(cbc.df$resp.id), wgt = rep(1, length(unique(cbc.df$resp.id))))
-# colitems = make.names(designctx$items)
-# for (i in colitems) {
-#   turf_data[[i]] = 0
-# }
-# 
-# zero_buyers = c()
-# for (r in turf_data$respid) {
-#   for (i in designctx$items) {
-#     ir_util = calc.utilities.hb.zc(model = hb.post, data = data.frame(opcije = i), resp_i = r)
-#     prob_reach = exp(ir_util)/(exp(ir_util)+(designctx$nalternatives-1)) # ovo je ok ako imamo anchor, provjeriti još da li je ok ako ga nemamo
-#     reached = sample(c(TRUE, FALSE), 1, replace = FALSE, prob = c(prob_reach, 1-prob_reach))
-#     turf_data[turf_data$respid == r, make.names(i)] = as.numeric(reached)
-#   }
-#   if (all(turf_data[r, colitems] == 0)) zero_buyers = c(zero_buyers, r)
-# }
-# 
-# library(turfR)
-# # maknuti one koji ništa ne kupuju
-# turf_data = turf_data[!(turf_data$respid %in% zero_buyers), ]
-# comb_sizes = 2:6
-# keep = 3
-# turf_out = turf(turf_data, ncol(turf_data)-2, comb_sizes, 
-#                 depth = 1, keep = keep, mc = FALSE, nsims = 10000, psims = NULL, sort = "d")
-# 
-# turf_m = NULL
-# for (ci in 1:length(comb_sizes)) {
-#   turf_i = turf_out$turf[[ci]]
-#   combination = c()
-#   for (ri in 1:keep) {
-#     combination = c(combination, paste(designctx$items[which(turf_i[ri, -c(1:3)] == 1)], collapse = ", "))
-#   }
-#   turf_df = data.frame(comb_size = comb_sizes[ci], combination = combination, reach = turf_i$rchX, freq = turf_i$frqX)
-#   if (is.null(turf_m)) {
-#     turf_m = turf_df
-#   } else {
-#     turf_m = rbind(turf_m, turf_df)
-#   }
-# }
-# 
-# turf_m
-
-```
-
-Možemo vidjeti da bi ponuda `r as.character(combs_out[1, "combination"])` dosegnula najviše ispitanika (kupili bi barem jedan proizvod iz ponude), njih `r as.numeric(combs_out[1, "reach"])`, što je `r round(as.numeric(combs_out[1, "reach"])/length(respids), 2)*100`% od ukupnog broja ispitanika, s time što bi ukupno bilo `r as.numeric(combs_out[1, "freq"])` (potencijalnih) kupovina.
-
-Na ovaj način možemo kreirati ponudu proizvoda kojom ćemo maksimizirati prodaju.
-
-
 ## Zaključak
+
+Zaključujemo da su teme koje najviše zanimaju di-go fanove:
+
+
+```{r echo= FALSE, warning = FALSE, message = FALSE}
+
+zanimaju_me = perc.zc.sm[which(perc.zc.sm > 100)]
+zanimaju_me = data.frame(zanimaju_me[order(zanimaju_me, decreasing = TRUE)])
+colnames(zanimaju_me) = "score"
+zanimaju_me
+
+```
+
+Prema navedenim rezultatima, predlažemo prilagodbu komunikacije i produkcije sadržaja na di-go Facebook stranici i drugim kanalima za optimiziranje dosega i aktivnosti.
+\
+\
+\
+\
 
 **MaxDiff analiza je moćan alat za upoznavanje kupaca i njihovih vrijednosti i za kreiranje najboljih proizvoda za njih. Takav pristup uvijek vodi prema poboljšanju poslovanja, većim prihodima i većem zadovoljstvu kupaca.**
 
