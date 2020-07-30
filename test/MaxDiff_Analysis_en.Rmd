@@ -1,10 +1,11 @@
 ---
-title:    |
-    | MaxDiff TEST analysis
-    | (an example)
+title: |
+  | MaxDiff TEST analysis
+  | (an example)
 author: "Danijel Kopčinović, IT Market"
-#date: '15 10 2019 '
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -423,20 +424,20 @@ cbc.mlogit = mlogit.data(data = cbc.mm, choice = "choice", shape = "long",
                          chid.var = "resp.ques",
                          id.var = "resp.id")
 
-## BUILD AND SAVE MODEL
-# Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
-# (znači u formuli idu iza | i s 0 +)
-m1 = mlogit(fml1, data = cbc.mlogit)
-# summary(m1)
-m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
-names(m1.rpar) = names(m1$coef)
-m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
-# summary(m1.hier)
-# m2.hier = update(m1.hier, correlation = TRUE)
-# summary(m2.hier)
-# SAVE/LOAD
-m2.hier$cov.df = cov.df
-saveRDS(m2.hier, mnlmodelfile)
+# ## BUILD AND SAVE MODEL
+# # Ako imamo covariates, onda model prolazi samo ako se koeficijenti covariates računaju kao alternative specific
+# # (znači u formuli idu iza | i s 0 +)
+# m1 = mlogit(fml1, data = cbc.mlogit)
+# # summary(m1)
+# m1.rpar = rep("n", length = length(m1$coef)) # 'n' normal, 'l' log-normal, 't' truncated normal, 'u' uniform
+# names(m1.rpar) = names(m1$coef)
+# m2.hier = mlogit(fml1, data = cbc.mlogit, panel = TRUE, rpar = m1.rpar, correlation = TRUE)
+# # summary(m1.hier)
+# # m2.hier = update(m1.hier, correlation = TRUE)
+# # summary(m2.hier)
+# # SAVE/LOAD
+# m2.hier$cov.df = cov.df
+# saveRDS(m2.hier, mnlmodelfile)
 
 ## LOAD MODEL
 if (!is.null(cbc.mm$resp.ques)) cbc.mm$resp.ques = NULL
@@ -469,21 +470,21 @@ if (length(designctx$covariates) > 0) {
   demos = as.matrix(cmr.mm[(0:(max_resp_id-1))*(total_rows/max_resp_id)+1, cov.columns])
 }
 
-## Build and save the model
-if (!is.null(demos)) {
-  hb.post = choicemodelr(data = cmr.mm.bez.cov,
-                         xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
-                         demos = demos,
-                         mcmc = list(R = 20000, use = 10000),
-                         options = list(save = TRUE))
-} else {
-  hb.post = choicemodelr(data = cmr.mm.bez.cov,
-                         xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
-                         mcmc = list(R = 20000, use = 10000),
-                         options = list(save = TRUE))
-}
-saveRDS(hb.post, hbmodelfile)
-##
+# ## Build and save the model
+# if (!is.null(demos)) {
+#   hb.post = choicemodelr(data = cmr.mm.bez.cov,
+#                          xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
+#                          demos = demos,
+#                          mcmc = list(R = 20000, use = 10000),
+#                          options = list(save = TRUE))
+# } else {
+#   hb.post = choicemodelr(data = cmr.mm.bez.cov,
+#                          xcoding = rep(1, ncol(cmr.mm.bez.cov) - 4),
+#                          mcmc = list(R = 20000, use = 10000),
+#                          options = list(save = TRUE))
+# }
+# saveRDS(hb.post, hbmodelfile)
+# ##
 
 hb.post = readRDS(hbmodelfile)
 
@@ -581,27 +582,27 @@ stanmc_check_fit = function(fit) {
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 #############################################################################################################
 ### >>> STAN MC HIERARCHICAL BAYES
-## BUILD THE MODEL
-cores = parallel::detectCores() - 1
-stan.mc = stan(file = "hmnl.stan",
-               data = standata,
-               verbose = FALSE,
-               chains = cores,
-               iter = 1000,
-               #algorithm = "HMC",
-               control = list(adapt_delta = 0.90, stepsize = 0.5),
-               cores = cores)
-
-# plot(stan.mc, plotfun = "trace", pars = c("Theta"))
-# plot(stan.mc, plotfun = "trace", pars = c("tau"))
-# plot(stan.mc, plotfun = "trace", pars = c("Omega[1,2]"))
-# plot(stan.mc, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
-# summary(stan.mc)$summary[, c("Rhat", "n_eff")]
-
-# stanmc_check_fit(stan.mc) # should say ok = TRUE
-
-saveRDS(stan.mc, stanmcmodelfile)
-##
+# ## BUILD THE MODEL
+# cores = parallel::detectCores() - 1
+# stan.mc = stan(file = "hmnl.stan",
+#                data = standata,
+#                verbose = FALSE,
+#                chains = cores,
+#                iter = 1000,
+#                #algorithm = "HMC",
+#                control = list(adapt_delta = 0.90, stepsize = 0.5),
+#                cores = cores)
+# 
+# # plot(stan.mc, plotfun = "trace", pars = c("Theta"))
+# # plot(stan.mc, plotfun = "trace", pars = c("tau"))
+# # plot(stan.mc, plotfun = "trace", pars = c("Omega[1,2]"))
+# # plot(stan.mc, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
+# # summary(stan.mc)$summary[, c("Rhat", "n_eff")]
+# 
+# # stanmc_check_fit(stan.mc) # should say ok = TRUE
+# 
+# saveRDS(stan.mc, stanmcmodelfile)
+# ##
 
 stan.mc = readRDS(stanmcmodelfile)
 
@@ -643,28 +644,28 @@ rownames(stan.mc.est) = setdiff(colnames(cmr.mm.bez.cov), c("resp.id", "ques", "
 # sve ostalo je definirano gore kod stan.mc
 standata$CL = designctx$rsegments
 
-# BUILD MODEL
-cores = parallel::detectCores() - 1
-#cores = parallel::detectCores()
-# https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html
-stan.mc.lca = stan(file = "hmnl_lca_2.stan",
-                   data = standata,
-                   verbose = FALSE,
-                   chains = cores, # * 2,
-#                   iter = floor(2000 / 1),
-                   iter = 1000,
-                   #algorithm = "HMC",
-                   control = list(adapt_delta = 0.90, stepsize = 0.5), # def adapt_delta 0.8, stespize = 2.0
-                   cores = cores)
-# plot(stan.mc.lca, plotfun = "trace", pars = c("Theta"))
-# plot(stan.mc.lca, plotfun = "trace", pars = c("tau"))
-# plot(stan.mc.lca, plotfun = "trace", pars = c("Omega[1,2]"))
-# plot(stan.mc.lca, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
-# summary(stan.mc.lca)$summary[, c("Rhat", "n_eff")]
-# stanmc_check_fit(stan.mc.lca) # should say ok = TRUE
-
-saveRDS(stan.mc.lca, stanmclcamodelfile)
-##
+# # BUILD MODEL
+# cores = parallel::detectCores() - 1
+# #cores = parallel::detectCores()
+# # https://mc-stan.org/docs/2_20/reference-manual/hmc-algorithm-parameters.html
+# stan.mc.lca = stan(file = "hmnl_lca_2.stan",
+#                    data = standata,
+#                    verbose = FALSE,
+#                    chains = cores, # * 2,
+# #                   iter = floor(2000 / 1),
+#                    iter = 1000,
+#                    #algorithm = "HMC",
+#                    control = list(adapt_delta = 0.90, stepsize = 0.5), # def adapt_delta 0.8, stespize = 2.0
+#                    cores = cores)
+# # plot(stan.mc.lca, plotfun = "trace", pars = c("Theta"))
+# # plot(stan.mc.lca, plotfun = "trace", pars = c("tau"))
+# # plot(stan.mc.lca, plotfun = "trace", pars = c("Omega[1,2]"))
+# # plot(stan.mc.lca, plotfun = "trace", pars = paste("Beta[", 1:9, ", 1]", sep = "")) # resp 1
+# # summary(stan.mc.lca)$summary[, c("Rhat", "n_eff")]
+# # stanmc_check_fit(stan.mc.lca) # should say ok = TRUE
+# 
+# saveRDS(stan.mc.lca, stanmclcamodelfile)
+# ##
 
 stan.mc.lca = readRDS(stanmclcamodelfile)
 
@@ -1223,14 +1224,14 @@ for (i in 1:holdout_respondents_n) { # respondent
   }
 }
 
-sum(holdout_true_predicted_mnl[, "correct best"])/nrow(holdout_true_predicted_mnl)
-sum(holdout_true_predicted_mnl[, "correct worst"])/nrow(holdout_true_predicted_mnl)
-sum(holdout_true_predicted_hb[, "correct best"])/nrow(holdout_true_predicted_hb)
-sum(holdout_true_predicted_hb[, "correct worst"])/nrow(holdout_true_predicted_hb)
-sum(holdout_true_predicted_stan_mc[, "correct best"])/nrow(holdout_true_predicted_stan_mc)
-sum(holdout_true_predicted_stan_mc[, "correct worst"])/nrow(holdout_true_predicted_stan_mc)
-sum(holdout_true_predicted_stan_mc_lca[, "correct best"])/nrow(holdout_true_predicted_stan_mc_lca)
-sum(holdout_true_predicted_stan_mc_lca[, "correct worst"])/nrow(holdout_true_predicted_stan_mc_lca)
+# sum(holdout_true_predicted_mnl[, "correct best"])/nrow(holdout_true_predicted_mnl)
+# sum(holdout_true_predicted_mnl[, "correct worst"])/nrow(holdout_true_predicted_mnl)
+# sum(holdout_true_predicted_hb[, "correct best"])/nrow(holdout_true_predicted_hb)
+# sum(holdout_true_predicted_hb[, "correct worst"])/nrow(holdout_true_predicted_hb)
+# sum(holdout_true_predicted_stan_mc[, "correct best"])/nrow(holdout_true_predicted_stan_mc)
+# sum(holdout_true_predicted_stan_mc[, "correct worst"])/nrow(holdout_true_predicted_stan_mc)
+# sum(holdout_true_predicted_stan_mc_lca[, "correct best"])/nrow(holdout_true_predicted_stan_mc_lca)
+# sum(holdout_true_predicted_stan_mc_lca[, "correct worst"])/nrow(holdout_true_predicted_stan_mc_lca)
 
 #holdout_true_predicted = holdout_true_predicted_mnl
 holdout_true_predicted = holdout_true_predicted_hb
@@ -1515,7 +1516,7 @@ start_comb = c()
 comb_size_partition = c(comb_size) # 1 step
 #comb_size_partition = c(2, 3) # 2 steps: first get 2, then 3 optimal items
 for (cspi in comb_size_partition) {
-  combs_df = get_rf_df(cspi, start_comb)
+  combs_df = get_rf_df(cspi, start_comb, FALSE)
   combs_out = combs_df %>% dplyr::group_by(combination) %>% dplyr::summarise(reach = sum(reach), freq = sum(freq))
   combs_out = combs_out[order(combs_out$reach, decreasing = TRUE), ]
   start_comb = unlist(strsplit(combs_out[1, ]$combination, ", "))
@@ -1537,37 +1538,37 @@ head(combs_out)
 ```{r echo= FALSE, warning = FALSE, message = FALSE}
 
 # https://en.wikipedia.org/wiki/McNemar%27s_test
-comb1_i = 1
-comb2_i = 2
-comb_diff = FALSE
-while ((comb_diff == FALSE) & (comb2_i <= nrow(combs_out))) {
-  comb1 = combs_out[comb1_i, ]$combination
-  comb2 = combs_out[comb2_i, ]$combination
-  comb1_positive = combs_df[(combs_df$combination == comb1) & (combs_df$reach == 1), ]$respid
-  comb1_negative = combs_df[(combs_df$combination == comb1) & (combs_df$reach == 0), ]$respid
-  comb2_positive = combs_df[(combs_df$combination == comb2) & (combs_df$reach == 1), ]$respid
-  comb2_negative = combs_df[(combs_df$combination == comb2) & (combs_df$reach == 0), ]$respid
-  mcnemar_a = length(dplyr::intersect(comb1_positive, comb2_positive)) # both positive
-  mcnemar_b = length(dplyr::intersect(comb1_positive, comb2_negative)) # 1 positive, 2 negative
-  mcnemar_c = length(dplyr::intersect(comb1_negative, comb2_positive)) # 1 negative, 2 positive
-  mcnemar_d = length(dplyr::intersect(comb1_negative, comb2_negative)) # both negative
-  mcnemar_x = matrix(c(mcnemar_a, mcnemar_b, mcnemar_c, mcnemar_d), 
-                     nrow = 2,
-                     byrow = TRUE,
-                     dimnames = list("1st Comb" = c("Reached", "Not Reached"), "2nd Comb" = c("Reached", "Not Reached")))
-  mcnemar_out = mcnemar.test(mcnemar_x)
-  # 0 hipoteza je da nema stvarne razlike između kombinacija, alternativna je da razlika postoji
-  # znači ako je p-value veća od npr. 0.05, zadržavamo 0 hipotezu, ako je manja, odbacujemo 0 hipotezu u korist alternativne
-  comb_diff = (mcnemar_out$p.value < 0.05)
-  comb2_i = comb2_i + 1
-}
-
-if (comb2_i > nrow(combs_out)) {
-  print("All combinations are statistically equal.")
-} else {
-  print(paste("First ", comb2_i-1, " combinations are statistically equal.", sep = ""))
-  combs_out[1:(comb2_i-1), ]
-}
+# comb1_i = 1
+# comb2_i = 2
+# comb_diff = FALSE
+# while ((comb_diff == FALSE) & (comb2_i <= nrow(combs_out))) {
+#   comb1 = combs_out[comb1_i, ]$combination
+#   comb2 = combs_out[comb2_i, ]$combination
+#   comb1_positive = combs_df[(combs_df$combination == comb1) & (combs_df$reach == 1), ]$respid
+#   comb1_negative = combs_df[(combs_df$combination == comb1) & (combs_df$reach == 0), ]$respid
+#   comb2_positive = combs_df[(combs_df$combination == comb2) & (combs_df$reach == 1), ]$respid
+#   comb2_negative = combs_df[(combs_df$combination == comb2) & (combs_df$reach == 0), ]$respid
+#   mcnemar_a = length(dplyr::intersect(comb1_positive, comb2_positive)) # both positive
+#   mcnemar_b = length(dplyr::intersect(comb1_positive, comb2_negative)) # 1 positive, 2 negative
+#   mcnemar_c = length(dplyr::intersect(comb1_negative, comb2_positive)) # 1 negative, 2 positive
+#   mcnemar_d = length(dplyr::intersect(comb1_negative, comb2_negative)) # both negative
+#   mcnemar_x = matrix(c(mcnemar_a, mcnemar_b, mcnemar_c, mcnemar_d), 
+#                      nrow = 2,
+#                      byrow = TRUE,
+#                      dimnames = list("1st Comb" = c("Reached", "Not Reached"), "2nd Comb" = c("Reached", "Not Reached")))
+#   mcnemar_out = mcnemar.test(mcnemar_x)
+#   # 0 hipoteza je da nema stvarne razlike između kombinacija, alternativna je da razlika postoji
+#   # znači ako je p-value veća od npr. 0.05, zadržavamo 0 hipotezu, ako je manja, odbacujemo 0 hipotezu u korist alternativne
+#   comb_diff = (mcnemar_out$p.value < 0.05)
+#   comb2_i = comb2_i + 1
+# }
+# 
+# if (comb2_i > nrow(combs_out)) {
+#   print("All combinations are statistically equal.")
+# } else {
+#   print(paste("First ", comb2_i-1, " combinations are statistically equal.", sep = ""))
+#   combs_out[1:(comb2_i-1), ]
+# }
 
 ```
 

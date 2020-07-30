@@ -1,0 +1,2251 @@
+"questionnaire.id","resp.id","ques","alt","lokacija","anchor_1","anchor_2","anchor_3","email","best_choice","worst_choice"
+1,1,1,"lovaèka","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,1,"s tunom","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,1,"rukola/pršut","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,2,"4 godišnja doba","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,2,"sa salamom","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,2,"povrtna","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,3,"4 vrste sira","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,3,"losos","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,3,"lovaèka","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,4,"calzone","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,4,"rukola/pršut","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,4,"pikantna","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,5,"povrtna","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,5,"pikantna","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,5,"slavonska","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,6,"ribarska","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,6,"calzone","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,6,"4 vrste sira","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,7,"slavonska","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,7,"lovaèka","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,7,"sa salamom","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,8,"rukola/pršut","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,8,"povrtna","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,8,"bolonjez","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,9,"pikantna","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,9,"4 godišnja doba","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,9,"losos","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,10,"s tunom","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,10,"ribarska","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,10,"4 godišnja doba","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,11,"sa salamom","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,11,"miješana","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,11,"calzone","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,12,"bolonjez","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,12,"slavonska","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,12,"ribarska","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,13,"s tunom","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,13,"4 vrste sira","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,13,"povrtna","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,14,"losos","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,14,"bolonjez","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,1,14,"miješana","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,15,"miješana","blizu pizzerije",1,2,1,"0001abc@g.com",0,0
+1,1,15,"pikantna","blizu pizzerije",1,2,1,"0001abc@g.com",0,1
+1,1,15,"s tunom","blizu pizzerije",1,2,1,"0001abc@g.com",1,0
+1,2,1,"lovaèka","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,1,"s tunom","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,1,"rukola/pršut","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,2,"sa salamom","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,2,"povrtna","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,3,"4 vrste sira","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,3,"losos","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,3,"lovaèka","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,4,"calzone","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,4,"rukola/pršut","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,4,"pikantna","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,5,"povrtna","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,5,"pikantna","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,5,"slavonska","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,6,"ribarska","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,6,"calzone","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,6,"4 vrste sira","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,7,"slavonska","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,7,"lovaèka","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,7,"sa salamom","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,8,"rukola/pršut","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,8,"povrtna","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,8,"bolonjez","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,9,"pikantna","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,9,"losos","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,10,"s tunom","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,10,"ribarska","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,11,"sa salamom","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,11,"miješana","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,11,"calzone","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,12,"bolonjez","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,12,"slavonska","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,12,"ribarska","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,13,"s tunom","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,13,"4 vrste sira","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,13,"povrtna","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,14,"losos","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,14,"bolonjez","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,2,14,"miješana","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,15,"miješana","blizu pizzerije",2,2,2,"0002abc@g.com",0,1
+1,2,15,"pikantna","blizu pizzerije",2,2,2,"0002abc@g.com",0,0
+1,2,15,"s tunom","blizu pizzerije",2,2,2,"0002abc@g.com",1,0
+1,3,1,"lovaèka","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,1,"s tunom","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,1,"rukola/pršut","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,2,"4 godišnja doba","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,2,"sa salamom","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,2,"povrtna","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,3,"4 vrste sira","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,3,"losos","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,3,"lovaèka","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,4,"calzone","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,4,"rukola/pršut","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,4,"pikantna","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,5,"povrtna","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,5,"pikantna","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,5,"slavonska","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,6,"ribarska","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,6,"calzone","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,6,"4 vrste sira","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,7,"slavonska","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,7,"lovaèka","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,7,"sa salamom","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,8,"rukola/pršut","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,8,"povrtna","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,8,"bolonjez","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,9,"pikantna","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,9,"4 godišnja doba","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,9,"losos","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,10,"s tunom","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,10,"ribarska","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,10,"4 godišnja doba","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,11,"sa salamom","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,11,"miješana","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,11,"calzone","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,12,"bolonjez","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,12,"slavonska","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,12,"ribarska","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,13,"s tunom","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,13,"4 vrste sira","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,13,"povrtna","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,14,"losos","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,14,"bolonjez","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,3,14,"miješana","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,15,"miješana","blizu pizzerije",1,1,1,"0003abc@g.com",0,0
+1,3,15,"pikantna","blizu pizzerije",1,1,1,"0003abc@g.com",0,1
+1,3,15,"s tunom","blizu pizzerije",1,1,1,"0003abc@g.com",1,0
+1,4,1,"lovaèka","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,1,"s tunom","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,1,"rukola/pršut","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,2,"4 godišnja doba","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,2,"sa salamom","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,2,"povrtna","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,3,"4 vrste sira","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,3,"losos","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,3,"lovaèka","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,4,"calzone","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,4,"rukola/pršut","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,4,"pikantna","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,5,"povrtna","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,5,"pikantna","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,5,"slavonska","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,6,"ribarska","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,6,"calzone","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,6,"4 vrste sira","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,7,"slavonska","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,7,"lovaèka","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,7,"sa salamom","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,8,"rukola/pršut","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,8,"povrtna","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,8,"bolonjez","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,9,"pikantna","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,9,"4 godišnja doba","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,9,"losos","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,10,"s tunom","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,10,"ribarska","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,10,"4 godišnja doba","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,11,"sa salamom","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,11,"miješana","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,11,"calzone","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,12,"bolonjez","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,12,"slavonska","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,12,"ribarska","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,13,"s tunom","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,13,"4 vrste sira","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,13,"povrtna","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,14,"losos","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,4,14,"bolonjez","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,14,"miješana","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,15,"miješana","daleko od pizzerije",2,1,2,"0004abc@g.com",0,0
+1,4,15,"pikantna","daleko od pizzerije",2,1,2,"0004abc@g.com",0,1
+1,4,15,"s tunom","daleko od pizzerije",2,1,2,"0004abc@g.com",1,0
+1,5,1,"lovaèka","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,1,"s tunom","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,1,"rukola/pršut","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,2,"4 godišnja doba","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,2,"sa salamom","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,2,"povrtna","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,3,"4 vrste sira","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,3,"losos","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,3,"lovaèka","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,4,"calzone","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,4,"rukola/pršut","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,4,"pikantna","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,5,"povrtna","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,5,"pikantna","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,5,"slavonska","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,6,"ribarska","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,6,"calzone","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,6,"4 vrste sira","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,7,"slavonska","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,7,"lovaèka","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,7,"sa salamom","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,8,"rukola/pršut","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,8,"povrtna","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,8,"bolonjez","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,9,"pikantna","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,9,"4 godišnja doba","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,9,"losos","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,10,"s tunom","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,10,"ribarska","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,10,"4 godišnja doba","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,11,"sa salamom","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,11,"miješana","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,11,"calzone","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,12,"bolonjez","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,12,"slavonska","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,12,"ribarska","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,13,"s tunom","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,13,"4 vrste sira","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,13,"povrtna","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,14,"losos","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,14,"bolonjez","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,5,14,"miješana","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,15,"miješana","daleko od pizzerije",2,1,1,"0005abc@g.com",0,1
+1,5,15,"pikantna","daleko od pizzerije",2,1,1,"0005abc@g.com",0,0
+1,5,15,"s tunom","daleko od pizzerije",2,1,1,"0005abc@g.com",1,0
+1,6,1,"lovaèka","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,1,"s tunom","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,1,"rukola/pršut","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,2,"4 godišnja doba","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,2,"sa salamom","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,2,"povrtna","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,3,"4 vrste sira","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,3,"losos","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,3,"lovaèka","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,4,"calzone","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,4,"rukola/pršut","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,4,"pikantna","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,5,"povrtna","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,5,"pikantna","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,5,"slavonska","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,6,"ribarska","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,6,"calzone","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,6,"4 vrste sira","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,7,"slavonska","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,7,"lovaèka","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,7,"sa salamom","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,8,"rukola/pršut","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,8,"povrtna","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,8,"bolonjez","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,9,"pikantna","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,9,"4 godišnja doba","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,9,"losos","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,10,"s tunom","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,10,"ribarska","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,10,"4 godišnja doba","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,11,"sa salamom","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,11,"miješana","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,11,"calzone","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,12,"bolonjez","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,12,"slavonska","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,12,"ribarska","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,13,"s tunom","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,13,"4 vrste sira","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,13,"povrtna","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,14,"losos","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,14,"bolonjez","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,6,14,"miješana","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,15,"miješana","daleko od pizzerije",2,2,1,"0006abc@g.com",0,0
+1,6,15,"pikantna","daleko od pizzerije",2,2,1,"0006abc@g.com",0,1
+1,6,15,"s tunom","daleko od pizzerije",2,2,1,"0006abc@g.com",1,0
+1,7,1,"lovaèka","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,1,"s tunom","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,1,"rukola/pršut","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,2,"4 godišnja doba","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,2,"sa salamom","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,2,"povrtna","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,3,"4 vrste sira","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,3,"losos","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,3,"lovaèka","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,4,"calzone","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,4,"rukola/pršut","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,4,"pikantna","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,5,"povrtna","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,5,"pikantna","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,5,"slavonska","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,6,"ribarska","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,6,"calzone","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,6,"4 vrste sira","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,7,"slavonska","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,7,"lovaèka","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,7,"sa salamom","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,8,"rukola/pršut","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,8,"povrtna","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,8,"bolonjez","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,9,"pikantna","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,9,"4 godišnja doba","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,9,"losos","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,10,"s tunom","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,10,"ribarska","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,10,"4 godišnja doba","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,11,"sa salamom","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,11,"miješana","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,11,"calzone","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,12,"bolonjez","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,12,"slavonska","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,12,"ribarska","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,13,"s tunom","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,13,"4 vrste sira","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,13,"povrtna","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,14,"losos","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,14,"bolonjez","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,7,14,"miješana","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,15,"miješana","blizu pizzerije",1,2,1,"0007abc@g.com",1,0
+1,7,15,"pikantna","blizu pizzerije",1,2,1,"0007abc@g.com",0,1
+1,7,15,"s tunom","blizu pizzerije",1,2,1,"0007abc@g.com",0,0
+1,8,1,"lovaèka","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,1,"s tunom","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,1,"rukola/pršut","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,2,"4 godišnja doba","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,2,"sa salamom","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,2,"povrtna","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,3,"4 vrste sira","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,3,"losos","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,3,"lovaèka","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,4,"calzone","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,4,"rukola/pršut","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,4,"pikantna","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,5,"povrtna","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,5,"pikantna","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,5,"slavonska","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,6,"ribarska","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,6,"calzone","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,6,"4 vrste sira","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,7,"slavonska","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,7,"lovaèka","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,7,"sa salamom","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,8,"rukola/pršut","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,8,"povrtna","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,8,"bolonjez","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,9,"pikantna","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,9,"4 godišnja doba","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,9,"losos","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,10,"s tunom","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,10,"ribarska","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,10,"4 godišnja doba","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,11,"sa salamom","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,11,"miješana","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,11,"calzone","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,12,"bolonjez","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,12,"slavonska","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,12,"ribarska","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,13,"s tunom","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,13,"4 vrste sira","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,13,"povrtna","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,14,"losos","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,14,"bolonjez","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,14,"miješana","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,8,15,"miješana","daleko od pizzerije",1,2,1,"0008abc@g.com",1,0
+1,8,15,"pikantna","daleko od pizzerije",1,2,1,"0008abc@g.com",0,1
+1,8,15,"s tunom","daleko od pizzerije",1,2,1,"0008abc@g.com",0,0
+1,9,1,"lovaèka","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,1,"s tunom","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,1,"rukola/pršut","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,2,"4 godišnja doba","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,2,"sa salamom","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,2,"povrtna","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,3,"4 vrste sira","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,3,"losos","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,3,"lovaèka","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,4,"calzone","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,4,"rukola/pršut","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,4,"pikantna","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,5,"povrtna","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,5,"pikantna","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,5,"slavonska","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,6,"ribarska","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,6,"calzone","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,6,"4 vrste sira","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,7,"slavonska","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,7,"lovaèka","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,7,"sa salamom","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,8,"rukola/pršut","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,8,"povrtna","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,8,"bolonjez","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,9,"pikantna","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,9,"4 godišnja doba","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,9,"losos","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,10,"s tunom","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,10,"ribarska","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,10,"4 godišnja doba","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,11,"sa salamom","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,11,"miješana","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,11,"calzone","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,12,"bolonjez","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,12,"slavonska","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,12,"ribarska","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,13,"s tunom","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,13,"4 vrste sira","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,13,"povrtna","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,14,"losos","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,14,"bolonjez","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,9,14,"miješana","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,15,"miješana","daleko od pizzerije",2,1,1,"0009abc@g.com",0,0
+1,9,15,"pikantna","daleko od pizzerije",2,1,1,"0009abc@g.com",0,1
+1,9,15,"s tunom","daleko od pizzerije",2,1,1,"0009abc@g.com",1,0
+1,10,1,"lovaèka","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,1,"s tunom","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,1,"rukola/pršut","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,2,"4 godišnja doba","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,2,"sa salamom","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,2,"povrtna","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,3,"4 vrste sira","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,3,"losos","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,3,"lovaèka","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,4,"calzone","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,4,"rukola/pršut","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,4,"pikantna","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,5,"povrtna","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,5,"pikantna","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,5,"slavonska","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,6,"ribarska","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,6,"calzone","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,6,"4 vrste sira","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,7,"slavonska","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,7,"lovaèka","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,7,"sa salamom","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,8,"rukola/pršut","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,8,"povrtna","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,8,"bolonjez","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,9,"pikantna","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,9,"4 godišnja doba","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,9,"losos","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,10,"s tunom","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,10,"ribarska","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,10,"4 godišnja doba","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,11,"sa salamom","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,11,"miješana","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,11,"calzone","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,12,"bolonjez","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,12,"slavonska","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,12,"ribarska","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,13,"s tunom","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,13,"4 vrste sira","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,13,"povrtna","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,14,"losos","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,14,"bolonjez","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,10,14,"miješana","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,15,"miješana","daleko od pizzerije",2,2,2,"0010abc@g.com",0,1
+1,10,15,"pikantna","daleko od pizzerije",2,2,2,"0010abc@g.com",0,0
+1,10,15,"s tunom","daleko od pizzerije",2,2,2,"0010abc@g.com",1,0
+1,11,1,"lovaèka","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,1,"s tunom","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,1,"rukola/pršut","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,2,"4 godišnja doba","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,2,"sa salamom","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,2,"povrtna","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,3,"4 vrste sira","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,3,"losos","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,3,"lovaèka","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,4,"calzone","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,4,"rukola/pršut","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,4,"pikantna","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,5,"povrtna","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,5,"pikantna","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,5,"slavonska","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,6,"ribarska","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,6,"calzone","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,6,"4 vrste sira","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,7,"slavonska","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,7,"lovaèka","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,7,"sa salamom","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,8,"rukola/pršut","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,8,"povrtna","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,8,"bolonjez","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,9,"pikantna","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,9,"4 godišnja doba","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,9,"losos","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,10,"s tunom","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,10,"ribarska","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,10,"4 godišnja doba","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,11,"sa salamom","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,11,"miješana","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,11,"calzone","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,12,"bolonjez","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,12,"slavonska","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,12,"ribarska","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,13,"s tunom","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,13,"4 vrste sira","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,13,"povrtna","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,14,"losos","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,14,"bolonjez","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,11,14,"miješana","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,15,"miješana","daleko od pizzerije",2,2,2,"0011abc@g.com",0,0
+1,11,15,"pikantna","daleko od pizzerije",2,2,2,"0011abc@g.com",0,1
+1,11,15,"s tunom","daleko od pizzerije",2,2,2,"0011abc@g.com",1,0
+1,12,1,"lovaèka","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,1,"s tunom","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,1,"rukola/pršut","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,2,"4 godišnja doba","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,2,"sa salamom","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,2,"povrtna","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,3,"4 vrste sira","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,3,"losos","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,3,"lovaèka","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,4,"calzone","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,4,"rukola/pršut","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,4,"pikantna","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,5,"povrtna","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,5,"pikantna","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,5,"slavonska","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,6,"ribarska","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,6,"calzone","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,6,"4 vrste sira","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,7,"slavonska","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,7,"lovaèka","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,7,"sa salamom","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,8,"rukola/pršut","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,8,"povrtna","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,8,"bolonjez","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,9,"pikantna","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,9,"4 godišnja doba","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,9,"losos","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,10,"s tunom","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,10,"ribarska","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,10,"4 godišnja doba","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,11,"sa salamom","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,11,"miješana","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,11,"calzone","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,12,"bolonjez","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,12,"slavonska","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,12,"ribarska","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,13,"s tunom","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,13,"4 vrste sira","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,13,"povrtna","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,14,"losos","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,14,"bolonjez","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,12,14,"miješana","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,15,"miješana","daleko od pizzerije",1,2,2,"0012abc@g.com",0,0
+1,12,15,"pikantna","daleko od pizzerije",1,2,2,"0012abc@g.com",0,1
+1,12,15,"s tunom","daleko od pizzerije",1,2,2,"0012abc@g.com",1,0
+1,13,1,"lovaèka","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,1,"s tunom","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,1,"rukola/pršut","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,2,"sa salamom","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,2,"povrtna","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,3,"4 vrste sira","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,3,"losos","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,3,"lovaèka","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,4,"calzone","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,4,"rukola/pršut","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,4,"pikantna","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,5,"povrtna","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,5,"pikantna","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,5,"slavonska","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,6,"ribarska","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,6,"calzone","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,6,"4 vrste sira","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,7,"slavonska","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,7,"lovaèka","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,7,"sa salamom","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,8,"rukola/pršut","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,8,"povrtna","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,8,"bolonjez","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,9,"pikantna","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,9,"losos","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,10,"s tunom","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,10,"ribarska","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,11,"sa salamom","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,11,"miješana","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,11,"calzone","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,12,"bolonjez","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,12,"slavonska","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,12,"ribarska","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,13,"s tunom","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,13,"4 vrste sira","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,13,"povrtna","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,14,"losos","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,14,"bolonjez","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,13,14,"miješana","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,15,"miješana","blizu pizzerije",2,2,2,"0013abc@g.com",0,0
+1,13,15,"pikantna","blizu pizzerije",2,2,2,"0013abc@g.com",0,1
+1,13,15,"s tunom","blizu pizzerije",2,2,2,"0013abc@g.com",1,0
+1,14,1,"lovaèka","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,1,"s tunom","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,1,"rukola/pršut","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,2,"4 godišnja doba","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,2,"sa salamom","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,2,"povrtna","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,3,"4 vrste sira","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,3,"losos","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,3,"lovaèka","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,4,"calzone","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,4,"rukola/pršut","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,4,"pikantna","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,5,"povrtna","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,5,"pikantna","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,5,"slavonska","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,6,"ribarska","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,6,"calzone","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,6,"4 vrste sira","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,7,"slavonska","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,7,"lovaèka","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,7,"sa salamom","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,8,"rukola/pršut","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,8,"povrtna","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,8,"bolonjez","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,9,"pikantna","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,9,"4 godišnja doba","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,9,"losos","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,10,"s tunom","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,10,"ribarska","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,10,"4 godišnja doba","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,11,"sa salamom","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,11,"miješana","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,11,"calzone","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,12,"bolonjez","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,12,"slavonska","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,12,"ribarska","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,13,"s tunom","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,13,"4 vrste sira","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,13,"povrtna","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,14,"losos","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,14,"bolonjez","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,14,"miješana","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,14,15,"miješana","blizu pizzerije",2,1,2,"0014abc@g.com",1,0
+1,14,15,"pikantna","blizu pizzerije",2,1,2,"0014abc@g.com",0,1
+1,14,15,"s tunom","blizu pizzerije",2,1,2,"0014abc@g.com",0,0
+1,15,1,"lovaèka","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,1,"s tunom","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,1,"rukola/pršut","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,2,"sa salamom","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,2,"povrtna","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,3,"4 vrste sira","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,3,"losos","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,3,"lovaèka","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,4,"calzone","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,4,"rukola/pršut","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,4,"pikantna","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,5,"povrtna","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,5,"pikantna","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,5,"slavonska","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,6,"ribarska","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,6,"calzone","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,6,"4 vrste sira","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,7,"slavonska","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,7,"lovaèka","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,7,"sa salamom","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,8,"rukola/pršut","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,8,"povrtna","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,8,"bolonjez","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,9,"pikantna","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,9,"losos","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,10,"s tunom","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,10,"ribarska","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,11,"sa salamom","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,11,"miješana","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,11,"calzone","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,12,"bolonjez","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,12,"slavonska","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,12,"ribarska","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,13,"s tunom","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,13,"4 vrste sira","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,13,"povrtna","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,14,"losos","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,14,"bolonjez","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,15,14,"miješana","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,15,"miješana","blizu pizzerije",2,2,2,"0015abc@g.com",0,0
+1,15,15,"pikantna","blizu pizzerije",2,2,2,"0015abc@g.com",0,1
+1,15,15,"s tunom","blizu pizzerije",2,2,2,"0015abc@g.com",1,0
+1,16,1,"lovaèka","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,1,"s tunom","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,1,"rukola/pršut","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,2,"4 godišnja doba","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,2,"sa salamom","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,2,"povrtna","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,3,"4 vrste sira","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,3,"losos","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,3,"lovaèka","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,4,"calzone","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,4,"rukola/pršut","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,4,"pikantna","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,5,"povrtna","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,5,"pikantna","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,5,"slavonska","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,6,"ribarska","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,6,"calzone","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,6,"4 vrste sira","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,7,"slavonska","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,7,"lovaèka","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,7,"sa salamom","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,8,"rukola/pršut","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,8,"povrtna","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,8,"bolonjez","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,9,"pikantna","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,9,"4 godišnja doba","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,9,"losos","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,10,"s tunom","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,10,"ribarska","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,10,"4 godišnja doba","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,11,"sa salamom","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,11,"miješana","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,11,"calzone","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,12,"bolonjez","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,12,"slavonska","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,12,"ribarska","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,13,"s tunom","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,13,"4 vrste sira","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,13,"povrtna","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,14,"losos","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,14,"bolonjez","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,16,14,"miješana","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,15,"miješana","daleko od pizzerije",1,2,2,"0016abc@g.com",0,0
+1,16,15,"pikantna","daleko od pizzerije",1,2,2,"0016abc@g.com",0,1
+1,16,15,"s tunom","daleko od pizzerije",1,2,2,"0016abc@g.com",1,0
+1,17,1,"lovaèka","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,1,"s tunom","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,1,"rukola/pršut","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,2,"4 godišnja doba","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,2,"sa salamom","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,2,"povrtna","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,3,"4 vrste sira","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,3,"losos","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,3,"lovaèka","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,4,"calzone","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,4,"rukola/pršut","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,4,"pikantna","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,5,"povrtna","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,5,"pikantna","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,5,"slavonska","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,6,"ribarska","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,6,"calzone","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,6,"4 vrste sira","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,7,"slavonska","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,7,"lovaèka","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,7,"sa salamom","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,8,"rukola/pršut","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,8,"povrtna","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,8,"bolonjez","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,9,"pikantna","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,9,"4 godišnja doba","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,9,"losos","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,10,"s tunom","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,10,"ribarska","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,10,"4 godišnja doba","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,11,"sa salamom","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,11,"miješana","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,11,"calzone","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,12,"bolonjez","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,12,"slavonska","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,12,"ribarska","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,13,"s tunom","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,13,"4 vrste sira","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,13,"povrtna","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,14,"losos","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,14,"bolonjez","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,14,"miješana","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,17,15,"miješana","blizu pizzerije",1,1,2,"0017abc@g.com",0,0
+1,17,15,"pikantna","blizu pizzerije",1,1,2,"0017abc@g.com",0,1
+1,17,15,"s tunom","blizu pizzerije",1,1,2,"0017abc@g.com",1,0
+1,18,1,"lovaèka","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,1,"s tunom","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,1,"rukola/pršut","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,2,"4 godišnja doba","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,2,"sa salamom","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,2,"povrtna","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,3,"4 vrste sira","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,3,"losos","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,3,"lovaèka","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,4,"calzone","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,4,"rukola/pršut","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,4,"pikantna","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,5,"povrtna","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,5,"pikantna","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,5,"slavonska","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,6,"ribarska","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,6,"calzone","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,6,"4 vrste sira","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,7,"slavonska","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,7,"lovaèka","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,7,"sa salamom","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,8,"rukola/pršut","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,8,"povrtna","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,8,"bolonjez","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,9,"pikantna","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,9,"4 godišnja doba","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,9,"losos","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,10,"s tunom","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,10,"ribarska","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,10,"4 godišnja doba","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,11,"sa salamom","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,11,"miješana","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,11,"calzone","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,12,"bolonjez","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,12,"slavonska","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,12,"ribarska","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,13,"s tunom","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,13,"4 vrste sira","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,13,"povrtna","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,14,"losos","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,14,"bolonjez","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,18,14,"miješana","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,15,"miješana","daleko od pizzerije",2,1,2,"0018abc@g.com",0,0
+1,18,15,"pikantna","daleko od pizzerije",2,1,2,"0018abc@g.com",0,1
+1,18,15,"s tunom","daleko od pizzerije",2,1,2,"0018abc@g.com",1,0
+1,19,1,"lovaèka","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,1,"s tunom","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,1,"rukola/pršut","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,2,"sa salamom","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,2,"povrtna","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,3,"4 vrste sira","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,3,"losos","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,3,"lovaèka","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,4,"calzone","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,4,"rukola/pršut","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,4,"pikantna","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,5,"povrtna","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,5,"pikantna","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,5,"slavonska","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,6,"ribarska","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,6,"calzone","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,6,"4 vrste sira","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,7,"slavonska","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,7,"lovaèka","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,7,"sa salamom","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,8,"rukola/pršut","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,8,"povrtna","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,8,"bolonjez","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,9,"pikantna","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,9,"losos","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,10,"s tunom","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,10,"ribarska","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,11,"sa salamom","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,11,"miješana","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,11,"calzone","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,12,"bolonjez","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,12,"slavonska","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,12,"ribarska","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,13,"s tunom","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,13,"4 vrste sira","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,13,"povrtna","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,14,"losos","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,14,"bolonjez","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,14,"miješana","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,19,15,"miješana","blizu pizzerije",2,2,2,"0019abc@g.com",1,0
+1,19,15,"pikantna","blizu pizzerije",2,2,2,"0019abc@g.com",0,1
+1,19,15,"s tunom","blizu pizzerije",2,2,2,"0019abc@g.com",0,0
+1,20,1,"lovaèka","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,1,"s tunom","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,1,"rukola/pršut","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,2,"4 godišnja doba","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,2,"sa salamom","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,2,"povrtna","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,3,"4 vrste sira","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,3,"losos","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,3,"lovaèka","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,4,"calzone","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,4,"rukola/pršut","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,4,"pikantna","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,5,"povrtna","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,5,"pikantna","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,5,"slavonska","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,6,"ribarska","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,6,"calzone","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,6,"4 vrste sira","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,7,"slavonska","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,7,"lovaèka","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,7,"sa salamom","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,8,"rukola/pršut","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,8,"povrtna","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,8,"bolonjez","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,9,"pikantna","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,9,"4 godišnja doba","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,9,"losos","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,10,"s tunom","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,10,"ribarska","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,10,"4 godišnja doba","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,11,"sa salamom","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,11,"miješana","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,11,"calzone","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,12,"bolonjez","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,12,"slavonska","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,12,"ribarska","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,13,"s tunom","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,13,"4 vrste sira","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,13,"povrtna","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,14,"losos","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,14,"bolonjez","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,20,14,"miješana","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,15,"miješana","daleko od pizzerije",1,1,1,"0020abc@g.com",0,0
+1,20,15,"pikantna","daleko od pizzerije",1,1,1,"0020abc@g.com",0,1
+1,20,15,"s tunom","daleko od pizzerije",1,1,1,"0020abc@g.com",1,0
+1,21,1,"lovaèka","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,1,"s tunom","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,1,"rukola/pršut","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,2,"sa salamom","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,2,"povrtna","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,3,"4 vrste sira","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,3,"losos","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,3,"lovaèka","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,4,"calzone","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,4,"rukola/pršut","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,4,"pikantna","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,5,"povrtna","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,5,"pikantna","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,5,"slavonska","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,6,"ribarska","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,6,"calzone","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,6,"4 vrste sira","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,7,"slavonska","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,7,"lovaèka","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,7,"sa salamom","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,8,"rukola/pršut","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,8,"povrtna","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,8,"bolonjez","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,9,"pikantna","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,9,"losos","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,10,"s tunom","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,10,"ribarska","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,11,"sa salamom","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,11,"miješana","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,11,"calzone","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,12,"bolonjez","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,12,"slavonska","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,12,"ribarska","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,13,"s tunom","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,13,"4 vrste sira","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,13,"povrtna","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,14,"losos","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,14,"bolonjez","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,14,"miješana","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,21,15,"miješana","blizu pizzerije",2,2,2,"0021abc@g.com",0,1
+1,21,15,"pikantna","blizu pizzerije",2,2,2,"0021abc@g.com",0,0
+1,21,15,"s tunom","blizu pizzerije",2,2,2,"0021abc@g.com",1,0
+1,22,1,"lovaèka","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,1,"s tunom","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,1,"rukola/pršut","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,2,"4 godišnja doba","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,2,"sa salamom","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,2,"povrtna","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,3,"4 vrste sira","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,3,"losos","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,3,"lovaèka","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,4,"calzone","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,4,"rukola/pršut","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,4,"pikantna","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,5,"povrtna","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,5,"pikantna","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,5,"slavonska","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,6,"ribarska","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,6,"calzone","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,6,"4 vrste sira","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,7,"slavonska","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,7,"lovaèka","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,7,"sa salamom","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,8,"rukola/pršut","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,8,"povrtna","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,8,"bolonjez","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,9,"pikantna","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,9,"4 godišnja doba","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,9,"losos","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,10,"s tunom","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,10,"ribarska","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,10,"4 godišnja doba","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,11,"sa salamom","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,11,"miješana","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,11,"calzone","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,12,"bolonjez","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,12,"slavonska","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,12,"ribarska","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,13,"s tunom","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,13,"4 vrste sira","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,13,"povrtna","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,14,"losos","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,14,"bolonjez","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,22,14,"miješana","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,15,"miješana","daleko od pizzerije",2,2,2,"0022abc@g.com",0,0
+1,22,15,"pikantna","daleko od pizzerije",2,2,2,"0022abc@g.com",0,1
+1,22,15,"s tunom","daleko od pizzerije",2,2,2,"0022abc@g.com",1,0
+1,23,1,"lovaèka","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,1,"s tunom","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,1,"rukola/pršut","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,2,"4 godišnja doba","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,2,"sa salamom","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,2,"povrtna","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,3,"4 vrste sira","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,3,"losos","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,3,"lovaèka","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,4,"calzone","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,4,"rukola/pršut","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,4,"pikantna","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,5,"povrtna","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,5,"pikantna","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,5,"slavonska","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,6,"ribarska","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,6,"calzone","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,6,"4 vrste sira","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,7,"slavonska","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,7,"lovaèka","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,7,"sa salamom","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,8,"rukola/pršut","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,8,"povrtna","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,8,"bolonjez","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,9,"pikantna","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,9,"4 godišnja doba","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,9,"losos","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,10,"s tunom","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,10,"ribarska","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,10,"4 godišnja doba","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,11,"sa salamom","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,11,"miješana","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,11,"calzone","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,12,"bolonjez","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,12,"slavonska","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,12,"ribarska","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,13,"s tunom","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,13,"4 vrste sira","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,13,"povrtna","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,14,"losos","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,14,"bolonjez","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,14,"miješana","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,23,15,"miješana","blizu pizzerije",2,1,1,"0023abc@g.com",0,1
+1,23,15,"pikantna","blizu pizzerije",2,1,1,"0023abc@g.com",1,0
+1,23,15,"s tunom","blizu pizzerije",2,1,1,"0023abc@g.com",0,0
+1,24,1,"lovaèka","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,1,"s tunom","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,1,"rukola/pršut","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,2,"4 godišnja doba","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,2,"sa salamom","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,2,"povrtna","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,3,"4 vrste sira","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,3,"losos","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,3,"lovaèka","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,4,"calzone","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,4,"rukola/pršut","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,4,"pikantna","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,5,"povrtna","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,5,"pikantna","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,5,"slavonska","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,6,"ribarska","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,6,"calzone","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,6,"4 vrste sira","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,7,"slavonska","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,7,"lovaèka","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,7,"sa salamom","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,8,"rukola/pršut","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,8,"povrtna","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,8,"bolonjez","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,9,"pikantna","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,9,"4 godišnja doba","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,9,"losos","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,10,"s tunom","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,10,"ribarska","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,10,"4 godišnja doba","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,11,"sa salamom","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,11,"miješana","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,11,"calzone","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,12,"bolonjez","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,12,"slavonska","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,12,"ribarska","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,13,"s tunom","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,13,"4 vrste sira","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,13,"povrtna","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,14,"losos","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,14,"bolonjez","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,24,14,"miješana","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,15,"miješana","daleko od pizzerije",2,1,2,"0024abc@g.com",0,0
+1,24,15,"pikantna","daleko od pizzerije",2,1,2,"0024abc@g.com",0,1
+1,24,15,"s tunom","daleko od pizzerije",2,1,2,"0024abc@g.com",1,0
+1,25,1,"lovaèka","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,1,"s tunom","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,1,"rukola/pršut","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,2,"4 godišnja doba","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,2,"sa salamom","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,2,"povrtna","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,3,"4 vrste sira","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,3,"losos","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,3,"lovaèka","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,4,"calzone","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,4,"rukola/pršut","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,4,"pikantna","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,5,"povrtna","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,5,"pikantna","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,5,"slavonska","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,6,"ribarska","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,6,"calzone","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,6,"4 vrste sira","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,7,"slavonska","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,7,"lovaèka","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,7,"sa salamom","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,8,"rukola/pršut","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,8,"povrtna","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,8,"bolonjez","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,9,"pikantna","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,9,"4 godišnja doba","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,9,"losos","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,10,"s tunom","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,10,"ribarska","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,10,"4 godišnja doba","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,11,"sa salamom","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,11,"miješana","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,11,"calzone","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,12,"bolonjez","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,12,"slavonska","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,12,"ribarska","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,13,"s tunom","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,13,"4 vrste sira","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,13,"povrtna","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,14,"losos","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,14,"bolonjez","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,25,14,"miješana","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,15,"miješana","blizu pizzerije",1,1,2,"0025abc@g.com",0,0
+1,25,15,"pikantna","blizu pizzerije",1,1,2,"0025abc@g.com",0,1
+1,25,15,"s tunom","blizu pizzerije",1,1,2,"0025abc@g.com",1,0
+1,26,1,"lovaèka","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,1,"s tunom","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,1,"rukola/pršut","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,2,"sa salamom","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,2,"povrtna","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,3,"4 vrste sira","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,3,"losos","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,3,"lovaèka","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,4,"calzone","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,4,"rukola/pršut","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,4,"pikantna","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,5,"povrtna","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,5,"pikantna","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,5,"slavonska","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,6,"ribarska","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,6,"calzone","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,6,"4 vrste sira","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,7,"slavonska","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,7,"lovaèka","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,7,"sa salamom","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,8,"rukola/pršut","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,8,"povrtna","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,8,"bolonjez","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,9,"pikantna","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,9,"losos","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,10,"s tunom","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,10,"ribarska","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,11,"sa salamom","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,11,"miješana","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,11,"calzone","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,12,"bolonjez","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,12,"slavonska","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,12,"ribarska","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,13,"s tunom","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,13,"4 vrste sira","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,13,"povrtna","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,14,"losos","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,14,"bolonjez","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,14,"miješana","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,26,15,"miješana","blizu pizzerije",2,2,2,"0026abc@g.com",1,0
+1,26,15,"pikantna","blizu pizzerije",2,2,2,"0026abc@g.com",0,1
+1,26,15,"s tunom","blizu pizzerije",2,2,2,"0026abc@g.com",0,0
+1,27,1,"lovaèka","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,1,"s tunom","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,1,"rukola/pršut","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,2,"4 godišnja doba","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,2,"sa salamom","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,2,"povrtna","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,3,"4 vrste sira","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,3,"losos","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,3,"lovaèka","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,4,"calzone","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,4,"rukola/pršut","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,4,"pikantna","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,5,"povrtna","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,5,"pikantna","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,5,"slavonska","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,6,"ribarska","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,6,"calzone","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,6,"4 vrste sira","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,7,"slavonska","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,7,"lovaèka","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,7,"sa salamom","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,8,"rukola/pršut","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,8,"povrtna","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,8,"bolonjez","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,9,"pikantna","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,9,"4 godišnja doba","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,9,"losos","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,10,"s tunom","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,10,"ribarska","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,10,"4 godišnja doba","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,11,"sa salamom","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,11,"miješana","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,11,"calzone","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,12,"bolonjez","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,12,"slavonska","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,12,"ribarska","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,13,"s tunom","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,13,"4 vrste sira","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,13,"povrtna","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,14,"losos","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,14,"bolonjez","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,27,14,"miješana","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,15,"miješana","blizu pizzerije",1,2,2,"0027abc@g.com",0,0
+1,27,15,"pikantna","blizu pizzerije",1,2,2,"0027abc@g.com",0,1
+1,27,15,"s tunom","blizu pizzerije",1,2,2,"0027abc@g.com",1,0
+1,28,1,"lovaèka","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,1,"s tunom","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,1,"rukola/pršut","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,2,"4 godišnja doba","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,2,"sa salamom","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,2,"povrtna","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,3,"4 vrste sira","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,3,"losos","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,3,"lovaèka","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,4,"calzone","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,4,"rukola/pršut","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,4,"pikantna","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,5,"povrtna","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,5,"pikantna","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,5,"slavonska","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,6,"ribarska","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,6,"calzone","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,6,"4 vrste sira","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,7,"slavonska","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,7,"lovaèka","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,7,"sa salamom","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,8,"rukola/pršut","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,8,"povrtna","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,8,"bolonjez","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,9,"pikantna","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,9,"4 godišnja doba","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,9,"losos","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,10,"s tunom","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,10,"ribarska","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,10,"4 godišnja doba","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,11,"sa salamom","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,11,"miješana","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,11,"calzone","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,12,"bolonjez","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,12,"slavonska","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,12,"ribarska","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,13,"s tunom","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,13,"4 vrste sira","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,13,"povrtna","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,14,"losos","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,14,"bolonjez","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,14,"miješana","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,28,15,"miješana","daleko od pizzerije",1,1,1,"0028abc@g.com",1,0
+1,28,15,"pikantna","daleko od pizzerije",1,1,1,"0028abc@g.com",0,1
+1,28,15,"s tunom","daleko od pizzerije",1,1,1,"0028abc@g.com",0,0
+1,29,1,"lovaèka","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,1,"s tunom","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,1,"rukola/pršut","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,2,"sa salamom","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,2,"povrtna","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,3,"4 vrste sira","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,3,"losos","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,3,"lovaèka","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,4,"calzone","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,4,"rukola/pršut","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,4,"pikantna","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,5,"povrtna","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,5,"pikantna","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,5,"slavonska","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,6,"ribarska","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,6,"calzone","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,6,"4 vrste sira","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,7,"slavonska","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,7,"lovaèka","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,7,"sa salamom","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,8,"rukola/pršut","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,8,"povrtna","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,8,"bolonjez","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,9,"pikantna","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,9,"losos","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,10,"s tunom","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,10,"ribarska","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,11,"sa salamom","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,11,"miješana","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,11,"calzone","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,12,"bolonjez","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,12,"slavonska","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,12,"ribarska","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,13,"s tunom","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,13,"4 vrste sira","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,13,"povrtna","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,14,"losos","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,14,"bolonjez","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,14,"miješana","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,29,15,"miješana","blizu pizzerije",2,2,2,"0029abc@g.com",1,0
+1,29,15,"pikantna","blizu pizzerije",2,2,2,"0029abc@g.com",0,1
+1,29,15,"s tunom","blizu pizzerije",2,2,2,"0029abc@g.com",0,0
+1,30,1,"lovaèka","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,1,"s tunom","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,1,"rukola/pršut","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,2,"4 godišnja doba","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,2,"sa salamom","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,2,"povrtna","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,3,"4 vrste sira","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,3,"losos","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,3,"lovaèka","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,4,"calzone","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,4,"rukola/pršut","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,4,"pikantna","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,5,"povrtna","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,5,"pikantna","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,5,"slavonska","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,6,"ribarska","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,6,"calzone","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,6,"4 vrste sira","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,7,"slavonska","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,7,"lovaèka","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,7,"sa salamom","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,8,"rukola/pršut","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,8,"povrtna","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,8,"bolonjez","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,9,"pikantna","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,9,"4 godišnja doba","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,9,"losos","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,10,"s tunom","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,10,"ribarska","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,10,"4 godišnja doba","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,11,"sa salamom","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,11,"miješana","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,11,"calzone","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,12,"bolonjez","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,12,"slavonska","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,12,"ribarska","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,13,"s tunom","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,13,"4 vrste sira","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,13,"povrtna","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,14,"losos","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,14,"bolonjez","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,30,14,"miješana","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,15,"miješana","daleko od pizzerije",2,2,2,"0030abc@g.com",1,0
+1,30,15,"pikantna","daleko od pizzerije",2,2,2,"0030abc@g.com",0,1
+1,30,15,"s tunom","daleko od pizzerije",2,2,2,"0030abc@g.com",0,0
+1,31,1,"lovaèka","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,1,"s tunom","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,1,"rukola/pršut","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,2,"4 godišnja doba","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,2,"sa salamom","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,2,"povrtna","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,3,"4 vrste sira","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,3,"losos","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,3,"lovaèka","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,4,"calzone","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,4,"rukola/pršut","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,4,"pikantna","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,5,"povrtna","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,5,"pikantna","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,5,"slavonska","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,6,"ribarska","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,6,"calzone","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,6,"4 vrste sira","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,7,"slavonska","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,7,"lovaèka","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,7,"sa salamom","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,8,"rukola/pršut","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,8,"povrtna","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,8,"bolonjez","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,9,"pikantna","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,9,"4 godišnja doba","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,9,"losos","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,10,"s tunom","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,10,"ribarska","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,10,"4 godišnja doba","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,11,"sa salamom","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,11,"miješana","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,11,"calzone","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,12,"bolonjez","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,12,"slavonska","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,12,"ribarska","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,13,"s tunom","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,13,"4 vrste sira","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,13,"povrtna","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,14,"losos","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,14,"bolonjez","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,31,14,"miješana","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,15,"miješana","blizu pizzerije",1,2,1,"0031abc@g.com",0,0
+1,31,15,"pikantna","blizu pizzerije",1,2,1,"0031abc@g.com",0,1
+1,31,15,"s tunom","blizu pizzerije",1,2,1,"0031abc@g.com",1,0
+1,32,1,"lovaèka","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,1,"s tunom","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,1,"rukola/pršut","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,2,"4 godišnja doba","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,2,"sa salamom","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,2,"povrtna","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,3,"4 vrste sira","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,3,"losos","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,3,"lovaèka","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,4,"calzone","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,4,"rukola/pršut","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,4,"pikantna","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,5,"povrtna","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,5,"pikantna","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,5,"slavonska","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,6,"ribarska","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,6,"calzone","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,6,"4 vrste sira","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,7,"slavonska","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,7,"lovaèka","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,7,"sa salamom","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,8,"rukola/pršut","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,8,"povrtna","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,8,"bolonjez","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,9,"pikantna","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,9,"4 godišnja doba","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,9,"losos","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,10,"s tunom","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,10,"ribarska","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,10,"4 godišnja doba","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,11,"sa salamom","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,11,"miješana","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,11,"calzone","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,12,"bolonjez","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,12,"slavonska","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,12,"ribarska","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,13,"s tunom","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,13,"4 vrste sira","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,13,"povrtna","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,14,"losos","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,14,"bolonjez","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,14,"miješana","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,32,15,"miješana","blizu pizzerije",2,2,1,"0032abc@g.com",1,0
+1,32,15,"pikantna","blizu pizzerije",2,2,1,"0032abc@g.com",0,1
+1,32,15,"s tunom","blizu pizzerije",2,2,1,"0032abc@g.com",0,0
+1,33,1,"lovaèka","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,1,"s tunom","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,1,"rukola/pršut","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,2,"4 godišnja doba","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,2,"sa salamom","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,2,"povrtna","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,3,"4 vrste sira","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,3,"losos","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,3,"lovaèka","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,4,"calzone","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,4,"rukola/pršut","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,4,"pikantna","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,5,"povrtna","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,5,"pikantna","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,5,"slavonska","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,6,"ribarska","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,6,"calzone","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,6,"4 vrste sira","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,7,"slavonska","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,7,"lovaèka","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,7,"sa salamom","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,8,"rukola/pršut","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,8,"povrtna","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,8,"bolonjez","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,9,"pikantna","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,9,"4 godišnja doba","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,9,"losos","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,10,"s tunom","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,10,"ribarska","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,10,"4 godišnja doba","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,11,"sa salamom","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,11,"miješana","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,11,"calzone","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,12,"bolonjez","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,12,"slavonska","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,12,"ribarska","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,13,"s tunom","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,13,"4 vrste sira","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,13,"povrtna","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,14,"losos","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,14,"bolonjez","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,33,14,"miješana","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,15,"miješana","daleko od pizzerije",1,1,1,"0033abc@g.com",0,0
+1,33,15,"pikantna","daleko od pizzerije",1,1,1,"0033abc@g.com",0,1
+1,33,15,"s tunom","daleko od pizzerije",1,1,1,"0033abc@g.com",1,0
+1,34,1,"lovaèka","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,1,"s tunom","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,1,"rukola/pršut","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,2,"4 godišnja doba","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,2,"sa salamom","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,2,"povrtna","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,3,"4 vrste sira","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,3,"losos","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,3,"lovaèka","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,4,"calzone","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,4,"rukola/pršut","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,4,"pikantna","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,5,"povrtna","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,5,"pikantna","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,5,"slavonska","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,6,"ribarska","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,6,"calzone","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,6,"4 vrste sira","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,7,"slavonska","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,7,"lovaèka","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,7,"sa salamom","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,8,"rukola/pršut","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,8,"povrtna","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,8,"bolonjez","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,9,"pikantna","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,9,"4 godišnja doba","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,9,"losos","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,10,"s tunom","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,10,"ribarska","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,10,"4 godišnja doba","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,11,"sa salamom","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,11,"miješana","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,11,"calzone","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,12,"bolonjez","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,12,"slavonska","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,12,"ribarska","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,13,"s tunom","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,13,"4 vrste sira","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,13,"povrtna","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,14,"losos","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,14,"bolonjez","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,34,14,"miješana","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,15,"miješana","blizu pizzerije",1,2,2,"0034abc@g.com",0,1
+1,34,15,"pikantna","blizu pizzerije",1,2,2,"0034abc@g.com",0,0
+1,34,15,"s tunom","blizu pizzerije",1,2,2,"0034abc@g.com",1,0
+1,35,1,"lovaèka","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,1,"s tunom","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,1,"rukola/pršut","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,2,"4 godišnja doba","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,2,"sa salamom","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,2,"povrtna","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,3,"4 vrste sira","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,3,"losos","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,3,"lovaèka","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,4,"calzone","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,4,"rukola/pršut","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,4,"pikantna","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,5,"povrtna","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,5,"pikantna","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,5,"slavonska","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,6,"ribarska","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,6,"calzone","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,6,"4 vrste sira","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,7,"slavonska","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,7,"lovaèka","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,7,"sa salamom","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,8,"rukola/pršut","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,8,"povrtna","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,8,"bolonjez","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,9,"pikantna","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,9,"4 godišnja doba","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,9,"losos","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,10,"s tunom","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,10,"ribarska","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,10,"4 godišnja doba","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,11,"sa salamom","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,11,"miješana","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,11,"calzone","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,12,"bolonjez","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,12,"slavonska","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,12,"ribarska","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,13,"s tunom","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,13,"4 vrste sira","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,13,"povrtna","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,14,"losos","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,14,"bolonjez","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,35,14,"miješana","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,15,"miješana","blizu pizzerije",1,2,1,"0035abc@g.com",0,0
+1,35,15,"pikantna","blizu pizzerije",1,2,1,"0035abc@g.com",0,1
+1,35,15,"s tunom","blizu pizzerije",1,2,1,"0035abc@g.com",1,0
+1,36,1,"lovaèka","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,1,"s tunom","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,1,"rukola/pršut","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,2,"4 godišnja doba","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,2,"sa salamom","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,2,"povrtna","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,3,"4 vrste sira","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,3,"losos","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,3,"lovaèka","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,4,"calzone","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,4,"rukola/pršut","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,4,"pikantna","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,5,"povrtna","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,5,"pikantna","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,5,"slavonska","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,6,"ribarska","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,6,"calzone","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,6,"4 vrste sira","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,7,"slavonska","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,7,"lovaèka","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,7,"sa salamom","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,8,"rukola/pršut","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,8,"povrtna","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,8,"bolonjez","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,9,"pikantna","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,9,"4 godišnja doba","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,9,"losos","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,10,"s tunom","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,10,"ribarska","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,10,"4 godišnja doba","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,11,"sa salamom","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,11,"miješana","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,11,"calzone","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,12,"bolonjez","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,12,"slavonska","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,12,"ribarska","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,13,"s tunom","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,13,"4 vrste sira","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,13,"povrtna","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,14,"losos","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,14,"bolonjez","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,36,14,"miješana","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,15,"miješana","daleko od pizzerije",2,2,1,"0036abc@g.com",0,0
+1,36,15,"pikantna","daleko od pizzerije",2,2,1,"0036abc@g.com",0,1
+1,36,15,"s tunom","daleko od pizzerije",2,2,1,"0036abc@g.com",1,0
+1,37,1,"lovaèka","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,1,"s tunom","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,1,"rukola/pršut","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,2,"4 godišnja doba","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,2,"sa salamom","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,2,"povrtna","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,3,"4 vrste sira","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,3,"losos","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,3,"lovaèka","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,4,"calzone","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,4,"rukola/pršut","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,4,"pikantna","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,5,"povrtna","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,5,"pikantna","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,5,"slavonska","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,6,"ribarska","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,6,"calzone","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,6,"4 vrste sira","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,7,"slavonska","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,7,"lovaèka","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,7,"sa salamom","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,8,"rukola/pršut","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,8,"povrtna","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,8,"bolonjez","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,9,"pikantna","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,9,"4 godišnja doba","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,9,"losos","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,10,"s tunom","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,10,"ribarska","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,10,"4 godišnja doba","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,11,"sa salamom","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,11,"miješana","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,11,"calzone","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,12,"bolonjez","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,12,"slavonska","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,12,"ribarska","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,13,"s tunom","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,13,"4 vrste sira","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,13,"povrtna","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,14,"losos","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,14,"bolonjez","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,37,14,"miješana","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,15,"miješana","blizu pizzerije",1,2,2,"0037abc@g.com",0,0
+1,37,15,"pikantna","blizu pizzerije",1,2,2,"0037abc@g.com",0,1
+1,37,15,"s tunom","blizu pizzerije",1,2,2,"0037abc@g.com",1,0
+1,38,1,"lovaèka","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,1,"s tunom","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,1,"rukola/pršut","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,2,"sa salamom","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,2,"povrtna","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,3,"4 vrste sira","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,3,"losos","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,3,"lovaèka","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,4,"calzone","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,4,"rukola/pršut","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,4,"pikantna","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,5,"povrtna","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,5,"pikantna","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,5,"slavonska","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,6,"ribarska","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,6,"calzone","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,6,"4 vrste sira","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,7,"slavonska","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,7,"lovaèka","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,7,"sa salamom","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,8,"rukola/pršut","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,8,"povrtna","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,8,"bolonjez","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,9,"pikantna","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,9,"losos","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,10,"s tunom","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,10,"ribarska","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,11,"sa salamom","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,11,"miješana","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,11,"calzone","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,12,"bolonjez","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,12,"slavonska","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,12,"ribarska","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,13,"s tunom","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,13,"4 vrste sira","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,13,"povrtna","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,14,"losos","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,14,"bolonjez","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,38,14,"miješana","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,15,"miješana","blizu pizzerije",2,2,2,"0038abc@g.com",0,1
+1,38,15,"pikantna","blizu pizzerije",2,2,2,"0038abc@g.com",0,0
+1,38,15,"s tunom","blizu pizzerije",2,2,2,"0038abc@g.com",1,0
+1,39,1,"lovaèka","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,1,"s tunom","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,1,"rukola/pršut","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,2,"sa salamom","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,2,"povrtna","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,3,"4 vrste sira","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,3,"losos","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,3,"lovaèka","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,4,"calzone","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,4,"rukola/pršut","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,4,"pikantna","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,5,"povrtna","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,5,"pikantna","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,5,"slavonska","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,6,"ribarska","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,6,"calzone","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,6,"4 vrste sira","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,7,"slavonska","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,7,"lovaèka","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,7,"sa salamom","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,8,"rukola/pršut","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,8,"povrtna","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,8,"bolonjez","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,9,"pikantna","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,9,"losos","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,10,"s tunom","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,10,"ribarska","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,11,"sa salamom","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,11,"miješana","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,11,"calzone","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,12,"bolonjez","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,12,"slavonska","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,12,"ribarska","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,13,"s tunom","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,13,"4 vrste sira","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,13,"povrtna","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,14,"losos","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,14,"bolonjez","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,39,14,"miješana","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,15,"miješana","blizu pizzerije",2,2,2,"0039abc@g.com",0,1
+1,39,15,"pikantna","blizu pizzerije",2,2,2,"0039abc@g.com",0,0
+1,39,15,"s tunom","blizu pizzerije",2,2,2,"0039abc@g.com",1,0
+1,40,1,"lovaèka","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,1,"s tunom","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,1,"rukola/pršut","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,2,"4 godišnja doba","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,2,"sa salamom","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,2,"povrtna","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,3,"4 vrste sira","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,3,"losos","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,3,"lovaèka","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,4,"calzone","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,4,"rukola/pršut","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,4,"pikantna","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,5,"povrtna","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,5,"pikantna","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,5,"slavonska","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,6,"ribarska","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,6,"calzone","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,6,"4 vrste sira","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,7,"slavonska","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,7,"lovaèka","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,7,"sa salamom","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,8,"rukola/pršut","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,8,"povrtna","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,8,"bolonjez","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,9,"pikantna","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,9,"4 godišnja doba","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,9,"losos","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,10,"s tunom","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,10,"ribarska","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,10,"4 godišnja doba","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,11,"sa salamom","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,11,"miješana","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,11,"calzone","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,12,"bolonjez","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,12,"slavonska","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,12,"ribarska","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,13,"s tunom","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,13,"4 vrste sira","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,13,"povrtna","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,14,"losos","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,14,"bolonjez","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,40,14,"miješana","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,15,"miješana","blizu pizzerije",2,1,1,"0040abc@g.com",0,0
+1,40,15,"pikantna","blizu pizzerije",2,1,1,"0040abc@g.com",0,1
+1,40,15,"s tunom","blizu pizzerije",2,1,1,"0040abc@g.com",1,0
+1,41,1,"lovaèka","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,1,"s tunom","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,1,"rukola/pršut","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,2,"4 godišnja doba","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,2,"sa salamom","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,2,"povrtna","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,3,"4 vrste sira","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,3,"losos","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,3,"lovaèka","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,4,"calzone","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,4,"rukola/pršut","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,4,"pikantna","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,5,"povrtna","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,5,"pikantna","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,5,"slavonska","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,6,"ribarska","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,6,"calzone","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,6,"4 vrste sira","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,7,"slavonska","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,7,"lovaèka","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,7,"sa salamom","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,8,"rukola/pršut","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,8,"povrtna","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,8,"bolonjez","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,9,"pikantna","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,9,"4 godišnja doba","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,9,"losos","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,10,"s tunom","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,10,"ribarska","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,10,"4 godišnja doba","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,11,"sa salamom","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,11,"miješana","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,11,"calzone","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,12,"bolonjez","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,12,"slavonska","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,12,"ribarska","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,13,"s tunom","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,13,"4 vrste sira","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,13,"povrtna","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,14,"losos","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,14,"bolonjez","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,14,"miješana","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,41,15,"miješana","daleko od pizzerije",2,2,2,"0041abc@g.com",1,0
+1,41,15,"pikantna","daleko od pizzerije",2,2,2,"0041abc@g.com",0,1
+1,41,15,"s tunom","daleko od pizzerije",2,2,2,"0041abc@g.com",0,0
+1,42,1,"lovaèka","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,1,"s tunom","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,1,"rukola/pršut","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,2,"sa salamom","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,2,"povrtna","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,3,"4 vrste sira","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,3,"losos","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,3,"lovaèka","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,4,"calzone","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,4,"rukola/pršut","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,4,"pikantna","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,5,"povrtna","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,5,"pikantna","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,5,"slavonska","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,6,"ribarska","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,6,"calzone","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,6,"4 vrste sira","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,7,"slavonska","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,7,"lovaèka","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,7,"sa salamom","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,8,"rukola/pršut","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,8,"povrtna","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,8,"bolonjez","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,9,"pikantna","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,9,"losos","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,10,"s tunom","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,10,"ribarska","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,11,"sa salamom","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,11,"miješana","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,11,"calzone","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,12,"bolonjez","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,12,"slavonska","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,12,"ribarska","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,13,"s tunom","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,13,"4 vrste sira","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,13,"povrtna","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,14,"losos","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,14,"bolonjez","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,14,"miješana","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,42,15,"miješana","blizu pizzerije",2,2,2,"0042abc@g.com",1,0
+1,42,15,"pikantna","blizu pizzerije",2,2,2,"0042abc@g.com",0,1
+1,42,15,"s tunom","blizu pizzerije",2,2,2,"0042abc@g.com",0,0
+1,43,1,"lovaèka","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,1,"s tunom","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,1,"rukola/pršut","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,2,"sa salamom","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,2,"povrtna","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,3,"4 vrste sira","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,3,"losos","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,3,"lovaèka","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,4,"calzone","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,4,"rukola/pršut","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,4,"pikantna","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,5,"povrtna","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,5,"pikantna","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,5,"slavonska","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,6,"ribarska","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,6,"calzone","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,6,"4 vrste sira","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,7,"slavonska","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,7,"lovaèka","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,7,"sa salamom","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,8,"rukola/pršut","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,8,"povrtna","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,8,"bolonjez","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,9,"pikantna","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,9,"losos","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,10,"s tunom","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,10,"ribarska","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,11,"sa salamom","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,11,"miješana","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,11,"calzone","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,12,"bolonjez","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,12,"slavonska","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,12,"ribarska","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,13,"s tunom","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,13,"4 vrste sira","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,13,"povrtna","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,14,"losos","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,14,"bolonjez","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,14,"miješana","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,43,15,"miješana","blizu pizzerije",2,2,2,"0043abc@g.com",0,1
+1,43,15,"pikantna","blizu pizzerije",2,2,2,"0043abc@g.com",0,0
+1,43,15,"s tunom","blizu pizzerije",2,2,2,"0043abc@g.com",1,0
+1,44,1,"lovaèka","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,1,"s tunom","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,1,"rukola/pršut","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,2,"4 godišnja doba","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,2,"sa salamom","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,2,"povrtna","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,3,"4 vrste sira","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,3,"losos","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,3,"lovaèka","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,4,"calzone","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,4,"rukola/pršut","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,4,"pikantna","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,5,"povrtna","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,5,"pikantna","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,5,"slavonska","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,6,"ribarska","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,6,"calzone","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,6,"4 vrste sira","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,7,"slavonska","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,7,"lovaèka","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,7,"sa salamom","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,8,"rukola/pršut","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,8,"povrtna","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,8,"bolonjez","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,9,"pikantna","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,9,"4 godišnja doba","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,9,"losos","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,10,"s tunom","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,10,"ribarska","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,10,"4 godišnja doba","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,11,"sa salamom","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,11,"miješana","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,11,"calzone","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,12,"bolonjez","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,12,"slavonska","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,12,"ribarska","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,13,"s tunom","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,13,"4 vrste sira","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,13,"povrtna","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,14,"losos","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,14,"bolonjez","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,44,14,"miješana","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,15,"miješana","daleko od pizzerije",2,1,2,"0044abc@g.com",0,0
+1,44,15,"pikantna","daleko od pizzerije",2,1,2,"0044abc@g.com",0,1
+1,44,15,"s tunom","daleko od pizzerije",2,1,2,"0044abc@g.com",1,0
+1,45,1,"lovaèka","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,1,"s tunom","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,1,"rukola/pršut","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,2,"4 godišnja doba","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,2,"sa salamom","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,2,"povrtna","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,3,"4 vrste sira","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,3,"losos","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,3,"lovaèka","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,4,"calzone","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,4,"rukola/pršut","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,4,"pikantna","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,5,"povrtna","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,5,"pikantna","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,5,"slavonska","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,6,"ribarska","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,6,"calzone","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,6,"4 vrste sira","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,7,"slavonska","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,7,"lovaèka","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,7,"sa salamom","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,8,"rukola/pršut","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,8,"povrtna","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,8,"bolonjez","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,9,"pikantna","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,9,"4 godišnja doba","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,9,"losos","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,10,"s tunom","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,10,"ribarska","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,10,"4 godišnja doba","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,11,"sa salamom","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,11,"miješana","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,11,"calzone","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,12,"bolonjez","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,12,"slavonska","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,12,"ribarska","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,13,"s tunom","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,13,"4 vrste sira","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,13,"povrtna","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,14,"losos","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,14,"bolonjez","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,45,14,"miješana","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,15,"miješana","daleko od pizzerije",2,1,1,"0045abc@g.com",0,0
+1,45,15,"pikantna","daleko od pizzerije",2,1,1,"0045abc@g.com",0,1
+1,45,15,"s tunom","daleko od pizzerije",2,1,1,"0045abc@g.com",1,0
+1,46,1,"lovaèka","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,1,"s tunom","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,1,"rukola/pršut","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,2,"4 godišnja doba","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,2,"sa salamom","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,2,"povrtna","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,3,"4 vrste sira","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,3,"losos","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,3,"lovaèka","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,4,"calzone","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,4,"rukola/pršut","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,4,"pikantna","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,5,"povrtna","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,5,"pikantna","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,5,"slavonska","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,6,"ribarska","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,6,"calzone","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,6,"4 vrste sira","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,7,"slavonska","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,7,"lovaèka","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,7,"sa salamom","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,8,"rukola/pršut","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,8,"povrtna","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,8,"bolonjez","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,9,"pikantna","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,9,"4 godišnja doba","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,9,"losos","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,10,"s tunom","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,10,"ribarska","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,10,"4 godišnja doba","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,11,"sa salamom","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,11,"miješana","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,11,"calzone","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,12,"bolonjez","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,12,"slavonska","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,12,"ribarska","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,13,"s tunom","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,13,"4 vrste sira","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,13,"povrtna","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,14,"losos","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,14,"bolonjez","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,46,14,"miješana","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,15,"miješana","blizu pizzerije",2,1,1,"0046abc@g.com",0,1
+1,46,15,"pikantna","blizu pizzerije",2,1,1,"0046abc@g.com",0,0
+1,46,15,"s tunom","blizu pizzerije",2,1,1,"0046abc@g.com",1,0
+1,47,1,"lovaèka","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,1,"s tunom","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,1,"rukola/pršut","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,2,"4 godišnja doba","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,2,"sa salamom","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,2,"povrtna","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,3,"4 vrste sira","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,3,"losos","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,3,"lovaèka","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,4,"calzone","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,4,"rukola/pršut","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,4,"pikantna","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,5,"povrtna","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,5,"pikantna","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,5,"slavonska","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,6,"ribarska","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,6,"calzone","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,6,"4 vrste sira","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,7,"slavonska","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,7,"lovaèka","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,7,"sa salamom","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,8,"rukola/pršut","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,8,"povrtna","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,8,"bolonjez","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,9,"pikantna","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,9,"4 godišnja doba","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,9,"losos","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,10,"s tunom","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,10,"ribarska","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,10,"4 godišnja doba","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,11,"sa salamom","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,11,"miješana","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,11,"calzone","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,12,"bolonjez","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,12,"slavonska","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,12,"ribarska","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,13,"s tunom","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,13,"4 vrste sira","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,13,"povrtna","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,14,"losos","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,47,14,"bolonjez","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,14,"miješana","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,15,"miješana","blizu pizzerije",2,2,2,"0047abc@g.com",0,0
+1,47,15,"pikantna","blizu pizzerije",2,2,2,"0047abc@g.com",0,1
+1,47,15,"s tunom","blizu pizzerije",2,2,2,"0047abc@g.com",1,0
+1,48,1,"lovaèka","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,1,"s tunom","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,1,"rukola/pršut","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,2,"4 godišnja doba","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,2,"sa salamom","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,2,"povrtna","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,3,"4 vrste sira","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,3,"losos","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,3,"lovaèka","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,4,"calzone","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,4,"rukola/pršut","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,4,"pikantna","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,5,"povrtna","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,5,"pikantna","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,5,"slavonska","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,6,"ribarska","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,6,"calzone","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,6,"4 vrste sira","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,7,"slavonska","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,7,"lovaèka","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,7,"sa salamom","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,8,"rukola/pršut","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,8,"povrtna","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,8,"bolonjez","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,9,"pikantna","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,9,"4 godišnja doba","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,9,"losos","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,10,"s tunom","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,10,"ribarska","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,10,"4 godišnja doba","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,11,"sa salamom","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,11,"miješana","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,11,"calzone","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,12,"bolonjez","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,12,"slavonska","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,12,"ribarska","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,13,"s tunom","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,13,"4 vrste sira","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,13,"povrtna","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,14,"losos","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,14,"bolonjez","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,14,"miješana","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,48,15,"miješana","blizu pizzerije",2,1,1,"0048abc@g.com",0,1
+1,48,15,"pikantna","blizu pizzerije",2,1,1,"0048abc@g.com",0,0
+1,48,15,"s tunom","blizu pizzerije",2,1,1,"0048abc@g.com",1,0
+1,49,1,"lovaèka","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,1,"s tunom","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,1,"rukola/pršut","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,2,"4 godišnja doba","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,2,"sa salamom","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,2,"povrtna","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,3,"4 vrste sira","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,3,"losos","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,3,"lovaèka","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,4,"calzone","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,4,"rukola/pršut","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,4,"pikantna","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,5,"povrtna","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,5,"pikantna","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,5,"slavonska","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,6,"ribarska","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,6,"calzone","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,6,"4 vrste sira","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,7,"slavonska","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,7,"lovaèka","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,7,"sa salamom","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,8,"rukola/pršut","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,8,"povrtna","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,8,"bolonjez","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,9,"pikantna","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,9,"4 godišnja doba","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,9,"losos","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,10,"s tunom","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,10,"ribarska","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,10,"4 godišnja doba","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,11,"sa salamom","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,11,"miješana","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,11,"calzone","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,12,"bolonjez","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,12,"slavonska","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,12,"ribarska","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,13,"s tunom","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,13,"4 vrste sira","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,13,"povrtna","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,14,"losos","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,14,"bolonjez","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,14,"miješana","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,49,15,"miješana","daleko od pizzerije",1,1,2,"0049abc@g.com",1,0
+1,49,15,"pikantna","daleko od pizzerije",1,1,2,"0049abc@g.com",0,1
+1,49,15,"s tunom","daleko od pizzerije",1,1,2,"0049abc@g.com",0,0
+1,50,1,"lovaèka","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,1,"s tunom","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,1,"rukola/pršut","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,2,"4 godišnja doba","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,2,"sa salamom","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,2,"povrtna","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,3,"4 vrste sira","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,3,"losos","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,3,"lovaèka","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,4,"calzone","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,4,"rukola/pršut","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,4,"pikantna","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,5,"povrtna","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,5,"pikantna","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,5,"slavonska","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,6,"ribarska","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,6,"calzone","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,6,"4 vrste sira","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,7,"slavonska","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,7,"lovaèka","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,7,"sa salamom","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,8,"rukola/pršut","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,8,"povrtna","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,8,"bolonjez","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,9,"pikantna","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,9,"4 godišnja doba","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,9,"losos","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,10,"s tunom","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,10,"ribarska","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,10,"4 godišnja doba","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,11,"sa salamom","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,11,"miješana","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,11,"calzone","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,12,"bolonjez","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,12,"slavonska","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,12,"ribarska","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,13,"s tunom","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,13,"4 vrste sira","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,13,"povrtna","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,14,"losos","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,14,"bolonjez","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,14,"miješana","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0
+1,50,15,"miješana","daleko od pizzerije",2,1,2,"0050abc@g.com",0,0
+1,50,15,"pikantna","daleko od pizzerije",2,1,2,"0050abc@g.com",0,1
+1,50,15,"s tunom","daleko od pizzerije",2,1,2,"0050abc@g.com",1,0

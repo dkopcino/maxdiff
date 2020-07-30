@@ -7,12 +7,12 @@ library(limer)
 designctx = readRDS(designctxfile)
 cbc.df = read.csv(file = simulatesurveyfile, stringsAsFactors = FALSE)
 
-for (cov in designctx$covariates) {
-  cbc.df[[cov$naziv]] = factor(cbc.df[[cov$naziv]], levels = cov$vrijednosti)
+for (cov in names(designctx$covariates)) {
+  cbc.df[[cov]] = factor(cbc.df[[cov]], levels = designctx$covariates[[cov]]$vrijednosti)
 }
 
-for (per in designctx$personals) {
-  if (per$tip == "dropdown") cbc.df[[per$naziv]] = factor(cbc.df[[per$naziv]], levels = per$vrijednosti)
+for (per in names(designctx$personals)) {
+  if (designctx$personals[[per]]$tip == "dropdown") cbc.df[[per]] = factor(cbc.df[[per]], levels = designctx$personals[[per]]$vrijednosti)
 }
 
 cbc.df$alti = rep(1:designctx$nalternatives, nrow(cbc.df)/designctx$nalternatives)

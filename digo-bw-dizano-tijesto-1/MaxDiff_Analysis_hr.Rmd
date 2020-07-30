@@ -1,9 +1,10 @@
 ---
-title:    |
-    | di-go teme za fanove
+title: |
+  | di-go teme za fanove
 author: "Danijel Kopčinović, IT Market"
-#date: '18 02 2020 '
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}

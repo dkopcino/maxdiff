@@ -72,7 +72,7 @@
     <admin><![CDATA[Administrator]]></admin>
     <adminemail><![CDATA[info@anketar.biz]]></adminemail>
     <anonymized><![CDATA[N]]></anonymized>
-    <format><![CDATA[S]]></format>
+    <format><![CDATA[G]]></format>
     <savetimings><![CDATA[Y]]></savetimings>
     <template><![CDATA[maxdiff_extends_bootswatch]]></template>
     <language><![CDATA[hr]]></language>
@@ -102,7 +102,7 @@
     <emailnotificationto/>
     <tokenlength><![CDATA[15]]></tokenlength>
     <showxquestions><![CDATA[N]]></showxquestions>
-    <showgroupinfo><![CDATA[N]]></showgroupinfo>
+    <showgroupinfo><![CDATA[X]]></showgroupinfo>
     <shownoanswer><![CDATA[N]]></shownoanswer>
     <showqnumcode><![CDATA[X]]></showqnumcode>
     <bounceprocessing><![CDATA[N]]></bounceprocessing>
@@ -152,7 +152,7 @@
     <surveyls_survey_id><![CDATA[]]></surveyls_survey_id>
     <surveyls_language><![CDATA[hr]]></surveyls_language>
     <surveyls_title><![CDATA[MAXDIFF TEST]]></surveyls_title>
-    <surveyls_description><![CDATA[<p>U upitniku "MAXDIFF TEST" postavit ćemo Vam X pitanja s raznim varijantama, a Vi ćete u svakom pitanju odabrati Vama najbolju i najlošiju varijantu. Za ispunjavanje cijelog upitnika po našoj je procjeni dovoljno 15-20 minuta.</p>
+    <surveyls_description><![CDATA[<p>U upitniku 'MAXDIFF TEST' postavit ćemo Vam X pitanja s raznim varijantama, a Vi ćete u svakom pitanju odabrati Vama najbolju i najlošiju varijantu. Za ispunjavanje cijelog upitnika po našoj je procjeni dovoljno 15-20 minuta.</p>
 
 <p>Kao znak zahvale za sudjelovanje u ovom upitniku, Y će Vam poslati mali poklon paket!</p>
 ]]></surveyls_description>

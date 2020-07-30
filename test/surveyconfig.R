@@ -3,6 +3,9 @@ setwd(paste("C:/OnlineSync/Mega/R/work/maxdiff/", iid, sep = ""))
 # define globally used CBC id.
 cbcid = paste("cbc_", iid, sep = "") # used for cbc/design identification
 
+lsuploaddir = paste0("/lsupload/", cbcid, "/")
+surveymetafile = paste(cbcid, "_surveymeta.xml", sep = "")
+
 designctxfile = paste(cbcid, "_designctx.RDS", sep = "")
 
 limesurveyqidsfile = paste(cbcid, "_limesurveyqids.RDS", sep = "")
@@ -33,6 +36,23 @@ valuesfile = paste(cbcid, "_vrijednosti.RDS", sep = "")
 simulatecoefsfile = paste(cbcid, "_simcoefs.RDS", sep = "")
 
 turffile = paste(cbcid, "_turf.RDS", sep = "")
+
+library(stringi)
+# string to a filename acceptable string
+# casts to lowercase
+# replaces all croatian characters with simple c, z, d
+# replaces blanks with underscores
+txt2filename = function(s) {
+  s = tolower(s)
+  s = stri_trans_general(str = s, id = "Latin-ASCII")
+  # s = gsub("[čćČĆ]", "c", s)
+  # s = gsub("[đĐ]", "dj", s)
+  # s = gsub("[žŽ]", "z", s)
+  # s = gsub("[šŠ]", "s", s)
+  s = gsub("[\\/]", "_", s)
+  s = gsub("\\s", "_", s)
+  s
+}
 
 # price/cijena iz tekst formata u numerički
 price2num = function(price) {

@@ -77,21 +77,207 @@ for (i in 1:length(questionnaires)) {
     iNewID = createdsurveyids[i]
   }
   
-  sGroupTitle = enc2utf8('Molimo odaberite Vama najbolju i najlošiju opciju među navedenim opcijama')
-  sGroupDescription = ''
-  #add_group(string $sSessionKey, integer $iSurveyID, string $sGroupTitle, string $sGroupDescription = '') : array|integer
-  iGid2 = call_limer(method = 'add_group', 
-                     params = list("iSurveyID" = iNewID,
-                                   "sGroupTitle" = sGroupTitle,
-                                   "sGroupDescription" = sGroupDescription))
-  
+  lastquestionid = 0
+
+  ## if there are any screening questions, add them too
+  if (length(designctx$screenings) > 0) {
+
+    for (si in 1:length(designctx$screenings)) {
+
+      sGroupTitle = enc2utf8('Molimo da nam odgovorite na nekoliko pitanja')
+      sGroupDescription = enc2utf8('')
+      #add_group(string $sSessionKey, integer $iSurveyID, string $sGroupTitle, string $sGroupDescription = '') : array|integer
+      iGid5 = call_limer(method = 'add_group',
+                         params = list("iSurveyID" = iNewID,
+                                       "sGroupTitle" = sGroupTitle,
+                                       "sGroupDescription" = sGroupDescription))
+
+      pitanje = designctx$screenings[[si]][["pitanje"]]
+      vrijednosti = designctx$screenings[[si]][["vrijednosti"]]
+
+      doc = newXMLDoc()
+      documentNode = newXMLNode("document", doc = doc)
+      LimeSurveyDocTypeNode = newXMLNode("LimeSurveyDocType", parent = documentNode)
+      xmlValue(LimeSurveyDocTypeNode) = "Question"
+      DBVersionNode = newXMLNode("DBVersion", parent = documentNode)
+      xmlValue(DBVersionNode) = 359
+
+      languagesNode = newXMLNode("languages", parent = documentNode)
+      languageNode = newXMLNode("language", parent = languagesNode)
+      xmlValue(languageNode) = "hr"
+
+      ## questions node
+      questionsNode = newXMLNode("questions", parent = documentNode)
+      fieldsNode = newXMLNode("fields", parent = questionsNode)
+
+      qidNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(qidNode) = "qid"
+      parent_qidNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(parent_qidNode) = "parent_qid"
+      sidNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(sidNode) = "sid"
+      gidNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(gidNode) = "gid"
+      typeNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(typeNode) = "type"
+      titleNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(titleNode) = "title"
+      questionNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(questionNode) = "question"
+      pregNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(pregNode) = "preg"
+      helpNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(helpNode) = "help"
+      otherNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(otherNode) = "other"
+      mandatoryNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(mandatoryNode) = "mandatory"
+      question_orderNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(question_orderNode) = "question_order"
+      languageNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(languageNode) = "language"
+      scale_idNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(scale_idNode) = "scale_id"
+      same_defaultNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(same_defaultNode) = "same_default"
+      relevanceNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(relevanceNode) = "relevance"
+      modulenameNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(modulenameNode) = "modulename"
+
+      rowsNode = newXMLNode("rows", parent = questionsNode)
+      rowNode = newXMLNode("row", parent = rowsNode)
+
+      qidNode = newXMLNode("qid", parent = rowNode)
+      lastquestionid = lastquestionid + 1
+      thisquestionid = lastquestionid
+      cdatanode = newXMLCDataNode(lastquestionid, parent = qidNode)
+      parent_qidNode = newXMLNode("parent_qid", parent = rowNode)
+      cdatanode = newXMLCDataNode(0, parent = parent_qidNode)
+      sidNode = newXMLNode("sid", parent = rowNode)
+      cdatanode = newXMLCDataNode(iNewID, parent = sidNode)
+      gidNode = newXMLNode("gid", parent = rowNode)
+      cdatanode = newXMLCDataNode(iGid5, parent = gidNode)
+      typeNode = newXMLNode("type", parent = rowNode)
+      # cdatanode = newXMLCDataNode("!", parent = typeNode) # za drop down listu
+      cdatanode = newXMLCDataNode("L", parent = typeNode) # za radio button listu
+
+      sNewQuestionTitle1 = paste("scrq", si, sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
+      #      sNewqQuestion1 = enc2utf8(paste("Molimo odaberite:", naziv))
+      sNewqQuestion1 = enc2utf8(pitanje)
+      sNewQuestionHelp1 = enc2utf8("Izaberite jednu od ponuđenih opcija")
+
+      titleNode = newXMLNode("title", parent = rowNode)
+      cdatanode = newXMLCDataNode(sNewQuestionTitle1, parent = titleNode)
+      questionNode = newXMLNode("question", parent = rowNode)
+      cdatanode = newXMLCDataNode(sNewqQuestion1, parent = questionNode)
+      pregNode = newXMLNode("preg", parent = rowNode)
+      helpNode = newXMLNode("help", parent = rowNode)
+      cdatanode = newXMLCDataNode(sNewQuestionHelp1, parent = helpNode)
+
+      otherNode = newXMLNode("other", parent = rowNode)
+      cdatanode = newXMLCDataNode("N", parent = otherNode)
+      mandatoryNode = newXMLNode("mandatory", parent = rowNode)
+      cdatanode = newXMLCDataNode("Y", parent = mandatoryNode)
+      question_orderNode = newXMLNode("question_order", parent = rowNode)
+      cdatanode = newXMLCDataNode(si, parent = question_orderNode)
+      languageNode = newXMLNode("language", parent = rowNode)
+      cdatanode = newXMLCDataNode("hr", parent = languageNode)
+      scale_idNode = newXMLNode("scale_id", parent = rowNode)
+      cdatanode = newXMLCDataNode(0, parent = scale_idNode)
+      same_defaultNode = newXMLNode("same_default", parent = rowNode)
+      cdatanode = newXMLCDataNode(0, parent = same_defaultNode)
+      relevanceNode = newXMLNode("relevance", parent = rowNode)
+      cdatanode = newXMLCDataNode(1, parent = relevanceNode)
+      modulenameNode = newXMLNode("modulename", parent = rowNode)
+      ## questions node
+
+
+      ## answers node
+      answersNode = newXMLNode("answers", parent = documentNode)
+      fieldsNode = newXMLNode("fields", parent = answersNode)
+
+      qidNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(qidNode) = "qid"
+      codeNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(codeNode) = "code"
+      answerNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(answerNode) = "answer"
+      sortorderNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(sortorderNode) = "sortorder"
+      assessment_valueNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(assessment_valueNode) = "assessment_value"
+      languageNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(languageNode) = "language"
+      scale_idNode = newXMLNode("fieldname", parent = fieldsNode)
+      xmlValue(scale_idNode) = "scale_id"
+
+      rowsNode = newXMLNode("rows", parent = answersNode)
+
+      ## answers node
+
+      for (vi in 1:length(vrijednosti)) {
+
+        rowNode = newXMLNode("row", parent = rowsNode)
+
+        qidNode = newXMLNode("qid", parent = rowNode)
+        cdatanode = newXMLCDataNode(thisquestionid, parent = qidNode)
+        codeNode = newXMLNode("code", parent = rowNode)
+        cdatanode = newXMLCDataNode(paste("A", vi, sep = ""), parent = codeNode) # ovo je ovisno o alternativi
+
+        answertxt = enc2utf8(vrijednosti[vi])
+
+        answerNode = newXMLNode("answer", parent = rowNode)
+        cdatanode = newXMLCDataNode(answertxt, parent = answerNode)
+
+        sortorderNode = newXMLNode("sortorder", parent = rowNode)
+        cdatanode = newXMLCDataNode(vi, parent = sortorderNode)
+        assessment_valueNode = newXMLNode("assessment_value", parent = rowNode)
+        cdatanode = newXMLCDataNode(0, parent = assessment_valueNode)
+        languageNode = newXMLNode("language", parent = rowNode)
+        cdatanode = newXMLCDataNode("hr", parent = languageNode)
+        scale_idNode = newXMLNode("scale_id", parent = rowNode)
+        cdatanode = newXMLCDataNode(0, parent = scale_idNode)
+
+      }
+
+      ## question_attributes node
+      questionString = saveXML(doc, file = NULL, compression = 0, indent = TRUE,
+                               prefix = '<?xml version="1.0" encoding="UTF-8"?>',
+                               doctype = NULL, encoding = "UTF8")
+
+      # readr::write_file(questionString, "out.xml")
+      # questionString1 = readr::read_file("limesurvey_question_1.lsq")
+
+      library(openssl)
+      sImportData = base64_encode(questionString)
+      sImportDataType = 'lsq'
+      ### Sva su pitanja obavezna!
+      sMandatory = 'Y'
+      #import_question(string $sSessionKey, integer $iSurveyID, integer $iGroupID, string $sImportData, string $sImportDataType, string $sMandatory = 'N', string $sNewQuestionTitle = null, string $sNewqQuestion = null, string $sNewQuestionHelp = null) : array|integer
+      iQid5 = call_limer(method = 'import_question',
+                         params = list("iSurveyID" = iNewID,
+                                       "iGroupID" = iGid5,
+                                       "sImportData" = sImportData,
+                                       "sImportDataType" = sImportDataType,
+                                       "sMandatory" = sMandatory))
+    }
+
+  }
+
   nquestions = designctx$nquestions
   nalternatives = designctx$nalternatives
-  
-  lastquestionid = 0
-  
+
   for (j in 1:nquestions) {
     
+    sGroupTitle = enc2utf8('Molimo odaberite Vama najbolju i najlošiju opciju među navedenim opcijama')
+    sGroupDescription = ''
+    #add_group(string $sSessionKey, integer $iSurveyID, string $sGroupTitle, string $sGroupDescription = '') : array|integer
+    iGid2 = call_limer(method = 'add_group', 
+                       params = list("iSurveyID" = iNewID,
+                                     "sGroupTitle" = sGroupTitle,
+                                     "sGroupDescription" = sGroupDescription))
+
     doc = newXMLDoc()
     documentNode = newXMLNode("document", doc = doc)
     LimeSurveyDocTypeNode = newXMLNode("LimeSurveyDocType", parent = documentNode)
@@ -159,7 +345,7 @@ for (i in 1:length(questionnaires)) {
     cdatanode = newXMLCDataNode("H", parent = typeNode)
     
     sNewQuestionTitle1 = paste("qi", i, "qu", thisquestionid, sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
-    sNewqQuestion1 = paste(enc2utf8("Opcije:"),
+    sNewqQuestion1 = paste(enc2utf8("Molimo odaberite Vama najbolju i najlošiju opciju među navedenim opcijama:"),
                            "<br/>",
                            "<script type=\"text/javascript\" charset=\"utf-8\">
                            $(document).ready(function(){
@@ -368,7 +554,14 @@ for (i in 1:length(questionnaires)) {
       cdatanode = newXMLCDataNode(paste("A", k, sep = ""), parent = codeNode) # ovo je ovisno o alternativi
       
       answerNode = newXMLNode("answer", parent = rowNode)
-      cdatanode = newXMLCDataNode(enc2utf8(as.character(alternatives[k, "alt"])), parent = answerNode)
+      
+      if ((designctx$use_meta) && (!is.null(designctx$survey_meta[[as.character(alternatives[k, "alt"])]]$image))) {
+        answertxt = paste0("<img alt=\"\" src=\"", designctx$survey_meta[[as.character(alternatives[k, "alt"])]]$image, "\"/>")
+      } else {
+        answertxt = enc2utf8(as.character(alternatives[k, "alt"]))
+      }
+      answertxt = paste0("<p style=\"text-align: center;\">", answertxt, "</p>")
+      cdatanode = newXMLCDataNode(answertxt, parent = answerNode)
       
       sortorderNode = newXMLNode("sortorder", parent = rowNode)
       cdatanode = newXMLCDataNode(k, parent = sortorderNode)
@@ -417,17 +610,17 @@ for (i in 1:length(questionnaires)) {
   # if anchors, add the question
   if (designctx$anchors > 0) {
     
-    sGroupTitle = enc2utf8('Da li biste sljedeće proizvode općenito kupili ili ne?')
-    sGroupDescription = enc2utf8('')
-    iGid21 = call_limer(method = 'add_group', 
-                        params = list("iSurveyID" = iNewID,
-                                      "sGroupTitle" = sGroupTitle,
-                                      "sGroupDescription" = sGroupDescription))
-    
     question_subquestion_ids_in_q = paste(question_subquestion_ids, collapse = ",")
     
     for (anchi in 1:designctx$anchors) {
       
+      sGroupTitle = enc2utf8('Da li biste sljedeće proizvode općenito kupili ili ne?')
+      sGroupDescription = enc2utf8('')
+      iGid21 = call_limer(method = 'add_group', 
+                          params = list("iSurveyID" = iNewID,
+                                        "sGroupTitle" = sGroupTitle,
+                                        "sGroupDescription" = sGroupDescription))
+    
       doc = newXMLDoc()
       documentNode = newXMLNode("document", doc = doc)
       LimeSurveyDocTypeNode = newXMLNode("LimeSurveyDocType", parent = documentNode)
@@ -496,7 +689,7 @@ for (i in 1:length(questionnaires)) {
       
       sAnchorQuestionTitle1 = paste("qi", i, "qu", thisquestionid, sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
   #    sAnchorQuestion1 = enc2utf8("Molimo odaberite što Vas zanima i što Vas ne zanima:")
-      sAnchorQuestion1 = paste(enc2utf8("Molimo odaberite ili ZANIMAJU ME ili NE ZANIMAJU ME:"),
+      sAnchorQuestion1 = paste(enc2utf8("Da li Vas sljedeći proizvod općenito zanima ili ne? Molimo odaberite ili ZANIMA ME ili NE ZANIMA ME:"),
                              "<br/>",
                              "<script type=\"text/javascript\" charset=\"utf-8\">
                              $(document).ready(function(){
@@ -672,7 +865,7 @@ for (i in 1:length(questionnaires)) {
       cdatanode = newXMLCDataNode("A1", parent = codeNode)
   
       answerNode = newXMLNode("answer", parent = rowNode)
-      cdatanode = newXMLCDataNode("ZANIMAJU ME", parent = answerNode)
+      cdatanode = newXMLCDataNode("ZANIMA ME", parent = answerNode)
   
       sortorderNode = newXMLNode("sortorder", parent = rowNode)
       cdatanode = newXMLCDataNode(1, parent = sortorderNode)
@@ -693,7 +886,7 @@ for (i in 1:length(questionnaires)) {
       cdatanode = newXMLCDataNode("A2", parent = codeNode)
       
       answerNode = newXMLNode("answer", parent = rowNode)
-      cdatanode = newXMLCDataNode("NE ZANIMAJU ME", parent = answerNode)
+      cdatanode = newXMLCDataNode("NE ZANIMA ME", parent = answerNode)
       
       sortorderNode = newXMLNode("sortorder", parent = rowNode)
       cdatanode = newXMLCDataNode(2, parent = sortorderNode)
@@ -738,17 +931,17 @@ for (i in 1:length(questionnaires)) {
   
   ## if there are any covariates, add them too
   if (length(designctx$covariates) > 0) {
-    sGroupTitle = enc2utf8('Molimo da nam još odgovorite na nekoliko pitanja o sebi')
-    sGroupDescription = enc2utf8('')
-    #add_group(string $sSessionKey, integer $iSurveyID, string $sGroupTitle, string $sGroupDescription = '') : array|integer
-    iGid3 = call_limer(method = 'add_group', 
-                       params = list("iSurveyID" = iNewID,
-                                     "sGroupTitle" = sGroupTitle,
-                                     "sGroupDescription" = sGroupDescription))
-    
     for (ci in 1:length(designctx$covariates)) {
 
-      naziv = designctx$covariates[[ci]][["naziv"]]
+      sGroupTitle = enc2utf8('Molimo da nam još odgovorite na nekoliko pitanja o sebi')
+      sGroupDescription = enc2utf8('')
+      #add_group(string $sSessionKey, integer $iSurveyID, string $sGroupTitle, string $sGroupDescription = '') : array|integer
+      iGid3 = call_limer(method = 'add_group', 
+                         params = list("iSurveyID" = iNewID,
+                                       "sGroupTitle" = sGroupTitle,
+                                       "sGroupDescription" = sGroupDescription))
+    
+      pitanje = designctx$covariates[[ci]][["pitanje"]]
       vrijednosti = designctx$covariates[[ci]][["vrijednosti"]]
       
       doc = newXMLDoc()
@@ -819,7 +1012,8 @@ for (i in 1:length(questionnaires)) {
       cdatanode = newXMLCDataNode("L", parent = typeNode) # za radio button listu
       
       sNewQuestionTitle1 = paste("covq", ci, sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
-      sNewqQuestion1 = enc2utf8(paste("Molimo odaberite:", naziv))
+      #sNewqQuestion1 = enc2utf8(paste("Molimo odaberite:", naziv))
+      sNewqQuestion1 = enc2utf8(pitanje)
       sNewQuestionHelp1 = enc2utf8("Izaberite jednu od ponuđenih opcija")
       
       titleNode = newXMLNode("title", parent = rowNode)
@@ -927,17 +1121,18 @@ for (i in 1:length(questionnaires)) {
   
   ## if there are any personals, add them too
   if (length(designctx$personals) > 0) {
-    sGroupTitle = enc2utf8('Molimo da nam još odgovorite na nekoliko pitanja o sebi')
-    sGroupDescription = enc2utf8('')
-    #add_group(string $sSessionKey, integer $iSurveyID, string $sGroupTitle, string $sGroupDescription = '') : array|integer
-    iGid = call_limer(method = 'add_group', 
-                      params = list("iSurveyID" = iNewID,
-                                    "sGroupTitle" = sGroupTitle,
-                                    "sGroupDescription" = sGroupDescription))
 
     for (ci in 1:length(designctx$personals)) {
 
-      naziv = designctx$personals[[ci]][["naziv"]]
+      sGroupTitle = enc2utf8('Molimo da nam još odgovorite na nekoliko pitanja o sebi')
+      sGroupDescription = enc2utf8('')
+      #add_group(string $sSessionKey, integer $iSurveyID, string $sGroupTitle, string $sGroupDescription = '') : array|integer
+      iGid = call_limer(method = 'add_group', 
+                        params = list("iSurveyID" = iNewID,
+                                      "sGroupTitle" = sGroupTitle,
+                                      "sGroupDescription" = sGroupDescription))
+      
+      pitanje = designctx$personals[[ci]][["pitanje"]]
       tip = designctx$personals[[ci]][["tip"]]
       
       doc = newXMLDoc()
@@ -1009,7 +1204,8 @@ for (i in 1:length(questionnaires)) {
         cdatanode = newXMLCDataNode("S", parent = typeNode) # za short text
         
         sNewQuestionTitle1 = paste("persq", ci, sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
-        sNewqQuestion1 = enc2utf8(paste("Molimo unesite:", naziv))
+        #sNewqQuestion1 = enc2utf8(paste("Molimo unesite:", naziv))
+        sNewqQuestion1 = enc2utf8(pitanje)
         sNewQuestionHelp1 = enc2utf8("")
         
         titleNode = newXMLNode("title", parent = rowNode)
@@ -1038,15 +1234,21 @@ for (i in 1:length(questionnaires)) {
         modulenameNode = newXMLNode("modulename", parent = rowNode)
         ## questions node
         
-      } else if (tip == "dropdown") {
+      } else if ((tip == "dropdown") || (tip == "radio")) {
         
         vrijednosti = designctx$personals[[ci]][["vrijednosti"]]
         
-        cdatanode = newXMLCDataNode("!", parent = typeNode) # za drop down listu
-        #cdatanode = newXMLCDataNode("L", parent = typeNode) # za radio button listu
-        
+        if (tip == "dropdown") {
+          cdatanode = newXMLCDataNode("!", parent = typeNode) # za drop down listu
+        } else if (tip == "radio") {
+          cdatanode = newXMLCDataNode("L", parent = typeNode) # za radio button listu
+        } else {
+          cdatanode = newXMLCDataNode("L", parent = typeNode) # za radio button listu # fallback
+        }
+
         sNewQuestionTitle1 = paste("covq", ci, sep = "") # ovo je kod u LimeSurvey i mora biti jedinstven na nivou surveya
-        sNewqQuestion1 = enc2utf8(paste("Molimo odaberite:", naziv))
+        #sNewqQuestion1 = enc2utf8(paste("Molimo odaberite:", naziv))
+        sNewqQuestion1 = enc2utf8(pitanje)
         sNewQuestionHelp1 = enc2utf8("Izaberite jednu od ponuđenih opcija")
         
         titleNode = newXMLNode("title", parent = rowNode)
